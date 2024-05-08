@@ -1,0 +1,2 @@
+class Hubee
+end

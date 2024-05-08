@@ -1,10 +1,18 @@
 <h1 class="w-full">Début de la demande</h1>
-<div class="flex-auto">
-
-<pre>
+<% if Current.user.authenticated? %>
+  <div class="flex-auto">
+    <%= link_to "Récupérer mon QF", quotient_familial_claims_path(recipient: params[:recipient]) %>
+    <pre>
 curl -H "Authorization: Bearer <%= Current.user.token %>" -G \
 -d 'recipient=<%= Current.user[:recipient] %>' \
 --url "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2"</pre>
-</div>
-<hr class="flex-auto" />
+  </div>
+  <hr class="flex-auto" />
+<% else %>
+  <div class="flex-auto">
+    <%= form_tag('/auth/france_connect', method: 'post', data: {turbo: false}) do %>
+      <button type='submit'>Se connecter (avec un joli bouton FranceConnect officiel)</button>
+    <% end %>
+  </div>
+<% end %>
 <div class="flex-auto"><%= debug Current.user %></div>

@@ -16,10 +16,23 @@ class PivotIdentity
   def initialize(recipient:, auth: {})
     @auth = auth
     @data = self.class.normalize(auth)
+    @data[:first_name] = first_name
     @data[:recipient] = recipient
   end
 
   delegate :[], to: :data
+
+  def first_name
+    (self[:first_names] || []).join(" ")
+  end
+
+  def last_name
+    self[:last_name]
+  end
+
+  def authenticated?
+    @auth.present?
+  end
 
   def token
     self[:token]
