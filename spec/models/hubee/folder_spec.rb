@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe Hubee::Folder do
-  subject(:folder) { Hubee::Folder.new(**params) }
+RSpec.describe HubEE::Folder do
+  subject(:folder) { HubEE::Folder.new(**params) }
 
   let(:params) do
     {
@@ -24,7 +24,7 @@ RSpec.describe Hubee::Folder do
   describe "#initialize" do
     context "when all keywords are passed" do
       it "initializes a new folder" do
-        expect(folder).to be_an_instance_of(Hubee::Folder)
+        expect(folder).to be_an_instance_of(HubEE::Folder)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe Hubee::Folder do
       end
 
       it "initializes a new folder" do
-        expect(folder).to be_an_instance_of(Hubee::Folder)
+        expect(folder).to be_an_instance_of(HubEE::Folder)
       end
     end
   end

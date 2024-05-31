@@ -2,7 +2,7 @@ require "uri"
 require "net/http"
 require "json"
 
-class Hubee::Api
+class HubEE::Api
   def self.session
     new
   end

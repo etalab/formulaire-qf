@@ -1,4 +1,4 @@
-class Hubee::PrepareAttachments < BaseInteractor
+class HubEE::PrepareAttachments < BaseInteractor
   def call
     context.folder = context.folder.with(attachments:)
   end

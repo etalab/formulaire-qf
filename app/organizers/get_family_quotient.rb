@@ -1,6 +1,6 @@
 class GetFamilyQuotient < BaseInteractor
   def call
-    context.qf = {
+    context.quotient_familial = {
       regime: "CNAF",
       enfants: [
         {

@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe Hubee::Recipient do
-  subject(:recipient) { Hubee::Recipient.new(**params) }
+RSpec.describe HubEE::Recipient do
+  subject(:recipient) { HubEE::Recipient.new(**params) }
 
   let(:params) do
     {
@@ -18,7 +18,7 @@ RSpec.describe Hubee::Recipient do
   describe "#initialize" do
     context "when all keywords are passed" do
       it "initializes a new recipient" do
-        expect(recipient).to be_an_instance_of(Hubee::Recipient)
+        expect(recipient).to be_an_instance_of(HubEE::Recipient)
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe Hubee::Recipient do
       end
 
       it "initializes a new recipient" do
-        expect(recipient).to be_an_instance_of(Hubee::Recipient)
+        expect(recipient).to be_an_instance_of(HubEE::Recipient)
       end
     end
   end

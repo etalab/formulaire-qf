@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe Hubee::PrepareAttachments, type: :interactor do
+RSpec.describe HubEE::PrepareAttachments, type: :interactor do
   subject(:interactor) { described_class.call(**params) }
 
   let(:attachments) { [] }
-  let(:folder) { Hubee::Folder.new(applicant: double, cases: [], external_id: "exId", process_code: "FormulaireQF", attachments:) }
+  let(:folder) { HubEE::Folder.new(applicant: double, cases: [], external_id: "exId", process_code: "FormulaireQF", attachments:) }
   let(:params) do
     {
       folder:,
@@ -14,7 +14,7 @@ RSpec.describe Hubee::PrepareAttachments, type: :interactor do
   describe ".call" do
     let(:attachments) do
       [
-        Hubee::Attachment.new(file_name: "FormulaireQF.json", mime_type: "application/json", type: "FormulaireQF", file_content: "content", recipients: []),
+        HubEE::Attachment.new(file_name: "FormulaireQF.json", mime_type: "application/json", type: "FormulaireQF", file_content: "content", recipients: []),
       ]
     end
     let(:expected_attachments) do
@@ -35,7 +35,7 @@ RSpec.describe Hubee::PrepareAttachments, type: :interactor do
   describe "#rollback" do
     subject(:rollback) { interactor.rollback }
 
-    let(:attachment) { Hubee::Attachment.new(file: Tempfile.create, file_name: "FormulaireQF.json", mime_type: "application/json", type: "FormulaireQF", file_content: "content", recipients: []) }
+    let(:attachment) { HubEE::Attachment.new(file: Tempfile.create, file_name: "FormulaireQF.json", mime_type: "application/json", type: "FormulaireQF", file_content: "content", recipients: []) }
     let(:attachments) do
       [
         attachment,

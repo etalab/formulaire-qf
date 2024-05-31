@@ -1,4 +1,4 @@
-class Hubee
+module HubEE
   class Attachment < Data.define(:id, :file, :file_content, :file_name, :file_size, :mime_type, :recipients, :type)
     def initialize(file_content:, file_name:, mime_type:, recipients:, type:, id: nil, file: nil, file_size: nil)
       super

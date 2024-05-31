@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe StoreQuotientFamilial, type: :organizer do
   let(:interactors) do
     [
-      Hubee::CreateFolder,
+      UploadQuotientFamilialToHubEE,
     ]
   end
 

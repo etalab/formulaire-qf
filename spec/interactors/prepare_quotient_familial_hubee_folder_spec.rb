@@ -1,13 +1,15 @@
 require "rails_helper"
 
-RSpec.describe Hubee::PrepareFolder, type: :interactor do
+RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
   describe ".call" do
     subject(:interactor) { described_class.call(**params) }
 
     let(:expected_attributes) do
       {
         applicant: identity,
-        attachments: [an_object_having_attributes(file_name: "FormulaireQF.json"), an_object_having_attributes(file_name: "FormulaireQF.pdf")],
+        attachments: [an_object_having_attributes(file_name: "FormulaireQF.json")],
+        # TODO: Add back when we upload a proper PDF
+        # attachments: [an_object_having_attributes(file_name: "FormulaireQF.json"), an_object_having_attributes(file_name: "FormulaireQF.pdf")],
         cases: [
           external_id: "Formulaire-QF-ABCDEF1234567-01",
           recipient:,
@@ -23,7 +25,7 @@ RSpec.describe Hubee::PrepareFolder, type: :interactor do
         recipient:,
       }
     end
-    let(:recipient) { double(Hubee::Recipient) }
+    let(:recipient) { double(HubEE::Recipient) }
 
     before do
       allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")

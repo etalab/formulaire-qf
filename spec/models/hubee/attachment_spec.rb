@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe Hubee::Attachment do
-  subject(:attachment) { Hubee::Attachment.new(**params) }
+RSpec.describe HubEE::Attachment do
+  subject(:attachment) { HubEE::Attachment.new(**params) }
 
   let(:file) { double(File) }
   let(:params) do
@@ -29,7 +29,7 @@ RSpec.describe Hubee::Attachment do
   describe "#initialize" do
     context "when all keywords are passed" do
       it "initializes a new attachment" do
-        expect(attachment).to be_an_instance_of(Hubee::Attachment)
+        expect(attachment).to be_an_instance_of(HubEE::Attachment)
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe Hubee::Attachment do
       end
 
       it "initializes a new attachment" do
-        expect(attachment).to be_an_instance_of(Hubee::Attachment)
+        expect(attachment).to be_an_instance_of(HubEE::Attachment)
       end
     end
   end

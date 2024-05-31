@@ -1,4 +1,4 @@
-class Hubee
+module HubEE
   class Folder < Data.define(:id, :applicant, :attachments, :cases, :external_id, :process_code)
     def initialize(applicant:, attachments:, cases:, external_id:, process_code:, id: nil)
       super

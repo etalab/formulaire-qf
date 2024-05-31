@@ -1,6 +1,6 @@
-class Hubee::PrepareFolder < BaseInteractor
+class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   def call
-    context.folder = ::Hubee::Folder.new(**folder_params)
+    context.folder = ::HubEE::Folder.new(**folder_params)
   end
 
   private
@@ -10,7 +10,8 @@ class Hubee::PrepareFolder < BaseInteractor
   end
 
   def external_id
-    # HubEE's portal view greps 13 chars after two dashes
+    # This random string is formatted following HubEE's requirements
+    # so it can display nicely in their portal.
     @external_id ||= "Formulaire-QF-#{SecureRandom.hex[0...13].upcase}"
   end
 
@@ -19,7 +20,8 @@ class Hubee::PrepareFolder < BaseInteractor
       applicant: context.identity,
       attachments: [
         json_file,
-        text_file,
+        # can't setup this file until we can upload a proper PDF
+        # text_file,
       ],
       cases: [
         external_id: case_external_id,
@@ -31,12 +33,12 @@ class Hubee::PrepareFolder < BaseInteractor
   end
 
   def json_file
-    ::Hubee::Attachment.new(
+    ::HubEE::Attachment.new(
       file_name: "FormulaireQF.json",
       mime_type: "application/json",
       recipients: [case_external_id],
       type: process_code,
-      file_content: '{"identite": "pivot"}'
+      file_content: '{"first_name":"David"}'
     )
   end
 
@@ -45,7 +47,7 @@ class Hubee::PrepareFolder < BaseInteractor
   end
 
   def text_file
-    ::Hubee::Attachment.new(
+    ::HubEE::Attachment.new(
       file_name: "FormulaireQF.pdf",
       mime_type: "application/pdf",
       recipients: [case_external_id],

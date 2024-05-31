@@ -1,3 +1,3 @@
 class StoreQuotientFamilial < BaseOrganizer
-  organize Hubee::CreateFolder
+  organize UploadQuotientFamilialToHubEE
 end

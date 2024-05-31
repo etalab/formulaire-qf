@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :hubee_recipient, class: Hubee::Recipient do
+  factory :hubee_recipient, class: HubEE::Recipient do
     initialize_with { new(**attributes) }
 
     siren { "123456789" }

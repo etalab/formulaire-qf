@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   def identify_user
     Current.user = PivotIdentity.new(auth: session_auth, recipient:)
+    Current.quotient_familial = quotient_familial
+  end
+
+  def quotient_familial
+    session.fetch("quotient_familial", {})
   end
 
   def recipient
