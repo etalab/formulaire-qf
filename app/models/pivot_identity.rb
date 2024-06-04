@@ -10,6 +10,7 @@ class PivotIdentity
   map from("info/last_name"), to("last_name")
   map from("extra/raw_info/birthcountry"), to("birth_country")
   map from("extra/raw_info/birthplace"), to("birthplace")
+  map from("extra/raw_info/sub"), to("sub")
 
   map from("credentials/token"), to("token")
 
@@ -32,6 +33,10 @@ class PivotIdentity
 
   def authenticated?
     @auth.present?
+  end
+
+  def sub
+    self[:sub]
   end
 
   def token
