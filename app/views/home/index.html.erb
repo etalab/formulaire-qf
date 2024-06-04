@@ -1,2 +1,6 @@
 <h1>Faire une demande</h1>
-<%= link_to "Je démarre", :claims %>
+<%= form_with url: claims_path, method: :get do |form| %>
+  <%= form.label :recipient, "Votre collectivité:" %>
+  <%= form.select :recipient, [["Pey", "13002526500013"], ["Une autre", "13002526500013"]] %>
+  <%= form.submit "Je démarre ma demande" %>
+<% end %>

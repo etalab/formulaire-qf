@@ -1,3 +1,3 @@
 class Current < ActiveSupport::CurrentAttributes
-  attribute :user
+  attribute :user, :quotient_familial, :recipient
 end
