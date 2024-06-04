@@ -1,24 +1,52 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install project
 
-Things you may want to cover:
+### Database setup
+Ask a dev for the 3 keys necessary to decrypt the secrets :
+- `config/master.key`
+- `config/credentials/development.key`
+- `config/credentials/test.key`
 
-* Ruby version
 
-* System dependencies
+Get the credentials for the db like this (we'll call them `theuser` and `thepassword`)
 
-* Configuration
+```sh
+rails credentials:show
+```
 
-* Database creation
+Then enter the psql command line
 
-* Database initialization
+```sh
+sudo su - postgres
 
-* How to run the test suite
+psql
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Create the superuser with the credentials you got before
 
-* Deployment instructions
+```SQL
+> CREATE ROLE theuser WITH SUPERUSER CREATEDB LOGIN PASSWORD 'thepassword';
+```
 
-* ...
+Then exit the psql command line, and run
+
+```sh
+rails db:setup
+```
+
+### Run the dev server
+
+```sh
+bundle install
+raisl assets:precompile
+rails s
+```
+
+Then you can visit `localhost:3000`
+
+# Run the tests
+
+```sh
+rspec
+```
