@@ -1,0 +1,10 @@
+<h1 class="w-full">Début de la demande</h1>
+<div class="flex-auto">
+
+<pre>
+curl -H "Authorization: Bearer <%= Current.user.token %>" -G \
+-d 'recipient=<%= Current.user[:recipient] %>' \
+--url "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2"</pre>
+</div>
+<hr class="flex-auto" />
+<div class="flex-auto"><%= debug Current.user %></div>
