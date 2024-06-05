@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+/* makes the footer stick to the bottom of the page */
+html, body {
+  min-height: 100vh;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex-grow: 1;
+}
+
+/* Makes the italic part of the title not bold */
+.fr-header__service-title i {
+  font-weight: normal;
+}

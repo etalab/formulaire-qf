@@ -5,46 +5,21 @@
         <div class="fr-header__brand fr-enlarge-link">
           <div class="fr-header__brand-top">
             <div class="fr-header__logo">
-              <a href="/" title="Accueil - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
-                <p class="fr-logo">
-                  Intitulé
-                  <br>officiel
-                </p>
-              </a>
+              <%= simple_format t('layout.entity'), { class: 'fr-logo' }, wrapper_tag: 'p' %>
             </div>
-            <div class="fr-header__navbar">
-              <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-491" aria-haspopup="menu" id="button-492" title="Menu">
-                Menu
-              </button>
-            </div>
+          </div>
+          <div class="fr-header__service">
+            <a href="/" title="<%= t('pages.home.title')%> - <%= t('layout.title') %>">
+              <p class="fr-header__service-title">
+                <%=t('header.title.bold_part')%><i><%=t('header.title.italic_part')%></i>
+              </p>
+            </a>
+            <p class="fr-header__service-tagline">
+              <%= t('layout.tagline') %>
+            </p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="fr-header__menu fr-modal" id="modal-491" aria-labelledby="button-492">
-    <div class="fr-container">
-      <button class="fr-btn--close fr-btn" aria-controls="modal-491" title="Fermer">
-        Fermer
-      </button>
-      <div class="fr-header__menu-links">
-      </div>
-      <nav class="fr-nav" id="navigation-494" role="navigation" aria-label="Menu principal">
-        <ul class="fr-nav__list">
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" href="#" target="_self">accès direct</a>
-          </li>
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" href="#" target="_self">accès direct</a>
-          </li>
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" href="#" target="_self">accès direct</a>
-          </li>
-          <li class="fr-nav__item">
-            <a class="fr-nav__link" href="#" target="_self">accès direct</a>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
 </header>

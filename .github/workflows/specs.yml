@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  unit-test:
     runs-on: ubuntu-latest
 
     services:
@@ -33,10 +33,45 @@ jobs:
           bundler-cache: true
           cache-version: 321
 
-      - name: Run tests
+      - name: Run unit tests
         env:
           RAILS_ENV: test
           RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
         run: bin/rails db:setup spec
+
+  e2e-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y postgresql-client libpq-dev
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          cache-version: 321
+
+      - name: Run e2e tests
+        env:
+          RAILS_ENV: test
+          RAILS_TEST_KEY: ${{ secrets.RAILS_TEST_KEY }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        run: bin/rails db:setup; bundle exec cucumber

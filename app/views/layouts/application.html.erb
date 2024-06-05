@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QuotientFamilial</title>
+    <title><%= t('layout.title') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,7 +9,6 @@
     <%= stylesheet_link_tag "dsfr-fonts", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "dsfr", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <%= javascript_include_tag "dsfr.module", "data-turbo-track": "reload" %>
@@ -20,8 +19,11 @@
   </head>
   <body>
     <%= render partial: 'layouts/header' %>
-    <main class="fr-container fr-mt-4w">
+    
+    <main class="fr-container fr-my-4w">
       <%= yield %>
     </main>
+
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>
