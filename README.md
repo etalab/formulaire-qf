@@ -39,7 +39,6 @@ rails db:setup
 
 ```sh
 bundle install
-raisl assets:precompile
 rails s
 ```
 
