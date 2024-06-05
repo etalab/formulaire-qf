@@ -1,0 +1,21 @@
+fr:
+  layout:
+    entity: |
+      Direction
+      Interministérielle
+      du Numérique
+    title: Quotient-familial.numerique.gouv.fr
+    tagline: Transmettre son quotient familial à sa collectivité
+  header:
+    title:
+      bold_part: Quotient-familial
+      italic_part: .numerique.gouv.fr
+  footer:
+    tagline: Ce site propose un formulaire à compléter par les citoyens pour permettre à leurs collectivités de collecter leur identité pivot et leur quotient familial.
+    external_links:
+      - particulier.api.fr
+      - api.gouv.fr
+      - data.gouv.fr
+  pages:
+    home:
+      title: Accueil

@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.fr-header__service-title i {
+  font-weight: normal;
+}
