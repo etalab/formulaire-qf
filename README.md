@@ -47,5 +47,13 @@ Then you can visit `localhost:3000`
 # Run the tests
 
 ```sh
-rspec
+bundle exec rspec
+bundle exec cucumber
 ```
+
+# Linter autorcorrect 
+
+```sh
+bundle exec rubocop -A
+```
+
