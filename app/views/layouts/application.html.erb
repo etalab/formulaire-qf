@@ -21,8 +21,16 @@
   <body>
     <%= render partial: 'layouts/header' %>
     
-    <main class="fr-container fr-my-4w">
-      <%= yield %>
+    <main>
+      <div class="banner fr-py-4w">
+        <div class="fr-container">
+          <%= yield :banner %>
+        </div>
+      </div>
+
+      <div class="fr-container fr-my-6w">
+        <%= yield %>
+      </div>
     </main>
 
     <%= render partial: 'layouts/footer' %>

@@ -19,3 +19,25 @@ fr:
   pages:
     home:
       title: Accueil
+      banner:
+        text: |
+          <span class="title-highlight">Votre collectivité</span> a besoin de <span class="title-highlight">votre Quotient familial CAF ou MSA</span> pour calculer votre tarif social ?
+          <strong>Utilisez ce service pour qu'elle puisse le collecter !</strong>
+        duration_text: "Durée de la démarche : 4 min"
+        cta: "Débuter la démarche"
+      what_is_it:
+        title: À quoi sert ce service ?
+        content: |
+          Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.
+
+          <p class="fr-text--lg">Ce service vous permet de <strong>transmettre de façon sécurisée vos données d’identité permettant à votre commune de récupérer instantanément</strong> votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.</p>
+        items:
+          - title: Facile et certifié
+            content: Vous n’avez plus besoin de retrouver votre attestation MSA/CAF, les administrations transmettent directement la donnée source à votre commune ;
+          - title: Rapide et instantané
+            content: Au dernier clic de cette démarche de 4min, votre commune réceptionne votre identité pivot et votre quotient familial ;
+          - title: Renouvelé automatiquement
+            content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la commune mettra à jour de façon proactive votre quotient familial
+      which_informations:
+        title: Quelles informations vous seront demandées ?
+        content: Aucune, seulement une connexion à FranceConnect

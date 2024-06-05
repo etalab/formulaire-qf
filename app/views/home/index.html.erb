@@ -1,4 +1,45 @@
-<h1>Faire une demande</h1>
+<% content_for :banner do %>
+  <div class="fr-container">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col">
+        <%= simple_format t('pages.home.banner.text'), { class: "fr-h2 unbold" }, wrapper_tag: 'h1' %>
+      </div>
+
+      <div class="fr-col-12 fr-col-md-3">
+        <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
+          <%= t('pages.home.banner.duration_text')%>
+        </p>
+
+        <%= render partial: "cta" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="fr-col-md-8">
+  <h2><%= t('pages.home.what_is_it.title') %></h2>
+
+  <%= simple_format t('pages.home.what_is_it.content') %>
+
+  <ul class="checklist">
+    <% t('pages.home.what_is_it.items').each do |item| %>
+      <li class="fr-mt-1w">
+        <strong><%= item[:title] %></strong> : <%= item[:content] %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h2 class="fr-mt-6w"><%= t('pages.home.which_informations.title') %></h2>
+  <p>
+    <%= t('pages.home.which_informations.content') %>
+  </p>
+  <%= render partial: "cta" %>
+
+</div>
+
+<!-- TODO : Move that stuff elsewhere, I guess -->
+
+<h2>Faire une demande</h2>
 <%= form_with url: claims_path, method: :get do |form| %>
   <%= form.label :recipient, "Votre collectivité:" %>
   <%= form.select :recipient, [["Pey", "13002526500013"], ["Une autre", "13002526500013"]] %>
