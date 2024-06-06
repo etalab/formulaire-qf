@@ -1,0 +1,2 @@
+class QuotientFamilialRequest < ApplicationRecord
+end

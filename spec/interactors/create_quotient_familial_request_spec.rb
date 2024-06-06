@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CreateClaim, type: :interactor do
+RSpec.describe CreateQuotientFamilialRequest, type: :interactor do
   describe ".call" do
     subject(:interactor) { described_class.call(**params) }
 
@@ -13,11 +13,11 @@ RSpec.describe CreateClaim, type: :interactor do
       }
     end
 
-    context "when the claim is created" do
+    context "when the params are valid" do
       it { is_expected.to be_a_success }
 
-      it "creates a claim" do
-        expect { interactor }.to change(Claim, :count).by(1)
+      it "creates a quotient familial request" do
+        expect { interactor }.to change(QuotientFamilialRequest, :count).by(1)
       end
     end
   end
