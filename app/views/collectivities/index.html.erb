@@ -27,7 +27,7 @@
       </span>
     <% end %>
 
-    <%= form.select :recipient, [["Pey", "13002526500013"], ["Une autre", "13002526500013"]] , {}, class: "fr-select" %>
+    <%= form.select :recipient, options_from_collection_for_select(@collectivities, :siret, :name), {}, class: "fr-select" %>
 
     <div class="fr-notice fr-notice--info fr-mt-2w">
       <div class="fr-container">
