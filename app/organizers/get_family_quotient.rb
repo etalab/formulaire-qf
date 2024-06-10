@@ -1,21 +1,5 @@
 class GetFamilyQuotient < BaseInteractor
   def call
-    context.quotient_familial = {
-      regime: "CNAF",
-      enfants: [
-        {
-          nomNaissance: "ROUX",
-          nomUsage: "ROUX",
-          prenoms: "ALEXIS VINCENT",
-          anneeDateDeNaissance: "2006",
-          moisDateDeNaissance: "04",
-          jourDateDeNaissance: "20",
-          sexe: "M",
-        },
-      ],
-      quotientFamilial: 2550,
-      annee: 2024,
-      mois: 2,
-    }
+    context.quotient_familial = ApiParticulier::QuotientFamilialV2.get(fc_access_token: context.identity.token, recipient: context.identity.recipient)
   end
 end

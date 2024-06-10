@@ -35,6 +35,10 @@ class PivotIdentity
     @auth.present?
   end
 
+  def recipient
+    self[:recipient]
+  end
+
   def sub
     self[:sub]
   end
