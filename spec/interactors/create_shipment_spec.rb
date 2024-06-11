@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CreateQuotientFamilialRequest, type: :interactor do
+RSpec.describe CreateShipment, type: :interactor do
   describe ".call" do
     subject(:interactor) { described_class.call(**params) }
 
@@ -17,7 +17,7 @@ RSpec.describe CreateQuotientFamilialRequest, type: :interactor do
       it { is_expected.to be_a_success }
 
       it "creates a quotient familial request" do
-        expect { interactor }.to change(QuotientFamilialRequest, :count).by(1)
+        expect { interactor }.to change(Shipment, :count).by(1)
       end
     end
   end

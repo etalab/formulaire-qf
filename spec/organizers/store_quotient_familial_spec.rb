@@ -4,7 +4,7 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
   let(:interactors) do
     [
       UploadQuotientFamilialToHubEE,
-      CreateQuotientFamilialRequest,
+      CreateShipment,
     ]
   end
 
@@ -37,8 +37,8 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
 
     it { is_expected.to be_a_success }
 
-    it "creates a quotient_familial_request" do
-      expect { organizer }.to change(QuotientFamilialRequest, :count).by(1)
+    it "creates a shipment" do
+      expect { organizer }.to change(Shipment, :count).by(1)
     end
   end
 end
