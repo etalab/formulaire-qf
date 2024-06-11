@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "/callback", to: "sessions#create"
   get "/login", to: "sessions#new"
 
+  resources :collectivities, only: :index
+
   # TODO review the controller/route separations
   get "collecte/(:recipient)/commencer", to: "claims#index", as: :claims
   get "collecte/:recipient/quotient-familial", to: "claims#quotient_familial", as: :quotient_familial_claims

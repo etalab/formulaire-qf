@@ -1,0 +1,49 @@
+<% content_for :banner do %>
+  <div class="fr-container">
+    <div class="fr-grid-row fr-grid-row--gutters">
+      <div class="fr-col">
+        <%= simple_format t('pages.home.banner.text'), { class: "fr-h2 unbold" }, wrapper_tag: 'h1' %>
+      </div>
+
+      <div class="fr-col-12 fr-col-md-3">
+        <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
+          <%= t('pages.collectivities.banner.duration_text')%>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<h2><%= t('pages.collectivities.title') %></h2>
+
+<%= form_with url: claims_path, method: :get, class: "fr-col-md-8" do |form| %>
+  <div class="fr-select-group">
+    
+    <%= form.label :recipient, class: "fr-label" do %>
+      <%= t('pages.collectivities.form.label') %>
+
+      <span class="fr-hint-text">
+        <%= t('pages.collectivities.form.hint') %>
+      </span>
+    <% end %>
+
+    <%= form.select :recipient, [["Pey", "13002526500013"], ["Une autre", "13002526500013"]] , {}, class: "fr-select" %>
+
+    <div class="fr-notice fr-notice--info fr-mt-2w">
+      <div class="fr-container">
+        <div class="fr-notice__body">
+          <p class="fr-notice__title">
+            <%= t('pages.collectivities.form.notice.text')%>
+            <!--<a href='#' rel='noopener external' title="intitulé - nouvelle fenêtre" target='_blank'>
+              <%= t('pages.collectivities.form.notice.link')%>
+            </a>-->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+    <%= t('pages.collectivities.form.button') %>
+  <% end %>
+<% end %>

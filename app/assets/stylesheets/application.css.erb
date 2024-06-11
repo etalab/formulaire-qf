@@ -26,7 +26,31 @@ main {
   flex-grow: 1;
 }
 
-/* Makes the italic part of the title not bold */
-.fr-header__service-title i {
-  font-weight: normal;
+/* for the header's title */
+.unbold {
+  font-weight: normal !important;
+}
+
+/* for the banner */
+.title-highlight {
+  color: var(--background-flat-pink-tuile);
+  font-weight: bold;
+}
+.banner {
+  background: var(--background-contrast-brown-cafe-creme);
+}
+
+/* Custom checlist bullets */
+ul.checklist li {
+  position: relative;
+  list-style-type: none;
+  margin-left: 16px;
+}
+ul.checklist li:before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  width: 24px;
+  height: 24px;
+  background-image: url(<%= asset_path "fr--success-fill-green.svg" %>);
 }
