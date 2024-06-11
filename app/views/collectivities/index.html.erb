@@ -1,25 +1,19 @@
-<% content_for :banner do %>
-  <div class="fr-container">
-    <div class="fr-grid-row fr-grid-row--gutters">
-      <div class="fr-col">
-        <%= simple_format t('pages.home.banner.text'), { class: "fr-h2 unbold" }, wrapper_tag: 'h1' %>
-      </div>
+<% content_for :banner_title do %>
+  <%= simple_format t('pages.home.banner.text'), { }, wrapper_tag: 'span' %>
+<% end %>
 
-      <div class="fr-col-12 fr-col-md-3">
-        <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-          <%= t('pages.collectivities.banner.duration_text')%>
-        </p>
-      </div>
-    </div>
-  </div>
+<% content_for :banner_right do %>
+  <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
+    <%= t('pages.collectivities.banner.duration_text')%>
+  </p>
 <% end %>
 
 <h2><%= t('pages.collectivities.title') %></h2>
 
-<%= form_with url: claims_path, method: :get, class: "fr-col-md-8" do |form| %>
+<%= form_with url: select_collectivities_path, method: :get, class: "fr-col-md-8" do |form| %>
   <div class="fr-select-group">
     
-    <%= form.label :recipient, class: "fr-label" do %>
+    <%= form.label :id, class: "fr-label" do %>
       <%= t('pages.collectivities.form.label') %>
 
       <span class="fr-hint-text">
@@ -27,7 +21,7 @@
       </span>
     <% end %>
 
-    <%= form.select :recipient, options_from_collection_for_select(@collectivities, :siret, :name), {}, class: "fr-select" %>
+    <%= form.select :id, options_from_collection_for_select(@collectivities, :siret, :name), {}, class: "fr-select" %>
 
     <div class="fr-notice fr-notice--info fr-mt-2w">
       <div class="fr-container">

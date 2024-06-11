@@ -22,11 +22,7 @@
     <%= render partial: 'layouts/header' %>
     
     <main>
-      <div class="banner fr-py-4w">
-        <div class="fr-container">
-          <%= yield :banner %>
-        </div>
-      </div>
+      <%= render partial: "layouts/banner" %>
 
       <div class="fr-container fr-my-6w">
         <%= yield %>
