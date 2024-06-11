@@ -16,7 +16,7 @@ RSpec.describe CreateShipment, type: :interactor do
     context "when the params are valid" do
       it { is_expected.to be_a_success }
 
-      it "creates a quotient familial request" do
+      it "creates a shipment" do
         expect { interactor }.to change(Shipment, :count).by(1)
       end
     end
