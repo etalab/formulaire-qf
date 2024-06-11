@@ -4,8 +4,8 @@ module ApiParticulier
       new(**).get
     end
 
-    def initialize(fc_access_token:, recipient:)
-      @access_token = fc_access_token
+    def initialize(access_token:, recipient:)
+      @access_token = access_token
       @recipient = recipient
     end
 
@@ -25,7 +25,7 @@ module ApiParticulier
       response = https.request(request)
       quotient_familial = JSON.parse(response.body || "{}")
 
-      Rails.logger.debug response
+      Rails.logger.debug response.body
       Rails.logger.debug quotient_familial
 
       quotient_familial

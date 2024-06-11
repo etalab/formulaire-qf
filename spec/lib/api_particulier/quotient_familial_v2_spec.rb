@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ApiParticulier::QuotientFamilialV2 do
-  let(:params) { {fc_access_token: "token", recipient: "a_valid_siret"} }
+  let(:params) { {access_token: "token", recipient: "a_valid_siret"} }
 
   describe ".get" do
     subject(:quotient_familial) { described_class.get(**params) }
