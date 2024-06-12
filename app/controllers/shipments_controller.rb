@@ -8,11 +8,11 @@ class ShipmentsController < ApplicationController
   end
 
   def create
-    hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siren, branch_code: "04107")
+    hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siret, branch_code: "04107")
     result = StoreQuotientFamilial.call(user: Current.user, identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
 
     if result.success?
-      redirect_to collectivity_shipment_path(params[:collectivity_id], result.shipment)
+      redirect_to collectivity_shipment_path(@collectivity, result.shipment)
     else
       raise
     end
@@ -21,7 +21,6 @@ class ShipmentsController < ApplicationController
   private
 
   def set_collectivity
-    # TODO : get the collectivity from the db, by siren
-    @collectivity = OpenStruct.new(id: params[:collectivity_id], siren: "21040107100019")
+    @collectivity = Collectivity.find_by(siret: params[:collectivity_id])
   end
 end
