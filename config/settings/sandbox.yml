@@ -1,2 +1,4 @@
 france_connect:
   redirect_uri: <%= Rails.application.credentials.france_connect.redirect_uri %>
+sentry:
+  dsn: <%= Rails.application.credentials.sentry.dsn %>
