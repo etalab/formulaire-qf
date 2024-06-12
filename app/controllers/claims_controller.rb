@@ -16,7 +16,7 @@ class ClaimsController < ApplicationController
   def send_qf
     hubee_recipient = HubEE::Recipient.new(siren: "21040107100019", branch_code: "04107")
 
-    result = StoreQuotientFamilial.call(identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
+    result = StoreQuotientFamilial.call(user: Current.user, identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
 
     if result.success?
       Rails.logger.debug "Noïce"

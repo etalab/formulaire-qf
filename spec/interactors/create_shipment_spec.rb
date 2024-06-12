@@ -5,13 +5,13 @@ RSpec.describe CreateShipment, type: :interactor do
     subject(:interactor) { described_class.call(**params) }
 
     let(:folder) { instance_double("HubEE::Folder", id: "folder_uuid") }
-    let(:identity) { instance_double("PivotIdentity", sub: "real_uuid") }
     let(:params) do
       {
-        identity:,
         folder:,
+        user:,
       }
     end
+    let(:user) { instance_double("User", sub: "real_uuid") }
 
     context "when the params are valid" do
       it { is_expected.to be_a_success }
