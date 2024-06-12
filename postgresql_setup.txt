@@ -1,0 +1,4 @@
+CREATE ROLE quotient_familial WITH SUPERUSER LOGIN CREATEDB PASSWORD 'suchpassword!wow!';
+
+CREATE DATABASE quotient_familial_development WITH OWNER quotient_familial;
+CREATE DATABASE quotient_familial_test WITH OWNER quotient_familial;

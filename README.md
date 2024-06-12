@@ -3,39 +3,18 @@
 ## Install project
 
 ### Database setup
+
 Ask a dev for the 3 keys necessary to decrypt the secrets :
-- `config/master.key`
+
+- `config/master.key` (optional for dev)
 - `config/credentials/development.key`
 - `config/credentials/test.key`
 
-
-Get the credentials for the db like this (we'll call them `theuser` and `thepassword`)
-
-```sh
-rails credentials:show
-```
-
-Then enter the psql command line
+Then execute:
 
 ```sh
-sudo su - postgres
-
-psql
+./bin/install.sh
 ```
-
-Create the superuser with the credentials you got before
-
-```SQL
-> CREATE ROLE theuser WITH SUPERUSER CREATEDB LOGIN PASSWORD 'thepassword';
-```
-
-Then exit the psql command line, and run
-
-```sh
-rails db:setup
-```
-
-### Run the dev server
 
 ```sh
 bundle install
@@ -51,7 +30,7 @@ bundle exec rspec
 bundle exec cucumber
 ```
 
-# Linter autorcorrect 
+# Linter autorcorrect
 
 ```sh
 bundle exec rubocop -A
