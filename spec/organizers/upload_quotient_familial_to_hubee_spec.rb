@@ -20,7 +20,7 @@ RSpec.describe UploadQuotientFamilialToHubEE, type: :organizer do
     subject { described_class.call(**params) }
 
     let(:folder) { build(:hubee_folder) }
-    let(:identity) { PivotIdentity.new(recipient:, auth: {info: {first_name: "David", last_name: "Heinemeier Hansson"}}) }
+    let(:identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
     let(:recipient) { build(:hubee_recipient) }
     let(:params) do
       {

@@ -16,15 +16,17 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     subject(:organizer) { described_class.call(**params) }
 
     let(:folder) { build(:hubee_folder) }
-    let(:identity) { PivotIdentity.new(recipient:, auth: {info: {first_name: "David", last_name: "Heinemeier Hansson"}}) }
-    let(:recipient) { build(:hubee_recipient) }
+    let(:identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
     let(:params) do
       {
         folder:,
         identity:,
         recipient:,
+        user:,
       }
     end
+    let(:recipient) { build(:hubee_recipient) }
+    let(:user) { User.new(access_token: "a_real_token", sub: "a_real_sub") }
 
     before do
       allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")

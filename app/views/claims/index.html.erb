@@ -1,10 +1,10 @@
 <h1 class="w-full">Début de la demande</h1>
 <% if Current.user.authenticated? %>
   <div class="flex-auto">
-    <%= link_to "Récupérer mon QF", quotient_familial_claims_path(recipient: params[:recipient]) %>
+    <%= button_to "Récupérer mon QF", quotient_familial_claims_path(recipient: Current.recipient), method: :get %>
     <pre>
-curl -H "Authorization: Bearer <%= Current.user.token %>" -G \
--d 'recipient=<%= Current.user[:recipient] %>' \
+curl -H "Authorization: Bearer <%= Current.user.access_token %>" -G \
+-d 'recipient=<%= Current.recipient %>' \
 --url "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2"</pre>
   </div>
   <hr class="flex-auto" />
@@ -15,4 +15,3 @@ curl -H "Authorization: Bearer <%= Current.user.token %>" -G \
     <% end %>
   </div>
 <% end %>
-<div class="flex-auto"><%= debug Current.user %></div>

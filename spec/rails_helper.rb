@@ -65,6 +65,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include QuotientFamilial::Matchers
   config.include ProviderStubs::HubEE
+  config.include ProviderStubs::ApiParticulier
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

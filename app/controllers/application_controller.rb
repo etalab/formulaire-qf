@@ -1,22 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :identify_user
+  before_action :set_up_current_data
 
   private
 
-  def identify_user
-    Current.user = PivotIdentity.new(auth: session_auth, recipient:)
-    Current.quotient_familial = quotient_familial
-  end
-
-  def quotient_familial
-    session.fetch("quotient_familial", {})
-  end
-
-  def recipient
-    params.fetch(:recipient, "")
-  end
-
-  def session_auth
-    session.fetch("auth", {})
+  def set_up_current_data
+    SetupCurrentData.call(session: session, params: params)
   end
 end
