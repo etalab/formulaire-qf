@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def set_collectivity_from_session
-    @collectivity = Collectivity.find_by(siret: session["collectivity_id"])
+    @collectivity = Collectivity.find_by!(siret: session[:collectivity_id])
   end
 end

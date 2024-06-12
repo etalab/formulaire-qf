@@ -16,6 +16,6 @@ class CollectivitiesController < ApplicationController
   private
 
   def set_collectivity
-    @collectivity = Collectivity.find_by(siret: params[:id])
+    @collectivity = Collectivity.find_by!(siret: params[:id])
   end
 end
