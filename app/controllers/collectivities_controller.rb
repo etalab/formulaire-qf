@@ -6,6 +6,7 @@ class CollectivitiesController < ApplicationController
   end
 
   def show
+    session["collectivity_id"] = @collectivity.siret
   end
 
   def select
