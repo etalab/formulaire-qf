@@ -1,5 +1,5 @@
 <% content_for :banner_title do %>
-  <%= simple_format t('pages.shipments.banner.text', label: "Pey", postal_code: "26410"), { }, wrapper_tag: 'span' %>
+  <%= simple_format t('pages.shipments.banner.text', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'span' %>
 <% end %>
 
 <% content_for :banner_right do %>

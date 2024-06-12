@@ -56,7 +56,7 @@ fr:
       banner:
         text: |
           Transmission du <strong>quotient familial et de l'identité pivot</strong>
-          à <span class="title-highlight"><strong>%{label}</strong> - %{postal_code}</span>
+          à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
         duration_text: "Durée restante : 3 min"
       title: Connectez-vous via FranceConnect
       info:

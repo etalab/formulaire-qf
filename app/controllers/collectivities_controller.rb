@@ -1,5 +1,5 @@
 class CollectivitiesController < ApplicationController
-  before_action :set_collectivity, only: %i[select]
+  before_action :set_collectivity, only: %i[select show]
 
   def index
     @collectivities = Collectivity.active
@@ -9,12 +9,12 @@ class CollectivitiesController < ApplicationController
   end
 
   def select
-    redirect_to collectivity_path(@collectivity_id)
+    redirect_to collectivity_path(@collectivity.siret)
   end
 
   private
 
   def set_collectivity
-    @collectivity_id = params[:id]
+    @collectivity = Collectivity.find_by(siret: params[:id])
   end
 end
