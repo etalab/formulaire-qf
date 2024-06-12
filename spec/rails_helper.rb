@@ -66,3 +66,9 @@ RSpec.configure do |config|
   config.include QuotientFamilial::Matchers
   config.include ProviderStubs::HubEE
 end
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
