@@ -1,3 +1,3 @@
 class StoreQuotientFamilial < BaseOrganizer
-  organize UploadQuotientFamilialToHubEE, CreateShipment
+  organize UploadQuotientFamilialToHubEE, CreateShipment, ClearUserSession
 end

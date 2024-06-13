@@ -5,6 +5,7 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     [
       UploadQuotientFamilialToHubEE,
       CreateShipment,
+      ClearUserSession,
     ]
   end
 
@@ -31,6 +32,10 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     before do
       allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
 
+      Current.user = "user"
+      Current.pivot_identity = "pivot_identity"
+      Current.quotient_familial = "quotient_familial"
+
       stub_hubee_token
       stub_hubee_create_folder
       stub_hubee_upload_attachment
@@ -41,6 +46,12 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
 
     it "creates a shipment" do
       expect { organizer }.to change(Shipment, :count).by(1)
+    end
+
+    it "clears the user session" do
+      expect { organizer }.to change { Current.user }.from("user").to(nil)
+        .and change { Current.pivot_identity }.from("pivot_identity").to(nil)
+        .and change { Current.quotient_familial }.from("quotient_familial").to(nil)
     end
   end
 end
