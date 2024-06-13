@@ -30,7 +30,7 @@ bundle exec rspec
 bundle exec cucumber
 ```
 
-# Linter autorcorrect
+# Linter autocorrect
 
 ```sh
 bundle exec rubocop -A
