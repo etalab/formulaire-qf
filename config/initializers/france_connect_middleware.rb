@@ -30,6 +30,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     },
     issuer: "https://#{Settings.france_connect.host}",
     name: :france_connect,
-    scope: %i[openid identite_pivot cnaf_quotient_familial cnaf_allocataires cnaf_enfants cnaf_adresse]
+    scope: %i[openid identite_pivot cnaf_quotient_familial cnaf_allocataires cnaf_enfants]
   )
 end
