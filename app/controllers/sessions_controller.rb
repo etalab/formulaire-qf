@@ -7,11 +7,12 @@ class SessionsController < ApplicationController
 
   def create
     session[:auth] = request.env["omniauth.auth"]
-
-    result = GetFamilyQuotient.call(recipient: Current.recipient, user: Current.user)
+    SetupCurrentData.call(session:, params:)
+    result = GetFamilyQuotient.call(recipient: @collectivity.siret, user: Current.user)
 
     if result.success?
       session["quotient_familial"] = result.quotient_familial
+      SetupCurrentData.call(session:, params:)
       Current.quotient_familial = result.quotient_familial
 
       redirect_to new_collectivity_shipment_path(@collectivity.siret)

@@ -25,6 +25,7 @@ module ApiParticulier
       response = https.request(request)
       quotient_familial = JSON.parse(response.body || "{}")
 
+      Rails.logger.debug self
       Rails.logger.debug response.body
       Rails.logger.debug quotient_familial
 

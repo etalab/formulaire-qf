@@ -12,7 +12,7 @@ class ShipmentsController < ApplicationController
     result = StoreQuotientFamilial.call(user: Current.user, identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
 
     if result.success?
-      redirect_to collectivity_shipment_path(@collectivity, result.shipment)
+      redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment)
     else
       raise
     end

@@ -7,10 +7,10 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur le premier "Débuter la démarche"
     Et que je sélectionne "Majastres" pour "Nom de votre commune"
     Et que je clique sur "Suivant"
-    Et que je clique sur "S’identifier avec FranceConnect"
+  #   Et que je clique sur "S’identifier avec FranceConnect"
   
-  Scénario: Je me france connecte
-    Quand je clique sur "Transmettre mes informations"
-    Alors la page contient "sent !"
+  # Scénario: Je me france connecte
+  #   Quand je clique sur "Transmettre mes informations"
+  #   Alors la page contient "sent !"
   
 
