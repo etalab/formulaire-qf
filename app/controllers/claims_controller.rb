@@ -19,6 +19,7 @@ class ClaimsController < ApplicationController
     result = StoreQuotientFamilial.call(user: Current.user, identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
 
     if result.success?
+      reset_session
       Rails.logger.debug "Noïce"
       @folder = result.folder
     else
