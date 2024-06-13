@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ClearUserSession, type: :interactor do
+RSpec.describe ClearCurrentAttributes, type: :interactor do
   subject(:interactor) { described_class.call }
 
   before do

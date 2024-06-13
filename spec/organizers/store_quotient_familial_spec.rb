@@ -5,7 +5,7 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     [
       UploadQuotientFamilialToHubEE,
       CreateShipment,
-      ClearUserSession,
+      ClearCurrentAttributes,
     ]
   end
 

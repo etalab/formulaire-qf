@@ -1,4 +1,4 @@
-class ClearUserSession < BaseInteractor
+class ClearCurrentAttributes < BaseInteractor
   def call
     Current.user = nil
     Current.pivot_identity = nil
