@@ -4,4 +4,7 @@ class HomeController < ApplicationController
 
   def cgu
   end
+
+  def faq
+  end
 end

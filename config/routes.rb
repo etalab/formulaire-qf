@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   end
 
   get "/cgu", to: "home#cgu"
+  get "faq", to: "home#faq"
+
   root "home#index"
 
   mount GoodJob::Engine => "good_job"
