@@ -22,6 +22,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    id_token_hint = session[:auth]["credentials"]["id_token"]
+    url = "https://fcp.integ01.dev-franceconnect.fr/api/v1/logout?id_token_hint=#{id_token_hint}&post_logout_redirect_uri=#{fc_logout_callback_url}"
+    reset_session
+
+    redirect_to url, allow_other_host: true
+  end
+
+  def fc_callback
+    redirect_to root_path
+  end
+
   def set_collectivity_from_session
     @collectivity = Collectivity.find_by!(siret: session[:collectivity_id])
   end

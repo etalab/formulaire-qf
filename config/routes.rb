@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   # get "/api/v1/authorize", to: "sessions#create"
   get "/callback", to: "sessions#create"
-  get "/login", to: "sessions#new"
+  delete "/logout", to: "sessions#destroy", as: :logout
+  get "/logout-callback", to: "sessions#fc_callback", as: :fc_logout_callback
 
   resources :collectivities, only: %i[index show] do
     collection do
