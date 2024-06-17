@@ -9,6 +9,14 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
     @case_external_id ||= "#{external_id}-01"
   end
 
+  # def shipment_data
+  #   {
+  #     external_id: "id_editeur",
+  #     identite_pivot: context.identity.to_h,
+  #     quotient_familial: context.quotient_familial.to_h,
+  #   }
+  # end
+
   def external_id
     # This random string is formatted following HubEE's requirements
     # so it can display nicely in their portal.
@@ -20,8 +28,8 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
       applicant: context.identity,
       attachments: [
         json_file,
-        # can't setup this file until we can upload a proper PDF
-        # text_file,
+        xml_file,
+        pdf_file,
       ],
       cases: [
         external_id: case_external_id,
@@ -38,7 +46,17 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
       mime_type: "application/json",
       recipients: [case_external_id],
       type: process_code,
-      file_content: '{"first_name":"David"}'
+      file_content: shipment_data.to_json
+    )
+  end
+
+  def pdf_file
+    ::HubEE::PdfAttachment.new(
+      file_name: "FormulaireQF.pdf",
+      mime_type: "application/pdf",
+      recipients: [case_external_id],
+      type: process_code,
+      file_content: shipment_data.to_s
     )
   end
 
@@ -46,13 +64,17 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
     "FormulaireQF"
   end
 
-  def text_file
+  def shipment_data
+    ShipmentData.new(external_id: "test", identite_pivot: context.identity, quotient_familial: context.quotient_familial)
+  end
+
+  def xml_file
     ::HubEE::Attachment.new(
-      file_name: "FormulaireQF.pdf",
-      mime_type: "application/pdf",
+      file_name: "FormulaireQF.xml",
+      mime_type: "application/xml",
       recipients: [case_external_id],
       type: process_code,
-      file_content: "Identité pivot"
+      file_content: shipment_data.to_xml
     )
   end
 end

@@ -17,4 +17,15 @@ class PivotIdentity
   def first_name
     first_names.join(" ")
   end
+
+  def to_h
+    {
+      birth_country:,
+      birthdate:,
+      birthplace:,
+      first_name:,
+      gender:,
+      last_name:,
+    }
+  end
 end

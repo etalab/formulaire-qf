@@ -16,7 +16,7 @@ FactoryBot.define do
         end
       end
 
-      file_size { 22 }
+      file_size { 683 }
     end
   end
 end

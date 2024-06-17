@@ -14,7 +14,7 @@ class HubEE::PrepareAttachments < BaseInteractor
   def attachments
     context.folder.attachments.map do |attachment|
       file = Tempfile.create
-      file.write(attachment.file_content)
+      attachment.write(file: file)
       file.rewind
       attachment.with(file:, file_size: file.size)
     end

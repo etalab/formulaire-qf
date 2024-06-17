@@ -19,8 +19,10 @@ RSpec.describe HubEE::Api, type: :api do
     describe "#create_folder" do
       subject(:create_folder) { session.create_folder(folder: folder) }
 
-      let(:attachments) { [attachment] }
-      let(:attachment) { build(:hubee_attachment, :with_file) }
+      let(:attachments) { [json_attachment, xml_attachment, pdf_attachment] }
+      let(:json_attachment) { build(:hubee_attachment, :with_file) }
+      let(:xml_attachment) { build(:hubee_attachment, :with_file, file_name: "FormulaireQF.xml", mime_type: "application/xml", file_size: 1543) }
+      let(:pdf_attachment) { build(:hubee_attachment, :with_file, file_name: "FormulaireQF.pdf", mime_type: "application/pdf", file_size: 3079) }
 
       let(:folder) { build(:hubee_folder, attachments: attachments) }
 
@@ -30,7 +32,7 @@ RSpec.describe HubEE::Api, type: :api do
         end
 
         it "fills in the ids from the response" do
-          expect(create_folder).to have_attributes(id: "3fa85f64-5717-4562-b3fc-2c963f66afa6", attachments: [an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce92")])
+          expect(create_folder).to have_attributes(id: "3fa85f64-5717-4562-b3fc-2c963f66afa6", attachments: [an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce92"), an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce93"), an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce94")])
         end
       end
     end
