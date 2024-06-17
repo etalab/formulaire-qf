@@ -61,6 +61,6 @@ fr:
       title: Connectez-vous via FranceConnect
       info:
         title: "Ce qui va se passer :"
-        content: Durant cette première étape, en vous connectant via FranceConnect*, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
-        star_content: |
-          *FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne
+        content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
+        explanation: |
+          FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne
