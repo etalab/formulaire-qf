@@ -1,4 +1,6 @@
 def mock_france_connect
+  OmniAuth.config.test_mode = true
+
   OmniAuth.config.mock_auth[:france_connect] = OmniAuth::AuthHash.new({
     provider: :france_connect,
     uid: "some_uid",

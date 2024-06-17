@@ -7,7 +7,8 @@ Quand("je me rends sur la page d'accueil") do
 end
 
 Soit("l'existence de la commune de Majastres") do
-  FactoryBot.create(:collectivity, name: "Majastres", siret: "21040107100019", code_cog: "04107", status: "active")
+  Collectivity.find_by(siret: "21040107100019") ||
+    FactoryBot.create(:collectivity, name: "Majastres", siret: "21040107100019", code_cog: "04107", status: "active")
 end
 
 Alors("la page contient {string}") do |content|
@@ -28,3 +29,9 @@ end
 Quand("je sélectionne {string} pour {string}") do |option, name|
   select option, from: name
 end
+
+# rubocop:disable Lint/Debugger
+Alors("debug") do
+  debugger
+end
+# rubocop:enable Lint/Debugger
