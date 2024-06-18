@@ -1,12 +1,4 @@
-<% content_for :banner_title do %>
-  <%= simple_format t('pages.collectivities.show.banner.text', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'span' %>
-<% end %>
-
-<% content_for :banner_right do %>
-  <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('pages.collectivities.show.banner.duration_text')%>
-  </p>
-<% end %>
+<%= render partial: "show_banner" %>
 
 <div class="fr-col-md-8">
   <h2><%= t('pages.collectivities.show.title') %></h2>

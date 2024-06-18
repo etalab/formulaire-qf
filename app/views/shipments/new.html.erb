@@ -1,3 +1,5 @@
+<%= render partial: "collectivities/show_banner" %>
+
 <h1>All good!</h1>
 <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
   <button type='submit'>Transmettre mes informations</button>
