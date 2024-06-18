@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  before_action :set_collectivity_from_session, only: :create
-
   def new
     render :new
   end
@@ -8,14 +6,14 @@ class SessionsController < ApplicationController
   def create
     session[:auth] = request.env["omniauth.auth"]
     SetupCurrentData.call(session:, params:)
-    result = GetFamilyQuotient.call(recipient: @collectivity.siret, user: Current.user)
+    result = GetFamilyQuotient.call(recipient: Current.collectivity.siret, user: Current.user)
 
     if result.success?
       session["quotient_familial"] = result.quotient_familial
       SetupCurrentData.call(session:, params:)
       Current.quotient_familial = result.quotient_familial
 
-      redirect_to new_collectivity_shipment_path(@collectivity.siret)
+      redirect_to new_collectivity_shipment_path(Current.collectivity.siret)
     else
       # render new_collectivity_shipment_path, flash with result.error
       raise
@@ -32,9 +30,5 @@ class SessionsController < ApplicationController
 
   def fc_callback
     redirect_to root_path
-  end
-
-  def set_collectivity_from_session
-    @collectivity = Current.collectivity
   end
 end
