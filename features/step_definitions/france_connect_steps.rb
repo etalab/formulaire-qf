@@ -10,6 +10,11 @@ def mock_france_connect
       expires_at: 1.hour.from_now.to_i,
       expires: true,
     },
+    extra: {
+      raw_info: {
+        sub: "some_sub",
+      },
+    },
   })
 end
 
