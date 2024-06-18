@@ -1,3 +1,7 @@
+# rubocop:disable Style/MixinUsage
+include ProviderStubs::ApiParticulier
+# rubocop:enable Style/MixinUsage
+
 def mock_france_connect
   OmniAuth.config.test_mode = true
 
@@ -18,12 +22,7 @@ def mock_france_connect
   })
 end
 
-def mock_api_particulier
-  login_uri_template = Addressable::Template.new "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2?recipient={siret}"
-  stub_request(:get, login_uri_template).to_return(body: {a: "b"}.to_json) # TODO: use ProviderStubs::ApiParticulier#stub_qf_v2 instead
-end
-
 Sachantque("je suis un utilisateur qui peut se france connecter") do
   mock_france_connect
-  mock_api_particulier
+  stub_qf_v2
 end

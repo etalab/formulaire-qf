@@ -43,7 +43,7 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
     end
 
     before do
-      stub_qf_v2(access_token: "token", recipient: "a_valid_siret")
+      stub_qf_v2
     end
 
     it "calls the API" do

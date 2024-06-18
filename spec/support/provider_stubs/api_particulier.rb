@@ -1,7 +1,7 @@
 require_relative "../provider_stubs"
 
 module ProviderStubs::ApiParticulier
-  def stub_qf_v2(access_token:, recipient:)
+  def stub_qf_v2
     payload = {
       "regime" => "CNAF",
       "allocataires" => [
@@ -30,17 +30,7 @@ module ProviderStubs::ApiParticulier
       "mois" => 2,
     }
 
-    stub_request(:get, "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2?recipient=#{recipient}")
-      .with(
-        headers: {
-          "Accept" => "*/*",
-          "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-          "Authorization" => "Bearer #{access_token}",
-          "Content-Type" => "application/json",
-          "Host" => "staging.particulier.api.gouv.fr",
-          "User-Agent" => "Ruby",
-        }
-      )
-      .to_return(status: 200, body: payload.to_json, headers: {})
+    uri_template = Addressable::Template.new "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2?recipient={siret}"
+    stub_request(:get, uri_template).to_return(status: 200, body: payload.to_json)
   end
 end

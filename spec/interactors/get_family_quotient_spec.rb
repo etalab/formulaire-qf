@@ -9,7 +9,7 @@ describe GetFamilyQuotient, type: :interactor do
 
     before do
       Current.quotient_familial = nil
-      stub_qf_v2(access_token: "some_real_token", recipient: "some_siret")
+      stub_qf_v2
     end
 
     it "calls the API" do
