@@ -53,15 +53,17 @@ fr:
         notice:
           text: Seules les communes de cette liste mettent actuellement à disposition ce service.
           link: En savoir plus
-    shipments:
-      banner:
-        text: |
-          Transmission du <strong>quotient familial et de l'identité pivot</strong>
-          à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
-        duration_text: "Durée restante : 3 min"
-      title: Connectez-vous via FranceConnect
-      info:
-        title: "Ce qui va se passer :"
-        content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
-        explanation: |
-          FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne
+      show:
+        banner:
+          text: |
+            Transmission du <strong>quotient familial et de l'identité pivot</strong>
+            à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
+          duration_text: "Durée restante : 3 min"
+        title: Connectez-vous via FranceConnect
+        info:
+          title: "Ce qui va se passer :"
+          content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
+          explanation: |
+            FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne
+    shipments: {}
+

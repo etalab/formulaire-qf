@@ -1,18 +1,18 @@
 <% content_for :banner_title do %>
-  <%= simple_format t('pages.shipments.banner.text', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'span' %>
+  <%= simple_format t('pages.collectivities.show.banner.text', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'span' %>
 <% end %>
 
 <% content_for :banner_right do %>
   <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('pages.shipments.banner.duration_text')%>
+    <%= t('pages.collectivities.show.banner.duration_text')%>
   </p>
 <% end %>
 
 <div class="fr-col-md-8">
-  <h2><%= t('pages.shipments.title') %></h2>
+  <h2><%= t('pages.collectivities.show.title') %></h2>
 
-  <div class="fr-grid-row fr-grid-row--center fr-mt-5w fr-mb-6v">
-    <p class="fr-mt-2w"><%= t('pages.shipments.info.explanation') %></p>
+  <div class="fr-grid-row fr-grid-row--center fr-mb-6v">
+    <p><%= t('pages.collectivities.show.info.explanation') %></p>
     <div class="fr-connect-group">
       <%= form_tag('/auth/france_connect', method: 'post', data: {turbo: false}) do %>
         <button type='submit' class="fr-connect">
@@ -29,8 +29,8 @@
     </div>
   </div>
   <div class="fr-alert fr-alert--info">
-    <h3 class="fr-alert__title"><%= t('pages.shipments.info.title') %></h3>
-    <p><%= t('pages.shipments.info.content') %></p>
+    <h3 class="fr-alert__title"><%= t('pages.collectivities.show.info.title') %></h3>
+    <p><%= t('pages.collectivities.show.info.content') %></p>
   </div>
 
 </div>
