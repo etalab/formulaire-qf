@@ -1,5 +1,6 @@
 # rubocop:disable Style/MixinUsage
 include ProviderStubs::ApiParticulier
+include ProviderStubs::HubEE
 # rubocop:enable Style/MixinUsage
 
 def mock_france_connect

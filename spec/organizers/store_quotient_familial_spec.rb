@@ -31,10 +31,7 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     before do
       allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
 
-      stub_hubee_token
-      stub_hubee_create_folder
-      stub_hubee_upload_attachment
-      stub_hubee_mark_folder_complete
+      stub_hubee
     end
 
     it { is_expected.to be_a_success }
