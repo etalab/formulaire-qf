@@ -10,6 +10,7 @@ fr:
     title:
       bold_part: Quotient-familial
       italic_part: .numerique.gouv.fr
+    logout: Se déconnecter
   footer:
     tagline: Ce site propose un formulaire à compléter par les citoyens pour permettre à leurs collectivités de collecter leur identité pivot et leur quotient familial.
     external_links:
