@@ -76,10 +76,13 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "cucumber-rails"
+  gem "cucumber-rails", require: false
   gem "database_cleaner-active_record"
   gem "selenium-webdriver"
   gem "webmock"
   gem "simplecov", require: false
   gem "shoulda-matchers", "~> 6.0"
+  gem "guard"
+  gem "guard-cucumber"
+  gem "guard-rspec"
 end
