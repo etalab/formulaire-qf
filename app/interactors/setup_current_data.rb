@@ -2,7 +2,7 @@ class SetupCurrentData < BaseInteractor
   def call
     Current.pivot_identity = pivot_identity
     Current.quotient_familial = quotient_familial
-    Current.recipient = recipient
+    Current.collectivity = collectivity
     Current.user = user
   end
 
@@ -16,8 +16,9 @@ class SetupCurrentData < BaseInteractor
     context.session.fetch("quotient_familial", {})
   end
 
-  def recipient
-    context.params.fetch(:recipient, context.session.fetch("recipient", ""))
+  def collectivity
+    siret = context.params.fetch(:collectivity_id, context.session.fetch("collectivity_id", ""))
+    Collectivity.find_by(siret: siret) || Collectivity.new
   end
 
   def session_auth

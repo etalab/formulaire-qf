@@ -21,6 +21,6 @@ class ShipmentsController < ApplicationController
   private
 
   def set_collectivity
-    @collectivity = Collectivity.find_by!(siret: params[:collectivity_id])
+    @collectivity = Current.collectivity
   end
 end
