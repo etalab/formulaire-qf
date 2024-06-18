@@ -30,6 +30,12 @@ bundle exec rspec
 bundle exec cucumber
 ```
 
+You can also use Guard to run the test of the last saved file :
+
+```sh
+bundle exec guard
+```
+
 # Linter autocorrect
 
 ```sh

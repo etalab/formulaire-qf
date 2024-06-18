@@ -1,0 +1,12 @@
+<h1>All good!</h1>
+<%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
+  <button type='submit'>Transmettre mes informations</button>
+<% end %>
+
+
+<div class="flex-auto"><%= debug Current.quotient_familial %></div>
+<div class="flex-auto"><%= debug Current.user %></div>
+<div class="flex-auto"><%= debug Current.pivot_identity %></div>
+<div class="flex-auto"><%= debug session.to_hash %></div>
+
+

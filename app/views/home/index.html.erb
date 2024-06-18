@@ -1,19 +1,13 @@
-<% content_for :banner do %>
-  <div class="fr-container">
-    <div class="fr-grid-row fr-grid-row--gutters">
-      <div class="fr-col">
-        <%= simple_format t('pages.home.banner.text'), { class: "fr-h2 unbold" }, wrapper_tag: 'h1' %>
-      </div>
+<% content_for :banner_title do %>
+  <%= simple_format t('pages.home.banner.text'), {}, wrapper_tag: 'span' %>
+<% end %>
 
-      <div class="fr-col-12 fr-col-md-3">
-        <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-          <%= t('pages.home.banner.duration_text')%>
-        </p>
+<% content_for :banner_right do %>
+  <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
+    <%= t('pages.home.banner.duration_text')%>
+  </p>
 
-        <%= render partial: "cta" %>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "cta" %>
 <% end %>
 
 <div class="fr-col-md-8">

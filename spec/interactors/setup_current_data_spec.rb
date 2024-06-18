@@ -5,13 +5,14 @@ describe SetupCurrentData, type: :interactor do
     subject(:call) { described_class.call(session: session, params: params) }
 
     let(:session) { {"quotient_familial" => {"quotient_familial" => 2550}} }
-    let(:params) { {recipient: "some_siret"} }
+    let(:collectivity) { create(:collectivity) }
+    let(:params) { {collectivity_id: collectivity.siret} }
 
     before do
       Current.user = nil
       Current.pivot_identity = nil
       Current.quotient_familial = nil
-      Current.recipient = nil
+      Current.collectivity = nil
     end
 
     it "sets up current data" do
@@ -30,8 +31,8 @@ describe SetupCurrentData, type: :interactor do
       expect { call }.to change { Current.quotient_familial }.from(nil).to({"quotient_familial" => 2550})
     end
 
-    it "sets up the current recipient" do
-      expect { call }.to change { Current.recipient }.from(nil).to("some_siret")
+    it "sets up the current collectivity" do
+      expect { call }.to change { Current.collectivity }.from(nil).to(collectivity)
     end
   end
 end

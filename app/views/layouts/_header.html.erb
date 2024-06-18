@@ -19,7 +19,19 @@
             </p>
           </div>
         </div>
+        <% if Current.user.authenticated? %>
+          <div class="fr-header__tools">
+            <div class="fr-header__tools-links">
+              <ul class="fr-btns-group">
+                <li>
+                  <%= button_to "Se déconnecter", logout_path, method: :delete, class: "fr-btn fr-icon-account-line", data: {turbo: false} %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
       </div>
+
     </div>
   </div>
 </header>

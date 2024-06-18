@@ -1,0 +1,21 @@
+  <% if content_for? :banner_title %>
+  <div class="banner fr-py-4w">
+    <div class="fr-container">
+      <div class="fr-container fr-px-0">
+        <div class="fr-grid-row fr-grid-row--gutters">
+          <div class="fr-col">
+            <h1 class="fr-h2 unbold">
+              <%= yield :banner_title %>
+            </h1>
+          </div>
+
+          <% if content_for? :banner_right %>
+            <div class="fr-col-12 fr-col-md-3">
+              <%= yield :banner_right %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

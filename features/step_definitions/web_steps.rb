@@ -1,9 +1,14 @@
+Quand("print the page") do
+  log page.body
+end
+
 Quand("je me rends sur la page d'accueil") do
   visit "/"
 end
 
 Soit("l'existence de la commune de Majastres") do
-  FactoryBot.create(:collectivity, name: "Majastres", siret: "21040107100019", code_cog: "04107", status: "active")
+  Collectivity.find_by(siret: "21040107100019") ||
+    FactoryBot.create(:collectivity, name: "Majastres", siret: "21040107100019", code_cog: "04107", status: "active")
 end
 
 Alors("la page contient {string}") do |content|
@@ -17,10 +22,16 @@ Quand(/je clique sur (le (?:dernier|premier) )?"([^"]+)"\s*$/) do |position, lab
   when "le premier "
     page.all("a", text: label).first.click
   else
-    if javascript?
-      find(:link_or_button, label).trigger("click")
-    else
-      click_link_or_button label
-    end
+    click_link_or_button label
   end
 end
+
+Quand("je sélectionne {string} pour {string}") do |option, name|
+  select option, from: name
+end
+
+# rubocop:disable Lint/Debugger
+Alors("debug") do
+  debugger
+end
+# rubocop:enable Lint/Debugger

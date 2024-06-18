@@ -5,15 +5,17 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up", to: "rails/health#show", as: :rails_health_check
 
-  # get 'auth/:provider/callback', to: 'sessions#create'
   get "/callback", to: "sessions#create"
-  get "/login", to: "sessions#new"
+  delete "/logout", to: "sessions#destroy", as: :logout
+  get "/logout-callback", to: "sessions#fc_callback", as: :fc_logout_callback
 
-  resources :collectivities, only: :index
+  resources :collectivities, only: %i[index show] do
+    collection do
+      get :select
+    end
 
-  # TODO review the controller/route separations
-  get "collecte/(:recipient)/commencer", to: "claims#index", as: :claims
-  get "collecte/:recipient/quotient-familial", to: "claims#quotient_familial", as: :quotient_familial_claims
-  get "collecte/:recipient/transmettre", to: "claims#send_qf", as: :send_qf
+    resources :shipments, only: %i[new show create]
+  end
+
   root "home#index"
 end
