@@ -15,6 +15,10 @@ Alors("la page contient {string}") do |content|
   expect(page).to have_content(content)
 end
 
+Alors("la page ne contient pas {string}") do |content|
+  expect(page).to have_no_content(content)
+end
+
 Quand(/je clique sur (le (?:dernier|premier) )?"([^"]+)"\s*$/) do |position, label|
   case position
   when "le dernier "
