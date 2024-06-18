@@ -25,5 +25,19 @@ end
 
 Sachantque("je suis un utilisateur qui peut se france connecter") do
   mock_france_connect
+end
+
+Sachantque("j'ai des données de quotient familial sur API particuliers") do
   stub_qf_v2
+end
+
+Sachantque("hubee peut recevoir un dossier") do
+  stub_hubee
+end
+
+Sachantque("je suis un utilisateur de FranceConnect avec un quotient familial") do
+  steps %(
+    Sachant que je suis un utilisateur qui peut se france connecter
+    Et que j'ai des données de quotient familial sur API particuliers
+  )
 end

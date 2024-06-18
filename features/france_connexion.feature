@@ -3,7 +3,7 @@
 Fonctionnalité: France connexion
   Contexte:
     Etant donné l'existence de la commune de Majastres
-    Sachant que je suis un utilisateur qui peut se france connecter
+    Sachant que je suis un utilisateur de FranceConnect avec un quotient familial
     Et que je me rends sur la page d'accueil
     Et que je clique sur le premier "Débuter la démarche"
     Et que je sélectionne "Majastres" pour "Nom de votre commune"
