@@ -43,16 +43,17 @@ fr:
         title: Quelles informations vous seront demandées ?
         content: Aucune, seulement une connexion à FranceConnect
     collectivities:
-      banner:
-        duration_text: "Durée restante : 4 min"
-      title: À quelle collectivité seront transmises les données ?
-      form:
-        label: Nom de votre commune
-        hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
-        button: Suivant
-        notice:
-          text: Seules les communes de cette liste mettent actuellement à disposition ce service.
-          link: En savoir plus
+      index:
+        banner:
+          duration_text: "Durée restante : 4 min"
+        title: À quelle collectivité seront transmises les données ?
+        form:
+          label: Nom de votre commune
+          hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
+          button: Suivant
+          notice:
+            text: Seules les communes de cette liste mettent actuellement à disposition ce service.
+            link: En savoir plus
       show:
         banner:
           text: |
