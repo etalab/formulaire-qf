@@ -17,7 +17,7 @@ class SetupCurrentData < BaseInteractor
   end
 
   def collectivity
-    siret = context.params.fetch(:collectivity_id, context.session.fetch("collectivity_id", ""))
+    siret = context.params.fetch(:collectivity_id, context.session.fetch("siret", ""))
     Collectivity.find_by(siret: siret) || Collectivity.new
   end
 
