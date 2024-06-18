@@ -1,3 +1,6 @@
 <%= render partial: "collectivities/show_banner", locals: { duration: 0 } %>
 
-sent !
+<div class="centered-text">
+  <span class="fr-icon-success-fill big-success" aria-hidden="true"></span>
+  <%= simple_format t('pages.shipments.show.title', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'h2' %>
+</div>

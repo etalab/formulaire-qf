@@ -12,6 +12,6 @@ Fonctionnalité: Transmettre mes informations
   
   Scénario: Je me france connecte
     Quand je clique sur "Transmettre mes informations"
-    Alors la page contient "sent !"
+    Alors la page contient "Vos informations ont bien été transmises à Majastres"
   
 

@@ -72,5 +72,9 @@ fr:
           title: Données de la Caisse des Allocations Familiales (CAF)
         france_connect:
           title: Données de FranceConnect
+      show:
+        title: |
+          Vos informations ont bien été transmises
+          à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
         
 
