@@ -2,6 +2,7 @@
 
 Fonctionnalité: Sélectionner une commune
   Contexte: 
+    Etant donné l'existence de la commune de Majastres
     Quand je me rends sur la page d'accueil
     Et que je clique sur le premier "Débuter la démarche"
   
