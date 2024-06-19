@@ -69,8 +69,12 @@ fr:
     shipments:
       new:
         title: Voici les données qui seront transmises à %{collectivity_name}
-        caf:
-          title: Données de la Caisse des Allocations Familiales (CAF)
+        quotient_familial:
+          title: Données de la %{regime}
+          quotient: "Quotient familial de %{month_year} :"
+        allocataires: "Allocataires :"
+        children: "Enfants :"
+        no_children: Aucun
         france_connect:
           title: Données de FranceConnect
         next_button: Transmettre mes informations
@@ -78,5 +82,7 @@ fr:
         title: |
           Vos informations ont bien été transmises
           à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
-        
+        user_data:
+          quotient_familial:
+            title: "Votre quotient familial %{provider} du mois de %{month} %{year}"
 

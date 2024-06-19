@@ -1,13 +1,11 @@
 FactoryBot.define do
   factory :france_connect_payload, class: Hash do
-    name { "TESTMAN" }
-    email { "johnny.testman@email.com" }
-    email_verified { true }
-    nickname { "" }
-    first_name { "Johnny Paul René" }
-    last_name { "TESTMAN" }
+    sub { "some_sub" }
+    family_name { "TESTMAN" }
+    given_name { "Johnny Paul René" }
     gender { "male" }
-    image { "" }
-    phone { "" }
+    birthdate { "1989-10-08" }
+    birthplace { "75107" }
+    birthcountry { "99100" }
   end
 end
