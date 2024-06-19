@@ -9,14 +9,6 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
     @case_external_id ||= "#{external_id}-01"
   end
 
-  # def shipment_data
-  #   {
-  #     external_id: "id_editeur",
-  #     identite_pivot: context.identity.to_h,
-  #     quotient_familial: context.quotient_familial.to_h,
-  #   }
-  # end
-
   def external_id
     # This random string is formatted following HubEE's requirements
     # so it can display nicely in their portal.

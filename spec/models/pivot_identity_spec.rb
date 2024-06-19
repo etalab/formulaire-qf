@@ -28,4 +28,21 @@ describe PivotIdentity, type: :model do
 
     it { is_expected.to eq("John Peter") }
   end
+
+  describe "#to_h" do
+    subject(:to_h) { pivot_identity.to_h }
+
+    let(:expected_hash) do
+      {
+        birth_country: "France",
+        birthdate: Date.new(1980, 1, 1),
+        birthplace: "Paris",
+        first_name: "John Peter",
+        gender: :male,
+        last_name: "Doe",
+      }
+    end
+
+    it { is_expected.to eq(expected_hash) }
+  end
 end
