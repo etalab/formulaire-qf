@@ -37,7 +37,9 @@
     </div>
   </div>
 
-  <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
-    <%= t('pages.collectivities.index.form.button') %>
-  <% end %>
+  <div class="fr-grid-row fr-grid-row--right">
+    <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+      <%= t('shared.next_button') %>
+    <% end %>
+  </div>
 <% end %>

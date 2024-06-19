@@ -19,6 +19,8 @@ fr:
       - data.gouv.fr
   shared:
     duration_text: "Durée restante : %{duration} min"
+    previous_button: Retour
+    next_button: Suivant
   pages:
     home:
       title: Accueil
@@ -50,7 +52,6 @@ fr:
         form:
           label: Nom de votre commune
           hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
-          button: Suivant
           notice:
             text: Seules les communes de cette liste mettent actuellement à disposition ce service.
             link: En savoir plus
@@ -72,6 +73,7 @@ fr:
           title: Données de la Caisse des Allocations Familiales (CAF)
         france_connect:
           title: Données de FranceConnect
+        next_button: Transmettre mes informations
       show:
         title: |
           Vos informations ont bien été transmises

@@ -35,11 +35,11 @@
 
   <div class="fr-grid-row fr-mt-3w">
     <div class="fr-col">
-      <%= link_to "Retour", collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line" %>
+      <%= link_to t('shared.previous_button'), collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line" %>
     </div>
 
     <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
-      <%= button_tag "Transmettre mes informations", type: :submit, class: "fr-btn fr-btn--icon-right fr-fi-arrow-right-line" %>
+      <%= button_tag t('pages.shipments.new.next_button'), type: :submit, class: "fr-btn fr-btn--icon-right fr-fi-arrow-right-line" %>
     <% end %>
   </div>
 </div>
