@@ -6,6 +6,7 @@ module ProviderStubs::HubEE
     stub_hubee_create_folder
     stub_hubee_upload_attachment
     stub_hubee_mark_folder_complete
+    stub_hubee_delete_folder
   end
 
   def stub_hubee_token(access_token: "access_token_123")
@@ -17,7 +18,7 @@ module ProviderStubs::HubEE
       )
   end
 
-  def stub_hubee_create_folder
+  def stub_hubee_create_folder(names: "Heinemeier_Hansson_David")
     stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
       .to_return(status: 200, body:  {
         id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -71,7 +72,7 @@ module ProviderStubs::HubEE
           {
             id: "a66abb0c-52d1-4e50-9195-22526fb7ce94",
             status: "PENDING",
-            fileName: "quotient_familial_Heinemeier_Hansson_David.pdf",
+            fileName: "quotient_familial_#{names}.pdf",
             type: "FormulaireQF",
             size: 3079,
             mimeType: "application/pdf",

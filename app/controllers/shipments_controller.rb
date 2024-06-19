@@ -5,6 +5,8 @@ class ShipmentsController < ApplicationController
   end
 
   def new
+    @pivot_identity_facade = PivotIdentityFacade.new(Current.pivot_identity)
+    @quotient_familial_facade = QuotientFamilialFacade.new(Current.quotient_familial)
   end
 
   def create
