@@ -4,20 +4,20 @@
 
 <% content_for :banner_right do %>
   <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('pages.collectivities.banner.duration_text')%>
+    <%= t('shared.duration_text', duration: 3)%>
   </p>
 <% end %>
 
-<h2><%= t('pages.collectivities.title') %></h2>
+<h2><%= t('pages.collectivities.index.title') %></h2>
 
 <%= form_with url: select_collectivities_path, method: :get, class: "fr-col-md-8" do |form| %>
   <div class="fr-select-group">
     
     <%= form.label :id, class: "fr-label" do %>
-      <%= t('pages.collectivities.form.label') %>
+      <%= t('pages.collectivities.index.form.label') %>
 
       <span class="fr-hint-text">
-        <%= t('pages.collectivities.form.hint') %>
+        <%= t('pages.collectivities.index.form.hint') %>
       </span>
     <% end %>
 
@@ -27,9 +27,9 @@
       <div class="fr-container">
         <div class="fr-notice__body">
           <p class="fr-notice__title">
-            <%= t('pages.collectivities.form.notice.text')%>
+            <%= t('pages.collectivities.index.form.notice.text')%>
             <!--<a href='#' rel='noopener external' title="intitulé - nouvelle fenêtre" target='_blank'>
-              <%= t('pages.collectivities.form.notice.link')%>
+              <%= t('pages.collectivities.index.form.notice.link')%>
             </a>-->
           </p>
         </div>
@@ -37,7 +37,9 @@
     </div>
   </div>
 
-  <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
-    <%= t('pages.collectivities.form.button') %>
-  <% end %>
+  <div class="fr-grid-row fr-grid-row--right">
+    <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+      <%= t('shared.next_button') %>
+    <% end %>
+  </div>
 <% end %>

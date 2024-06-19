@@ -10,12 +10,17 @@ fr:
     title:
       bold_part: Quotient-familial
       italic_part: .numerique.gouv.fr
+    logout: Se déconnecter
   footer:
     tagline: Ce site propose un formulaire à compléter par les citoyens pour permettre à leurs collectivités de collecter leur identité pivot et leur quotient familial.
     external_links:
       - particulier.api.fr
       - api.gouv.fr
       - data.gouv.fr
+  shared:
+    duration_text: "Durée restante : %{duration} min"
+    previous_button: Retour
+    next_button: Suivant
   pages:
     home:
       title: Accueil
@@ -23,8 +28,8 @@ fr:
         text: |
           <span class="title-highlight"><strong>Votre collectivité</strong></span> a besoin de <span class="title-highlight"><strong>votre Quotient familial CAF ou MSA</strong></span> pour calculer votre tarif social ?
           <strong>Utilisez ce service pour qu'elle puisse le collecter !</strong>
-        duration_text: "Durée de la démarche : 4 min"
         cta: "Débuter la démarche"
+        duration_text: "Durée de la démarche : 4 min"
       what_is_it:
         title: À quoi sert ce service ?
         content: |
@@ -42,25 +47,36 @@ fr:
         title: Quelles informations vous seront demandées ?
         content: Aucune, seulement une connexion à FranceConnect
     collectivities:
-      banner:
-        duration_text: "Durée restante : 4 min"
-      title: À quelle collectivité seront transmises les données ?
-      form:
-        label: Nom de votre commune
-        hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
-        button: Suivant
-        notice:
-          text: Seules les communes de cette liste mettent actuellement à disposition ce service.
-          link: En savoir plus
+      index:
+        title: À quelle collectivité seront transmises les données ?
+        form:
+          label: Nom de votre commune
+          hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
+          notice:
+            text: Seules les communes de cette liste mettent actuellement à disposition ce service.
+            link: En savoir plus
+      show:
+        banner:
+          text: |
+            Transmission du <strong>quotient familial et de l'identité pivot</strong>
+            à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
+        title: Connectez-vous via FranceConnect
+        info:
+          title: "Ce qui va se passer :"
+          content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
+          explanation: |
+            FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne
     shipments:
-      banner:
-        text: |
-          Transmission du <strong>quotient familial et de l'identité pivot</strong>
+      new:
+        title: Voici les données qui seront transmises à %{collectivity_name}
+        caf:
+          title: Données de la Caisse des Allocations Familiales (CAF)
+        france_connect:
+          title: Données de FranceConnect
+        next_button: Transmettre mes informations
+      show:
+        title: |
+          Vos informations ont bien été transmises
           à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
-        duration_text: "Durée restante : 3 min"
-      title: Connectez-vous via FranceConnect
-      info:
-        title: "Ce qui va se passer :"
-        content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
-        explanation: |
-          FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne
+        
+

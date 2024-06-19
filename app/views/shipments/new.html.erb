@@ -1,7 +1,48 @@
-<h1>All good!</h1>
-<%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
-  <button type='submit'>Transmettre mes informations</button>
-<% end %>
+<%= render partial: "collectivities/show_banner", locals: { duration: 1 } %>
+
+<div class="fr-col-md-8">
+
+  <h2><%= t('pages.shipments.new.title', collectivity_name: @collectivity.name) %></h2>
+
+  <div class="user-data fr-p-3w">
+    <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.caf.title') %></h3>
+
+    <ul>
+      <li>
+        <strong>Votre quotient familial CAF du mois en cours (mars 2024) :</strong><br />
+        650
+      </li>
+      <li>
+        <strong>Identité de votre partenaire :</strong><br />
+        LEOUIS Alexia, dite “LouLou”, née le 10 04 1987
+      </li>
+      <li>
+        <strong>Identité enfant 1 :</strong><br />
+        LEOUIS Marcel, né le 02 03 2002
+      </li>
+      <li>
+        <strong>Identité enfant 2 :</strong><br />
+        LEOUS Julie, née le 04 06 2005
+      </li>
+    </ul>
+
+    <h3 class="fr-h4 underlined fr-pb-1w fr-mt-2w"><%= t('pages.shipments.new.france_connect.title') %></h3>
+
+    <p>
+      LEOUIS Jean, né le 15 06 1985 à Paris 75012.
+    </p>
+  </div>
+
+  <div class="fr-grid-row fr-mt-3w">
+    <div class="fr-col">
+      <%= link_to t('shared.previous_button'), collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line" %>
+    </div>
+
+    <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
+      <%= button_tag t('pages.shipments.new.next_button'), type: :submit, class: "fr-btn fr-btn--icon-right fr-fi-arrow-right-line" %>
+    <% end %>
+  </div>
+</div>
 
 
 <div class="flex-auto"><%= debug Current.quotient_familial %></div>
