@@ -1,5 +1,7 @@
 class PivotIdentityFacade
-  delegate :birthplace, :birth_country, :gender, to: :@pivot_identity
+  attr_reader :pivot_identity
+
+  delegate :birthplace, :birth_country, :gender, to: :pivot_identity
 
   def initialize(pivot_identity)
     @pivot_identity = pivot_identity
@@ -7,13 +9,13 @@ class PivotIdentityFacade
 
   def full_name
     [
-      @pivot_identity.last_name,
-      *@pivot_identity.first_names,
+      pivot_identity.last_name,
+      *pivot_identity.first_names,
     ].join(" ")
   end
 
   def birthdate
-    @pivot_identity.birthdate.strftime("%d/%m/%Y")
+    pivot_identity.birthdate.strftime("%d/%m/%Y")
   end
 
   def full_sentence
