@@ -69,14 +69,26 @@ fr:
     shipments:
       new:
         title: Voici les données qui seront transmises à %{collectivity_name}
-        caf:
-          title: Données de la Caisse des Allocations Familiales (CAF)
+        quotient_familial:
+          no_data: Quotient Familial indisponible
+          title: Données de la %{regime}
+          quotient: "Quotient familial de %{month_year} :"
+        allocataires: "Allocataires :"
+        children: "Enfants :"
+        no_children: Aucun
         france_connect:
           title: Données de FranceConnect
+        second_title: Finir la démarche
+        info:
+          title: Ce qui va se passer
+          paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
+          paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
         next_button: Transmettre mes informations
       show:
         title: |
           Vos informations ont bien été transmises
           à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
-        
+        user_data:
+          quotient_familial:
+            title: "Votre quotient familial %{provider} du mois de %{month} %{year}"
 

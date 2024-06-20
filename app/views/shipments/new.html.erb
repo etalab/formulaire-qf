@@ -5,31 +5,56 @@
   <h2><%= t('pages.shipments.new.title', collectivity_name: @collectivity.name) %></h2>
 
   <div class="user-data fr-p-3w">
-    <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.caf.title') %></h3>
 
-    <ul>
-      <li>
-        <strong>Votre quotient familial CAF du mois en cours (mars 2024) :</strong><br />
-        650
-      </li>
-      <li>
-        <strong>Identité de votre partenaire :</strong><br />
-        LEOUIS Alexia, dite “LouLou”, née le 10 04 1987
-      </li>
-      <li>
-        <strong>Identité enfant 1 :</strong><br />
-        LEOUIS Marcel, né le 02 03 2002
-      </li>
-      <li>
-        <strong>Identité enfant 2 :</strong><br />
-        LEOUS Julie, née le 04 06 2005
-      </li>
-    </ul>
+    <% if @quotient_familial_facade.error_message %>
+      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.no_data') %></h3>
+
+      <%= @quotient_familial_facade.error_message %>
+    <% else %>
+      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
+
+      <ul>
+        <li>
+          <strong><%= t('pages.shipments.new.quotient_familial.quotient', month_year: @quotient_familial_facade.month_year) %></strong>
+          <br /><%= @quotient_familial_facade.quotient %>
+        </li>
+
+        <li>
+          <strong><%= t('pages.shipments.new.allocataires') %></strong>
+          <% @quotient_familial_facade.allocataires.each do |allocataire| %>
+            <br /><%= allocataire %>
+          <% end %>
+        </li>
+
+        <li>
+          <strong><%= t('pages.shipments.new.children') %></strong>
+          <% @quotient_familial_facade.children.each do |child| %>
+            <br /><%= child %>
+          <% end %>
+
+          <% if @quotient_familial_facade.children.blank? %>
+            <br /><%= t('pages.shipments.new.no_children') %>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
 
     <h3 class="fr-h4 underlined fr-pb-1w fr-mt-2w"><%= t('pages.shipments.new.france_connect.title') %></h3>
 
+    <%= simple_format @pivot_identity_facade.full_sentence, { }, wrapper_tag: 'p' %>
+  </div>
+
+  <h2 class="fr-mt-3w"><%= t('pages.shipments.new.second_title') %></h2>
+
+  <div class="fr-alert fr-alert--info">
+    <h3 class="fr-alert__title"><%= t('pages.shipments.new.info.title') %></h3>
+    <p class="fr-my-2w">
+      <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
+      <%=  t('pages.shipments.new.info.paragraph_1', collectivity: @collectivity.name) %>
+    </p>
     <p>
-      LEOUIS Jean, né le 15 06 1985 à Paris 75012.
+      <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
+      <%=  t('pages.shipments.new.info.paragraph_2', collectivity: @collectivity.name) %>
     </p>
   </div>
 
@@ -43,11 +68,3 @@
     <% end %>
   </div>
 </div>
-
-
-<div class="flex-auto"><%= debug Current.quotient_familial %></div>
-<div class="flex-auto"><%= debug Current.user %></div>
-<div class="flex-auto"><%= debug Current.pivot_identity %></div>
-<div class="flex-auto"><%= debug session.to_hash %></div>
-
-
