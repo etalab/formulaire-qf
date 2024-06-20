@@ -25,7 +25,8 @@ class CreateGoodJobs < ActiveRecord::Migration[7.1]
       t.uuid :batch_id
       t.uuid :batch_callback_id
 
-      t.boolean :is_discrete
+      # Disabling rubocop on this boolean, more info : https://github.com/bensheldon/good_job/issues/1271
+      t.boolean :is_discrete # rubocop:disable Rails/ThreeStateBooleanColumn
       t.integer :executions_count
       t.text :job_class
       t.integer :error_event, limit: 2
