@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   end
 
   root "home#index"
+
+  mount GoodJob::Engine => "good_job"
 end

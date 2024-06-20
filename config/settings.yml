@@ -6,6 +6,9 @@ france_connect:
   identifier: <%= Rails.application.credentials.france_connect.identifier %>
   redirect_uri: "http://localhost:3000/callback"
   secret: <%= Rails.application.credentials.france_connect.secret %>
+good_job:
+  username: <%= Rails.application.credentials.good_job.username %>
+  password: <%= Rails.application.credentials.good_job.password %>
 hubee:
   base_url: "https://api.bas.hubee.numerique.gouv.fr"
   token_url: "https://auth.bas.hubee.numerique.gouv.fr/oauth2/token"
