@@ -4,7 +4,7 @@ class ShipmentData
   def initialize(pivot_identity:, quotient_familial:, external_id: nil)
     @external_id = external_id
     @pivot_identity = pivot_identity
-    @quotient_familial = quotient_familial
+    @quotient_familial = quotient_familial.with_indifferent_access
   end
 
   def to_h
@@ -20,34 +20,7 @@ class ShipmentData
         sexe: (pivot_identity.gender == :female) ? "F" : "M",
         nomUsage: pivot_identity.last_name,
       },
-      quotient_familial: {
-        regime: quotient_familial["regime"],
-        allocataires: quotient_familial["allocataires"].map do |allocataire|
-          {
-            nomNaissance: allocataire["nomNaissance"],
-            nomUsage: allocataire["nomUsage"],
-            prenoms: allocataire["prenoms"],
-            anneeDateDeNaissance: allocataire["anneeDateDeNaissance"],
-            moisDateDeNaissance: allocataire["moisDateDeNaissance"],
-            jourDateDeNaissance: allocataire["jourDateDeNaissance"],
-            sexe: allocataire["sexe"],
-          }
-        end,
-        enfants: quotient_familial["enfants"].map do |enfant|
-          {
-            nomNaissance: enfant["nomNaissance"],
-            nomUsuel: enfant["nomUsuel"],
-            prenoms: enfant["prenoms"],
-            anneeDateDeNaissance: enfant["anneeDateDeNaissance"],
-            moisDateDeNaissance: enfant["moisDateDeNaissance"],
-            jourDateDeNaissance: enfant["jourDateDeNaissance"],
-            sexe: enfant["sexe"],
-          }
-        end,
-        quotientFamilial: quotient_familial["quotientFamilial"],
-        annee: quotient_familial["annee"],
-        mois: quotient_familial["mois"],
-      },
+      quotient_familial:,
     }
   end
 
