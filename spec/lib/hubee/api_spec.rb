@@ -22,7 +22,7 @@ RSpec.describe HubEE::Api, type: :api do
       let(:attachments) { [json_attachment, xml_attachment, pdf_attachment] }
       let(:json_attachment) { build(:hubee_attachment, :with_file) }
       let(:xml_attachment) { build(:hubee_attachment, :with_file, file_name: "FormulaireQF.xml", mime_type: "application/xml", file_size: 1543) }
-      let(:pdf_attachment) { build(:hubee_attachment, :with_file, file_name: "quotient_familial_Heinemeier Hansson_David.pdf", mime_type: "application/pdf", file_size: 3079) }
+      let(:pdf_attachment) { build(:hubee_attachment, :with_file, file_name: "quotient_familial_Heinemeier_Hansson_David.pdf", mime_type: "application/pdf", file_size: 3079) }
 
       let(:folder) { build(:hubee_folder, attachments: attachments) }
 

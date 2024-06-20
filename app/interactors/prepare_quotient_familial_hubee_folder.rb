@@ -43,8 +43,9 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   end
 
   def pdf_file
+    file_name = "quotient_familial_#{context.pivot_identity.last_name}_#{context.pivot_identity.first_name}.pdf".gsub(" ", "_")
     ::HubEE::PdfAttachment.new(
-      file_name: "quotient_familial_#{context.pivot_identity.last_name}_#{context.pivot_identity.first_name}.pdf",
+      file_name:,
       mime_type: "application/pdf",
       recipients: [case_external_id],
       type: process_code,

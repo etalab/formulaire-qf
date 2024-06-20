@@ -71,7 +71,7 @@ module ProviderStubs::HubEE
           {
             id: "a66abb0c-52d1-4e50-9195-22526fb7ce94",
             status: "PENDING",
-            fileName: "quotient_familial_Heinemeier Hansson_David.pdf",
+            fileName: "quotient_familial_Heinemeier_Hansson_David.pdf",
             type: "FormulaireQF",
             size: 3079,
             mimeType: "application/pdf",
