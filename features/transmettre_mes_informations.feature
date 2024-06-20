@@ -31,6 +31,12 @@ Fonctionnalité: Transmettre mes informations
     Et la page contient "Quotient familial de février 2024 : 2550"
     Et la page contient "Allocataires : DUBOIS ANGELA, née le 24/08/1962"
     Et la page contient "Enfants : Aucun"
+
+
+  Scénario: Mes données de quotient familial sont indisponibles
+    Et que mon quotient familial est indisponible
+    Quand je clique sur "S’identifier avec FranceConnect"
+    Alors la page contient "Quotient Familial indisponible"
   
   Scénario: Je transmet mes données
     Et que j'ai un quotient familial msa avec des enfants

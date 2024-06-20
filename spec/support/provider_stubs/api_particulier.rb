@@ -95,4 +95,8 @@ module ProviderStubs::ApiParticulier
       mois: 5,
     }
   end
+
+  def not_found_payload
+    {"error" => "not_found", "reason" => "Dossier allocataire inexistant. Le document ne peut être édité.", "message" => "Dossier allocataire inexistant. Le document ne peut être édité."}
+  end
 end

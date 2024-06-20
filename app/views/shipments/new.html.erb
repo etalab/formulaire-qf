@@ -5,32 +5,39 @@
   <h2><%= t('pages.shipments.new.title', collectivity_name: @collectivity.name) %></h2>
 
   <div class="user-data fr-p-3w">
-    <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 
-    <ul>
-      <li>
-        <strong><%= t('pages.shipments.new.quotient_familial.quotient', month_year: @quotient_familial_facade.month_year) %></strong>
-        <br /><%= @quotient_familial_facade.quotient %>
-      </li>
+    <% if @quotient_familial_facade.error_message %>
+      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.no_data') %></h3>
 
-      <li>
-        <strong><%= t('pages.shipments.new.allocataires') %></strong>
-        <% @quotient_familial_facade.allocataires.each do |allocataire| %>
-          <br /><%= allocataire %>
-        <% end %>
-      </li>
+      <%= @quotient_familial_facade.error_message %>
+    <% else %>
+      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 
-      <li>
-        <strong><%= t('pages.shipments.new.children') %></strong>
-        <% @quotient_familial_facade.children.each do |child| %>
-          <br /><%= child %>
-        <% end %>
+      <ul>
+        <li>
+          <strong><%= t('pages.shipments.new.quotient_familial.quotient', month_year: @quotient_familial_facade.month_year) %></strong>
+          <br /><%= @quotient_familial_facade.quotient %>
+        </li>
 
-        <% if @quotient_familial_facade.children.blank? %>
-          <br /><%= t('pages.shipments.new.no_children') %>
-        <% end %>
-      </li>
-    </ul>
+        <li>
+          <strong><%= t('pages.shipments.new.allocataires') %></strong>
+          <% @quotient_familial_facade.allocataires.each do |allocataire| %>
+            <br /><%= allocataire %>
+          <% end %>
+        </li>
+
+        <li>
+          <strong><%= t('pages.shipments.new.children') %></strong>
+          <% @quotient_familial_facade.children.each do |child| %>
+            <br /><%= child %>
+          <% end %>
+
+          <% if @quotient_familial_facade.children.blank? %>
+            <br /><%= t('pages.shipments.new.no_children') %>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
 
     <h3 class="fr-h4 underlined fr-pb-1w fr-mt-2w"><%= t('pages.shipments.new.france_connect.title') %></h3>
 

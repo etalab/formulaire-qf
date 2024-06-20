@@ -70,6 +70,7 @@ fr:
       new:
         title: Voici les données qui seront transmises à %{collectivity_name}
         quotient_familial:
+          no_data: Quotient Familial indisponible
           title: Données de la %{regime}
           quotient: "Quotient familial de %{month_year} :"
         allocataires: "Allocataires :"

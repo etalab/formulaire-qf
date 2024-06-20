@@ -33,6 +33,10 @@ Sachantque("j'ai un quotient familial msa avec des enfants") do
   stub_qf_v2(kind: :msa_with_children)
 end
 
+Sachantque("mon quotient familial est indisponible") do
+  stub_qf_v2(kind: :not_found)
+end
+
 Sachantque("hubee peut recevoir un dossier") do
   stub_hubee_token
   stub_hubee_create_folder(names: "TESTMAN_Johnny_Paul_René")
