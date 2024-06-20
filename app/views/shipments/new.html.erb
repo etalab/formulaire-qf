@@ -37,6 +37,20 @@
     <%= simple_format @pivot_identity_facade.full_sentence, { }, wrapper_tag: 'p' %>
   </div>
 
+  <h2 class="fr-mt-3w"><%= t('pages.shipments.new.second_title') %></h2>
+
+  <div class="fr-alert fr-alert--info">
+    <h3 class="fr-alert__title"><%= t('pages.shipments.new.info.title') %></h3>
+    <p class="fr-my-2w">
+      <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
+      <%=  t('pages.shipments.new.info.paragraph_1', collectivity: @collectivity.name) %>
+    </p>
+    <p>
+      <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
+      <%=  t('pages.shipments.new.info.paragraph_2', collectivity: @collectivity.name) %>
+    </p>
+  </div>
+
   <div class="fr-grid-row fr-mt-3w">
     <div class="fr-col">
       <%= link_to t('shared.previous_button'), collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line" %>

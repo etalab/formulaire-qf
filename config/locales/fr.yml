@@ -77,6 +77,11 @@ fr:
         no_children: Aucun
         france_connect:
           title: Données de FranceConnect
+        second_title: Finir la démarche
+        info:
+          title: Ce qui va se passer
+          paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
+          paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
         next_button: Transmettre mes informations
       show:
         title: |
