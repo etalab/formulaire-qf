@@ -7,6 +7,11 @@
             <div class="fr-header__logo">
               <%= simple_format t('layout.entity'), { class: 'fr-logo' }, wrapper_tag: 'p' %>
             </div>
+            <div class="fr-header__navbar">
+              <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-499" aria-haspopup="menu" id="button-500" title="Menu">
+                Menu
+              </button>
+            </div>
           </div>
           <div class="fr-header__service">
             <a href="/" title="<%= t('pages.home.title')%> - <%= t('layout.title') %>">
@@ -24,7 +29,10 @@
             <div class="fr-header__tools-links">
               <ul class="fr-btns-group">
                 <li>
-                  <%= button_to t('header.logout'), logout_path, method: :delete, class: "fr-btn fr-icon-account-line", data: {turbo: false} %>
+                  <div>
+                    <div class="fr-mb-1w fr-mx-1w"><%= Current.user.display_name %></div>
+                    <%= button_to t('header.logout'), logout_path, method: :delete, class: "fr-btn fr-icon-account-line", data: {turbo: false} %>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -32,6 +40,17 @@
         <% end %>
       </div>
 
+    </div>
+  </div>
+
+
+  <div class="fr-header__menu fr-modal" id="modal-499" aria-labelledby="button-500">
+    <div class="fr-container">
+      <button class="fr-btn--close fr-btn" aria-controls="modal-499" title="Fermer">
+        Fermer
+      </button>
+      <div class="fr-header__menu-links">
+      </div>
     </div>
   </div>
 </header>
