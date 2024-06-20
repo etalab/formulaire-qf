@@ -1,24 +1,24 @@
 class ShipmentData
-  attr_reader :external_id, :identite_pivot, :quotient_familial
+  attr_reader :external_id, :pivot_identity, :quotient_familial
 
-  def initialize(identite_pivot:, quotient_familial:, external_id: nil)
+  def initialize(pivot_identity:, quotient_familial:, external_id: nil)
     @external_id = external_id
-    @identite_pivot = identite_pivot
+    @pivot_identity = pivot_identity
     @quotient_familial = quotient_familial
   end
 
   def to_h
     {
       external_id: external_id,
-      identite_pivot: {
-        codePaysLieuDeNaissance: identite_pivot.birth_country,
-        anneeDateDeNaissance: identite_pivot.birthdate.year,
-        moisDateDeNaissance: identite_pivot.birthdate.month,
-        jourDateDeNaissance: identite_pivot.birthdate.day,
-        codeInseeLieuDeNaissance: identite_pivot.birthplace,
-        prenoms: identite_pivot.first_names,
-        sexe: (identite_pivot.gender == :female) ? "F" : "M",
-        nomUsage: identite_pivot.last_name,
+      pivot_identity: {
+        codePaysLieuDeNaissance: pivot_identity.birth_country,
+        anneeDateDeNaissance: pivot_identity.birthdate.year,
+        moisDateDeNaissance: pivot_identity.birthdate.month,
+        jourDateDeNaissance: pivot_identity.birthdate.day,
+        codeInseeLieuDeNaissance: pivot_identity.birthplace,
+        prenoms: pivot_identity.first_names,
+        sexe: (pivot_identity.gender == :female) ? "F" : "M",
+        nomUsage: pivot_identity.last_name,
       },
       quotient_familial: {
         regime: quotient_familial["regime"],
@@ -59,12 +59,12 @@ class ShipmentData
       Identifant éditeur (optionnel): #{external_id}
 
       Identité pivot:
-        - Code Insee pays de naissance: #{identite_pivot.birth_country}
-        - Code Insee lieu de naissance: #{identite_pivot.birthplace}
-        - Date de naissance: #{identite_pivot.birthdate.strftime("%d/%m/%Y")}
-        - Nom de naissance: #{identite_pivot.last_name}
-        - Prénoms: #{identite_pivot.first_names.join(" ")}
-        - Sexe: #{(identite_pivot.gender == :female) ? "F" : "M"}
+        - Code Insee pays de naissance: #{pivot_identity.birth_country}
+        - Code Insee lieu de naissance: #{pivot_identity.birthplace}
+        - Date de naissance: #{pivot_identity.birthdate.strftime("%d/%m/%Y")}
+        - Nom de naissance: #{pivot_identity.last_name}
+        - Prénoms: #{pivot_identity.first_names.join(" ")}
+        - Sexe: #{(pivot_identity.gender == :female) ? "F" : "M"}
       
       Quotient familial:
         - Régime: #{quotient_familial["regime"]}

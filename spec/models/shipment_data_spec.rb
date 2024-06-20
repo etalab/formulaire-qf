@@ -1,10 +1,10 @@
 require "rails_helper"
 
 RSpec.describe ShipmentData, type: :model do
-  subject(:shipment_data) { described_class.new(external_id:, identite_pivot:, quotient_familial:) }
+  subject(:shipment_data) { described_class.new(external_id:, pivot_identity:, quotient_familial:) }
 
   let(:external_id) { "external_id" }
-  let(:identite_pivot) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
+  let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
   let(:quotient_familial) do
     {
       "regime" => "CNAF",
@@ -49,7 +49,7 @@ RSpec.describe ShipmentData, type: :model do
     it "returns the shipment data as a hash" do
       expect(shipment_data.to_h).to eq(
         external_id: "external_id",
-        identite_pivot: {
+        pivot_identity: {
           codePaysLieuDeNaissance: "99135",
           anneeDateDeNaissance: 1979,
           moisDateDeNaissance: 10,
@@ -95,7 +95,7 @@ RSpec.describe ShipmentData, type: :model do
     subject(:to_json) { shipment_data.to_json }
 
     let(:expected_json) do
-      '{"external_id":"external_id","identite_pivot":{"codePaysLieuDeNaissance":"99135","anneeDateDeNaissance":1979,"moisDateDeNaissance":10,"jourDateDeNaissance":15,"codeInseeLieuDeNaissance":null,"prenoms":["David"],"sexe":"M","nomUsage":"Heinemeier Hansson"},"quotient_familial":{"regime":"CNAF","allocataires":[{"nomNaissance":"DUBOIS","nomUsage":"DUBOIS","prenoms":"ANGELA","anneeDateDeNaissance":"1962","moisDateDeNaissance":"08","jourDateDeNaissance":"24","sexe":"F"}],"enfants":[{"nomNaissance":"Dujardin","nomUsuel":"Dujardin","prenoms":"Jean","anneeDateDeNaissance":"2016","moisDateDeNaissance":"12","jourDateDeNaissance":"13","sexe":"M"}],"quotientFamilial":2550,"annee":2024,"mois":2}}'
+      '{"external_id":"external_id","pivot_identity":{"codePaysLieuDeNaissance":"99135","anneeDateDeNaissance":1979,"moisDateDeNaissance":10,"jourDateDeNaissance":15,"codeInseeLieuDeNaissance":null,"prenoms":["David"],"sexe":"M","nomUsage":"Heinemeier Hansson"},"quotient_familial":{"regime":"CNAF","allocataires":[{"nomNaissance":"DUBOIS","nomUsage":"DUBOIS","prenoms":"ANGELA","anneeDateDeNaissance":"1962","moisDateDeNaissance":"08","jourDateDeNaissance":"24","sexe":"F"}],"enfants":[{"nomNaissance":"Dujardin","nomUsuel":"Dujardin","prenoms":"Jean","anneeDateDeNaissance":"2016","moisDateDeNaissance":"12","jourDateDeNaissance":"13","sexe":"M"}],"quotientFamilial":2550,"annee":2024,"mois":2}}'
     end
 
     it "returns the shipment data as a json" do
@@ -111,7 +111,7 @@ RSpec.describe ShipmentData, type: :model do
         <?xml version="1.0" encoding="UTF-8"?>
         <hash>
           <external-id>external_id</external-id>
-          <identite-pivot>
+          <pivot-identity>
             <codePaysLieuDeNaissance>99135</codePaysLieuDeNaissance>
             <anneeDateDeNaissance type="integer">1979</anneeDateDeNaissance>
             <moisDateDeNaissance type="integer">10</moisDateDeNaissance>
@@ -122,7 +122,7 @@ RSpec.describe ShipmentData, type: :model do
             </prenoms>
             <sexe>M</sexe>
             <nomUsage>Heinemeier Hansson</nomUsage>
-          </identite-pivot>
+          </pivot-identity>
           <quotient-familial>
             <regime>CNAF</regime>
             <allocataires type="array">

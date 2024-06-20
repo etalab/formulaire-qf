@@ -44,7 +44,7 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
 
   def pdf_file
     ::HubEE::PdfAttachment.new(
-      file_name: "FormulaireQF.pdf",
+      file_name: "quotient_familial_#{context.identity.last_name}_#{context.identity.first_name}.pdf",
       mime_type: "application/pdf",
       recipients: [case_external_id],
       type: process_code,
@@ -57,7 +57,7 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   end
 
   def shipment_data
-    ShipmentData.new(external_id: "test", identite_pivot: context.identity, quotient_familial: context.quotient_familial)
+    ShipmentData.new(external_id: "test", pivot_identity: context.identity, quotient_familial: context.quotient_familial)
   end
 
   def xml_file

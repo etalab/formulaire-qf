@@ -7,7 +7,7 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
     let(:expected_attributes) do
       {
         applicant: identity,
-        attachments: [an_object_having_attributes(file_name: "FormulaireQF.json"), an_object_having_attributes(file_name: "FormulaireQF.xml"), an_object_having_attributes(file_name: "FormulaireQF.pdf")],
+        attachments: [an_object_having_attributes(file_name: "FormulaireQF.json"), an_object_having_attributes(file_name: "FormulaireQF.xml"), an_object_having_attributes(file_name: "quotient_familial_Heinemeier Hansson_David.pdf")],
         cases: [
           external_id: "Formulaire-QF-ABCDEF1234567-01",
           recipient:,
