@@ -51,8 +51,30 @@ module ProviderStubs::HubEE
             status: "PENDING",
             fileName: "FormulaireQF.json",
             type: "FormulaireQF",
-            size: 22,
+            size: 683,
             mimeType: "application/json",
+            recipients: [
+              "Formulaire-QF-ABCDEF1234567-01",
+            ],
+          },
+          {
+            id: "a66abb0c-52d1-4e50-9195-22526fb7ce93",
+            status: "PENDING",
+            fileName: "FormulaireQF.xml",
+            type: "FormulaireQF",
+            size: 1543,
+            mimeType: "application/xml",
+            recipients: [
+              "Formulaire-QF-ABCDEF1234567-01",
+            ],
+          },
+          {
+            id: "a66abb0c-52d1-4e50-9195-22526fb7ce94",
+            status: "PENDING",
+            fileName: "quotient_familial_Heinemeier_Hansson_David.pdf",
+            type: "FormulaireQF",
+            size: 3079,
+            mimeType: "application/pdf",
             recipients: [
               "Formulaire-QF-ABCDEF1234567-01",
             ],
@@ -63,6 +85,12 @@ module ProviderStubs::HubEE
 
   def stub_hubee_upload_attachment
     stub_request(:put, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6/attachments/a66abb0c-52d1-4e50-9195-22526fb7ce92")
+      .to_return(status: 204, body: "", headers: {})
+
+    stub_request(:put, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6/attachments/a66abb0c-52d1-4e50-9195-22526fb7ce93")
+      .to_return(status: 204, body: "", headers: {})
+
+    stub_request(:put, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6/attachments/a66abb0c-52d1-4e50-9195-22526fb7ce94")
       .to_return(status: 204, body: "", headers: {})
   end
 

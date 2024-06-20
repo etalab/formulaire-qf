@@ -15,16 +15,16 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
   describe ".call" do
     subject(:organizer) { described_class.call(**params) }
 
-    let(:folder) { build(:hubee_folder) }
-    let(:identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
+    let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
     let(:params) do
       {
-        folder:,
-        identity:,
+        quotient_familial:,
+        pivot_identity:,
         recipient:,
         user:,
       }
     end
+    let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload) }
     let(:recipient) { build(:hubee_recipient) }
     let(:user) { User.new(access_token: "a_real_token", sub: "a_real_sub") }
 

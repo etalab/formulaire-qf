@@ -6,10 +6,8 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
 
     let(:expected_attributes) do
       {
-        applicant: identity,
-        attachments: [an_object_having_attributes(file_name: "FormulaireQF.json")],
-        # TODO: Add back when we upload a proper PDF
-        # attachments: [an_object_having_attributes(file_name: "FormulaireQF.json"), an_object_having_attributes(file_name: "FormulaireQF.pdf")],
+        applicant: pivot_identity,
+        attachments: [an_object_having_attributes(file_name: "FormulaireQF.json"), an_object_having_attributes(file_name: "FormulaireQF.xml"), an_object_having_attributes(file_name: "quotient_familial_Heinemeier_Hansson_David.pdf")],
         cases: [
           external_id: "Formulaire-QF-ABCDEF1234567-01",
           recipient:,
@@ -18,13 +16,15 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
         process_code: "FormulaireQF",
       }
     end
-    let(:identity) { double(PivotIdentity) }
+    let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
     let(:params) do
       {
-        identity:,
+        pivot_identity:,
+        quotient_familial:,
         recipient:,
       }
     end
+    let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload) }
     let(:recipient) { double(HubEE::Recipient) }
 
     before do

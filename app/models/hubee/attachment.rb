@@ -13,5 +13,9 @@ module HubEE
 
       file.close
     end
+
+    def write(file:)
+      file.write(file_content)
+    end
   end
 end

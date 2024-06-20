@@ -17,7 +17,13 @@ def mock_france_connect
     },
     extra: {
       raw_info: {
-        sub: "some_sub",
+        :sub => "some_sub",
+        "birthcountry" => "France",
+        "birthplace" => "Paris",
+        "birthdate" => "1980-01-01",
+        "family_name" => "Heinemeier Hansson",
+        "given_name" => "David",
+        "gender" => "male",
       },
     },
   })

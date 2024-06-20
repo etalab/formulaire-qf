@@ -3,6 +3,7 @@
 Fonctionnalité: Transmettre mes informations
   Contexte: 
     Sachant que je suis un utilisateur de FranceConnect avec un quotient familial
+    Etant donné l'existence de la commune de Majastres
     Et que hubee peut recevoir un dossier
     Et que je me rends sur la page d'accueil
     Et que je clique sur le premier "Débuter la démarche"

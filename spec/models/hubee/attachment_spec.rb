@@ -62,4 +62,11 @@ RSpec.describe HubEE::Attachment do
       attachment.close_file
     end
   end
+
+  describe "#write" do
+    it "writes to the file" do
+      expect(file).to receive(:write).with("file content")
+      attachment.write(file:)
+    end
+  end
 end

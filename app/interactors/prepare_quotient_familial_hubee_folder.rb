@@ -17,11 +17,11 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
 
   def folder_params
     {
-      applicant: context.identity,
+      applicant: context.pivot_identity,
       attachments: [
         json_file,
-        # can't setup this file until we can upload a proper PDF
-        # text_file,
+        xml_file,
+        pdf_file,
       ],
       cases: [
         external_id: case_external_id,
@@ -38,7 +38,18 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
       mime_type: "application/json",
       recipients: [case_external_id],
       type: process_code,
-      file_content: '{"first_name":"David"}'
+      file_content: shipment_data.to_json
+    )
+  end
+
+  def pdf_file
+    file_name = "quotient_familial_#{context.pivot_identity.last_name}_#{context.pivot_identity.first_name}.pdf".gsub(" ", "_")
+    ::HubEE::PdfAttachment.new(
+      file_name:,
+      mime_type: "application/pdf",
+      recipients: [case_external_id],
+      type: process_code,
+      file_content: shipment_data.to_s
     )
   end
 
@@ -46,13 +57,17 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
     "FormulaireQF"
   end
 
-  def text_file
+  def shipment_data
+    ShipmentData.new(external_id: "test", pivot_identity: context.pivot_identity, quotient_familial: context.quotient_familial)
+  end
+
+  def xml_file
     ::HubEE::Attachment.new(
-      file_name: "FormulaireQF.pdf",
-      mime_type: "application/pdf",
+      file_name: "FormulaireQF.xml",
+      mime_type: "application/xml",
       recipients: [case_external_id],
       type: process_code,
-      file_content: "Identité pivot"
+      file_content: shipment_data.to_xml
     )
   end
 end
