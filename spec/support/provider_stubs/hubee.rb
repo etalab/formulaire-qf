@@ -28,7 +28,7 @@ module ProviderStubs::HubEE
       )
   end
 
-  def stub_hbee_create_folder(names: "Heinemeier_Hansson_David")
+  def stub_hubee_create_folder(names: "Heinemeier_Hansson_David")
     stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
       .to_return(status: 200, body:  {
         id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
