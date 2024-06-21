@@ -2,6 +2,8 @@ class PopulateHubEESandboxJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
+    return if Rails.env.production?
+
     subscriptions = HubEE::Api.session.active_subscriptions
     subscriptions.each do |subscription|
       Rails.logger.debug { "### Adding data to #{subscription.dig("subscriber", "name")} ###" }
