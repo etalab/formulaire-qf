@@ -42,3 +42,18 @@ bundle exec guard
 bundle exec rubocop -A
 ```
 
+## Tools for remote server
+
+You have to be added on servers to use these binaries.
+
+Usage: `bin/script [ENV]`
+
+```
+# `less` on logs
+bin/explore-remote-logs
+# remote rails console
+bin/remote-console
+# `tail -f` on logs
+bin/stream-remote-logs
+```
+
