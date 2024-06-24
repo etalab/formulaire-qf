@@ -1,7 +1,8 @@
 # language: fr
 
 Fonctionnalité: Transmettre mes informations
-  Contexte: 
+  Contexte:
+    Etant donné l'existence de la commune de Majastres
     Sachant que j'ai un compte sur FranceConnect
     Et que hubee peut recevoir un dossier
     Et que je me rends sur la page d'accueil
