@@ -6,10 +6,10 @@
 
   <div class="user-data fr-p-3w">
 
-    <% if @quotient_familial_facade.error_message %>
-      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.no_data') %></h3>
+    <% if @quotient_familial_facade.error_message || @quotient_familial_facade.empty? %>
+      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.no_data_title') %></h3>
 
-      <%= @quotient_familial_facade.error_message %>
+      <%= @quotient_familial_facade.error_message || t('pages.shipments.new.quotient_familial.no_data') %>
     <% else %>
       <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 

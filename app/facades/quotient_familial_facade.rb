@@ -5,6 +5,10 @@ class QuotientFamilialFacade
     @quotient_familial = quotient_familial
   end
 
+  def empty?
+    quotient_familial["quotientFamilial"].blank?
+  end
+
   def error_message
     if quotient_familial["error"].present?
       quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]

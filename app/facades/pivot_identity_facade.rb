@@ -8,6 +8,8 @@ class PivotIdentityFacade
   end
 
   def full_name
+    return nil if pivot_identity.last_name.blank?
+
     [
       pivot_identity.last_name,
       *pivot_identity.first_names,
@@ -15,10 +17,13 @@ class PivotIdentityFacade
   end
 
   def birthdate
+    return nil if pivot_identity.birthdate.blank?
     pivot_identity.birthdate.strftime("%d/%m/%Y")
   end
 
   def full_sentence
+    return I18n.t("pages.shipments.new.quotient_familial.no_data") if full_name.blank? || birthdate.blank?
+
     [
       "#{full_name}, né#{"e" if gender == :female} le #{birthdate}",
       "Code de ville de naissance : #{birthplace}",
