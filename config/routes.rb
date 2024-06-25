@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :shipments, only: %i[new show create], param: :reference
   end
 
+  get "/cgu", to: "home#cgu"
   root "home#index"
 
   mount GoodJob::Engine => "good_job"
