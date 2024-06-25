@@ -6,11 +6,10 @@ class CollectivitiesController < ApplicationController
   end
 
   def show
+    session["siret"] = @collectivity.siret
   end
 
   def select
-    session["siret"] = @collectivity.siret
-
     if shipment_data_is_present?
       redirect_to new_collectivity_shipment_path(@collectivity.siret)
     else
