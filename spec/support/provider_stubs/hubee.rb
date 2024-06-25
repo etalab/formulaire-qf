@@ -7,6 +7,7 @@ module ProviderStubs::HubEE
     stub_hubee_upload_attachment
     stub_hubee_mark_folder_complete
     stub_hubee_delete_folder
+    stub_hubee_active_subscriptions
   end
 
   def stub_hubee_token(access_token: "access_token_123")
@@ -14,6 +15,66 @@ module ProviderStubs::HubEE
       .to_return(
         status: 200,
         body: {"access_token" => access_token}.to_json,
+        headers: {}
+      )
+  end
+
+  def stub_hubee_active_subscriptions
+    payload = [
+      {
+        "accessMode" => "API",
+        "activateDateTime" => "2024-04-18T22:00:00.000+00:00",
+        "creationDateTime" => "2024-04-19T09:11:14.100+00:00",
+        "datapassId" => 0,
+        "delegationActor" => {"branchCode" => nil, "companyRegister" => nil, "type" => nil},
+        "email" => nil,
+        "endDateTime" => nil,
+        "id" => "a0179445-1e8b-46ff-8c1f-4b74d0498833",
+        "localAdministrator" => {"email" => "contact-nhube@data.gouv.fr"},
+        "notificationFrequency" => "Aucune",
+        "processCode" => "FormulaireQF",
+        "rejectDateTime" => nil,
+        "rejectionReason" => nil,
+        "status" => "Actif",
+        "subscriber" => {
+          "branchCode" => "01034",
+          "companyRegister" => "21010034300016",
+          "name" => "COMMUNE DE BELLEY",
+          "type" => "SI",
+        },
+        "updateDateTime" => "2024-04-19T09:11:53.000+00:00",
+        "validateDateTime" => "2024-04-19T09:11:13.900+00:00",
+      },
+      {
+        "accessMode" => "PORTAIL",
+        "activateDateTime" => "2024-04-18T22:00:00.000+00:00",
+        "creationDateTime" => "2024-04-18T08:01:21.405+00:00",
+        "datapassId" => 0,
+        "delegationActor" => {"branchCode" => nil, "companyRegister" => nil, "type" => nil},
+        "email" => nil,
+        "endDateTime" => nil,
+        "id" => "47b12d1c-8567-45f1-ac73-8c07c11f0a97",
+        "localAdministrator" => {"email" => "majastres@yopmail.com"},
+        "notificationFrequency" => "Aucune",
+        "processCode" => "FormulaireQF",
+        "rejectDateTime" => nil,
+        "rejectionReason" => nil,
+        "status" => "Actif",
+        "subscriber" => {
+          "branchCode" => "04107",
+          "companyRegister" => "21040107100019",
+          "name" => "COMMUNE DE MAJASTRES",
+          "type" => "SI",
+        },
+        "updateDateTime" => "2024-06-14T15:27:43.000+00:00",
+        "validateDateTime" => "2024-04-18T08:01:21.137+00:00",
+      },
+    ]
+
+    stub_request(:get, "https://api.bas.hubee.numerique.gouv.fr/referential/v1/subscriptions?maxResult=5000&processCode=FormulaireQF&status=Actif")
+      .to_return(
+        status: 200,
+        body: payload.to_json,
         headers: {}
       )
   end

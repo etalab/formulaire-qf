@@ -16,6 +16,30 @@ RSpec.describe HubEE::Api, type: :api do
       allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
     end
 
+    describe "#active_subscriptions" do
+      subject(:active_subscriptions) { session.active_subscriptions }
+
+      before do
+        stub_hubee_active_subscriptions
+      end
+
+      let(:expected_response) do
+        array_including(
+          a_hash_including(
+            "subscriber" => a_hash_including(
+              "name" => "COMMUNE DE MAJASTRES",
+              "companyRegister" => "21040107100019",
+              "branchCode" => "04107"
+            )
+          )
+        )
+      end
+
+      it "returns the active subscriptions" do
+        expect(active_subscriptions).to match(expected_response)
+      end
+    end
+
     describe "#create_folder" do
       subject(:create_folder) { session.create_folder(folder: folder) }
 

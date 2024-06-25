@@ -7,6 +7,35 @@ class HubEE::Api
     new
   end
 
+  def active_subscriptions
+    base_url = URI("#{Settings.hubee.base_url}/referential/v1/subscriptions")
+    base_url.query = URI.encode_www_form(maxResult: 5000, status: "Actif", processCode: "FormulaireQF")
+
+    Rails.logger.debug base_url
+    https = Net::HTTP.new(base_url.host, base_url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(base_url)
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+
+    res = https.request(request)
+    if res.header["Content-Encoding"].eql?("gzip")
+      sio = StringIO.new(res.body)
+      gz = Zlib::GzipReader.new(sio)
+      page = gz.read
+    else
+      page = res.body
+    end
+
+    subscriptions = JSON.parse(page || "{}")
+
+    Rails.logger.debug page
+    Rails.logger.debug subscriptions
+
+    subscriptions
+  end
+
   def create_folder(folder:)
     base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders")
 
