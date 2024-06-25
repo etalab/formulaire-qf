@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :shipments, only: %i[new show create]
   end
 
+  get "faq", to: "home#faq"
+
   root "home#index"
 
   mount GoodJob::Engine => "good_job"
