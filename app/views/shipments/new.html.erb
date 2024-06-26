@@ -44,7 +44,17 @@
     <%= simple_format @pivot_identity_facade.full_sentence, { }, wrapper_tag: 'p' %>
   </div>
 
-  <h2 class="fr-mt-3w"><%= t('pages.shipments.new.second_title') %></h2>
+  <div class="fr-grid-row fr-my-3w">
+    <div class="fr-col">
+      <%= link_to t('shared.previous_button'), collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line fr-mb-1w" %>
+    </div>
+
+    <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
+      <%= button_tag type: :submit, class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+        <%= simple_format t('pages.shipments.new.next_button', collectivity: @collectivity.name), { }, wrapper_tag: 'span' %>
+      <% end %>
+    <% end %>
+  </div>
 
   <div class="fr-alert fr-alert--info">
     <h3 class="fr-alert__title"><%= t('pages.shipments.new.info.title') %></h3>
@@ -63,15 +73,4 @@
     </p>
   </div>
 
-  <div class="fr-grid-row fr-mt-3w">
-    <div class="fr-col">
-      <%= link_to t('shared.previous_button'), collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line fr-mb-1w" %>
-    </div>
-
-    <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
-      <%= button_tag type: :submit, class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
-        <%= simple_format t('pages.shipments.new.next_button', collectivity: @collectivity.name), { }, wrapper_tag: 'span' %>
-      <% end %>
-    <% end %>
-  </div>
 </div>

@@ -84,7 +84,6 @@ fr:
         no_children: Aucun
         france_connect:
           title: Données de FranceConnect
-        second_title: Finir la démarche
         info:
           title: Ce qui va se passer
           paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
