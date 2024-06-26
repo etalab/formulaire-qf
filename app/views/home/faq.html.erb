@@ -1,3 +1,11 @@
+<% content_for :banner_title do %>
+  <%= simple_format t('pages.faq.banner.text'), { }, wrapper_tag: 'span' %>
+<% end %>
+
+<% content_for :banner_right do %>
+  <%= render partial: "cta" %>
+<% end %>
+
 <h2>Fonctionnement du service</h2>
 
 <h3>À quoi sert ce service ?</h3>
