@@ -35,7 +35,7 @@
 
               <ul class="fr-btns-group">
                 <li>
-                  <%= link_to "Aide et FAQ", faq_path, class: "fr-btn fr-icon-information-fill" %>
+                  <%= link_to t('header.faq'), faq_path, class: "fr-btn fr-icon-information-fill" %>
                 </li>
 
                 <% if Current.user.authenticated? %>
