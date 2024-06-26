@@ -64,7 +64,7 @@ fr:
         banner:
           text: |
             Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
-        title: "Je me connecte via FranceConnect&nbsp;:"
+        title: "Je m'identifie via FranceConnect&nbsp;:"
         info:
           title: "Ce qui va se passer :"
           content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
