@@ -89,7 +89,7 @@ fr:
           paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
           paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
           link: "En savoir plus sur la gestion de mes données personnelles"
-        next_button: Transmettre mes informations
+        next_button: "Terminer la démarche<br/>Vos données seront transmises à %{collectivity}"
       show:
         title: |
           Vos informations ont bien été transmises
