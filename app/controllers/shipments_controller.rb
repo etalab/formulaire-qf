@@ -2,6 +2,7 @@ class ShipmentsController < ApplicationController
   before_action :set_collectivity
 
   def show
+    @shipment = Shipment.find_by(reference: params[:reference])
   end
 
   def new
@@ -14,7 +15,7 @@ class ShipmentsController < ApplicationController
     result = StoreQuotientFamilial.call(user: Current.user, pivot_identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
 
     if result.success?
-      redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment)
+      redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment.reference)
     else
       raise
     end

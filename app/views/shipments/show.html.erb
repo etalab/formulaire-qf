@@ -3,4 +3,5 @@
 <div class="centered-text">
   <span class="fr-icon-success-fill big-icon success-green" aria-hidden="true"></span>
   <%= simple_format t('pages.shipments.show.title', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'h2' %>
+  <%= simple_format t('pages.shipments.show.reference', reference: @shipment.reference), class: "fr-text--lead fr-mt-3w" %>
 </div>

@@ -39,3 +39,7 @@ Alors("debug") do
   debugger
 end
 # rubocop:enable Lint/Debugger
+
+Alors("la page contient la référence de ma demande") do
+  expect(page).to have_content(Shipment.last.reference)
+end
