@@ -44,3 +44,11 @@ Fonctionnalité: Transmettre mes informations
     Quand je clique sur "Transmettre mes informations"
     Alors la page contient "Vos informations ont bien été transmises à Majastres"
     Et la page contient la référence de ma demande
+    Et la page ne contient pas "Retourner sur le site de ma commune"
+
+  Scénario: Je peux retourner sur le site de ma commune
+    Et que j'arrive sur le formulaire depuis le portail de ma commune
+    Et que j'ai un quotient familial msa avec des enfants
+    Et que je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "Transmettre mes informations"
+    Alors la page contient "Retourner sur le site de ma commune"

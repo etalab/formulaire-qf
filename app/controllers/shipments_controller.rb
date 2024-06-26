@@ -3,6 +3,7 @@ class ShipmentsController < ApplicationController
 
   def show
     @shipment = Shipment.find_by(reference: params[:reference])
+    @redirect_uri = session[:redirect_uri]
   end
 
   def new
@@ -12,7 +13,13 @@ class ShipmentsController < ApplicationController
 
   def create
     hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siret, branch_code: "04107")
-    result = StoreQuotientFamilial.call(user: Current.user, pivot_identity: Current.pivot_identity, quotient_familial: Current.quotient_familial, recipient: hubee_recipient)
+    result = StoreQuotientFamilial.call(
+      external_id: session[:external_id],
+      pivot_identity: Current.pivot_identity,
+      quotient_familial: Current.quotient_familial,
+      recipient: hubee_recipient,
+      user: Current.user
+    )
 
     if result.success?
       redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment.reference)
