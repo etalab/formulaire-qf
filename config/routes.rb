@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :shipments, only: %i[new show create], param: :reference
   end
 
-  get "/cgu", to: "home#cgu"
+  get "/cgu_usagers", to: "home#cgu_usagers"
   get "/cgu_administrations", to: "home#cgu_administrations"
   get "faq", to: "home#faq"
 
