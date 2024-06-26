@@ -11,6 +11,7 @@ fr:
       bold_part: Quotient-familial
       italic_part: .numerique.gouv.fr
     logout: Se déconnecter
+    faq: Aide et FAQ
   footer:
     tagline: Ce site propose un formulaire à compléter par les citoyens pour permettre à leurs collectivités de collecter leur identité pivot et leur quotient familial.
     external_links:
@@ -22,6 +23,9 @@ fr:
     previous_button: Retour
     next_button: Suivant
   pages:
+    faq:
+      banner:
+        text: <span class="title-highlight"><strong>Aide</span> et <span class="title-highlight">Foire aux questions</strong></span> du service de transmission administrative du quotient familial
     home:
       title: Accueil
       banner:
