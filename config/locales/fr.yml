@@ -20,6 +20,7 @@ fr:
       - data.gouv.fr
   shared:
     duration_text: "Durée restante : %{duration} min"
+    banner_link: À quoi sert cette démarche ?
     previous_button: Retour
     next_button: Suivant
   pages:
