@@ -69,7 +69,9 @@
     </div>
 
     <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
-      <%= button_tag t('pages.shipments.new.next_button'), type: :submit, class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" %>
+      <%= button_tag type: :submit, class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+        <%= simple_format t('pages.shipments.new.next_button', collectivity: @collectivity.name), { }, wrapper_tag: 'span' %>
+      <% end %>
     <% end %>
   </div>
 </div>
