@@ -47,6 +47,7 @@ fr:
             content: Au dernier clic de cette démarche de 4min, votre commune réceptionne votre identité pivot et votre quotient familial ;
           - title: Renouvelé automatiquement
             content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la commune mettra à jour de façon proactive votre quotient familial
+        link: Qui peut utiliser ce service ?
       which_informations:
         title: Quelles informations vous seront demandées ?
         content: Aucune, seulement une connexion à FranceConnect
