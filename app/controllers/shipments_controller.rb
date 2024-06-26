@@ -2,6 +2,7 @@ class ShipmentsController < ApplicationController
   before_action :set_collectivity
 
   def show
+    @shipment = Shipment.find(params[:id])
   end
 
   def new

@@ -43,3 +43,4 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur "S’identifier avec FranceConnect"
     Quand je clique sur "Transmettre mes informations"
     Alors la page contient "Vos informations ont bien été transmises à Majastres"
+    Et la page contient la référence de ma demande

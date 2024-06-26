@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_26_080052) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_26_085723) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -115,6 +115,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_080052) do
     t.string "hubee_folder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reference"
+    t.string "hubee_status", default: "pending"
+    t.index ["hubee_status"], name: "index_shipments_on_hubee_status"
   end
 
 end

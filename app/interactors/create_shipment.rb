@@ -12,6 +12,7 @@ class CreateShipment < BaseInteractor
 
   def params
     {
+      reference: SecureRandom.uuid,
       hubee_folder_id: context.folder.id,
     }
   end
