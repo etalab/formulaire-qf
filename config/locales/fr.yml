@@ -54,12 +54,12 @@ fr:
         content: Aucune, seulement une connexion à FranceConnect
     collectivities:
       index:
-        title: À quelle collectivité seront transmises les données ?
+        title: "Choisir la collectivité à laquelle seront transmises les données :"
         form:
-          label: Nom de votre commune
-          hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
+          label: Nom de la collectivité
+          hint: Sélectionner la collectivité à l'aide de son nom ou de son code postal
           notice:
-            text: Seules les communes de cette liste mettent actuellement à disposition ce service.
+            text: Seules les collectivités de cette liste mettent actuellement à disposition ce service.
       show:
         banner:
           text: |
