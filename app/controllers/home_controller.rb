@@ -5,6 +5,9 @@ class HomeController < ApplicationController
   def cgu
   end
 
+  def cgu_administrations
+  end
+
   def faq
   end
 end

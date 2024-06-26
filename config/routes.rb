@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   get "/cgu", to: "home#cgu"
+  get "/cgu_administrations", to: "home#cgu_administrations"
   get "faq", to: "home#faq"
 
   root "home#index"
