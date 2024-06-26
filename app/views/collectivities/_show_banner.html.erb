@@ -3,7 +3,5 @@
 <% end %>
 
 <% content_for :banner_right do %>
-  <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('shared.duration_text', duration: duration)%>
-  </p>
+  <%= render partial: "shared/banner_duration_and_link", duration: duration %>
 <% end %>
