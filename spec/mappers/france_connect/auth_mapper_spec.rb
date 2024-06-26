@@ -6,21 +6,13 @@ describe FranceConnect::AuthMapper, type: :mapper do
 
     let(:expected_auth) do
       {
-        access_token: "some_real_token",
         sub: "some_real_sub",
       }
     end
 
     let(:payload) do
       {
-        "credentials" => {
-          "token" => "some_real_token",
-        },
-        "extra" => {
-          "raw_info" => {
-            "sub" => "some_real_sub",
-          },
-        },
+        "sub" => "some_real_sub",
       }
     end
 
