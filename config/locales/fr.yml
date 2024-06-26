@@ -60,7 +60,6 @@ fr:
           hint: Sélectionner votre commune à l'aide de son nom ou de son code postal
           notice:
             text: Seules les communes de cette liste mettent actuellement à disposition ce service.
-            link: En savoir plus sur le fonctionnement du service
       show:
         banner:
           text: |
