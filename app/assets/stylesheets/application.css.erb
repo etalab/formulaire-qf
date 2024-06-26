@@ -31,6 +31,17 @@ main {
   font-weight: normal !important;
 }
 
+/* for the header's user name */
+.two-rows-headers {
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media (min-width: 62em) {
+  .two-rows-headers {
+    flex-direction: column;
+  }
+}
+
 /* for the banner */
 .title-highlight {
   color: var(--background-flat-pink-tuile);
