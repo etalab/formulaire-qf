@@ -85,6 +85,11 @@ fr:
           paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
         next_button: Transmettre mes informations
       show:
+        reference: |
+          <strong>Identifiant de cette démarche,</strong>
+          À garder et à transmettre à votre commune en cas de difficulté :
+
+          <strong>%{reference}</strong>
         title: |
           Vos informations ont bien été transmises
           à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>

@@ -118,6 +118,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_085723) do
     t.string "reference"
     t.string "hubee_status", default: "pending"
     t.index ["hubee_status"], name: "index_shipments_on_hubee_status"
+    t.index ["reference"], name: "index_shipments_on_reference"
   end
 
 end

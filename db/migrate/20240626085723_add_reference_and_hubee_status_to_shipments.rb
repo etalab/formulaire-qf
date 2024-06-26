@@ -6,5 +6,6 @@ class AddReferenceAndHubEEStatusToShipments < ActiveRecord::Migration[7.1]
     end
 
     add_index :shipments, :hubee_status
+    add_index :shipments, :reference
   end
 end

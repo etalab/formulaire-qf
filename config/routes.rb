@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       get :select
     end
 
-    resources :shipments, only: %i[new show create]
+    resources :shipments, only: %i[new show create], param: :reference
   end
 
   root "home#index"
