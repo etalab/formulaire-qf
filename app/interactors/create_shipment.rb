@@ -12,7 +12,6 @@ class CreateShipment < BaseInteractor
 
   def params
     {
-      sub: context.user.sub,
       hubee_folder_id: context.folder.id,
     }
   end
