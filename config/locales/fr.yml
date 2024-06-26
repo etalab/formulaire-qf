@@ -58,8 +58,7 @@ fr:
       show:
         banner:
           text: |
-            Transmission du <strong>quotient familial et de l'identité pivot</strong>
-            à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
+            Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
         title: Connectez-vous via FranceConnect
         info:
           title: "Ce qui va se passer :"

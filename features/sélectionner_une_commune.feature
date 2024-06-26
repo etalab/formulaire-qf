@@ -10,5 +10,5 @@ Fonctionnalité: Sélectionner une commune
     Quand je sélectionne "Majastres" pour "Nom de votre commune"
     Et que je clique sur "Suivant"
     Alors la page contient "S’identifier avec FranceConnect"
-    Et la page contient "Majastres - 04107"
+    Et la page contient "Majastres"
   
