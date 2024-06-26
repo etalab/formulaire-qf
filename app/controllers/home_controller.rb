@@ -10,4 +10,7 @@ class HomeController < ApplicationController
 
   def faq
   end
+
+  def accessibilite
+  end
 end
