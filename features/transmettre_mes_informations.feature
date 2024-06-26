@@ -41,7 +41,7 @@ Fonctionnalité: Transmettre mes informations
   Scénario: Je transmet mes données
     Et que j'ai un quotient familial msa avec des enfants
     Et que je clique sur "S’identifier avec FranceConnect"
-    Quand je clique sur "Terminer la démarcher et transmettre mes données à Majastres"
+    Quand je clique sur "Terminer la démarche et transmettre mes données à Majastres"
     Alors la page contient "Vos informations ont bien été transmises à Majastres"
     Et la page contient la référence de ma demande
     Et la page ne contient pas "Retourner sur le site de ma commune"
