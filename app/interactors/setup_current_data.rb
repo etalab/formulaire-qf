@@ -9,7 +9,7 @@ class SetupCurrentData < BaseInteractor
   private
 
   def pivot_identity
-    PivotIdentity.new(**FranceConnect::IdentityMapper.normalize(session_auth))
+    PivotIdentity.new(**FranceConnect::IdentityMapper.normalize(session_raw_info))
   end
 
   def quotient_familial
@@ -21,11 +21,11 @@ class SetupCurrentData < BaseInteractor
     Collectivity.find_by(siret: siret) || Collectivity.new
   end
 
-  def session_auth
-    context.session.fetch("auth", {})
+  def session_raw_info
+    context.session.fetch("raw_info", {})
   end
 
   def user
-    User.new(**FranceConnect::AuthMapper.normalize(session_auth))
+    User.new(**FranceConnect::AuthMapper.normalize(session_raw_info).merge(access_token: context.session[:france_connect_token]))
   end
 end

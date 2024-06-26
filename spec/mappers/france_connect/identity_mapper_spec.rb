@@ -17,16 +17,12 @@ describe FranceConnect::IdentityMapper, type: :mapper do
 
     let(:payload) do
       {
-        "extra" => {
-          "raw_info" => {
-            "birthcountry" => "France",
-            "birthplace" => "Paris",
-            "birthdate" => "1980-01-01",
-            "family_name" => "Doe",
-            "given_name" => "John",
-            "gender" => "male",
-          },
-        },
+        "birthcountry" => "France",
+        "birthplace" => "Paris",
+        "birthdate" => "1980-01-01",
+        "family_name" => "Doe",
+        "given_name" => "John",
+        "gender" => "male",
       }
     end
 

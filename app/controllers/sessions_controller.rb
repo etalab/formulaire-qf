@@ -4,8 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:auth] = request.env["omniauth.auth"]
-    session["state"] = params[:state]
+    session[:raw_info] = request.env["omniauth.auth"]["extra"]["raw_info"]
+    session[:france_connect_token] = request.env["omniauth.auth"]["credentials"]["token"]
+    session[:france_connect_token_hint] = request.env["omniauth.auth"]["credentials"]["id_token"]
+    session[:state] = params[:state]
 
     SetupCurrentData.call(session:, params:)
     result = GetFamilyQuotient.call(recipient: Current.collectivity.siret, user: Current.user)
@@ -23,7 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    id_token_hint = session[:auth]["credentials"]["id_token"]
+    id_token_hint = session[:france_connect_token_hint]
     state = session["state"]
     url = "https://#{Settings.france_connect.host}/api/v1/logout?id_token_hint=#{id_token_hint}&post_logout_redirect_uri=#{fc_logout_callback_url}&state=#{state}"
     reset_session
