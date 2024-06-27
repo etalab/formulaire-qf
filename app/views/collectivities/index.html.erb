@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :banner_right do %>
-  <%= render partial: "shared/banner_duration_and_link", duration: 3 %>
+  <%= render partial: "shared/banner_duration_and_link", locals: { duration: 3 } %>
 <% end %>
 
 <h2><%= t('pages.collectivities.index.title') %></h2>

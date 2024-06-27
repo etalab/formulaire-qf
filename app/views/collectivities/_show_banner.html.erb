@@ -3,5 +3,5 @@
 <% end %>
 
 <% content_for :banner_right do %>
-  <%= render partial: "shared/banner_duration_and_link", duration: duration %>
+  <%= render partial: "shared/banner_duration_and_link", locals: { duration: duration } %>
 <% end %>
