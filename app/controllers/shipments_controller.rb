@@ -12,7 +12,7 @@ class ShipmentsController < ApplicationController
   end
 
   def create
-    hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siret, branch_code: "04107")
+    hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siret, branch_code: @collectivity.code_cog)
     result = StoreQuotientFamilial.call(
       external_id: Current.external_id,
       pivot_identity: Current.pivot_identity,
