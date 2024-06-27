@@ -4,9 +4,19 @@ class SetupCurrentData < BaseInteractor
     Current.quotient_familial = quotient_familial
     Current.collectivity = collectivity
     Current.user = user
+    Current.external_id = external_id
+    Current.redirect_uri = redirect_uri
   end
 
   private
+
+  def external_id
+    context.session[:external_id]
+  end
+
+  def redirect_uri
+    context.session[:redirect_uri]
+  end
 
   def pivot_identity
     PivotIdentity.new(**FranceConnect::IdentityMapper.normalize(session_raw_info))

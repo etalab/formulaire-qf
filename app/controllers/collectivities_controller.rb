@@ -23,6 +23,7 @@ class CollectivitiesController < ApplicationController
     session[:external_id] ||= params[:external_id]
     session[:redirect_uri] ||= params[:redirect_uri]
     session[:siret] ||= @collectivity.siret
+    SetupCurrentData.call(session: session, params: params)
   end
 
   def set_collectivity
