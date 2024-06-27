@@ -50,5 +50,5 @@ Fonctionnalité: Transmettre mes informations
     Et que j'arrive sur le formulaire depuis le portail de ma commune
     Et que j'ai un quotient familial msa avec des enfants
     Et que je clique sur "S’identifier avec FranceConnect"
-    Quand je clique sur "Transmettre mes informations"
+    Quand je clique sur "Terminer la démarche et transmettre mes données"
     Alors la page contient "Retourner sur le site de ma commune"
