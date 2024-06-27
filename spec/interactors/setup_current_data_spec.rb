@@ -4,7 +4,7 @@ describe SetupCurrentData, type: :interactor do
   describe ".call" do
     subject(:call) { described_class.call(session: session, params: params) }
 
-    let(:session) { {"quotient_familial" => {"quotient_familial" => 2550}} }
+    let(:session) { {:external_id => "12345", :redirect_uri => "https://real_uri", "quotient_familial" => {"quotient_familial" => 2550}} }
     let(:collectivity) { create(:collectivity) }
     let(:params) { {collectivity_id: collectivity.siret} }
 
@@ -13,6 +13,8 @@ describe SetupCurrentData, type: :interactor do
       Current.pivot_identity = nil
       Current.quotient_familial = nil
       Current.collectivity = nil
+      Current.external_id = nil
+      Current.redirect_uri = nil
     end
 
     it "sets up current data" do
@@ -33,6 +35,14 @@ describe SetupCurrentData, type: :interactor do
 
     it "sets up the current collectivity" do
       expect { call }.to change { Current.collectivity }.from(nil).to(collectivity)
+    end
+
+    it "sets up the current external id" do
+      expect { call }.to change { Current.external_id }.from(nil).to("12345")
+    end
+
+    it "sets up the current redirect uri" do
+      expect { call }.to change { Current.redirect_uri }.from(nil).to("https://real_uri")
     end
   end
 end

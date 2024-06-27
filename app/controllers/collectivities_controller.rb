@@ -1,12 +1,12 @@
 class CollectivitiesController < ApplicationController
   before_action :set_collectivity, only: %i[select show]
+  before_action :move_params_to_session, only: :show
 
   def index
     @collectivities = Collectivity.active
   end
 
   def show
-    session["siret"] = @collectivity.siret
   end
 
   def select
@@ -18,6 +18,13 @@ class CollectivitiesController < ApplicationController
   end
 
   private
+
+  def move_params_to_session
+    session[:external_id] ||= params[:external_id]
+    session[:redirect_uri] ||= params[:redirect_uri]
+    session[:siret] ||= @collectivity.siret
+    SetupCurrentData.call(session: session, params: params)
+  end
 
   def set_collectivity
     @collectivity = Collectivity.find_by!(siret: params[:id])
