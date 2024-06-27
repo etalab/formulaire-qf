@@ -1,4 +1,10 @@
+api_particulier:
+  base_url: "https://particulier.api.gouv.fr"
 france_connect:
+  host: "app.franceconnect.gouv.fr"
   redirect_uri: <%= Rails.application.credentials.france_connect.redirect_uri %>
+hubee:
+  base_url: "https://api.hubee.numerique.gouv.fr"
+  token_url: "https://auth.hubee.numerique.gouv.fr/oauth2/token"
 sentry:
   dsn: <%= Rails.application.credentials.sentry.dsn %>
