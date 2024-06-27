@@ -24,22 +24,30 @@
             </p>
           </div>
         </div>
-        <% if Current.user.authenticated? %>
-          <div class="fr-header__tools">
-            <div class="fr-header__tools-links">
+        <div class="fr-header__tools">
+           <div class="fr-header__tools-links">
+            <div class="two-rows-headers">
+              <% if Current.user.authenticated? %>
+                <div class="fr-mr-1w fr-mb-1w">
+                  <%= Current.user.display_name %>
+                </div>
+              <% end %>
+
               <ul class="fr-btns-group">
                 <li>
-                  <div>
-                    <div class="fr-mb-1w fr-mx-1w"><%= Current.user.display_name %></div>
-                    <%= button_to t('header.logout'), logout_path, method: :delete, class: "fr-btn fr-icon-account-line", data: {turbo: false} %>
-                  </div>
+                  <%= link_to t('header.faq'), faq_path, class: "fr-btn fr-icon-information-fill" %>
                 </li>
+
+                <% if Current.user.authenticated? %>
+                  <li>
+                    <%= button_to t('header.logout'), logout_path, method: :delete, class: "fr-btn fr-icon-account-line", data: {turbo: false} %>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </div>
-        <% end %>
+        </div>
       </div>
-
     </div>
   </div>
 

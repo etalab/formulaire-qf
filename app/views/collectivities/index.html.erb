@@ -3,9 +3,7 @@
 <% end %>
 
 <% content_for :banner_right do %>
-  <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('shared.duration_text', duration: 3)%>
-  </p>
+  <%= render partial: "shared/banner_duration_and_link", locals: { duration: 3 } %>
 <% end %>
 
 <h2><%= t('pages.collectivities.index.title') %></h2>
@@ -28,9 +26,6 @@
         <div class="fr-notice__body">
           <p class="fr-notice__title">
             <%= t('pages.collectivities.index.form.notice.text')%>
-            <!--<a href='#' rel='noopener external' title="intitulé - nouvelle fenêtre" target='_blank'>
-              <%= t('pages.collectivities.index.form.notice.link')%>
-            </a>-->
           </p>
         </div>
       </div>

@@ -31,6 +31,17 @@ main {
   font-weight: normal !important;
 }
 
+/* for the header's user name */
+.two-rows-headers {
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media (min-width: 62em) {
+  .two-rows-headers {
+    flex-direction: column;
+  }
+}
+
 /* for the banner */
 .title-highlight {
   color: var(--background-flat-pink-tuile);
@@ -80,4 +91,10 @@ ul.checklist li:before {
 button.fr-connect {
   width: 209px;
   height: 56px;
+}
+
+/* More spaces on titles for CGU and FAQ */
+
+.big-spaced-titles h1, .big-spaced-titles h2, .big-spaced-titles h3, .big-spaced-titles h4 {
+  margin-top: 3rem !important;
 }
