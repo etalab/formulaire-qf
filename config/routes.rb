@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy", as: :logout
   get "/logout-callback", to: "sessions#fc_callback", as: :fc_logout_callback
 
-  resources :collectivities, only: %i[index show] do
+  resources :collectivities, only: %i[index show], path: "collectivites" do
     collection do
       get :select
     end
