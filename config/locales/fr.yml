@@ -76,6 +76,7 @@ fr:
         title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
         quotient_familial:
           no_data_title: Données de la CNAF ou MSA
+          no_data_subtitle: Erreur lors de la récupération de votre quotient familial
           no_data: Aucune donnée
           title: Données de la %{regime}
           quotient: "Quotient familial de %{month_year} :"
