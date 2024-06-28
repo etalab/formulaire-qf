@@ -39,24 +39,43 @@ class ShipmentData
         - Prénoms: #{pivot_identity.first_names.join(" ")}
         - Sexe: #{(pivot_identity.gender == :female) ? "F" : "M"}
       
-      Quotient familial:
-        - Régime: #{quotient_familial["regime"]}
-        - Année: #{quotient_familial["annee"]}
-        - Mois: #{quotient_familial["mois"]}
-        - Quotient familial: #{quotient_familial["quotientFamilial"]}
-        - Allocataires:
-        
-        #{allocataire_text}
-        
-        - Enfants:
-        
-        #{enfants_text}
+      #{quotient_familial_text}
     TEXT
   end
 
   private
 
+  def quotient_familial_error
+    quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]
+  end
+
+  def quotient_familial_text
+    if quotient_familial_error
+      <<~TEXT
+        Quotient familial:
+          ERREUR: #{quotient_familial_error}
+      TEXT
+    else
+      <<~TEXT
+        Quotient familial:
+          - Régime: #{quotient_familial["regime"]}
+          - Année: #{quotient_familial["annee"]}
+          - Mois: #{quotient_familial["mois"]}
+          - Quotient familial: #{quotient_familial["quotientFamilial"]}
+          - Allocataires:
+          
+          #{allocataire_text}
+          
+          - Enfants:
+          
+          #{enfants_text}
+      TEXT
+    end
+  end
+
   def allocataire_text
+    return "Aucun" if quotient_familial["allocataires"].blank?
+
     quotient_familial["allocataires"].map do |allocataire|
       <<~TEXT
         - Nom de naissance: #{allocataire["nomNaissance"]}
@@ -70,6 +89,8 @@ class ShipmentData
   end
 
   def enfants_text
+    return "Aucun" if quotient_familial["allocataires"].blank?
+
     quotient_familial["enfants"].map do |enfant|
       <<~TEXT
         - Nom de naissance: #{enfant["nomNaissance"]}
