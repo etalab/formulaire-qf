@@ -1,7 +1,7 @@
 <%= render partial: "show_banner", locals: { duration: 2 } %>
 
 <div class="fr-col-md-8">
-  <h2><%= t('pages.collectivities.show.title') %></h2>
+  <%= simple_format t('pages.collectivities.show.title'), { }, wrapper_tag: 'h2' %>
 
   <div class="fr-grid-row fr-grid-row--center fr-mb-6v">
     <p><%= t('pages.collectivities.show.info.explanation') %></p>
