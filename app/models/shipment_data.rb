@@ -89,7 +89,7 @@ class ShipmentData
   end
 
   def enfants_text
-    return "Aucun" if quotient_familial["allocataires"].blank?
+    return "Aucun" if quotient_familial["enfants"].blank?
 
     quotient_familial["enfants"].map do |enfant|
       <<~TEXT
