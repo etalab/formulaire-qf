@@ -20,7 +20,7 @@ class QuotientFamilialFacade
   end
 
   def regime
-    quotient_familial["regime"]
+    quotient_familial["regime"] || I18n.t("pages.shipments.new.quotient_familial.all_regimes")
   end
 
   def month_year

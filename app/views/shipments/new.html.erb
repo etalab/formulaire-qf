@@ -4,10 +4,9 @@
   <%= simple_format t('pages.shipments.new.title', collectivity_name: @collectivity.name), { }, wrapper_tag: 'h2' %>
 
   <div class="user-data fr-p-3w">
+    <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 
     <% if @quotient_familial_facade.error_message || @quotient_familial_facade.empty? %>
-      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.no_data_title') %></h3>
-
       <div class="fr-alert fr-alert--error">
         <h4 class="fr-alert__title"><%=t('pages.shipments.new.quotient_familial.no_data_subtitle')%></h4>
         <p>
@@ -15,8 +14,6 @@
         </p>
       </div>
     <% else %>
-      <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
-
       <ul>
         <li>
           <strong><%= t('pages.shipments.new.quotient_familial.quotient', month_year: @quotient_familial_facade.month_year) %></strong>
