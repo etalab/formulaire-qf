@@ -23,9 +23,9 @@ Rails.application.routes.draw do
     end
 
     get "/envoyer_mes_donnees", to: "shipments#new", as: :new_shipment
+    get "/confirmation/:reference", to: "shipments#show", as: :shipment
 
-    resources :shipments, only: %i[show create], param: :reference do
-    end
+    resources :shipments, only: %i[create], param: :reference
   end
 
   get "/cgu_usagers", to: "home#cgu_usagers"
