@@ -7,7 +7,7 @@ Quand("je me rends sur la page d'accueil") do
 end
 
 Sachantque("j'arrive sur le formulaire depuis le portail de ma commune") do
-  visit "/collectivities/21040107100019?external_id=123&redirect_uri=http://real_uri"
+  visit "/collectivites/21040107100019/me_connecter?external_id=123&redirect_uri=http://real_uri"
 end
 
 Soit("l'existence de la commune de Majastres") do

@@ -13,12 +13,19 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy", as: :logout
   get "/logout-callback", to: "sessions#fc_callback", as: :fc_logout_callback
 
-  resources :collectivities, only: %i[index show] do
+  resources :collectivities, only: %i[index], path: "collectivites" do
+    member do
+      get :show, path: "me_connecter"
+    end
+
     collection do
       get :select
     end
 
-    resources :shipments, only: %i[new show create], param: :reference
+    get "/envoyer_mes_donnees", to: "shipments#new", as: :new_shipment
+    get "/confirmation/:reference", to: "shipments#show", as: :shipment
+
+    resources :shipments, only: %i[create], param: :reference
   end
 
   get "/cgu_usagers", to: "home#cgu_usagers"

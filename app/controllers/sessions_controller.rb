@@ -17,9 +17,9 @@ class SessionsController < ApplicationController
       SetupCurrentData.call(session:, params:)
       Current.quotient_familial = result.quotient_familial
 
-      redirect_to new_collectivity_shipment_path(Current.collectivity.siret)
+      redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
-      # render new_collectivity_shipment_path, flash with result.error
+      # render collectivity_new_shipment_path, flash with result.error
       raise
     end
   end
