@@ -22,7 +22,10 @@ Rails.application.routes.draw do
       get :select
     end
 
-    resources :shipments, only: %i[new show create], param: :reference
+    get "/envoyer_mes_donnees", to: "shipments#new", as: :new_shipment
+
+    resources :shipments, only: %i[show create], param: :reference do
+    end
   end
 
   get "/cgu_usagers", to: "home#cgu_usagers"

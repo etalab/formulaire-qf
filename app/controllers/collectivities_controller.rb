@@ -11,7 +11,7 @@ class CollectivitiesController < ApplicationController
 
   def select
     if shipment_data_is_present?
-      redirect_to new_collectivity_shipment_path(@collectivity.siret)
+      redirect_to collectivity_new_shipment_path(@collectivity.siret)
     else
       redirect_to collectivity_path(@collectivity.siret)
     end
