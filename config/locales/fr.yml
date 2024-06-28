@@ -54,7 +54,7 @@ fr:
         content: Aucune, seulement une connexion à FranceConnect
     collectivities:
       index:
-        title: Je choisis la collectivité à laquelle seront transmises mes données
+        title: "Je choisis la collectivité à laquelle seront transmises mes données&nbsp;:"
         form:
           label: Nom de la collectivité
           hint: Sélectionner la collectivité à l'aide de son nom ou de son code postal
@@ -64,7 +64,7 @@ fr:
         banner:
           text: |
             Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
-        title: Je m'identifie via FranceConnect
+        title: "Je m'identifie via FranceConnect&nbsp;:"
         info:
           title: "Ce qui va se passer :"
           content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
@@ -73,7 +73,7 @@ fr:
             FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne.
     shipments:
       new:
-        title: Je relis et transmets mes données à %{collectivity_name}
+        title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
         quotient_familial:
           no_data_title: Données de la CNAF ou MSA
           no_data: Aucune donnée

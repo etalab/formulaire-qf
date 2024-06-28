@@ -1,8 +1,7 @@
 <%= render partial: "collectivities/show_banner", locals: { duration: 1 } %>
 
 <div class="fr-col-md-8">
-
-  <h2><%= t('pages.shipments.new.title', collectivity_name: @collectivity.name) %></h2>
+  <%= simple_format t('pages.shipments.new.title', collectivity_name: @collectivity.name), { }, wrapper_tag: 'h2' %>
 
   <div class="user-data fr-p-3w">
 

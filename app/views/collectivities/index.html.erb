@@ -6,7 +6,7 @@
   <%= render partial: "shared/banner_duration_and_link", locals: { duration: 3 } %>
 <% end %>
 
-<h2><%= t('pages.collectivities.index.title') %></h2>
+<%= simple_format t('pages.collectivities.index.title'), { }, wrapper_tag: 'h2' %>
 
 <%= form_with url: select_collectivities_path, method: :get, class: "fr-col-md-8" do |form| %>
   <div class="fr-select-group">
