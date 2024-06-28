@@ -20,14 +20,14 @@ class QuotientFamilialFacade
   end
 
   def regime
-    quotient_familial["regime"]
+    quotient_familial["regime"] || I18n.t("pages.shipments.new.quotient_familial.all_regimes")
   end
 
   def month_year
-    month_number = quotient_familial["mois"]
-    return "" if month_number.blank?
+    month_number = quotient_familial["mois"] || Time.zone.today.strftime("%m").to_i
+    year_number = quotient_familial["annee"] || Time.zone.today.strftime("%Y")
     month = I18n.t("date.month_names")[month_number]
-    "#{month} #{quotient_familial["annee"]}"
+    "#{month} #{year_number}"
   end
 
   def allocataires

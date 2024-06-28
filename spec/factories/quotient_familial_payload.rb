@@ -27,4 +27,12 @@ FactoryBot.define do
     annee { 2024 }
     mois { 2 }
   end
+
+  factory :quotient_familial_error_payload, class: Hash do
+    trait :not_found do
+      error { "not_found" }
+      reason { "Dossier allocataire inexistant. Le document ne peut être édité." }
+      message { "Dossier allocataire inexistant. Le document ne peut être édité." }
+    end
+  end
 end

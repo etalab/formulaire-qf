@@ -126,11 +126,23 @@ RSpec.describe ShipmentData, type: :model do
     subject(:human_readable_string) { shipment_data.to_s }
 
     let(:expected_string) do
-      "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  - Régime: CNAF\n  - Année: 2024\n  - Mois: 2\n  - Quotient familial: 2550\n  - Allocataires:\n  \n  - Nom de naissance: DUBOIS\n- Nom d'usage: DUBOIS\n- Prénoms: ANGELA\n- Date de naissance: 24/08/1962\n- Sexe: F\n\n\n  \n  - Enfants:\n  \n  - Nom de naissance: Dujardin\n- Nom d'usage: Dujardin\n- Prénoms: Jean\n- Date de naissance: 13/12/2016\n- Sexe: M\n\n\n"
+      "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  - Régime: CNAF\n  - Année: 2024\n  - Mois: 2\n  - Quotient familial: 2550\n  - Allocataires:\n  \n  - Nom de naissance: DUBOIS\n- Nom d'usage: DUBOIS\n- Prénoms: ANGELA\n- Date de naissance: 24/08/1962\n- Sexe: F\n\n\n  \n  - Enfants:\n  \n  - Nom de naissance: Dujardin\n- Nom d'usage: Dujardin\n- Prénoms: Jean\n- Date de naissance: 13/12/2016\n- Sexe: M\n\n\n\n"
     end
 
     it "returns the shipment data as a string" do
       expect(human_readable_string).to eq(expected_string)
+    end
+
+    context "with no data in quotient_familial" do
+      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_error_payload, :not_found) }
+
+      let(:expected_string) do
+        "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  ERREUR: Dossier allocataire inexistant. Le document ne peut être édité.\n\n"
+      end
+
+      it "returns the shipment data as a string with the error" do
+        expect(human_readable_string).to eq(expected_string)
+      end
     end
   end
 end
