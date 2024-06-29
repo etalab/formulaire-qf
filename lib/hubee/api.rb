@@ -84,6 +84,64 @@ class HubEE::Api
     delete_response
   end
 
+  def delete_notification(notification_id:)
+    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications/#{notification_id}")
+
+    https = Net::HTTP.new(base_url.host, base_url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Delete.new(base_url)
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+
+    # response = https.request(request)
+    # body = JSON.parse(response.body || "{}")
+    response = "DELETED"
+    Rails.logger.debug response
+    # Rails.logger.debug body
+
+    body
+  end
+
+  def event(id:, case_id:)
+    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}")
+
+    https = Net::HTTP.new(base_url.host, base_url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(base_url)
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+
+    response = https.request(request)
+    event = JSON.parse(response.body || "{}")
+
+    Rails.logger.debug response.body
+    Rails.logger.debug event
+
+    event
+  end
+
+  def notifications
+    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications")
+    base_url.query = URI.encode_www_form(maxResult: 50)
+
+    https = Net::HTTP.new(base_url.host, base_url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(base_url)
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+
+    response = https.request(request)
+    notifications = JSON.parse(response.body || "{}")
+
+    Rails.logger.debug response.body
+    Rails.logger.debug notifications
+
+    notifications
+  end
+
   def upload_attachment(attachment:, folder_id:)
     base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}/attachments/#{attachment.id}")
     Rails.logger.debug base_url
