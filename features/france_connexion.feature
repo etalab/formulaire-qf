@@ -30,5 +30,10 @@ Fonctionnalité: France connexion
     Et que je clique sur "Suivant"
     Alors la page contient "Je relis et transmets mes données à Majastres"
 
+  Scénario: Je n'ai pas FranceConnect
+    Et que je clique sur "Consulter les alternatives"
+    Alors la page contient "Autrement, vous pouvez télécharger votre attestation"
+    Et la page contient "Aidez nous à améliorer ce service"
+
 
 
