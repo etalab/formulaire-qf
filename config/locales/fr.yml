@@ -131,4 +131,7 @@ fr:
     no_data: Aucune donnée
     quotient_familial:
       no_response: Erreur lors de la récupération de votre quotient familial
+    pivot_identity:
+      missing_birthdate: (Date de naissance manquante)
+
 

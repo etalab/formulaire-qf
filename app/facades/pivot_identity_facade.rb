@@ -7,6 +7,10 @@ class PivotIdentityFacade
     @pivot_identity = pivot_identity
   end
 
+  def empty?
+    full_name.blank?
+  end
+
   def full_name
     return nil if pivot_identity.last_name.blank?
 
@@ -16,16 +20,16 @@ class PivotIdentityFacade
     ].join(" ")
   end
 
-  def birthdate
-    return nil if pivot_identity.birthdate.blank?
-    pivot_identity.birthdate.strftime("%d/%m/%Y")
+  def birthdate_sentence
+    return I18n.t("errors.pivot_identity.missing_birthdate") if pivot_identity.birthdate.blank?
+    "le #{pivot_identity.birthdate.strftime("%d/%m/%Y")}"
   end
 
   def full_sentence
-    return I18n.t("errors.no_data") if full_name.blank? || birthdate.blank?
+    return nil if empty?
 
     [
-      "#{full_name}, né#{"e" if gender == :female} le #{birthdate}",
+      "#{full_name}, né#{"e" if gender == :female} #{birthdate_sentence}",
       "Code de ville de naissance : #{birthplace}",
       "Code de pays de naissance : #{birth_country}",
     ].join("\n")

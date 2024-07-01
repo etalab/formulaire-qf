@@ -7,7 +7,7 @@
     <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 
     <% if @quotient_familial_facade.empty? %>
-      <div class="fr-alert fr-alert--error fr-alert--sm">
+      <div class="fr-alert fr-alert--warning fr-alert--sm">
         <p><%= t('errors.no_data') %></p>
       </div>
     <% else %>
@@ -39,7 +39,13 @@
 
     <h3 class="fr-h4 underlined fr-pb-1w fr-mt-2w"><%= t('pages.shipments.new.france_connect.title') %></h3>
 
-    <%= simple_format @pivot_identity_facade.full_sentence, { }, wrapper_tag: 'p' %>
+    <% if @pivot_identity_facade.empty? %>
+      <div class="fr-alert fr-alert--warning fr-alert--sm">
+        <p><%= t('errors.no_data') %></p>
+      </div>
+    <% else %>
+      <%= simple_format @pivot_identity_facade.full_sentence, { }, wrapper_tag: 'p' %>
+    <% end %>
   </div>
 
   <div class="fr-grid-row fr-my-3w">
