@@ -46,6 +46,7 @@ class ShipmentData
   private
 
   def quotient_familial_error
+    # TODO : Factorise management of errors
     quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]
   end
 
