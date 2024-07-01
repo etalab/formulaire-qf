@@ -9,13 +9,6 @@ class QuotientFamilialFacade
     quotient_familial["quotientFamilial"].blank?
   end
 
-  # TODO : Factorise management of errors
-  def error_message
-    if quotient_familial["error"].present?
-      quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]
-    end
-  end
-
   def quotient
     quotient_familial["quotientFamilial"]
   end
