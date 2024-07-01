@@ -87,6 +87,10 @@ fr:
         transmission_options:
           - Par mail
           - Au guichet de votre mairie
+        callout:
+          title: Aidez nous à améliorer ce service
+          text: Ce service ne fonctionne qu’avec FranceConnect, et cela semble manifestement vous avoir dissuadé de poursuivre, pouvez-vous nous dire pourquoi ?
+          button: Répondre au questionnaire (2min)
     shipments:
       new:
         title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
