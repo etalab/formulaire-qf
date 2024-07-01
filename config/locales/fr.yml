@@ -101,8 +101,6 @@ fr:
         title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
         quotient_familial:
           all_regimes: CNAF ou MSA
-          no_data_subtitle: Erreur lors de la récupération de votre quotient familial
-          no_data: Aucune donnée
           title: Données de la %{regime}
           quotient: "Quotient familial de %{month_year} :"
         allocataires: "Allocataires :"
@@ -129,4 +127,8 @@ fr:
         user_data:
           quotient_familial:
             title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
+  errors:
+    no_data: Aucune donnée
+    quotient_familial:
+      no_response: Erreur lors de la récupération de votre quotient familial
 
