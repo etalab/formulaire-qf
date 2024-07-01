@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     session[:state] = params[:state]
 
     SetupCurrentData.call(session:, params:)
-    result = GetFamilyQuotient.call(recipient: Current.collectivity.siret, user: Current.user)
+    result = GetFamilyQuotient.call(siret: Current.collectivity.siret, user: Current.user)
 
     if result.success?
       session["quotient_familial"] = result.quotient_familial

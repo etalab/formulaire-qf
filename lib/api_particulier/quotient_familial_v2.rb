@@ -4,14 +4,14 @@ module ApiParticulier
       new(**).get
     end
 
-    def initialize(access_token:, recipient:)
+    def initialize(access_token:, siret:)
       @access_token = access_token
-      @recipient = recipient
+      @siret = siret
     end
 
     def get
       base_url = URI("#{Settings.api_particulier.base_url}/api/v2/composition-familiale-v2")
-      base_url.query = URI.encode_www_form(recipient: @recipient)
+      base_url.query = URI.encode_www_form(recipient: @siret)
 
       Rails.logger.debug base_url
 

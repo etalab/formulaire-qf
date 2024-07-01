@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe GetFamilyQuotient, type: :interactor do
   describe ".call" do
-    subject(:call) { described_class.call(user:, recipient:) }
+    subject(:call) { described_class.call(user:, siret:) }
 
     let(:user) { instance_double(User, access_token: "some_real_token") }
-    let(:recipient) { "some_siret" }
+    let(:siret) { "some_siret" }
 
     before do
       Current.quotient_familial = nil
