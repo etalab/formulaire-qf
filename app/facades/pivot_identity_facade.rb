@@ -22,7 +22,7 @@ class PivotIdentityFacade
   end
 
   def full_sentence
-    return I18n.t("pages.shipments.new.quotient_familial.no_data") if full_name.blank? || birthdate.blank?
+    return I18n.t("errors.no_data") if full_name.blank? || birthdate.blank?
 
     [
       "#{full_name}, né#{"e" if gender == :female} le #{birthdate}",
