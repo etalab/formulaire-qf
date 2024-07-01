@@ -8,11 +8,11 @@ class PivotIdentityFacade
   end
 
   def empty?
-    full_name.blank?
+    pivot_identity.blank? || pivot_identity.last_name.blank?
   end
 
   def full_name
-    return nil if pivot_identity.last_name.blank?
+    return nil if empty?
 
     [
       pivot_identity.last_name,
@@ -21,6 +21,7 @@ class PivotIdentityFacade
   end
 
   def birthdate_sentence
+    return nil if empty?
     return I18n.t("errors.pivot_identity.missing_birthdate") if pivot_identity.birthdate.blank?
     "le #{pivot_identity.birthdate.strftime("%d/%m/%Y")}"
   end
