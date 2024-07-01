@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
 
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
+      # TODO : factorise management of errors
       # render collectivity_new_shipment_path, flash with result.error
       raise
     end
