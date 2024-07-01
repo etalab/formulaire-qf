@@ -5,6 +5,7 @@
 
   <div class="fr-grid-row fr-grid-row--center fr-mb-6v">
     <p><%= t('pages.collectivities.show.info.explanation') %></p>
+
     <div class="fr-connect-group">
       <%= form_tag('/auth/france_connect', method: 'post', data: {turbo: false}) do %>
         <button type='submit' class="fr-connect">
@@ -14,20 +15,20 @@
       <% end %>
 
       <p>
-      <a href="https://franceconnect.gouv.fr/" target="_blank"  rel="noopener" title="Qu’est-ce que FranceConnect ? - nouvelle fenêtre">
-        Qu’est-ce que FranceConnect ?
-      </a>
+        <a href="https://franceconnect.gouv.fr/" target="_blank"  rel="noopener" title="Qu’est-ce que FranceConnect ? - nouvelle fenêtre">
+          Qu’est-ce que FranceConnect ?
+        </a>
       </p>
     </div>
   </div>
+
   <div class="fr-alert fr-alert--info">
     <h3 class="fr-alert__title"><%= t('pages.collectivities.show.info.title') %></h3>
-    <p><%= t('pages.collectivities.show.info.content') %></p>
+    <p><%= t('pages.collectivities.show.info.content') %></p>    
     <p>
-    <a class="fr-link--sm" href='/faq#donnees-personnelles'>
-      <%= t('pages.collectivities.show.info.link')%>
-    </a>
-  </p>
+      <a class="fr-link--sm" href='/faq#donnees-personnelles'>
+        <%= t('pages.collectivities.show.info.link')%>
+      </a>
+    </p>
   </div>
-
 </div>
