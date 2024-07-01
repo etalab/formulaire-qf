@@ -6,7 +6,7 @@ class QuotientFamilialFacade
   end
 
   def empty?
-    quotient_familial["quotientFamilial"].blank?
+    quotient_familial.blank? || quotient.blank?
   end
 
   def quotient
