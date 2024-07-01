@@ -20,7 +20,7 @@ module ApiParticulier
 
       request = Net::HTTP::Get.new(base_url)
       request["Content-Type"] = "application/json"
-      request["Authorization"] = "Bearer #{@access_token}"
+      request["Authorization"] = "Bearer #{@access_token}a"
 
       response = https.request(request)
       quotient_familial = JSON.parse(response.body || "{}")
