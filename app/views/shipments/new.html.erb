@@ -6,13 +6,9 @@
   <div class="user-data fr-p-3w">
     <h3 class="fr-h4 underlined fr-pb-1w"><%= t('pages.shipments.new.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 
-    <!-- TODO factorise management of errors -->
-    <% if @quotient_familial_facade.error_message || @quotient_familial_facade.empty? %>
-      <div class="fr-alert fr-alert--error">
-        <h4 class="fr-alert__title"><%=t('pages.shipments.new.quotient_familial.no_data_subtitle')%></h4>
-        <p>
-          <%= @quotient_familial_facade.error_message || t('pages.shipments.new.quotient_familial.no_data') %>
-        </p>
+    <% if @quotient_familial_facade.empty? %>
+      <div class="fr-alert fr-alert--error fr-alert--sm">
+        <p><%= t('pages.shipments.new.quotient_familial.no_data') %></p>
       </div>
     <% else %>
       <ul>

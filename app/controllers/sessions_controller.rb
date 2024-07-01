@@ -18,9 +18,13 @@ class SessionsController < ApplicationController
 
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
-      # TODO : factorise management of errors
-      # render collectivity_new_shipment_path, flash with result.error
-      raise
+      redirect_to collectivity_new_shipment_path(Current.collectivity.siret),
+        flash: {
+          error: {
+            title: I18n.t("pages.shipments.new.quotient_familial.no_data_subtitle"),
+            text: result.message,
+          },
+        }
     end
   end
 
