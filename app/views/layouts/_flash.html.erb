@@ -1,0 +1,10 @@
+<div class="fr-col-md-8">
+  <% flash.each do |key, value| %>
+    <div class="fr-alert fr-alert--<%=key%> fr-mb-3w">
+      <h4 class="fr-alert__title"><%=value["title"] || "Erreur"%></h4>
+      <p>
+        <%= value["text"] || value %>
+      </p>
+    </div>
+  <% end %>
+</div>

@@ -86,6 +86,7 @@ group :test do
   gem "guard"
   gem "guard-cucumber"
   gem "guard-rspec"
+  gem "timecop"
 end
 
 gem "good_job", "~> 3.29"
