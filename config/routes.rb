@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :collectivities, only: %i[index], path: "collectivites" do
     member do
       get :show, path: "me_connecter"
+      get :no_france_connect, path: "sans_france_connect"
     end
 
     collection do
