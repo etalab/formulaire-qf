@@ -45,16 +45,11 @@ class ShipmentData
 
   private
 
-  def quotient_familial_error
-    # TODO : Factorise management of errors
-    quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]
-  end
-
   def quotient_familial_text
-    if quotient_familial_error
+    if quotient_familial.blank?
       <<~TEXT
         Quotient familial:
-          ERREUR: #{quotient_familial_error}
+          ERREUR: #{I18n.t("errors.quotient_familial.no_response")}
       TEXT
     else
       <<~TEXT
