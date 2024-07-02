@@ -37,8 +37,7 @@ Fonctionnalité: Transmettre mes informations
     Et que mon quotient familial est indisponible
     Quand je clique sur "S’identifier avec FranceConnect"
     Alors la page contient "Dossier allocataire inexistant."
-    Et la page contient "Données de la CNAF ou MSA"
-    Et la page contient "Aucune donnée"
+    Et la page contient "Vous pouvez télécharger votre attestation"
   
   Scénario: Je transmet mes données
     Et que j'ai un quotient familial msa avec des enfants

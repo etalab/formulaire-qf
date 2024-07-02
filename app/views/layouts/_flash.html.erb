@@ -2,8 +2,11 @@
   <% flash.each do |key, value| %>
     <div class="fr-alert fr-alert--<%=key%> fr-mb-3w">
       <h4 class="fr-alert__title"><%=value["title"] || "Erreur"%></h4>
-      <p>
-        <%= value["text"] || value %>
+      <%= simple_format (value["text"] || value), { }, wrapper_tag: 'p' %>
+
+      <p class="fr-mt-2w">
+        <span class="fr-icon-settings-5-fill" aria-hidden="true"></span>
+        <%= simple_format t('errors.report_sent'), { }, wrapper_tag: 'span' %>
       </p>
     </div>
   <% end %>

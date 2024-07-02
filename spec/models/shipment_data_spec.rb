@@ -137,7 +137,7 @@ RSpec.describe ShipmentData, type: :model do
       let(:quotient_familial) { {} }
 
       let(:expected_string) do
-        "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  ERREUR: Erreur lors de la récupération de votre quotient familial\n\n"
+        "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  ERREUR: La récupération de votre quotient familial n'a pas fonctionné\n\n"
       end
 
       it "returns the shipment data as a string with the error" do

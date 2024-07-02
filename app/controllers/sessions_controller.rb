@@ -15,14 +15,16 @@ class SessionsController < ApplicationController
     if result.success?
       session["quotient_familial"] = result.quotient_familial
       SetupCurrentData.call(session:, params:)
+
+      redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
       flash[:error] = {
-        title: I18n.t("errors.quotient_familial.no_response"),
-        text: result.message,
+        title: I18n.t("errors.quotient_familial.no_response.title"),
+        text: I18n.t("errors.quotient_familial.no_response.text", message: result.message),
       }
-    end
 
-    redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
+      redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
+    end
   end
 
   def destroy

@@ -11,6 +11,9 @@ class ShipmentsController < ApplicationController
     @quotient_familial_facade = QuotientFamilialFacade.new(Current.quotient_familial)
   end
 
+  def error
+  end
+
   def create
     hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siret, branch_code: @collectivity.code_cog)
     result = StoreQuotientFamilial.call(
