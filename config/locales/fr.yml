@@ -78,7 +78,7 @@ fr:
         title: Vous n'utilisez pas FranceConnect ?
         explanation: |
           <strong>Ce service est uniquement utilisable avec FranceConnect.</strong>
-          FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès de auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>. 
+          FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>. 
         alternative_text: <strong>Autrement, vous pouvez télécharger votre attestation :</strong>
         alternative_options:
           - Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
