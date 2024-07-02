@@ -84,7 +84,7 @@ fr:
         explanation: |
           <strong>Ce service est uniquement utilisable avec FranceConnect.</strong>
           FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>. 
-        alternative_text: <strong>Vous pouvez télécharger votre attestation :</strong>
+        alternative_text: <strong>Comme alternative vous pouvez télécharger votre attestation :</strong>
         alternative_options:
           - Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
           - Votre attestation MSA sur <a href="https://monespaceprive.msa.fr" class="fr-link">le site de la MSA</a>.
@@ -128,6 +128,7 @@ fr:
           quotient_familial:
             title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
   errors:
+    title: "Une erreur est survenue"
     report_sent: Un rapport d'erreur a été transmis à l'opérateur de ce service en ligne, la DINUM, afin de déterminer pourquoi la connexion pour le quotient familial n'a pas pu être établie et améliorer ce service.
     no_data: Aucune donnée
     quotient_familial:
