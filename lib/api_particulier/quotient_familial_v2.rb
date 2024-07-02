@@ -35,9 +35,9 @@ module ApiParticulier
     end
 
     def track_error(response, parsed_body)
-      # TODO? add sub FC (loic suggestion)
       Sentry.set_extras(
         {
+          user_sub: Current.user.try(:sub),
           request_id: response["X-Request-Id"],
           siret: @siret,
           error: parsed_body["error"],
