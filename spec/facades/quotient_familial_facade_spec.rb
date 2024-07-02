@@ -3,11 +3,13 @@ require "rails_helper"
 RSpec.describe QuotientFamilialFacade do
   subject(:quotient_familial_facade) { described_class.new(quotient_familial) }
 
-  let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
-
   describe "#empty?" do
-    it "returns false when there is data" do
-      expect(subject.empty?).to be false
+    context "when there is data" do
+      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+
+      it "returns false" do
+        expect(subject.empty?).to be false
+      end
     end
 
     context "when there is no data" do
@@ -36,8 +38,12 @@ RSpec.describe QuotientFamilialFacade do
       Timecop.return
     end
 
-    it "makes a readable string of the month and year when there is data" do
-      expect(subject.month_year).to eq "février 2024"
+    context "when there is data" do
+      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+
+      it "makes a readable string of the month and year" do
+        expect(subject.month_year).to eq "février 2024"
+      end
     end
 
     context "when there is no data" do
@@ -58,8 +64,12 @@ RSpec.describe QuotientFamilialFacade do
   end
 
   describe "#allocataires" do
-    it "returns a readable array of persons strings when there is data" do
-      expect(subject.allocataires).to eq ["DUBOIS ANGELA, née le 24/08/1962"]
+    context "when there is data" do
+      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+
+      it "returns a readable array of persons strings" do
+        expect(subject.allocataires).to eq ["DUBOIS ANGELA, née le 24/08/1962"]
+      end
     end
 
     context "when there is no data" do
@@ -80,8 +90,12 @@ RSpec.describe QuotientFamilialFacade do
   end
 
   describe "#children" do
-    it "returns a readable array of persons strings when there is data" do
-      expect(subject.children).to eq ["Dujardin Jean, né le 13/12/2016"]
+    context "when there is data" do
+      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+
+      it "returns a readable array of persons strings" do
+        expect(subject.children).to eq ["Dujardin Jean, né le 13/12/2016"]
+      end
     end
 
     context "when there is no data" do

@@ -3,11 +3,13 @@ require "rails_helper"
 RSpec.describe PivotIdentityFacade do
   subject(:pivot_identity_facade) { described_class.new(pivot_identity) }
 
-  let(:pivot_identity) { build(:pivot_identity) }
-
   describe "#empty?" do
-    it "returns false when there is data" do
-      expect(subject.empty?).to be false
+    context "when there is data" do
+      let(:pivot_identity) { build(:pivot_identity) }
+
+      it "returns false" do
+        expect(subject.empty?).to be false
+      end
     end
 
     context "when there is no data" do
@@ -28,8 +30,12 @@ RSpec.describe PivotIdentityFacade do
   end
 
   describe "#full_name" do
-    it "makes a full name string when there is data" do
-      expect(subject.full_name).to eq "TESTBOY Fernand Henri Paul"
+    context "when there is data" do
+      let(:pivot_identity) { build(:pivot_identity) }
+
+      it "makes a full name string" do
+        expect(subject.full_name).to eq "TESTBOY Fernand Henri Paul"
+      end
     end
 
     context "when there is no data" do
@@ -50,8 +56,12 @@ RSpec.describe PivotIdentityFacade do
   end
 
   describe "birthdate_sentence" do
-    it "makes a readable birthdate sentence when there is data" do
-      expect(subject.birthdate_sentence).to eq "le 02/10/1989"
+    context "when there is data" do
+      let(:pivot_identity) { build(:pivot_identity) }
+
+      it "makes a readable birthdate sentence" do
+        expect(subject.birthdate_sentence).to eq "le 02/10/1989"
+      end
     end
 
     context "when there is no data" do
@@ -72,8 +82,12 @@ RSpec.describe PivotIdentityFacade do
   end
 
   describe "#full_sentence" do
-    it "makes a readable sentence when there is data" do
-      expect(subject.full_sentence).to eq "TESTBOY Fernand Henri Paul, né le 02/10/1989\nCode de ville de naissance : Marseille\nCode de pays de naissance : France"
+    context "when there is data" do
+      let(:pivot_identity) { build(:pivot_identity) }
+
+      it "makes a readable sentence" do
+        expect(subject.full_sentence).to eq "TESTBOY Fernand Henri Paul, né le 02/10/1989\nCode de ville de naissance : Marseille\nCode de pays de naissance : France"
+      end
     end
 
     context "when there is no data" do
