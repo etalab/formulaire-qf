@@ -8,19 +8,22 @@ class SessionsController < ApplicationController
     session[:france_connect_token] = request.env["omniauth.auth"]["credentials"]["token"]
     session[:france_connect_token_hint] = request.env["omniauth.auth"]["credentials"]["id_token"]
     session[:state] = params[:state]
-
     SetupCurrentData.call(session:, params:)
-    result = GetFamilyQuotient.call(recipient: Current.collectivity.siret, user: Current.user)
+
+    result = GetFamilyQuotient.call(siret: Current.collectivity.siret, user: Current.user)
 
     if result.success?
       session["quotient_familial"] = result.quotient_familial
       SetupCurrentData.call(session:, params:)
-      Current.quotient_familial = result.quotient_familial
 
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
-      # render collectivity_new_shipment_path, flash with result.error
-      raise
+      flash[:error] = {
+        title: I18n.t("errors.quotient_familial.no_response.title"),
+        text: I18n.t("errors.quotient_familial.no_response.text", message: result.message),
+      }
+
+      redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
     end
   end
 

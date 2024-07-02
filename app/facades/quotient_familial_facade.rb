@@ -6,16 +6,10 @@ class QuotientFamilialFacade
   end
 
   def empty?
-    quotient_familial["quotientFamilial"].blank?
+    quotient_familial.blank? || value.blank?
   end
 
-  def error_message
-    if quotient_familial["error"].present?
-      quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]
-    end
-  end
-
-  def quotient
+  def value
     quotient_familial["quotientFamilial"]
   end
 
@@ -24,6 +18,7 @@ class QuotientFamilialFacade
   end
 
   def month_year
+    return nil if empty?
     month_number = quotient_familial["mois"] || Time.zone.today.strftime("%m").to_i
     year_number = quotient_familial["annee"] || Time.zone.today.strftime("%Y")
     month = I18n.t("date.month_names")[month_number]
@@ -31,12 +26,12 @@ class QuotientFamilialFacade
   end
 
   def allocataires
-    return [] if quotient_familial["allocataires"].blank?
+    return [] if empty? || quotient_familial["allocataires"].blank?
     quotient_familial["allocataires"].map { |allocataire| person_facade(allocataire) }
   end
 
   def children
-    return [] if quotient_familial["enfants"].blank?
+    return [] if empty? || quotient_familial["enfants"].blank?
     quotient_familial["enfants"].map { |enfant| person_facade(enfant) }
   end
 

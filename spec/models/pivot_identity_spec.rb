@@ -1,18 +1,7 @@
 require "rails_helper"
 
 describe PivotIdentity, type: :model do
-  subject(:pivot_identity) { described_class.new(**attributes) }
-
-  let(:attributes) do
-    {
-      birth_country: "France",
-      birthdate: Date.new(1980, 1, 1),
-      birthplace: "Paris",
-      first_names: ["John", "Peter"],
-      gender: :male,
-      last_name: "Doe",
-    }
-  end
+  subject(:pivot_identity) { build(:pivot_identity) }
 
   describe "API" do
     it { is_expected.to respond_to(:birth_country) }
@@ -26,7 +15,7 @@ describe PivotIdentity, type: :model do
   describe "#first_name" do
     subject(:first_name) { pivot_identity.first_name }
 
-    it { is_expected.to eq("John Peter") }
+    it { is_expected.to eq("Fernand Henri Paul") }
   end
 
   describe "#to_h" do
@@ -35,11 +24,11 @@ describe PivotIdentity, type: :model do
     let(:expected_hash) do
       {
         birth_country: "France",
-        birthdate: Date.new(1980, 1, 1),
-        birthplace: "Paris",
-        first_name: "John Peter",
+        birthdate: Date.new(1989, 10, 2),
+        birthplace: "Marseille",
+        first_name: "Fernand Henri Paul",
         gender: :male,
-        last_name: "Doe",
+        last_name: "TESTBOY",
       }
     end
 

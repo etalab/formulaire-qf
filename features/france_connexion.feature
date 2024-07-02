@@ -32,7 +32,7 @@ Fonctionnalité: France connexion
 
   Scénario: Je n'ai pas FranceConnect
     Et que je clique sur "Consulter les alternatives"
-    Alors la page contient "Autrement, vous pouvez télécharger votre attestation"
+    Alors la page contient "Comme alternative vous pouvez télécharger votre attestation"
     Et la page contient "Aidez nous à améliorer ce service"
 
 

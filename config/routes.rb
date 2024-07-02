@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get :select
     end
 
+    get "/erreur", to: "shipments#error", as: :shipment_error
     get "/envoyer_mes_donnees", to: "shipments#new", as: :new_shipment
     get "/confirmation/:reference", to: "shipments#show", as: :shipment
 

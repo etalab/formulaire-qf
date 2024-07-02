@@ -5,25 +5,7 @@
 
   <%= simple_format t('pages.collectivities.no_france_connect.explanation'), { }, wrapper_tag: 'p' %>
 
-  <p>
-    <%= simple_format t('pages.collectivities.no_france_connect.alternative_text') %>
-
-    <ul class="fr-ml-2w">
-      <% t('pages.collectivities.no_france_connect.alternative_options').each do |option| %>
-        <%= simple_format option, { }, wrapper_tag: 'li' %>
-      <% end %>
-    </ul>
-  </p>
-
-  <p>
-    <%= simple_format t('pages.collectivities.no_france_connect.transmission_text') %>
-
-    <ul class="fr-ml-2w">
-      <% t('pages.collectivities.no_france_connect.transmission_options').each do |option| %>
-        <%= simple_format option, { }, wrapper_tag: 'li' %>
-      <% end %>
-    </ul>
-  </p>
+  <%= render partial: "alternatives" %>
 
   <div class="fr-callout fr-icon-information-line fr-mt-6w">
     <h3 class="fr-callout__title">
