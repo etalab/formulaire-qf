@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "/cgu_administrations", to: "home#cgu_administrations"
   get "/accessibilite", to: "home#accessibilite"
   get "faq", to: "home#faq"
+  get "/collectivites/:id", to: "collectivities#show", as: :simple_collectivity
 
   root "home#index"
 

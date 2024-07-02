@@ -7,6 +7,14 @@ class CollectivitiesController < ApplicationController
   end
 
   def show
+    @qr_code_url = simple_collectivity_url(@collectivity.siret)
+    qrcode = RQRCode::QRCode.new(@qr_code_url)
+
+    @qr_code = Base64.strict_encode64(qrcode.as_png(
+      border_modules: 0,
+      fill: :white,
+      size: 480
+    ).to_s)
   end
 
   def no_france_connect
