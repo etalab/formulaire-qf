@@ -30,22 +30,45 @@
   </p>
   </div>
 </div>
+
 <% content_for :secondary_information do %>
-  <div class="fr-py-4w fr-background-alt--grey">
+  <div class="fr-py-4w fr-mt-6w fr-background-alt--grey">
     <div class="fr-container">
       <div class="fr-grid-row">
-        <div class="fr-col-12">
+        <div class="fr-col-md-8">
           <h3 class="fr-text-title--grey"><%= t("pages.collectivities.show.secondary_info.title") %></h3>
           <p class="fr-text--lg"><%= t("pages.collectivities.show.secondary_info.explanation", collectivity_name: @collectivity.name) %></p>
-        </div>
-        <div class="fr-col-4">
-          <div class="fr-px-10w">
-            <%= image_tag "data:image/png;base64,#{@qr_code}", alt: "QR code", class: "fr-responsive-img fr-mb-6v" %>
+
+          <div class="fr-grid-row">
+            <div class="fr-col-md-4 fr-col-12 fr-pr-md-2w">
+              <%= image_tag "data:image/png;base64,#{@qr_code}", alt: "QR code", class: "fr-responsive-img" %>
+            </div>
+
+            <div class="fr-col-md-8 fr-col-12">
+              <div class="fr-card fr-enlarge-link fr-card--download download-qr">
+                <div class="fr-card__body">
+                  <div class="fr-card__content">
+                    <h3 class="fr-card__title">
+                      <a href="data:image/png;base64,<%=@qr_code%>" id="download-btn" download="QRCode_<%=@collectivity.siret%>.jpg">
+                        <%= t("pages.collectivities.show.secondary_info.download") %>
+                      </a>
+                    </h3>
+
+                    <div class="fr-card__end">
+                      <p class="fr-card__detail">JPG – 480 x 480px</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="fr-my-2w">
+                <div class="fr-mb-1w">
+                  <strong><%= t("pages.collectivities.show.secondary_info.link_title") %></strong> 
+                </div>
+                <%= link_to collectivity_url(@collectivity.siret), collectivity_url(@collectivity.siret) %>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="fr-col-8">
-          <h5><%= t("pages.collectivities.show.secondary_info.link_title") %></h5>
-          <%= link_to collectivity_url(@collectivity.siret), collectivity_url(@collectivity.siret) %>
         </div>
       </div>
     </div>
