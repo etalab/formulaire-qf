@@ -7,6 +7,13 @@ class CollectivitiesController < ApplicationController
   end
 
   def show
+    qrcode = RQRCode::QRCode.new(collectivity_url(@collectivity.siret))
+
+    @qr_code = Base64.strict_encode64(qrcode.as_png(
+      border_modules: 0,
+      fill: ::ChunkyPNG::Color::TRANSPARENT,
+      size: 480
+    ).to_s)
   end
 
   def select

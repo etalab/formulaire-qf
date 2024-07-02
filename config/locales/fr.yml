@@ -71,6 +71,10 @@ fr:
           link: "En savoir plus sur la gestion de vos données personnelles"
           explanation: |
             FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne.
+        secondary_info:
+          title: "Retrouvez/partagez cette page :"
+          explanation: "Ce QR code et ce lien permettent d’accéder directement à cette page, c’est-à-dire au formulaire quotient-familial.numerique.gouv.fr de %{collectivity_name}."
+          link_title: "Lien du formulaire :"
     shipments:
       new:
         title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"

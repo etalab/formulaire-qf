@@ -29,5 +29,25 @@
     </a>
   </p>
   </div>
-
 </div>
+<% content_for :secondary_information do %>
+  <div class="fr-py-4w fr-background-alt--grey">
+    <div class="fr-container">
+      <div class="fr-grid-row">
+        <div class="fr-col-12">
+          <h3 class="fr-text-title--grey"><%= t("pages.collectivities.show.secondary_info.title") %></h3>
+          <p class="fr-text--lg"><%= t("pages.collectivities.show.secondary_info.explanation", collectivity_name: @collectivity.name) %></p>
+        </div>
+        <div class="fr-col-4">
+          <div class="fr-px-10w">
+            <%= image_tag "data:image/png;base64,#{@qr_code}", alt: "QR code", class: "fr-responsive-img fr-mb-6v" %>
+          </div>
+        </div>
+        <div class="fr-col-8">
+          <h5><%= t("pages.collectivities.show.secondary_info.link_title") %></h5>
+          <%= link_to collectivity_url(@collectivity.siret), collectivity_url(@collectivity.siret) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
