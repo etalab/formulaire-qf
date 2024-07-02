@@ -1,5 +1,5 @@
 class CollectivitiesController < ApplicationController
-  before_action :set_collectivity, only: %i[select show]
+  before_action :set_collectivity, only: %i[select show no_france_connect]
   before_action :move_params_to_session, only: :show
 
   def index
@@ -7,6 +7,9 @@ class CollectivitiesController < ApplicationController
   end
 
   def show
+  end
+
+  def no_france_connect
   end
 
   def select
