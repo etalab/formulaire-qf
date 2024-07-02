@@ -4,7 +4,8 @@ module ProviderStubs::ApiParticulier
   def stub_qf_v2(kind: :cnaf)
     payload = send(:"#{kind}_payload")
     uri_template = Addressable::Template.new "https://staging.particulier.api.gouv.fr/api/v2/composition-familiale-v2?recipient={siret}"
-    stub_request(:get, uri_template).to_return(status: 200, body: payload.to_json)
+    status = (kind == :not_found) ? 404 : 200
+    stub_request(:get, uri_template).to_return(status: status, body: payload.to_json)
   end
 
   # TODO : utiliser des factories

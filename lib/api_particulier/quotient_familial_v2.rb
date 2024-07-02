@@ -25,11 +25,25 @@ module ApiParticulier
       response = https.request(request)
       quotient_familial = JSON.parse(response.body || "{}")
 
+      track_error(quotient_familial) unless response.is_a?(Net::HTTPSuccess)
+
       Rails.logger.debug self
       Rails.logger.debug response.body
       Rails.logger.debug quotient_familial
 
       quotient_familial
+    end
+
+    def track_error(parsed_body)
+      # TODO? add request id and sub FC (loic suggestion)
+      Sentry.set_extras(
+        {
+          siret: @siret,
+          error: parsed_body["error"],
+          reason: parsed_body["reason"],
+        }
+      )
+      Sentry.capture_message(parsed_body["message"])
     end
   end
 end

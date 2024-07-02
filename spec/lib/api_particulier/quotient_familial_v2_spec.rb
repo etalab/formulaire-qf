@@ -49,5 +49,20 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
     it "calls the API" do
       expect(quotient_familial).to match(hash_including(expected_response))
     end
+
+    context "when there is an error" do
+      before do
+        stub_qf_v2(kind: :not_found)
+      end
+
+      it "returns an error" do
+        expect(quotient_familial["error"]).to match("not_found")
+      end
+
+      it "sends a message to sentry" do
+        Sentry.should_receive :capture_message
+        quotient_familial
+      end
+    end
   end
 end
