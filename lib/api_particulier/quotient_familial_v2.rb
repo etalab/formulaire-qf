@@ -35,16 +35,14 @@ module ApiParticulier
     end
 
     def track_error(response, parsed_body)
-      Sentry.set_extras(
-        {
-          user_sub: Current.user.try(:sub),
-          request_id: response["X-Request-Id"],
-          siret: @siret,
-          error: parsed_body["error"],
-          reason: parsed_body["reason"],
-        }
-      )
-      Sentry.capture_message(parsed_body["message"])
+      extra = {
+        user_sub: Current.user.try(:sub),
+        request_id: response["X-Request-Id"],
+        siret: @siret,
+        error: parsed_body["error"],
+        reason: parsed_body["reason"],
+      }
+      Sentry.capture_message(parsed_body["message"], extra: extra)
     end
   end
 end
