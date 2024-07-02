@@ -22,7 +22,17 @@
     </div>
   </div>
 
-  <div class="fr-grid-row fr-grid-row--center fr-mb-2w">
+  <div class="fr-alert fr-alert--info">
+    <h3 class="fr-alert__title"><%= t('pages.collectivities.show.info.title') %></h3>
+    <p><%= t('pages.collectivities.show.info.content') %></p>    
+    <p>
+      <a class="fr-link--sm" href='/faq#donnees-personnelles'>
+        <%= t('pages.collectivities.show.info.link')%>
+      </a>
+    </p>
+  </div>
+
+  <div class="fr-grid-row fr-grid-row--center fr-mb-2w fr-mt-10w">
     <div class="horizontal-line"></div>
     <div class="fr-mx-4w">Ou</div>
     <div class="horizontal-line"></div>
@@ -38,15 +48,6 @@
     </div>
   </div>
 
-  <div class="fr-alert fr-alert--info">
-    <h3 class="fr-alert__title"><%= t('pages.collectivities.show.info.title') %></h3>
-    <p><%= t('pages.collectivities.show.info.content') %></p>    
-    <p>
-      <a class="fr-link--sm" href='/faq#donnees-personnelles'>
-        <%= t('pages.collectivities.show.info.link')%>
-      </a>
-    </p>
-  </div>
 </div>
 
 <% content_for :secondary_information do %>
