@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe GetFamilyQuotient, type: :interactor do
   describe ".call" do
     subject(:call) { described_class.call(user:, siret:) }

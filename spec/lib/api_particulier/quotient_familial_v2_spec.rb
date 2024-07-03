@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe ApiParticulier::QuotientFamilialV2 do
   let(:params) { {access_token: "token", siret: "a_valid_siret"} }
 

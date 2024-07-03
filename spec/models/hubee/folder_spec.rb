@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::Folder do
   subject(:folder) { HubEE::Folder.new(**params) }
 

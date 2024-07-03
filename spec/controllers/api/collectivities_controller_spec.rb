@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe Api::CollectivitiesController, type: :controller do
   describe "GET index" do
     subject(:body) do

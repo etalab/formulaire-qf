@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe PivotIdentityFacade do
   subject(:pivot_identity_facade) { described_class.new(pivot_identity) }
 

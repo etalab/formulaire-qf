@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe PivotIdentity, type: :model do
   subject(:pivot_identity) { build(:pivot_identity) }
 

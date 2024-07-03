@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::PdfAttachment, type: :model do
   describe "#write" do
     subject(:write) { pdf_attachment.write(file:) }

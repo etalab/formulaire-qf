@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe SetupCurrentData, type: :interactor do
   describe ".call" do
     subject(:call) { described_class.call(session: session, params: params) }

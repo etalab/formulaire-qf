@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::Attachment do
   subject(:attachment) { HubEE::Attachment.new(**params) }
 

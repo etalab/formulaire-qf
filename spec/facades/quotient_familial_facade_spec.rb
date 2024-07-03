@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe QuotientFamilialFacade do
   subject(:quotient_familial_facade) { described_class.new(quotient_familial) }
 

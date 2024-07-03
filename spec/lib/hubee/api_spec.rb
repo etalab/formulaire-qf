@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::Api, type: :api do
   describe ".session" do
     subject(:session) { described_class.session }

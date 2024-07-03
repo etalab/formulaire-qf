@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe PopulateHubEESandboxJob, type: :job do
   describe "#perform" do
     subject(:perform) { described_class.perform_now }

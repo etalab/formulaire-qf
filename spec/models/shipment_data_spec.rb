@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe ShipmentData, type: :model do
   subject(:shipment_data) { described_class.new(external_id:, pivot_identity:, quotient_familial:) }
 
