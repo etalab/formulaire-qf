@@ -16,7 +16,7 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   end
 
   def reference
-    context.reference = SecureRandom.hex[0...13].upcase
+    context.reference = Shipment.new_reference
   end
 
   def folder_params
