@@ -60,7 +60,7 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
       end
 
       it "sends a message to sentry" do
-        Sentry.should_receive :capture_message
+        expect(Sentry).to receive :capture_message
         quotient_familial
       end
     end
