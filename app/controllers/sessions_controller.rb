@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
       flash[:error] = {
-        title: I18n.t("errors.quotient_familial.no_response.title"),
-        text: I18n.t("errors.quotient_familial.no_response.text", message: result.message),
+        title: I18n.t("pages.shipments.error.title"),
+        text: I18n.t("pages.shipments.error.text", message: result.message),
       }
 
       redirect_to collectivity_shipment_error_path(Current.collectivity.siret)

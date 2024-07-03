@@ -24,36 +24,44 @@ fr:
     previous_button: Retour
     next_button: Suivant
   pages:
-    faq:
-      banner:
-        text: <span class="title-highlight"><strong>Aide</span> et <span class="title-highlight">Foire aux questions</strong></span> du formulaire national de transmission du quotient familial
     home:
-      title: Accueil
-      banner:
-        text: |
-          <span class="title-highlight"><strong>Votre collectivité</strong></span> a besoin de <span class="title-highlight"><strong>votre quotient familial CAF ou MSA</strong></span> pour calculer votre tarif social ?
-          <strong>Utilisez ce service pour qu'elle puisse le collecter !</strong>
-        cta: "Débuter la démarche"
-        duration_text: "Durée de la démarche : 4 min"
-      what_is_it:
-        title: À quoi sert ce service ?
-        content: |
-          Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.
+      faq:
+        browser_title: Fonctionnement du service
+        banner:
+          text: <span class="title-highlight"><strong>Aide</span> et <span class="title-highlight">Foire aux questions</strong></span> du formulaire national de transmission du quotient familial
+      index:
+        browser_title: Introduction démarche
+        title: Accueil
+        banner:
+          text: |
+            <span class="title-highlight"><strong>Votre collectivité</strong></span> a besoin de <span class="title-highlight"><strong>votre quotient familial CAF ou MSA</strong></span> pour calculer votre tarif social ?
+            <strong>Utilisez ce service pour qu'elle puisse le collecter !</strong>
+          cta: "Débuter la démarche"
+          duration_text: "Durée de la démarche : 4 min"
+        what_is_it:
+          title: À quoi sert ce service ?
+          content: |
+            Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.
 
-          <p class="fr-text--lg">Ce service vous permet de <strong>transmettre de façon sécurisée vos données d’identité permettant à votre commune de récupérer instantanément</strong> votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.</p>
-        items:
-          - title: Facile et certifié
-            content: Vous n’avez plus besoin de retrouver votre attestation MSA/CAF, les administrations transmettent directement la donnée source à votre commune ;
-          - title: Rapide et instantané
-            content: Au dernier clic de cette démarche de 4min, votre commune réceptionne votre identité pivot et votre quotient familial ;
-          - title: Renouvelé automatiquement
-            content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la commune mettra à jour de façon proactive votre quotient familial
-        link: En savoir plus sur le fonctionnement de ce service
-      which_informations:
-        title: Quelles informations vous seront demandées ?
-        content: Aucune, seulement une connexion à FranceConnect
+            <p class="fr-text--lg">Ce service vous permet de <strong>transmettre de façon sécurisée vos données d’identité permettant à votre commune de récupérer instantanément</strong> votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.</p>
+          items:
+            - title: Facile et certifié
+              content: Vous n’avez plus besoin de retrouver votre attestation MSA/CAF, les administrations transmettent directement la donnée source à votre commune ;
+            - title: Rapide et instantané
+              content: Au dernier clic de cette démarche de 4min, votre commune réceptionne votre identité pivot et votre quotient familial ;
+            - title: Renouvelé automatiquement
+              content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la commune mettra à jour de façon proactive votre quotient familial
+          link: En savoir plus sur le fonctionnement de ce service
+        which_informations:
+          title: Quelles informations vous seront demandées ?
+          content: Aucune, seulement une connexion à FranceConnect
+      cgu_usagers: 
+        browser_title: CGU des usagers
+      cgu_administrations:
+        browser_title: CGU des administrations
     collectivities:
       index:
+        browser_title: Choisir sa collectivité
         title: "Je choisis la collectivité à laquelle seront transmises mes données&nbsp;:"
         form:
           label: Nom de la collectivité
@@ -61,6 +69,7 @@ fr:
           notice:
             text: Seules les collectivités de cette liste proposent actuellement ce service.
       show:
+        browser_title: Se connecter via FranceConnect
         banner:
           text: |
             Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
@@ -80,6 +89,7 @@ fr:
           download: "Télécharger le QRCode"
           link_title: "Lien du formulaire :"
       no_france_connect:
+        browser_title: Sans FranceConnect
         title: Vous n'utilisez pas FranceConnect ?
         explanation: |
           <strong>Ce service est uniquement utilisable avec FranceConnect.</strong>
@@ -98,6 +108,7 @@ fr:
           button: Répondre au questionnaire (2min)
     shipments:
       new:
+        browser_title: Finir sa démarche et transmettre ses données
         title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
         quotient_familial:
           all_regimes: CNAF ou MSA
@@ -115,6 +126,7 @@ fr:
           link: "En savoir plus sur la gestion de vos données personnelles"
         next_button: "Transmettre les données à la collectivité"
       show:
+        browser_title: Démarche terminée
         redirect_cta: Retourner sur le site de ma commune
         reference: |
           <strong>Identifiant de cette démarche,</strong>
@@ -127,16 +139,16 @@ fr:
         user_data:
           quotient_familial:
             title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
-  errors:
-    title: "Une erreur est survenue"
-    report_sent: Un rapport d'erreur a été transmis à l'opérateur de ce service en ligne, la DINUM, afin de déterminer pourquoi la connexion pour le quotient familial n'a pas pu être établie et améliorer ce service.
-    no_data: Aucune donnée
-    quotient_familial:
-      no_response:
+      error:
+        browser_title: Échec de la démarche
         title: La récupération de votre quotient familial n'a pas fonctionné
         text: |
           Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
           <strong>Raison: %{message}</strong>
+  errors:
+    title: "Une erreur est survenue"
+    report_sent: Un rapport d'erreur a été transmis à l'opérateur de ce service en ligne, la DINUM, afin de déterminer pourquoi la connexion pour le quotient familial n'a pas pu être établie et améliorer ce service.
+    no_data: Aucune donnée
     pivot_identity:
       missing_birthdate: (Date de naissance manquante)
 
