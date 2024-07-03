@@ -38,5 +38,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  scope module: :api, path: "/api" do
+    resources :collectivities, only: :index, path: "collectivites"
+  end
+
   mount GoodJob::Engine => "good_job"
 end
