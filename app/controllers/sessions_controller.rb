@@ -1,8 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-    render :new
-  end
-
   def create
     session[:raw_info] = request.env["omniauth.auth"]["extra"]["raw_info"]
     session[:france_connect_token] = request.env["omniauth.auth"]["credentials"]["token"]
