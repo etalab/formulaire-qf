@@ -13,7 +13,7 @@ collectivities = [
   },
   {
     name: "Saint-Pryvé-Saint-Mesmin (45)",
-    siret: "1450298100019",
+    siret: "21450298100019",
     code_cog: "45298",
     status: :active,
   },
