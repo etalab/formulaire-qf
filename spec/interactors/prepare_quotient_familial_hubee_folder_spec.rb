@@ -35,6 +35,10 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
       expect(interactor.folder).to have_attributes(expected_attributes)
     end
 
+    it "exposes the reference" do
+      expect(interactor.reference).to eq "ABCDEF1234567"
+    end
+
     it "returns a success result" do
       expect(interactor).to be_success
     end

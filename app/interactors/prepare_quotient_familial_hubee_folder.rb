@@ -12,7 +12,11 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   def external_id
     # This random string is formatted following HubEE's requirements
     # so it can display nicely in their portal.
-    @external_id ||= "Formulaire-QF-#{SecureRandom.hex[0...13].upcase}"
+    @external_id ||= "Formulaire-QF-#{reference}"
+  end
+
+  def reference
+    context.reference = SecureRandom.hex[0...13].upcase
   end
 
   def folder_params
