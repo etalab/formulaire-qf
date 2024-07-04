@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   scope module: :api, path: "/api" do
     resources :collectivities, only: :index, path: "collectivites"
+
+    resources :frontal, only: :index
   end
 
   mount GoodJob::Engine => "good_job"
