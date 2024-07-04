@@ -1,8 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-    render :new
-  end
-
   def create
     session[:raw_info] = request.env["omniauth.auth"]["extra"]["raw_info"]
     session[:france_connect_token] = request.env["omniauth.auth"]["credentials"]["token"]
@@ -19,8 +15,8 @@ class SessionsController < ApplicationController
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
       flash[:error] = {
-        title: I18n.t("errors.quotient_familial.no_response.title"),
-        text: I18n.t("errors.quotient_familial.no_response.text", message: result.message),
+        title: t("shipments.error.title"),
+        text: t("shipments.error.text", message: result.message),
       }
 
       redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
