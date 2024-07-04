@@ -1,22 +1,22 @@
 <% content_for :banner_title do %>
-  <%= simple_format t('pages.home.index.banner.text'), {}, wrapper_tag: 'span' %>
+  <%= simple_format t('.banner.text'), {}, wrapper_tag: 'span' %>
 <% end %>
 
 <% content_for :banner_right do %>
   <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('pages.home.index.banner.duration_text')%>
+    <%= t('.banner.duration_text')%>
   </p>
 
   <%= render partial: "cta" %>
 <% end %>
 
 <div class="fr-col-md-8">
-  <h2><%= t('pages.home.index.what_is_it.title') %></h2>
+  <h2><%= t('.what_is_it.title') %></h2>
 
-  <%= simple_format t('pages.home.index.what_is_it.content') %>
+  <%= simple_format t('.what_is_it.content') %>
 
   <ul class="checklist">
-    <% t('pages.home.index.what_is_it.items').each do |item| %>
+    <% t('.what_is_it.items').each do |item| %>
       <li class="fr-mt-1w">
         <strong><%= item[:title] %></strong> : <%= item[:content] %>
       </li>
@@ -24,13 +24,13 @@
   </ul>
 
   <p class="fr-mt-2w">
-    <%= link_to t('pages.home.index.what_is_it.link'), "/faq", class: "fr-link fr-icon-arrow-right-line fr-link--icon-right" %>
+    <%= link_to t('.what_is_it.link'), "/faq", class: "fr-link fr-icon-arrow-right-line fr-link--icon-right" %>
   </p>
 
-  <h2 class="fr-mt-6w"><%= t('pages.home.index.which_informations.title') %></h2>
+  <h2 class="fr-mt-6w"><%= t('.which_informations.title') %></h2>
   
   <p>
-    <%= t('pages.home.index.which_informations.content') %>
+    <%= t('.which_informations.content') %>
   </p>
 
   <%= render partial: "cta" %>
