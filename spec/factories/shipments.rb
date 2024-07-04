@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :shipment do
-    sub { "uuid" }
     hubee_folder_id { "folder_uuid" }
+    hubee_status { :pending }
   end
 end
