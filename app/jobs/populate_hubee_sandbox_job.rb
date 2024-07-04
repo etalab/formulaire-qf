@@ -6,14 +6,18 @@ class PopulateHubEESandboxJob < ApplicationJob
 
     subscriptions = HubEE::Api.session.active_subscriptions
     subscriptions.each do |subscription|
-      Rails.logger.debug { "### Adding data to #{subscription.dig("subscriber", "name")} ###" }
-      # TODO : gives a collectivity instead of a recipient to UploadQuotientFamilialToHubEE
-      recipient = HubEE::Recipient.new(siren: subscription.dig("subscriber", "companyRegister"), branch_code: subscription.dig("subscriber", "branchCode"))
-      result = UploadQuotientFamilialToHubEE.call(recipient: recipient, pivot_identity: pivot_identity, quotient_familial: quotient_familial)
+      siret = subscription.dig("subscriber", "companyRegister")
+      code_cog = subscription.dig("subscriber", "branchCode")
+      name = subscription.dig("subscriber", "name")
+      Rails.logger.debug { "### Adding data to #{name} ###" }
+
+      collectivity = Collectivity.find_or_initialize_by(siret:, code_cog:, name:, status: :active)
+      result = UploadQuotientFamilialToHubEE.call(collectivity: collectivity, pivot_identity: pivot_identity, quotient_familial: quotient_familial)
+
       if result.success?
-        Rails.logger.debug { "   >>> Data added to #{subscription.dig("subscriber", "name")}, id: #{result.folder.id} ###" }
+        Rails.logger.debug { "   >>> Data added to #{name}, id: #{result.folder.id} ###" }
       else
-        Rails.logger.debug { "   !!! Data not added to #{subscription.dig("subscriber", "name")}" }
+        Rails.logger.debug { "   !!! Data not added to #{name}" }
       end
     end
   end
