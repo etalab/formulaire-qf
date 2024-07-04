@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe FranceConnect::IdentityMapper, type: :mapper do
   describe ".normalize" do
     subject(:pivot_identity) { described_class.normalize(payload) }

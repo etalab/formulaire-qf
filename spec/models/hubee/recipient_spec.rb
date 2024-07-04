@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::Recipient do
   subject(:recipient) { HubEE::Recipient.new(**params) }
 

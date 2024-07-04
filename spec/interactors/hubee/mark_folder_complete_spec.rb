@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::MarkFolderComplete, type: :interactor do
   describe ".call" do
     subject(:interactor) { described_class.call(**params) }

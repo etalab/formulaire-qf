@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe HubEE::PrepareAttachments, type: :interactor do
   subject(:interactor) { described_class.call(**params) }
 

@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe User, type: :model do
   subject(:user) { described_class.new(access_token: access_token, sub: sub) }
 

@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe FranceConnect::AuthMapper, type: :mapper do
   describe ".normalize" do
     subject(:auth) { described_class.normalize(payload) }

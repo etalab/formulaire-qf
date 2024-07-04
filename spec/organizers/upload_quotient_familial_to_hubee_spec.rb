@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe UploadQuotientFamilialToHubEE, type: :organizer do
   let(:interactors) do
     [
