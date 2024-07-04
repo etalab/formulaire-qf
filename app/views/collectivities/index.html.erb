@@ -6,16 +6,16 @@
   <%= render partial: "shared/banner_duration_and_link", locals: { duration: 3 } %>
 <% end %>
 
-<%= simple_format t('pages.collectivities.index.title'), { }, wrapper_tag: 'h2' %>
+<%= simple_format t('.title'), { }, wrapper_tag: 'h2' %>
 
 <%= form_with url: select_collectivities_path, method: :get, class: "fr-col-md-8" do |form| %>
   <div class="fr-select-group">
     
     <%= form.label :id, class: "fr-label" do %>
-      <%= t('pages.collectivities.index.form.label') %>
+      <%= t('.form.label') %>
 
       <span class="fr-hint-text">
-        <%= t('pages.collectivities.index.form.hint') %>
+        <%= t('.form.hint') %>
       </span>
     <% end %>
 
@@ -25,7 +25,7 @@
       <div class="fr-container">
         <div class="fr-notice__body">
           <p class="fr-notice__title">
-            <%= t('pages.collectivities.index.form.notice.text')%>
+            <%= t('.form.notice.text')%>
           </p>
         </div>
       </div>

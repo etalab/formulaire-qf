@@ -1,19 +1,19 @@
 <%= render partial: "show_banner", locals: { duration: 2 } %>
 
 <div class="fr-col-md-8">
-  <%= simple_format t('pages.collectivities.no_france_connect.title'), { }, wrapper_tag: 'h2' %>
+  <%= simple_format t('.title'), { }, wrapper_tag: 'h2' %>
 
-  <%= simple_format t('pages.collectivities.no_france_connect.explanation'), { }, wrapper_tag: 'p' %>
+  <%= simple_format t('.explanation'), { }, wrapper_tag: 'p' %>
 
   <%= render partial: "alternatives" %>
 
   <div class="fr-callout fr-icon-information-line fr-mt-6w">
     <h3 class="fr-callout__title">
-      <%=t('pages.collectivities.no_france_connect.callout.title')%>
+      <%=t('.callout.title')%>
     </h3>
     <p class="fr-callout__text">
-      <%=t('pages.collectivities.no_france_connect.callout.text')%>
+      <%=t('.callout.text')%>
     </p>
-    <%= link_to t('pages.collectivities.no_france_connect.callout.button'), "https://form.typeform.com/to/sXL2WhOi", class: "fr-btn"%>
+    <%= link_to t('.callout.button'), "https://form.typeform.com/to/sXL2WhOi", class: "fr-btn"%>
   </div>
 </div>

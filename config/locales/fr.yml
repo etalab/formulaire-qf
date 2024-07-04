@@ -58,55 +58,55 @@ fr:
       browser_title: CGU des usagers
     cgu_administrations:
       browser_title: CGU des administrations
+  collectivities:
+    index:
+      browser_title: Choisir sa collectivité
+      title: "Je choisis la collectivité à laquelle seront transmises mes données&nbsp;:"
+      form:
+        label: Nom de la collectivité
+        hint: Sélectionner la collectivité à l'aide de son nom ou de son code postal
+        notice:
+          text: Seules les collectivités de cette liste proposent actuellement ce service.
+    show:
+      browser_title: Se connecter via FranceConnect
+      banner:
+        text: |
+          Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
+      title: "Je m'identifie via FranceConnect&nbsp;:"
+      no_france_connect: 
+        text: Vous n'utilisez pas FranceConnect ?
+        link: Consulter les alternatives
+      info:
+        title: "Ce qui va se passer :"
+        content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
+        link: "En savoir plus sur la gestion de vos données personnelles"
+        explanation: |
+          FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne.
+      secondary_info:
+        title: "Retrouvez/partagez cette page :"
+        explanation: "Ce QR code et ce lien permettent d’accéder directement à cette page, c’est-à-dire au formulaire quotient-familial.numerique.gouv.fr de %{collectivity_name}."
+        download: "Télécharger le QRCode"
+        link_title: "Lien du formulaire :"
+    no_france_connect:
+      browser_title: Sans FranceConnect
+      title: Vous n'utilisez pas FranceConnect ?
+      explanation: |
+        <strong>Ce service est uniquement utilisable avec FranceConnect.</strong>
+        FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>. 
+      alternative_text: <strong>Comme alternative vous pouvez télécharger votre attestation :</strong>
+      alternative_options:
+        - Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
+        - Votre attestation MSA sur <a href="https://monespaceprive.msa.fr" class="fr-link">le site de la MSA</a>.
+      transmission_text: <strong>Et la transmettre directement à votre commune :</strong>
+      transmission_options:
+        - Par mail
+        - Au guichet de votre mairie
+      callout:
+        title: Aidez nous à améliorer ce service
+        text: Ce service ne fonctionne qu’avec FranceConnect, et cela semble manifestement vous avoir dissuadé de poursuivre, pouvez-vous nous dire pourquoi ?
+        button: Répondre au questionnaire (2min)
 
   pages:
-    collectivities:
-      index:
-        browser_title: Choisir sa collectivité
-        title: "Je choisis la collectivité à laquelle seront transmises mes données&nbsp;:"
-        form:
-          label: Nom de la collectivité
-          hint: Sélectionner la collectivité à l'aide de son nom ou de son code postal
-          notice:
-            text: Seules les collectivités de cette liste proposent actuellement ce service.
-      show:
-        browser_title: Se connecter via FranceConnect
-        banner:
-          text: |
-            Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
-        title: "Je m'identifie via FranceConnect&nbsp;:"
-        no_france_connect: 
-          text: Vous n'utilisez pas FranceConnect ?
-          link: Consulter les alternatives
-        info:
-          title: "Ce qui va se passer :"
-          content: Durant cette première étape, en vous connectant via FranceConnect, vos données d'identité, celles de vos enfants, et votre quotient familial vont être récupérées de façon sécurisée auprès de FranceConnect et de la Caisse des Allocations Familiales (CAF) ou de la Sécurité Sociale Agricole (MSA).
-          link: "En savoir plus sur la gestion de vos données personnelles"
-          explanation: |
-            FranceConnect est la solution proposée par l'État pour sécuriser et simplifier la connexion à vos services en ligne.
-        secondary_info:
-          title: "Retrouvez/partagez cette page :"
-          explanation: "Ce QR code et ce lien permettent d’accéder directement à cette page, c’est-à-dire au formulaire quotient-familial.numerique.gouv.fr de %{collectivity_name}."
-          download: "Télécharger le QRCode"
-          link_title: "Lien du formulaire :"
-      no_france_connect:
-        browser_title: Sans FranceConnect
-        title: Vous n'utilisez pas FranceConnect ?
-        explanation: |
-          <strong>Ce service est uniquement utilisable avec FranceConnect.</strong>
-          FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>. 
-        alternative_text: <strong>Comme alternative vous pouvez télécharger votre attestation :</strong>
-        alternative_options:
-          - Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
-          - Votre attestation MSA sur <a href="https://monespaceprive.msa.fr" class="fr-link">le site de la MSA</a>.
-        transmission_text: <strong>Et la transmettre directement à votre commune :</strong>
-        transmission_options:
-          - Par mail
-          - Au guichet de votre mairie
-        callout:
-          title: Aidez nous à améliorer ce service
-          text: Ce service ne fonctionne qu’avec FranceConnect, et cela semble manifestement vous avoir dissuadé de poursuivre, pouvez-vous nous dire pourquoi ?
-          button: Répondre au questionnaire (2min)
     shipments:
       new:
         browser_title: Finir sa démarche et transmettre ses données
