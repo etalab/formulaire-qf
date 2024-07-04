@@ -7,7 +7,7 @@ class Shipment < ApplicationRecord
     return if persisted?
     reference = SecureRandom.hex[0...13].upcase
 
-    if Shipment.find_by(reference: reference).present?
+    if Shipment.where(reference: reference).any?
       affect_reference
     else
       self.reference = reference
