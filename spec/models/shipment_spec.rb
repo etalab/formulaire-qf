@@ -10,11 +10,11 @@ RSpec.describe Shipment, type: :model do
 
   it { is_expected.to define_enum_for(:hubee_status).with_values(pending: "pending", in_progress: "in_progress", done: "done", refused: "refused").backed_by_column_of_type(:string) }
 
-  describe "#new_reference" do
-    subject { described_class.new_reference }
+  describe "assign_reference" do
+    subject { described_class.new }
 
-    it "generates a 13 random string" do
-      expect(subject.length).to eq 13
+    it "generates a 13 random string in the reference" do
+      expect(subject.reference.length).to eq 13
     end
 
     context "when the generated reference already exists" do
@@ -25,7 +25,8 @@ RSpec.describe Shipment, type: :model do
       end
 
       it "generates another reference" do
-        expect(subject).to eq "SOME_NEW_REFE"
+        subject.save
+        expect(subject.reference).to eq "SOME_NEW_REFE"
       end
     end
   end

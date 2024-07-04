@@ -1,5 +1,6 @@
 class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   def call
+    context.shipment = Shipment.new
     context.folder = ::HubEE::Folder.new(**folder_params)
   end
 
@@ -12,11 +13,7 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   def external_id
     # This random string is formatted following HubEE's requirements
     # so it can display nicely in their portal.
-    @external_id ||= "Formulaire-QF-#{reference}"
-  end
-
-  def reference
-    context.reference = Shipment.new_reference
+    @external_id ||= "Formulaire-QF-#{context.shipment.reference}"
   end
 
   def folder_params
