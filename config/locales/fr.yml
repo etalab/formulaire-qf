@@ -23,6 +23,7 @@ fr:
     banner_link: À quoi sert cette démarche ?
     previous_button: Retour
     next_button: Suivant
+
   home:
     faq:
       browser_title: Fonctionnement du service
@@ -58,6 +59,7 @@ fr:
       browser_title: CGU des usagers
     cgu_administrations:
       browser_title: CGU des administrations
+
   collectivities:
     index:
       browser_title: Choisir sa collectivité
@@ -106,46 +108,45 @@ fr:
         text: Ce service ne fonctionne qu’avec FranceConnect, et cela semble manifestement vous avoir dissuadé de poursuivre, pouvez-vous nous dire pourquoi ?
         button: Répondre au questionnaire (2min)
 
-  pages:
-    shipments:
-      new:
-        browser_title: Finir sa démarche et transmettre ses données
-        title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
-        quotient_familial:
-          all_regimes: CNAF ou MSA
-          title: Données de la %{regime}
-          quotient: "Quotient familial de %{month_year} :"
-        allocataires: "Allocataires :"
-        children: "Enfants :"
-        no_children: Aucun
-        france_connect:
-          title: Données de FranceConnect
-        info:
-          title: Ce qui va se passer
-          paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
-          paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
-          link: "En savoir plus sur la gestion de vos données personnelles"
-        next_button: "Transmettre les données à la collectivité"
-      show:
-        browser_title: Démarche terminée
-        redirect_cta: Retourner sur le site de ma commune
-        reference: |
-          <strong>Identifiant de cette démarche,</strong>
-          À garder et à transmettre à votre commune en cas de difficulté :
+  shipments:
+    new:
+      browser_title: Finir sa démarche et transmettre ses données
+      title: "Je relis et transmets mes données à %{collectivity_name}&nbsp;:"
+      quotient_familial:
+        all_regimes: CNAF ou MSA
+        title: Données de la %{regime}
+        quotient: "Quotient familial de %{month_year} :"
+      allocataires: "Allocataires :"
+      children: "Enfants :"
+      no_children: Aucun
+      france_connect:
+        title: Données de FranceConnect
+      info:
+        title: Ce qui va se passer
+        paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
+        paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
+        link: "En savoir plus sur la gestion de vos données personnelles"
+      next_button: "Transmettre les données à la collectivité"
+    show:
+      browser_title: Démarche terminée
+      redirect_cta: Retourner sur le site de ma commune
+      reference: |
+        <strong>Identifiant de cette démarche,</strong>
+        À garder et à transmettre à votre commune en cas de difficulté :
 
-          <strong>%{reference}</strong>
-        title: |
-          Vos informations ont bien été transmises
-          à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
-        user_data:
-          quotient_familial:
-            title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
-      error:
-        browser_title: Échec de la démarche
-        title: La récupération de votre quotient familial n'a pas fonctionné
-        text: |
-          Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
-          <strong>Raison: %{message}</strong>
+        <strong>%{reference}</strong>
+      title: |
+        Vos informations ont bien été transmises
+        à <span class="title-highlight"><strong>%{label}</strong> - %{code_cog}</span>
+      user_data:
+        quotient_familial:
+          title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
+    error:
+      browser_title: Échec de la démarche
+      title: La récupération de votre quotient familial n'a pas fonctionné
+      text: |
+        Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
+        <strong>Raison: %{message}</strong>
   errors:
     title: "Une erreur est survenue"
     report_sent: Un rapport d'erreur a été transmis à l'opérateur de ce service en ligne, la DINUM, afin de déterminer pourquoi la connexion pour le quotient familial n'a pas pu être établie et améliorer ce service.

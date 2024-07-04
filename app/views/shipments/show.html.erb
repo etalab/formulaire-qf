@@ -2,9 +2,9 @@
 
 <div class="centered-text">
   <span class="fr-icon-success-fill big-icon success-green" aria-hidden="true"></span>
-  <%= simple_format t('pages.shipments.show.title', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'h2' %>
-  <%= simple_format t('pages.shipments.show.reference', reference: @shipment.reference), class: "fr-text--lead fr-mt-3w" %>
+  <%= simple_format t('.title', label: @collectivity.name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'h2' %>
+  <%= simple_format t('.reference', reference: @shipment.reference), class: "fr-text--lead fr-mt-3w" %>
   <% if @redirect_uri %>
-    <%= link_to t('pages.shipments.show.redirect_cta'), @redirect_uri, class: "fr-btn fr-btn--secondary fr-btn--lg fr-btn--icon-right fr-icon-external-link-line fr-mt-3w" %>
+    <%= link_to t('.redirect_cta'), @redirect_uri, class: "fr-btn fr-btn--secondary fr-btn--lg fr-btn--icon-right fr-icon-external-link-line fr-mt-3w" %>
   <% end %>
 </div>

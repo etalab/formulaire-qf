@@ -49,7 +49,7 @@ class ShipmentData
     if quotient_familial.blank?
       <<~TEXT
         Quotient familial:
-          ERREUR: #{I18n.t("pages.shipments.error.title")}
+          ERREUR: #{I18n.t("shipments.error.title")}
       TEXT
     else
       <<~TEXT
