@@ -22,7 +22,7 @@ RSpec.describe Shipment, type: :model do
     it { is_expected.to validate_length_of(:reference).is_equal_to(13) }
   end
 
-  it { is_expected.to define_enum_for(:hubee_status).with_values(pending: "pending", in_progress: "in_progress", done: "done", refused: "refused").backed_by_column_of_type(:string) }
+  it { is_expected.to define_enum_for(:hubee_status).with_values(pending: "pending", sent: "sent", si_received: "si_received", in_progress: "in_progress", done: "done", refused: "refused").backed_by_column_of_type(:string) }
 
   describe "assign_reference" do
     subject { described_class.new }

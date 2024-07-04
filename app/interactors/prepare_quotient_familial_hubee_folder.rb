@@ -26,12 +26,18 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
         pdf_file,
       ],
       cases: [
-        external_id: case_external_id,
-        recipient: context.recipient,
+        kase,
       ],
       external_id:,
       process_code:,
     }
+  end
+
+  def kase
+    ::HubEE::Case.new(
+      external_id: case_external_id,
+      recipient: context.recipient
+    )
   end
 
   def json_file

@@ -7,5 +7,9 @@ module HubEE
     def [](key)
       public_send(key)
     end
+
+    def first_case_id
+      cases.first.id
+    end
   end
 end

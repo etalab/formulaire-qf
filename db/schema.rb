@@ -117,8 +117,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_081757) do
     t.datetime "updated_at", null: false
     t.string "reference", null: false
     t.string "hubee_status", default: "pending"
+    t.string "hubee_case_id"
     t.bigint "collectivity_id", null: false
     t.index ["collectivity_id"], name: "index_shipments_on_collectivity_id"
+    t.index ["hubee_case_id"], name: "index_shipments_on_hubee_case_id"
     t.index ["hubee_status"], name: "index_shipments_on_hubee_status"
     t.index ["reference"], name: "index_shipments_on_reference", unique: true
   end

@@ -1,5 +1,5 @@
 class Shipment < ApplicationRecord
-  enum hubee_status: {pending: "pending", in_progress: "in_progress", done: "done", refused: "refused"}
+  enum hubee_status: {pending: "pending", sent: "sent", si_received: "si_received", in_progress: "in_progress", done: "done", refused: "refused"}
   validates :reference, presence: true, uniqueness: true, length: {is: 13}
   after_initialize :affect_reference
 

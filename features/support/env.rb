@@ -5,6 +5,7 @@
 # files.
 
 require "cucumber/rails"
+require "cucumber/rspec/doubles"
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
