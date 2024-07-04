@@ -1,6 +1,20 @@
 require "rails_helper"
 
 RSpec.describe Shipment, type: :model do
+  describe "factories" do
+    it "has a valid factory" do
+      expect(build(:shipment)).to be_valid
+    end
+
+    context "with an existing shipment created with the factory" do
+      before { create(:shipment) }
+
+      it "has a valid factory" do
+        expect(build(:shipment)).to be_valid
+      end
+    end
+  end
+
   describe "validations" do
     subject { FactoryBot.build(:shipment) }
 
