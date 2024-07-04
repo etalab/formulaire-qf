@@ -7,6 +7,7 @@ class PopulateHubEESandboxJob < ApplicationJob
     subscriptions = HubEE::Api.session.active_subscriptions
     subscriptions.each do |subscription|
       Rails.logger.debug { "### Adding data to #{subscription.dig("subscriber", "name")} ###" }
+      # TODO : gives a collectivity instead of a recipient to UploadQuotientFamilialToHubEE
       recipient = HubEE::Recipient.new(siren: subscription.dig("subscriber", "companyRegister"), branch_code: subscription.dig("subscriber", "branchCode"))
       result = UploadQuotientFamilialToHubEE.call(recipient: recipient, pivot_identity: pivot_identity, quotient_familial: quotient_familial)
       if result.success?
