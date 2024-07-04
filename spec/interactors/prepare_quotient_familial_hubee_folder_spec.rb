@@ -28,7 +28,7 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
     let(:recipient) { double(HubEE::Recipient) }
 
     before do
-      allow(SecureRandom).to receive(:hex).and_return("abcdef1234567")
+      allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
     end
 
     it "exposes the folder" do
