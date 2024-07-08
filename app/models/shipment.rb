@@ -3,7 +3,7 @@ class Shipment < ApplicationRecord
   validates :reference, presence: true, uniqueness: true, length: {is: 13}
   after_initialize :affect_reference
 
-  belongs_to :collectivity
+  belongs_to :collectivity, optional: true
 
   def affect_reference
     return if persisted?
