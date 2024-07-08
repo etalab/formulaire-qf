@@ -43,14 +43,14 @@ fr:
         content: |
           Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.
 
-          <p class="fr-text--lg">Ce service vous permet de <strong>transmettre de façon sécurisée vos données d’identité permettant à votre commune de récupérer instantanément</strong> votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.</p>
+          <p class="fr-text--lg">Ce service vous permet de <strong>transmettre de façon sécurisée vos données d’identité permettant à votre collectivité de récupérer instantanément</strong> votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.</p>
         items:
           - title: Facile et certifié
-            content: Vous n’avez plus besoin de retrouver votre attestation MSA/CAF, les administrations transmettent directement la donnée source à votre commune ;
+            content: Vous n’avez plus besoin de retrouver votre attestation MSA/CAF, les administrations transmettent directement la donnée source à votre collectivité ;
           - title: Rapide et instantané
-            content: Au dernier clic de cette démarche de 4min, votre commune réceptionne votre identité pivot et votre quotient familial ;
+            content: Au dernier clic de cette démarche de 4min, votre collectivité réceptionne votre identité pivot et votre quotient familial ;
           - title: Renouvelé automatiquement
-            content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la commune mettra à jour de façon proactive votre quotient familial
+            content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la collectivité mettra à jour de façon proactive votre quotient familial
         link: En savoir plus sur le fonctionnement de ce service
       which_informations:
         title: Quelles informations vous seront demandées ?
@@ -99,7 +99,7 @@ fr:
       alternative_options:
         - Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
         - Votre attestation MSA sur <a href="https://monespaceprive.msa.fr" class="fr-link">le site de la MSA</a>.
-      transmission_text: <strong>Et la transmettre directement à votre commune :</strong>
+      transmission_text: <strong>Et la transmettre directement à votre collectivité :</strong>
       transmission_options:
         - Par mail
         - Au guichet de votre mairie
@@ -129,10 +129,10 @@ fr:
       next_button: "Transmettre les données à la collectivité"
     show:
       browser_title: Démarche terminée
-      redirect_cta: Retourner sur le site de ma commune
+      redirect_cta: Retourner sur le site de ma collectivité
       reference: |
         <strong>Identifiant de cette démarche,</strong>
-        À garder et à transmettre à votre commune en cas de difficulté :
+        À garder et à transmettre à votre collectivité en cas de difficulté :
 
         <strong>%{reference}</strong>
       title: |
@@ -147,6 +147,7 @@ fr:
       text: |
         Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
         <strong>Raison: %{message}</strong>
+
   errors:
     title: "Une erreur est survenue"
     report_sent: Un rapport d'erreur a été transmis à l'opérateur de ce service en ligne, la DINUM, afin de déterminer pourquoi la connexion pour le quotient familial n'a pas pu être établie et améliorer ce service.

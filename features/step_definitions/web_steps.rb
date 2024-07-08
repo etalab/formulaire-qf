@@ -6,11 +6,11 @@ Quand("je me rends sur la page d'accueil") do
   visit "/"
 end
 
-Sachantque("j'arrive sur le formulaire depuis le portail de ma commune") do
+Sachantque("j'arrive sur le formulaire depuis le portail de ma collectivité") do
   visit "/collectivites/21040107100019/me_connecter?external_id=123&redirect_uri=http://real_uri"
 end
 
-Soit("l'existence de la commune de Majastres") do
+Soit("l'existence de la collectivité de Majastres") do
   Collectivity.find_by(siret: "21040107100019") ||
     FactoryBot.create(:collectivity, name: "Majastres", siret: "21040107100019", code_cog: "04107", status: "active")
 end
