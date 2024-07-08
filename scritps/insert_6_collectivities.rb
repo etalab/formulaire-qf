@@ -19,7 +19,7 @@ collectivities = [
   },
   {
     name: "Communauté de Communes de Sézanne Sud-Ouest Marnais (51)",
-    siret: "24510097900054",
+    siret: "20006683500014",
     code_cog: "00000",
     status: :active,
   },
