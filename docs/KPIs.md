@@ -19,6 +19,6 @@
 
 # TODO 
 
-Choper les chiffres via page title sur [Matomo](https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=305&period=day&date=yesterday#?idSite=305&period=day&date=yesterday&category=General_Actions&subcategory=Actions_SubmenuPageTitles) pour :
+Récupérer les chiffres via page title sur [Matomo](https://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=305&period=day&date=yesterday#?idSite=305&period=day&date=yesterday&category=General_Actions&subcategory=Actions_SubmenuPageTitles) pour :
 - Nombre de pages "Finir sa démarche" vues
 - Nombre de pages "Se connecter via FranceConnect" vues
