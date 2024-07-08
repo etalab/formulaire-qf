@@ -1,11 +1,11 @@
 class ReadHubEENotificationsJob < ApplicationJob
   queue_as :default
 
-  def perform(items: 100)
-    notifications = HubEE::Api.session.notifications(items:)
+  def perform(items_count: 100)
+    notifications = HubEE::Api.session.notifications(items_count:)
     notifications.each do |notification|
       ProcessHubEENotification.call(notification:)
     end
-    ReadHubEENotificationsJob.perform_later if notifications.size == items
+    ReadHubEENotificationsJob.perform_later if notifications.size == items_count
   end
 end

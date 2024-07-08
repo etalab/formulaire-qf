@@ -31,15 +31,31 @@ RSpec.describe HubEE::Event, type: :model do
     }
   end
 
-  describe "#case_current_status" do
-    it "returns the case current status" do
-      expect(event.case_current_status).to eq("SENT")
-    end
-  end
-
   describe "#case_new_status" do
     it "returns the case new status" do
       expect(event.case_new_status).to eq("SI_RECEIVED")
+    end
+  end
+
+  describe "#error?" do
+    context "when the event status is error" do
+      let(:event_hash) do
+        {"errors" => "ERROR"}
+      end
+
+      it "returns true" do
+        expect(event.error?).to be true
+      end
+    end
+
+    context "when the event status is not error" do
+      let(:event_hash) do
+        {}
+      end
+
+      it "returns false" do
+        expect(event.error?).to be false
+      end
     end
   end
 
@@ -83,28 +99,6 @@ RSpec.describe HubEE::Event, type: :model do
 
       it "returns false" do
         expect(event.processable?).to be false
-      end
-    end
-  end
-
-  describe "#received?" do
-    context "when the event status is received" do
-      let(:event_hash) do
-        {"status" => "RECEIVED"}
-      end
-
-      it "returns true" do
-        expect(event.received?).to be true
-      end
-    end
-
-    context "when the event status is not received" do
-      let(:event_hash) do
-        {"status" => "SENT"}
-      end
-
-      it "returns false" do
-        expect(event.received?).to be false
       end
     end
   end

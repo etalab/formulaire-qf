@@ -158,5 +158,28 @@ RSpec.describe HubEE::Api, type: :api do
         end
       end
     end
+
+    describe "#notifications" do
+      subject(:notifications) { session.notifications }
+
+      before do
+        stub_hubee_notifications
+      end
+
+      let(:expected_response) do
+        array_including(
+          a_hash_including(
+            "caseId" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+            "eventId" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+            "processCode" => "FormulaireQF",
+            "id" => "3fa85f64-5717-4562-b3fc-2c963f66afa"
+          )
+        )
+      end
+
+      it "returns the notifications" do
+        expect(notifications).to match(expected_response)
+      end
+    end
   end
 end

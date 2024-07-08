@@ -126,9 +126,9 @@ class HubEE::Api
     event
   end
 
-  def notifications(items: 50)
+  def notifications(items_count: 50)
     base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications")
-    base_url.query = URI.encode_www_form(maxResult: items)
+    base_url.query = URI.encode_www_form(maxResult: items_count)
 
     https = Net::HTTP.new(base_url.host, base_url.port)
     https.use_ssl = true

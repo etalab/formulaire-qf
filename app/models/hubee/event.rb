@@ -7,12 +7,12 @@ module HubEE
       @event = event
     end
 
-    def case_current_status
-      @event["caseCurrentStatus"]
-    end
-
     def case_new_status
       @event["caseNewStatus"]
+    end
+
+    def error?
+      @event["errors"].present?
     end
 
     def final_status?
@@ -21,10 +21,6 @@ module HubEE
 
     def processable?
       PROCESSABLE_EVENTS.include?(case_new_status)
-    end
-
-    def received?
-      status == "RECEIVED"
     end
 
     def sent?
@@ -37,10 +33,6 @@ module HubEE
 
     def status_update?
       @event["actionType"] == "STATUS_UPDATE"
-    end
-
-    def valid?
-      @event["errors"].blank?
     end
   end
 end

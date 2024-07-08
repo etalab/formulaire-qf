@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ReadHubEENotificationsJob, type: :job do
   describe "#perform" do
-    subject(:job) { described_class.perform_now(items: 1) }
+    subject(:job) { described_class.perform_now(items_count: 1) }
 
     before do
       stub_hubee_token

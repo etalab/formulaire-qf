@@ -1,16 +1,12 @@
 class ProcessHubEENotification < BaseInteractor
-  delegate :session, to: :context
-
-  before do
-    context.session = HubEE::Api.session
-  end
-
   def call
     return unless notification.formulaire_qf?
 
     return if notification.new_folder?
 
-    return unless event.valid? && event.sent? && event.status_update?
+    return if event.error?
+
+    return unless event.sent? && event.status_update?
 
     find_and_update_shipment if event.processable?
 
@@ -36,6 +32,10 @@ class ProcessHubEENotification < BaseInteractor
 
   def notification
     @notification ||= HubEE::Notification.new(context.notification)
+  end
+
+  def session
+    @session ||= HubEE::Api.session
   end
 
   def shipment
