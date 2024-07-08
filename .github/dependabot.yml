@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+        exclude-patterns:
+        - "rubocop*"
+      rubocop:
+        patterns:
+        - "rubocop*"
+    directory: "/"
+    schedule:
+      day: "monday"
+      time: "01:00"
+      interval: "weekly"
