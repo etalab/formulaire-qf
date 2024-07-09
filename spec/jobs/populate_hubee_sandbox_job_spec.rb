@@ -6,8 +6,9 @@ RSpec.describe PopulateHubEESandboxJob, type: :job do
 
     before do
       stub_hubee
-      allow(UploadQuotientFamilialToHubEE).to receive(:call).and_return(double(success?: true, folder: double(id: 1)))
+      allow(UploadQuotientFamilialToHubEE).to receive(:call).and_call_original
     end
+
     context "when in production" do
       before do
         allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))

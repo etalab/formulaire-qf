@@ -3,6 +3,8 @@ class Shipment < ApplicationRecord
   validates :reference, presence: true, uniqueness: true, length: {is: 13}
   after_initialize :affect_reference
 
+  belongs_to :collectivity, optional: true
+
   def affect_reference
     return if persisted?
     reference = SecureRandom.hex[0...13].upcase

@@ -18,12 +18,12 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
       {
         quotient_familial:,
         pivot_identity:,
-        recipient:,
+        collectivity:,
         user:,
       }
     end
     let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload) }
-    let(:recipient) { build(:hubee_recipient) }
+    let(:collectivity) { create(:collectivity) }
     let(:user) { User.new(access_token: "a_real_token", sub: "a_real_sub") }
 
     before do

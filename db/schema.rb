@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_03_140539) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_04_131031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,8 +117,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_140539) do
     t.datetime "updated_at", null: false
     t.string "reference", null: false
     t.string "hubee_status", default: "pending"
+    t.bigint "collectivity_id"
+    t.index ["collectivity_id"], name: "index_shipments_on_collectivity_id"
     t.index ["hubee_status"], name: "index_shipments_on_hubee_status"
     t.index ["reference"], name: "index_shipments_on_reference", unique: true
   end
 
+  add_foreign_key "shipments", "collectivities"
 end
