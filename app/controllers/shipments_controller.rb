@@ -15,12 +15,11 @@ class ShipmentsController < ApplicationController
   end
 
   def create
-    hubee_recipient = HubEE::Recipient.new(siren: @collectivity.siret, branch_code: @collectivity.code_cog)
     result = StoreQuotientFamilial.call(
+      collectivity: @collectivity,
       external_id: Current.external_id,
       pivot_identity: Current.pivot_identity,
       quotient_familial: Current.quotient_familial,
-      recipient: hubee_recipient,
       user: Current.user
     )
 

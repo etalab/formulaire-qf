@@ -2,7 +2,8 @@ RSpec.describe CreateShipment, type: :interactor do
   describe ".call" do
     subject(:interactor) { described_class.call(**params) }
 
-    let(:shipment) { Shipment.new }
+    let(:collectivity) { create(:collectivity) }
+    let(:shipment) { Shipment.new(collectivity: collectivity) }
     let(:folder) { instance_double("HubEE::Folder", id: "folder_uuid") }
     let(:params) do
       {
