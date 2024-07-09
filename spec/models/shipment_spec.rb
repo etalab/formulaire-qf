@@ -16,6 +16,7 @@ RSpec.describe Shipment, type: :model do
   describe "validations" do
     subject { FactoryBot.build(:shipment) }
 
+    it { is_expected.to belong_to(:collectivity) }
     it { is_expected.to validate_presence_of(:reference) }
     it { is_expected.to validate_uniqueness_of(:reference) }
     it { is_expected.to validate_length_of(:reference).is_equal_to(13) }
