@@ -8,154 +8,57 @@ class HubEE::Api
   end
 
   def active_subscriptions
-    base_url = URI("#{Settings.hubee.base_url}/referential/v1/subscriptions")
-    base_url.query = URI.encode_www_form(maxResult: 5000, status: "Actif", processCode: "FormulaireQF")
-
-    Rails.logger.debug base_url
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Get.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    response = https.request(request)
-
-    Response.new(response)
+    url = "#{Settings.hubee.base_url}/referential/v1/subscriptions"
+    get(url, query_params: {maxResult: 5000, status: "Actif", processCode: "FormulaireQF"})
   end
 
   def create_folder(folder:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders")
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/folders"
 
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Post.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    request.body = FolderMapper.normalize(folder.to_h).to_json
-    response = https.request(request)
-
-    Response.new(response)
+    post(url, body: FolderMapper.normalize(folder.to_h))
   end
 
   def delete_folder(folder_id:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}")
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}"
 
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Delete.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    response = https.request(request)
-
-    Response.new(response)
+    delete(url)
   end
 
   def delete_notification(notification_id:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications/#{notification_id}")
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/notifications/#{notification_id}"
 
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Delete.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    response = https.request(request)
-
-    Response.new(response)
+    delete(url)
   end
 
   def event(id:, case_id:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}")
-
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Get.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    response = https.request(request)
-
-    Response.new(response)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}"
+    get(url)
   end
 
   def mark_folder_complete(folder_id:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}")
-
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Patch.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    params = {
-      globalStatus: "HUBEE_COMPLETED",
-    }
-    request.body = params.to_json
-    response = https.request(request)
-
-    Response.new(response)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}"
+    patch(url, body: {"globalStatus" => "HUBEE_COMPLETED"})
   end
 
   def notifications(items_count: 50)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications")
-    base_url.query = URI.encode_www_form(maxResult: items_count)
-
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Get.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    response = https.request(request)
-
-    Response.new(response)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/notifications"
+    get(url, query_params: {maxResult: items_count})
   end
 
   def update_event(id:, case_id:, status: "RECEIVED")
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}")
-
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Patch.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    params = {
-      status: status,
-    }
-    request.body = params.to_json
-    response = https.request(request)
-
-    Response.new(response)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}"
+    patch(url, body: {"status" => status})
   end
 
   def upload_attachment(attachment:, folder_id:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}/attachments/#{attachment.id}")
-    Rails.logger.debug base_url
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}/attachments/#{attachment.id}"
 
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Put.new(base_url)
-    request["Content-Type"] = "application/octet-stream"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    request.body_stream = attachment.file
-    request.content_length = attachment.file_size
-
-    response = https.request(request)
-
-    Response.new(response)
+    put(url, body: nil) do |request, body|
+      request["Content-Type"] = "application/octet-stream"
+      request["Authorization"] = "Bearer #{access_token}"
+      request.body_stream = attachment.file
+      request.content_length = attachment.file_size
+    end
   end
 
   private
@@ -165,24 +68,66 @@ class HubEE::Api
   end
 
   def request_auth_token
-    token_url = URI(Settings.hubee.token_url)
+    url = Settings.hubee.token_url
     client_id = Settings.hubee.client_id
     client_secret = Settings.hubee.client_secret
     authorization_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
 
-    https = Net::HTTP.new(token_url.host, token_url.port)
+    response = post(url, body: {scope: "OSL", grant_type: "client_credentials"}) do |request|
+      request["Content-Type"] = "application/json"
+      request["Authorization"] = "Basic #{authorization_token}"
+    end
+
+    response.body.dig("access_token")
+  end
+
+  def delete(url, &)
+    uri = URI(url)
+
+    request(net_class: Net::HTTP::Delete, uri: uri, &)
+  end
+
+  def get(url, query_params: {}, &)
+    uri = URI(url)
+    uri.query = URI.encode_www_form(query_params)
+
+    request(net_class: Net::HTTP::Get, uri: uri, &)
+  end
+
+  def patch(url, body:, &)
+    uri = URI(url)
+
+    request(net_class: Net::HTTP::Patch, uri: uri, body: body, &)
+  end
+
+  def post(url, body:, &)
+    uri = URI(url)
+
+    request(net_class: Net::HTTP::Post, uri: uri, body: body, &)
+  end
+
+  def put(url, body:, &)
+    uri = URI(url)
+
+    request(net_class: Net::HTTP::Put, uri: uri, body: body, &)
+  end
+
+  def request(net_class:, uri:, body: nil)
+    https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
 
-    request = Net::HTTP::Post.new(token_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Basic #{authorization_token}"
-    params = {
-      scope: "OSL",
-      grant_type: "client_credentials",
-    }
-    request.body = params.to_json
+    request = net_class.new(uri)
+
+    if block_given?
+      yield(request)
+    else
+      request["Content-Type"] = "application/json"
+      request["Authorization"] = "Bearer #{access_token}"
+      request.body = body.to_json if body
+    end
 
     response = https.request(request)
-    JSON.parse(response.body).dig("access_token")
+
+    Response.new(response)
   end
 end
