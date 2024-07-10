@@ -4,7 +4,7 @@ class PopulateHubEESandboxJob < ApplicationJob
   def perform(*args)
     return if Rails.env.production?
 
-    subscriptions = HubEE::Api.session.active_subscriptions
+    subscriptions = HubEE::Api.session.active_subscriptions.body
     subscriptions.each do |subscription|
       siret = subscription.dig("subscriber", "companyRegister")
       code_cog = subscription.dig("subscriber", "branchCode")

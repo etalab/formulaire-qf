@@ -19,21 +19,9 @@ class HubEE::Api
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer #{access_token}"
 
-    res = https.request(request)
-    if res.header["Content-Encoding"].eql?("gzip")
-      sio = StringIO.new(res.body)
-      gz = Zlib::GzipReader.new(sio)
-      page = gz.read
-    else
-      page = res.body
-    end
+    response = https.request(request)
 
-    subscriptions = JSON.parse(page || "{}")
-
-    Rails.logger.debug page
-    Rails.logger.debug subscriptions
-
-    subscriptions
+    Response.new(response)
   end
 
   def create_folder(folder:)
@@ -47,27 +35,9 @@ class HubEE::Api
     request["Authorization"] = "Bearer #{access_token}"
 
     request.body = FolderMapper.normalize(folder.to_h).to_json
-    folder_response = https.request(request)
-    response_hash = JSON.parse(folder_response.body || "{}")
+    response = https.request(request)
 
-    attachments = folder.attachments.map do |attachment|
-      from_response = response_hash["attachments"].find { |hash| hash["fileName"] == attachment.file_name }
-      attachment.with(id: from_response["id"])
-    end
-
-    cases = folder.cases.map do |kase|
-      from_response = response_hash["cases"].find { |hash| hash["externalId"] == kase.external_id }
-      kase.with(id: from_response["id"])
-    end
-    enhanced_folder = folder.with(id: response_hash["id"], attachments: attachments, cases: cases)
-
-    Rails.logger.debug request.body
-    Rails.logger.debug "###"
-    Rails.logger.debug folder_response.body
-    Rails.logger.debug "###"
-    Rails.logger.debug enhanced_folder
-
-    enhanced_folder
+    Response.new(response)
   end
 
   def delete_folder(folder_id:)
@@ -81,12 +51,8 @@ class HubEE::Api
     request["Authorization"] = "Bearer #{access_token}"
 
     response = https.request(request)
-    delete_response = JSON.parse(response.body || "{}")
 
-    Rails.logger.debug response
-    Rails.logger.debug delete_response
-
-    delete_response
+    Response.new(response)
   end
 
   def delete_notification(notification_id:)
@@ -100,11 +66,8 @@ class HubEE::Api
     request["Authorization"] = "Bearer #{access_token}"
 
     response = https.request(request)
-    body = JSON.parse(response.body || "{}")
 
-    Rails.logger.debug { "DELETE notification #{notification_id}" }
-
-    body
+    Response.new(response)
   end
 
   def event(id:, case_id:)
@@ -118,55 +81,8 @@ class HubEE::Api
     request["Authorization"] = "Bearer #{access_token}"
 
     response = https.request(request)
-    event = JSON.parse(response.body || "{}")
 
-    Rails.logger.debug response.body
-    Rails.logger.debug event
-
-    event
-  end
-
-  def notifications(items_count: 50)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications")
-    base_url.query = URI.encode_www_form(maxResult: items_count)
-
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Get.new(base_url)
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    response = https.request(request)
-    notifications = JSON.parse(response.body || "{}")
-
-    Rails.logger.debug response.body
-    Rails.logger.debug notifications
-
-    notifications
-  end
-
-  def upload_attachment(attachment:, folder_id:)
-    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}/attachments/#{attachment.id}")
-    Rails.logger.debug base_url
-
-    https = Net::HTTP.new(base_url.host, base_url.port)
-    https.use_ssl = true
-
-    request = Net::HTTP::Put.new(base_url)
-    request["Content-Type"] = "application/octet-stream"
-    request["Authorization"] = "Bearer #{access_token}"
-
-    request.body_stream = attachment.file
-    request.content_length = attachment.file_size
-
-    attach_response = https.request(request)
-    attachment = JSON.parse(attach_response.body || "{}")
-
-    Rails.logger.debug attach_response.body
-    Rails.logger.debug attachment
-
-    attachment
+    Response.new(response)
   end
 
   def mark_folder_complete(folder_id:)
@@ -184,12 +100,24 @@ class HubEE::Api
     }
     request.body = params.to_json
     response = https.request(request)
-    attachment = JSON.parse(response.body || "{}")
 
-    Rails.logger.debug response.body
-    Rails.logger.debug attachment
+    Response.new(response)
+  end
 
-    attachment
+  def notifications(items_count: 50)
+    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/notifications")
+    base_url.query = URI.encode_www_form(maxResult: items_count)
+
+    https = Net::HTTP.new(base_url.host, base_url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(base_url)
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+
+    response = https.request(request)
+
+    Response.new(response)
   end
 
   def update_event(id:, case_id:, status: "RECEIVED")
@@ -207,12 +135,27 @@ class HubEE::Api
     }
     request.body = params.to_json
     response = https.request(request)
-    event = JSON.parse(response.body || "{}")
 
-    Rails.logger.debug response.body
-    Rails.logger.debug event
+    Response.new(response)
+  end
 
-    event
+  def upload_attachment(attachment:, folder_id:)
+    base_url = URI("#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}/attachments/#{attachment.id}")
+    Rails.logger.debug base_url
+
+    https = Net::HTTP.new(base_url.host, base_url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Put.new(base_url)
+    request["Content-Type"] = "application/octet-stream"
+    request["Authorization"] = "Bearer #{access_token}"
+
+    request.body_stream = attachment.file
+    request.content_length = attachment.file_size
+
+    response = https.request(request)
+
+    Response.new(response)
   end
 
   private
@@ -239,7 +182,7 @@ class HubEE::Api
     }
     request.body = params.to_json
 
-    token_response = https.request(request)
-    JSON.parse(token_response.body).dig("access_token")
+    response = https.request(request)
+    JSON.parse(response.body).dig("access_token")
   end
 end
