@@ -52,19 +52,39 @@ RSpec.describe QuotientFamilialFacade do
       end
     end
 
-    context "when there is a missing month and year" do
-      let(:quotient_familial) { {"quotientFamilial" => 12, "annee" => nil, "mois" => nil} }
+    context "when we don't have correct year/month data" do
+      let(:quotient_familial) { {"quotientFamilial" => 12, "annee" => year, "mois" => month} }
+      let(:year) { 2024 }
+      let(:month) { 6 }
 
-      it "uses the current month and year" do
-        expect(subject.month_year).to eq "février 1990"
+      shared_examples "it uses the current month and year" do
+        it "uses the current month and year" do
+          expect(subject.month_year).to eq "février 1990"
+        end
       end
-    end
 
-    context "when there is a missing month or year" do
-      let(:quotient_familial) { {"quotientFamilial" => 12, "annee" => 2024, "mois" => nil} }
+      context "when there is a missing month" do
+        let(:month) { nil }
 
-      it "uses the current month and year" do
-        expect(subject.month_year).to eq "février 1990"
+        include_examples "it uses the current month and year"
+      end
+
+      context "when the month is zero" do
+        let(:month) { 0 }
+
+        include_examples "it uses the current month and year"
+      end
+
+      context "when there is a missing year" do
+        let(:year) { nil }
+
+        include_examples "it uses the current month and year"
+      end
+
+      context "when the year is zero" do
+        let(:year) { 0 }
+
+        include_examples "it uses the current month and year"
       end
     end
   end

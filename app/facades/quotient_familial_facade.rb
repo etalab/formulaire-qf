@@ -19,13 +19,15 @@ class QuotientFamilialFacade
 
   def month_year
     return nil if empty?
-    if quotient_familial["mois"].blank? || quotient_familial["annee"].blank?
+
+    if month_year_is_invalid
       month_number = Time.zone.today.strftime("%m").to_i
       year_number = Time.zone.today.strftime("%Y")
     else
-      month_number = quotient_familial["mois"]
+      month_number = quotient_familial["mois"].to_i
       year_number = quotient_familial["annee"]
     end
+
     month = I18n.t("date.month_names")[month_number]
     "#{month} #{year_number}"
   end
@@ -41,6 +43,13 @@ class QuotientFamilialFacade
   end
 
   private
+
+  def month_year_is_invalid
+    quotient_familial["mois"].blank? ||
+      quotient_familial["mois"].to_i.zero? ||
+      quotient_familial["annee"].blank? ||
+      quotient_familial["annee"].to_i.zero?
+  end
 
   def person_facade(person)
     nom_usage = if person["nomUsage"] && person["nomUsage"] != person["nomNaissance"]
