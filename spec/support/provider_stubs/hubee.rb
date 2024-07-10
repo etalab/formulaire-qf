@@ -80,6 +80,8 @@ module ProviderStubs::HubEE
   end
 
   def stub_hubee_create_folder(names: "Heinemeier_Hansson_David")
+    SecureRandom.stub(:hex).and_return("abcdef1234567thiswontbeused")
+
     stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
       .to_return(status: 200, body:  {
         id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -143,6 +145,62 @@ module ProviderStubs::HubEE
           },
         ],
       }.to_json, headers: {})
+  end
+
+  def stub_hubee_notifications
+    notifications = [
+      {
+        "id" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+        "caseId" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+        "eventId" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+        "processCode" => "FormulaireQF",
+      },
+    ]
+
+    stub_request(:get, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/notifications")
+      .with(query: hash_including("maxResult"))
+      .to_return(status: 200, body: notifications.to_json)
+  end
+
+  def stub_hubee_delete_notification
+    stub_request(:delete, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/notifications/3fa85f64-5717-4562-b3fc-2c963f66afa6")
+      .to_return(status: 204, body: "", headers: {})
+  end
+
+  def stub_hubee_event
+    payload = {
+      "actionType" => "STATUS_UPDATE",
+      "attachments" => [],
+      "author" => "John Doe",
+      "caseCurrentStatus" => "SENT",
+      "caseNewStatus" => "SI_RECEIVED",
+      "comment" => "",
+      "createDateTime" => "2024-07-04T08:54:15.438+00:00",
+      "id" => "905055ea-ed37-4556-9db6-97ba89fcb91f",
+      "message" => "",
+      "notification" => true,
+      "partnerAttributes" => nil,
+      "partnerInfo" => {
+        "editorName" => "SOMEEDITOR",
+        "applicationName" => "Portail",
+        "softwareVersion" => "2.2.2",
+      },
+      "status" => "SENT",
+      "transmitter" => {
+        "type" => "SI",
+        "branchCode" => "04107",
+        "companyRegister" => "21040107100019",
+      },
+      "updateDateTime" => nil,
+    }
+
+    stub_request(:get, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/cases/3fa85f64-5717-4562-b3fc-2c963f66afa6/events/3fa85f64-5717-4562-b3fc-2c963f66afa6")
+      .to_return(status: 200, body: payload.to_json, headers: {})
+  end
+
+  def stub_hubee_update_event
+    stub_request(:patch, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/cases/3fa85f64-5717-4562-b3fc-2c963f66afa6/events/3fa85f64-5717-4562-b3fc-2c963f66afa6")
+      .to_return(status: 204, body: "", headers: {})
   end
 
   def stub_hubee_upload_attachment

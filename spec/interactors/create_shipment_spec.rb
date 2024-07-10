@@ -4,7 +4,7 @@ RSpec.describe CreateShipment, type: :interactor do
 
     let(:collectivity) { create(:collectivity) }
     let(:shipment) { Shipment.new(collectivity: collectivity) }
-    let(:folder) { instance_double("HubEE::Folder", id: "folder_uuid") }
+    let(:folder) { instance_double("HubEE::Folder", id: "folder_uuid", first_case_id: "case_uuid") }
     let(:params) do
       {
         folder:,

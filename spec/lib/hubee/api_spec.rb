@@ -42,11 +42,12 @@ RSpec.describe HubEE::Api, type: :api do
       subject(:create_folder) { session.create_folder(folder: folder) }
 
       let(:attachments) { [json_attachment, xml_attachment, pdf_attachment] }
+      let(:cases) { [build(:hubee_case)] }
       let(:json_attachment) { build(:hubee_attachment, :with_file) }
       let(:xml_attachment) { build(:hubee_attachment, :with_file, file_name: "FormulaireQF.xml", mime_type: "application/xml", file_size: 1543) }
       let(:pdf_attachment) { build(:hubee_attachment, :with_file, file_name: "quotient_familial_Heinemeier_Hansson_David.pdf", mime_type: "application/pdf", file_size: 3079) }
 
-      let(:folder) { build(:hubee_folder, attachments: attachments) }
+      let(:folder) { build(:hubee_folder, attachments: attachments, cases: cases) }
 
       context "when the folder is succesfully created" do
         before do
@@ -71,6 +72,56 @@ RSpec.describe HubEE::Api, type: :api do
 
         it "deletes the folder" do
           expect(delete_folder).to have_attributes({})
+        end
+      end
+    end
+
+    describe "#delete_notification" do
+      subject(:delete_notification) { session.delete_notification(notification_id: notification_id) }
+
+      let(:notification_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the notification is succesfully deleted" do
+        before do
+          stub_hubee_delete_notification
+        end
+
+        it "deletes the notification" do
+          expect(delete_notification).to have_attributes({})
+        end
+      end
+    end
+
+    describe "#event" do
+      subject(:event) { session.event(id:, case_id:) }
+
+      let(:id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+      let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the event is succesfully retrieved" do
+        before do
+          stub_hubee_event
+        end
+
+        it "retrieves the event" do
+          expect(event).to include("id" => "905055ea-ed37-4556-9db6-97ba89fcb91f")
+        end
+      end
+    end
+
+    describe "#update_event" do
+      subject(:update_event) { session.update_event(id:, case_id:) }
+
+      let(:id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+      let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the event is succesfully updated" do
+        before do
+          stub_hubee_update_event
+        end
+
+        it "updates the event" do
+          expect(update_event).to have_attributes({})
         end
       end
     end
@@ -105,6 +156,29 @@ RSpec.describe HubEE::Api, type: :api do
         it "marks the folder as complete" do
           expect(mark_folder_complete).to have_attributes({})
         end
+      end
+    end
+
+    describe "#notifications" do
+      subject(:notifications) { session.notifications }
+
+      before do
+        stub_hubee_notifications
+      end
+
+      let(:expected_response) do
+        array_including(
+          a_hash_including(
+            "caseId" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+            "eventId" => "3fa85f64-5717-4562-b3fc-2c963f66afa",
+            "processCode" => "FormulaireQF",
+            "id" => "3fa85f64-5717-4562-b3fc-2c963f66afa"
+          )
+        )
+      end
+
+      it "returns the notifications" do
+        expect(notifications).to match(expected_response)
       end
     end
   end
