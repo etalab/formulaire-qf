@@ -54,10 +54,17 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
       allow(session).to receive(:delete_notification)
     end
 
-    # it "deletes the notification" do
-    #   expect(session).to receive(:delete_notification)
-    #   interactor
-    # end
+    shared_examples "an ignored notification" do
+      it "deletes the notification" do
+        expect(session).to receive(:delete_notification)
+        interactor
+      end
+
+      it "does not update the event" do
+        expect(session).not_to receive(:update_event)
+        interactor
+      end
+    end
 
     context "when the notification is for FormulaireQF" do
       context "when the notification is for an existing folder" do
@@ -116,75 +123,35 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
             context "when the event is not a status update" do
               let(:action_type) { "ATTACH_DEPOSIT" }
 
-              it "deletes the notification" do
-                expect(session).to receive(:delete_notification)
-                interactor
-              end
-
-              it "does not update the event" do
-                expect(session).not_to receive(:update_event)
-                interactor
-              end
+              it_behaves_like "an ignored notification"
             end
           end
 
           context "when the event is not sent" do
             let(:event_status) { "RECEIVED" }
 
-            it "deletes the notification" do
-              expect(session).to receive(:delete_notification)
-              interactor
-            end
-
-            it "does not update the event" do
-              expect(session).not_to receive(:update_event)
-              interactor
-            end
+            it_behaves_like "an ignored notification"
           end
         end
 
         context "when the event is not fetch correctly" do
           let(:event_payload) { {"errors" => ["some error"]} }
 
-          it "deletes the notification" do
-            expect(session).to receive(:delete_notification)
-            interactor
-          end
-
-          it "does not update the event" do
-            expect(session).not_to receive(:update_event)
-            interactor
-          end
+          it_behaves_like "an ignored notification"
         end
       end
 
       context "when the notification is for a new folder" do
         let(:event_id) { nil }
 
-        it "deletes the notification" do
-          expect(session).to receive(:delete_notification)
-          interactor
-        end
-
-        it "does not update the event" do
-          expect(session).not_to receive(:update_event)
-          interactor
-        end
+        it_behaves_like "an ignored notification"
       end
     end
 
     context "when the notification is not for FormulaireQF" do
       let(:process_code) { "CertDC" }
 
-      it "deletes the notification" do
-        expect(session).to receive(:delete_notification)
-        interactor
-      end
-
-      it "does not update the event" do
-        expect(session).not_to receive(:update_event)
-        interactor
-      end
+      it_behaves_like "an ignored notification"
     end
   end
 end
