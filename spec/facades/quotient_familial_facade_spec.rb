@@ -59,6 +59,14 @@ RSpec.describe QuotientFamilialFacade do
         expect(subject.month_year).to eq "février 1990"
       end
     end
+
+    context "when there is a missing month or year" do
+      let(:quotient_familial) { {"quotientFamilial" => 12, "annee" => 2024, "mois" => nil} }
+
+      it "uses the current month and year" do
+        expect(subject.month_year).to eq "février 1990"
+      end
+    end
   end
 
   describe "#allocataires" do

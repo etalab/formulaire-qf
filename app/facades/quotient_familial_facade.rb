@@ -19,8 +19,13 @@ class QuotientFamilialFacade
 
   def month_year
     return nil if empty?
-    month_number = quotient_familial["mois"] || Time.zone.today.strftime("%m").to_i
-    year_number = quotient_familial["annee"] || Time.zone.today.strftime("%Y")
+    if quotient_familial["mois"].blank? || quotient_familial["annee"].blank?
+      month_number = Time.zone.today.strftime("%m").to_i
+      year_number = Time.zone.today.strftime("%Y")
+    else
+      month_number = quotient_familial["mois"]
+      year_number = quotient_familial["annee"]
+    end
     month = I18n.t("date.month_names")[month_number]
     "#{month} #{year_number}"
   end
