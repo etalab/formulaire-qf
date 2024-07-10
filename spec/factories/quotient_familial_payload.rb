@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :quotient_familial_payload, class: Hash do
-    initialize_with { attributes }
+    initialize_with { attributes.deep_stringify_keys }
 
     regime { "CNAF" }
     quotientFamilial { 2550 }
