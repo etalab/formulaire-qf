@@ -22,7 +22,7 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
         user:,
       }
     end
-    let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload) }
+    let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload) }
     let(:collectivity) { create(:collectivity) }
     let(:user) { User.new(access_token: "a_real_token", sub: "a_real_sub") }
 

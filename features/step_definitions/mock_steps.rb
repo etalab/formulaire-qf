@@ -16,7 +16,7 @@ def mock_france_connect
       expires: true,
     },
     extra: {
-      raw_info: FactoryBot.attributes_for(:france_connect_payload),
+      raw_info: FactoryBot.build(:france_connect_payload),
     },
   })
 end

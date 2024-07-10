@@ -18,7 +18,7 @@ RSpec.describe UploadQuotientFamilialToHubEE, type: :organizer do
     subject { described_class.call(**params) }
 
     let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
-    let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload) }
+    let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload) }
     let(:collectivity) { create(:collectivity) }
     let(:params) do
       {

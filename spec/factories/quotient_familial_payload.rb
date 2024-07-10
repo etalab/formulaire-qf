@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :quotient_familial_payload, class: Hash do
+    initialize_with { attributes }
+
     regime { "CNAF" }
     quotientFamilial { 2550 }
     annee { 2024 }

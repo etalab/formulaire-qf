@@ -29,6 +29,6 @@ class PopulateHubEESandboxJob < ApplicationJob
   end
 
   def quotient_familial
-    FactoryBot.attributes_for(:quotient_familial_payload)
+    FactoryBot.build(:quotient_familial_payload)
   end
 end

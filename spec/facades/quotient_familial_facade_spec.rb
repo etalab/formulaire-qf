@@ -3,7 +3,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "#empty?" do
     context "when there is data" do
-      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload).deep_stringify_keys }
 
       it "returns false" do
         expect(subject.empty?).to be false
@@ -37,7 +37,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is data" do
-      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload).deep_stringify_keys }
 
       it "makes a readable string of the month and year" do
         expect(subject.month_year).to eq "février 2024"
@@ -91,7 +91,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "#allocataires" do
     context "when there is data" do
-      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload).deep_stringify_keys }
 
       it "returns a readable array of persons strings" do
         expect(subject.allocataires).to eq ["DUBOIS ANGELA, née le 24/08/1962"]
@@ -117,7 +117,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "#children" do
     context "when there is data" do
-      let(:quotient_familial) { FactoryBot.attributes_for(:quotient_familial_payload).deep_stringify_keys }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload).deep_stringify_keys }
 
       it "returns a readable array of persons strings" do
         expect(subject.children).to eq ["Dujardin Jean, né le 13/12/2016"]
