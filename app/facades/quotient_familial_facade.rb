@@ -45,9 +45,7 @@ class QuotientFamilialFacade
   private
 
   def month_year_is_invalid
-    quotient_familial["mois"].blank? ||
-      quotient_familial["mois"].to_i.zero? ||
-      quotient_familial["annee"].blank? ||
+    quotient_familial["mois"].to_i.zero? ||
       quotient_familial["annee"].to_i.zero?
   end
 
