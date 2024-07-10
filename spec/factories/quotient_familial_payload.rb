@@ -43,7 +43,7 @@ FactoryBot.define do
     #   }
     # end
 
-    trait :cnaf_without_children_payload do
+    trait :cnaf_without_children do
       regime { "CNAF" }
       quotientFamilial { 2550 }
       annee { 2024 }
@@ -63,7 +63,7 @@ FactoryBot.define do
       end
     end
 
-    trait :msa_with_children_payload do
+    trait :msa_with_children do
       regime { "MSA" }
       quotientFamilial { 150 }
       annee { 2023 }
@@ -118,6 +118,8 @@ FactoryBot.define do
   end
 
   factory :quotient_familial_error_payload, class: Hash do
+    initialize_with { attributes.deep_stringify_keys }
+
     trait :not_found do
       error { "not_found" }
       reason { "Dossier allocataire inexistant. Le document ne peut être édité." }

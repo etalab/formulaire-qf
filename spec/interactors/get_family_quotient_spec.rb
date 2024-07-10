@@ -7,7 +7,7 @@ describe GetFamilyQuotient, type: :interactor do
 
     before do
       Current.quotient_familial = nil
-      stub_qf_v2
+      stub_quotient_familial(:cnaf_without_children)
     end
 
     it "calls the API" do
@@ -21,7 +21,7 @@ describe GetFamilyQuotient, type: :interactor do
 
     context "when the API returns an error" do
       before do
-        stub_qf_v2(kind: :not_found)
+        stub_quotient_familial_with_error(:not_found, status: 404)
       end
 
       it "sets up a failure" do
