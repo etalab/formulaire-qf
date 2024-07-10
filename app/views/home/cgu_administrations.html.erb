@@ -24,15 +24,15 @@
 		1.1. Finalité
 	</h3>
 
-	<p>Le <em>service national de collecte du quotient familial par les collectivités</em>, ci-après dénommé le « <strong>Service</strong> », permet la transmission effective d&#39;informations entre l&#39;<strong>Usager</strong> et l&#39;<strong>Administration</strong>, au travers du <em>Formulaire national de transmission du QF</em>, ci-après dénommé le « <strong>formulaire QF</strong> ».
+	<p>Le <em>service national de collecte du quotient familial par les collectivités</em>, ci-après dénommé le « <strong>Service</strong> », permet la transmission effective d&#39;informations entre l&#39;<strong>Usager</strong> et l&#39;<strong>Administration</strong>, au travers du <em>Formulaire national de transmission du QF</em>, ci-après dénommé le « <strong>Formulaire QF</strong> ».
 	Ce <strong>Formulaire QF</strong> et ce <strong>Service</strong> sont mis en oeuvre par la Direction interministérielle du numérique, ci-après dénommée « <strong>la DINUM</strong> » et visent à :</p>
 	<ul>
 	<li><p>Faciliter la mise en place d&#39;une tarification sociale dans le cadre de la cantine, du transport ou d&#39;autres aides spécifiques proposées par les collectivités, en récupérant plus facilement le quotient familial CAF ou MSA qui est un indicateur de ressource du ménage.</p>
 	</li>
 	<li><p>Permettre à un <strong>Usager</strong> de transmettre à l&#39;<strong>Administration</strong>, de façon sécurisée :</p>
 	<ul>
-	<li>ses données d’identité, c&#39;est-à-dire nom, prénoms, date de naissance, sexe, lieu de naissance et pays de naissance. L&#39;ensemble de ces données, récupérées via FranceConnect, sont ci-après dénommées « <strong>identité pivot</strong> » ;</li>
-	<li>son quotient familial CAF ou MSA (QF) et les données d&#39;identité des membres de sa famille (nom, prénoms, nom d&#39;usage, date de naissance et sexe). L&#39;ensemble de ces données, récupérées via l&#39;API Particulier, sont ci-après dénommées « <strong>données QF et composition familiale</strong> ».</li>
+	<li>ses données d’identité, c&#39;est-à-dire nom, prénoms, date de naissance, sexe, lieu de naissance et pays de naissance. L&#39;ensemble de ces données, récupérées via FranceConnect, sont ci-après dénommées « <strong>Identité pivot</strong> » ;</li>
+	<li>son quotient familial CAF ou MSA (QF) et les données d&#39;identité des membres de sa famille (nom, prénoms, nom d&#39;usage, date de naissance et sexe). L&#39;ensemble de ces données, récupérées via l&#39;API Particulier, sont ci-après dénommées « <strong>Données QF et composition familiale</strong> ».</li>
 	</ul>
 	</li>
 	<li><p>Permettre à l&#39;<strong>Administration</strong> de réutiliser l&#39;<strong>Identité pivot</strong>, a posteriori et pour toute la durée utile à la mise en place de la tarification sociale de l&#39;<strong>Usager</strong>, afin de mettre à jour les <strong>Données QF et composition familiale</strong> pour proposer une tarification au plus près de la situation de l&#39;<strong>Usager</strong>.</p>
@@ -44,7 +44,7 @@
 		1.2. Fonctionnement
 	</h3>
 
-	<p>Le <strong>Service</strong> accède à des données émanant d’administrations diverses et les transmet à des administrations diverses dans des conditions assurant le respect de la finalité, la protection des données et le respect des règles de confidentialité.</p>
+	<p>Le <strong>Service</strong> accède à des données émanant d’administrations diverses et les transmet à des <strong>Administrations</strong> diverses dans des conditions assurant le respect de la finalité, la protection des données et le respect des règles de confidentialité.</p>
 
 
 	<h4 id="1-2-1-r-colte-des-donn-es-usager-le-formulaire-qf">
@@ -73,8 +73,8 @@
 
 	<p>La consultation des <strong>Données QF et composition familiale</strong> dans <strong>Hubee</strong> peut se faire de deux façons : </p>
 	<ul>
-	<li>l&#39;<strong>Administration</strong> utilise l&#39;interface utilisateur, ci-après dénommée « <strong>Portail Hubee</strong> ».</li>
-	<li>l&#39;<strong>Administration</strong> utilise l&#39;API mise à disposition par <strong>Hubee</strong> pour intégrer les données directement dans son logiciel.</li>
+	<li>l&#39;<strong>Administration</strong> utilise l&#39;interface utilisateur, ci-après dénommée « <strong>Portail Hubee</strong> ». L'accès aux dossiers des <strong>Usagers</strong> dans le <strong>Portail Hubee</strong>, ci-après dénommé « <strong>Abonnement Hubee Formulaire QF</strong> », est possible dans un premier temps pour l'agent ayant effectué la demande d'habilitation au <strong>Service</strong>. Le processus d'adhésion est décrit en <a href="#2-1-1-adh-sion">2.1.1 de ce document</a>. Cet agent peut ajouter d'autres agents de l'administration à l'abonnement. Ces agents pourront alors consulter les dossiers des <strong>Usagers</strong> dans le <strong>Portail Hubee</strong>. L'<strong>Administration</strong> est responsable des données qu'elle récupère et par conséquent de la liste des agents qu'elle autorise à consulter l'<strong>Abonnement Hubee Formulaire QF</strong>;</li>
+	<li>l&#39;<strong>Administration</strong> utilise l&#39;API mise à disposition par <strong>Hubee</strong> pour intégrer les données directement dans son logiciel, dont la gestion technique peut être sous-traitée à un tiers externe, ci-après dénommé « <strong>Éditeur</strong> ». Les données récupérées par l'API doivent uniquement être accessibles aux agents duement habilités, et en aucun cas à l'<strong>Éditeur</strong>.</li>
 	</ul>
 
 
