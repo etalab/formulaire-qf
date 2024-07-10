@@ -55,7 +55,7 @@ RSpec.describe ShipmentData, type: :model do
     subject(:to_json) { shipment_data.to_json }
 
     let(:expected_json) do
-      '{"external_id":"external_id","pivot_identity":{"codePaysLieuDeNaissance":"99135","anneeDateDeNaissance":1979,"moisDateDeNaissance":10,"jourDateDeNaissance":15,"codeInseeLieuDeNaissance":null,"prenoms":["David"],"sexe":"M","nomUsage":"Heinemeier Hansson"},"quotient_familial":{"regime":"CNAF","allocataires":[{"nomNaissance":"DUBOIS","nomUsage":"DUBOIS","prenoms":"ANGELA","anneeDateDeNaissance":"1962","moisDateDeNaissance":"08","jourDateDeNaissance":"24","sexe":"F"}],"enfants":[{"nomNaissance":"Dujardin","nomUsuel":"Dujardin","prenoms":"Jean","sexe":"M","anneeDateDeNaissance":"2016","moisDateDeNaissance":"12","jourDateDeNaissance":"13"}],"quotientFamilial":2550,"annee":2024,"mois":2}}'
+      '{"external_id":"external_id","pivot_identity":{"codePaysLieuDeNaissance":"99135","anneeDateDeNaissance":1979,"moisDateDeNaissance":10,"jourDateDeNaissance":15,"codeInseeLieuDeNaissance":null,"prenoms":["David"],"sexe":"M","nomUsage":"Heinemeier Hansson"},"quotient_familial":{"regime":"CNAF","quotientFamilial":2550,"annee":2024,"mois":2,"allocataires":[{"nomNaissance":"DUBOIS","nomUsage":"DUBOIS","prenoms":"ANGELA","anneeDateDeNaissance":"1962","moisDateDeNaissance":"08","jourDateDeNaissance":"24","sexe":"F"}],"enfants":[{"nomNaissance":"Dujardin","nomUsuel":"Dujardin","prenoms":"Jean","sexe":"M","anneeDateDeNaissance":"2016","moisDateDeNaissance":"12","jourDateDeNaissance":"13"}]}}'
     end
 
     it "returns the shipment data as a json" do
@@ -85,6 +85,9 @@ RSpec.describe ShipmentData, type: :model do
           </pivot-identity>
           <quotient-familial>
             <regime>CNAF</regime>
+            <quotientFamilial type="integer">2550</quotientFamilial>
+            <annee type="integer">2024</annee>
+            <mois type="integer">2</mois>
             <allocataires type="array">
               <allocataire>
                 <nomNaissance>DUBOIS</nomNaissance>
@@ -107,9 +110,6 @@ RSpec.describe ShipmentData, type: :model do
                 <jourDateDeNaissance>13</jourDateDeNaissance>
               </enfant>
             </enfants>
-            <quotientFamilial type="integer">2550</quotientFamilial>
-            <annee type="integer">2024</annee>
-            <mois type="integer">2</mois>
           </quotient-familial>
         </hash>
       XML
