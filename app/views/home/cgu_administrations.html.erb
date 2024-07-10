@@ -99,11 +99,11 @@
 		1.3.2. En cas de prestataire externe
 	</h4>
 
-	<p>Les <strong>Administrations</strong> peuvent être amenées à sous-traiter la gestion de leur service informatique à des tiers externes, ci-après dénommé « <strong>Éditeurs</strong> ».</p>
+	<p>Les <strong>Administrations</strong> peuvent être amenées à sous-traiter la gestion de leur service informatique à des tiers externes, les <strong>Éditeurs</strong>.</p>
 	<p>⚠️ L&#39;<strong>Éditeur</strong> ne doit en aucun cas être le destinataire de la donnée.</p>
 	<p>Si l&#39;<strong>Administration</strong> utilise un logiciel sur étagère proposé par un <strong>Éditeur</strong> et souhaite bénéficier du <strong>Service</strong> l&#39;éditeur doit prendre contact avec API Particulier (api-particulier@api.gouv.fr) afin de mettre en place : </p>
 	<ul>
-	<li>un modèle de formulaire Datapass de demande d&#39;habilitation au <strong>Service</strong>, que l&#39;ensemble des <strong>Administrations</strong> devront compléter. Le <a href="https://form.typeform.com/to/GU90FCIE">questionnaire suivant</a> est transmis à l&#39;Éditeur dans l&#39;objectif d&#39;élaborer le modèle.</li>
+	<li>un modèle de formulaire Datapass de demande d&#39;habilitation au <strong>Service</strong>, que l&#39;ensemble des <strong>Administrations</strong> devront compléter. Le <a href="https://form.typeform.com/to/GU90FCIE" target="_blank">questionnaire suivant</a> est transmis à l&#39;Éditeur dans l&#39;objectif d&#39;élaborer le modèle.</li>
 	<li>un compte &quot;éditeur&quot; sur <strong>Hubee</strong>, qui permettra par la suite de récupérer les clés d&#39;accès techniques de chaque <strong>Administration</strong> pour brancher leur logiciel avec <strong>Hubee</strong>. </li>
 	</ul>
 	<p>Si l&#39;<strong>Administration</strong> se fait aider par un prestataire externe pour mettre en place le <strong>Service</strong>, il doit s&#39;assurer à ce que le prestataire, comme n&#39;importe quel tiers non-habilité, ne soit pas destinataire des données.</p>
@@ -132,7 +132,7 @@
 	En effectuant cette demande d&#39;accès au <strong>Service</strong>, l&#39;<strong>Administration</strong> obtient des habilitations à utiliser : </p>
 	<ul>
 	<li><strong>API Particulier</strong> (permettant d&#39;accéder aux <strong>Données QF et composition familiale</strong>)</li>
-	<li>FranceConnect (permettant d&#39;accéder à l&#39;<strong>Identité Pivot</strong>)</li>
+	<li><strong>FranceConnect</strong> (permettant d&#39;accéder à l&#39;<strong>Identité Pivot</strong>)</li>
 	<li><strong>Hubee</strong> (permettant de stocker la donnée et/ou d&#39;utiliser le <strong>Portail Hubee</strong>)</li>
 	</ul>
 	<p>Les conditions d&#39;utilisation de ces différents services s&#39;imposent à l&#39;<strong>Administration</strong> : </p>
@@ -142,10 +142,17 @@
 	<li><a href="https://www.hubee.numerique.gouv.fr/cgu">CGU <strong>Hubee</strong></a></li>
 	</ul>
 
+	<p>
+		En ce qui concerne <strong>Hubee</strong>, la validation de l'habilitation engendre la création d'un <strong>Abonnement Hubee Formulaire QF</strong> pour l'<strong>Administration</strong>. Cet abonnement permet de récupérer les données des <strong>Usagers</strong> via le <strong>Portail Hubee</strong> ou via l'API de <strong>Hubee</strong>.
+	</p>
+	<p>
+		Si l'<strong>Administration</strong> habilitée n'a pas les compétences techniques pour intégrer une API et n'a pas de logiciel <strong>Éditeur</strong>, seul l'accès au <strong>Portail Hubee</strong> lui sera délivré. Aucun jeton <strong>API Particulier ne lui sera délivré</strong>. Concrêtement, à l'issue du processus d'adhésion, un <strong>Abonnement Hubee Formulaire QF</strong> sera rattaché au compte de l'<strong>Administration</strong> sur le <strong>Portail Hubee</strong>. L'accès à cet abonnement sera au départ possible uniquement pour la personne ayant effectuée la demande d'habilitation, au travers de l'adresse e-mail qu'elle aura utilisée. Cette personne pourra délivrer des accès à d'autres agents habilités à utiliser la donnée pour la finalité indiquée dans l'habilitation.
+	</p>
 
 	<h4 id="2-1-2-renouvellement-de-l-acc-s-technique">
 		2.1.2. Renouvellement de l&#39;accès technique
 	</h4>
+	<p><i>Cette partie concerne uniquement les <strong>Administrations</strong> ayant obtenu un jeton <strong>API Particulier</strong> et par conséquent ne concerne pas les <strong>Administrations</strong> qui ont été seulement habilitées à utiliser le <strong>Portail Hubee</strong></i></p>
 
 	<p>L&#39;habilitation délivrée n&#39;a pas de durée de vie, elle reste valable tant que le cadre juridique est respecté.</p>
 	<p>En revanche, pour des raisons de sécurité, le jeton <strong>API Particulier</strong>, indispensable pour accéder aux <strong>Données QF et composition familial</strong> et donc faire fonctionner le <strong>Service</strong>, est émis avec une durée de vie de 18 mois.
@@ -175,9 +182,9 @@
 	<p>L&#39;<strong>Administration</strong> s’engage à ne pas commercialiser les données reçues et à ne pas les communiquer à des tiers en dehors des cas prévus par la loi.</p>
 	<p>L&#39;<strong>Administration</strong> s’engage à mettre en œuvre les mesures de sécurité techniques et organisationnelles nécessaires au bon fonctionnement du <strong>Service</strong>, notamment en matière de traçabilité interne, et à informer, le cas échéant, la <strong>DINUM</strong> de toute difficulté de nature à compromettre le bon fonctionnement du <strong>Service</strong>. En particulier : </p>
 	<ul>
-	<li>elle garantit que l&#39;accès aux données par <strong>Hubee</strong>, par le <strong>Portail Hubee</strong> ou par son propre logiciel est uniquement possible aux agents duement habilités ;</li>
-	<li>elle garantit que l&#39;accès au <strong>Compte API Particulier</strong> est uniquement rendu accessible aux agents duement habilités ;</li>
-	<li>elle garantit la confidentialité du jeton d&#39;accès <strong>API Particulier</strong>. Dès lors que la confidentialité du jeton a pu être compromise, y compris de manière accidentelle, le jeton doit être révoqué. 
+	<li>elle garantit que l&#39;accès aux données par <strong>Hubee</strong>, par le <strong>Portail Hubee</strong> ou par son propre logiciel, est uniquement possible aux agents duement habilités ;</li>
+	<li>elle garantit que l&#39;accès au <strong>Compte API Particulier</strong> est uniquement rendu accessible aux agents duement habilités - <i>Pour les administrations ayant obtenu un jeton API Particulier</i> -;</li>
+	<li>elle garantit la confidentialité du jeton d&#39;accès <strong>API Particulier</strong> - <i>Pour les administrations ayant obtenu un jeton API Particulier</i> -. Dès lors que la confidentialité du jeton a pu être compromise, y compris de manière accidentelle, le jeton doit être révoqué. 
 	À ces fins, l&#39;<strong>Administration</strong> s’engage à alerter sans délai la <strong>DINUM</strong> en envoyant un courriel à support@particulier.api.gouv.fr.</li>
 	</ul>
 	<p>En cas d’incident grave dans l’utilisation du <strong>Service</strong>, l&#39;<strong>Administration</strong> s’engage à coopérer avec la <strong>DINUM</strong> dans la réalisation d’un audit, en fournissant toutes les informations nécessaires.</p>
