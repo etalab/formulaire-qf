@@ -3,7 +3,7 @@ class CollectivitiesController < ApplicationController
   before_action :move_params_to_session, only: :show
 
   def index
-    @collectivities = Collectivity.active
+    @collectivities = Collectivity.active.order(:name)
   end
 
   def show
