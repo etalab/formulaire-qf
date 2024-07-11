@@ -32,21 +32,25 @@ class HubEE::Api
 
   def event(id:, case_id:)
     url = "#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}"
+
     get(url)
   end
 
   def mark_folder_complete(folder_id:)
     url = "#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}"
+
     patch(url, body: {"globalStatus" => "HUBEE_COMPLETED"})
   end
 
   def notifications(items_count: 50)
     url = "#{Settings.hubee.base_url}/teledossiers/v1/notifications"
+
     get(url, query_params: {maxResult: items_count})
   end
 
   def update_event(id:, case_id:, status: "RECEIVED")
     url = "#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events/#{id}"
+
     patch(url, body: {"status" => status})
   end
 
@@ -73,9 +77,12 @@ class HubEE::Api
     client_secret = Settings.hubee.client_secret
     authorization_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
 
-    response = post(url, body: {scope: "OSL", grant_type: "client_credentials"}) do |request|
+    body = {scope: "OSL", grant_type: "client_credentials"}
+
+    response = post(url, body:) do |request|
       request["Content-Type"] = "application/json"
       request["Authorization"] = "Basic #{authorization_token}"
+      request.body = body.to_json
     end
 
     response.body.dig("access_token")
