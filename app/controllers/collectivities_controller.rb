@@ -39,7 +39,7 @@ class CollectivitiesController < ApplicationController
 
   def set_collectivity
     @collectivity = Collectivity.active.find_by!(siret: params[:id])
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     flash[:error] = {
       title: t(".not_found_error.title"),
       text: t(".not_found_error.text"),
