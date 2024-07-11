@@ -38,7 +38,14 @@ class CollectivitiesController < ApplicationController
   end
 
   def set_collectivity
-    @collectivity = Collectivity.find_by!(siret: params[:id])
+    @collectivity = Collectivity.active.find_by!(siret: params[:id])
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:error] = {
+      title: t(".not_found_error.title"),
+      text: t(".not_found_error.text"),
+    }
+
+    redirect_to collectivities_path
   end
 
   def shipment_data_is_present?

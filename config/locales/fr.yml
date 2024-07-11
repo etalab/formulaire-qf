@@ -70,6 +70,9 @@ fr:
         notice:
           text: Seules les collectivités de cette liste proposent actuellement ce service.
     show:
+      not_found_error:
+        title: Collectivité non trouvée
+        text: La collectivité avec le siret %{siret} n'existe pas ou ne propose pas ce service.
       browser_title: Se connecter via FranceConnect
       banner:
         text: |
