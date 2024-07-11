@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :france_connect_payload, class: Hash do
+    initialize_with { attributes.deep_stringify_keys }
+
     sub { "some_sub" }
     family_name { "TESTMAN" }
     given_name { "Johnny Paul René" }

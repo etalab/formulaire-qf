@@ -16,7 +16,7 @@ def mock_france_connect
       expires: true,
     },
     extra: {
-      raw_info: FactoryBot.attributes_for(:france_connect_payload),
+      raw_info: FactoryBot.build(:france_connect_payload),
     },
   })
 end
@@ -26,15 +26,15 @@ Sachantque("j'ai un compte sur FranceConnect") do
 end
 
 Sachantque("j'ai un quotient familial CAF sans enfants") do
-  stub_qf_v2
+  stub_quotient_familial(:cnaf_without_children)
 end
 
 Sachantque("j'ai un quotient familial msa avec des enfants") do
-  stub_qf_v2(kind: :msa_with_children)
+  stub_quotient_familial(:msa_with_children)
 end
 
 Sachantque("mon quotient familial est indisponible") do
-  stub_qf_v2(kind: :not_found)
+  stub_quotient_familial_with_error(:not_found, status: 404)
 end
 
 Sachantque("hubee peut recevoir un dossier") do

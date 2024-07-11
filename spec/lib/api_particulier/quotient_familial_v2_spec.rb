@@ -41,7 +41,7 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
     end
 
     before do
-      stub_qf_v2
+      stub_quotient_familial(:cnaf_without_children)
     end
 
     it "calls the API" do
@@ -50,7 +50,7 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
 
     context "when there is an error" do
       before do
-        stub_qf_v2(kind: :not_found)
+        stub_quotient_familial_with_error(:not_found, status: 404)
       end
 
       it "returns an error" do
