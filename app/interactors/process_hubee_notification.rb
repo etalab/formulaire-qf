@@ -20,7 +20,7 @@ class ProcessHubEENotification < BaseInteractor
   private
 
   def event
-    @event ||= HubEE::Event.new(session.event(id: notification.event_id, case_id: notification.case_id))
+    @event ||= HubEE::Event.new(session.event(id: notification.event_id, case_id: notification.case_id).body)
   end
 
   def find_and_update_shipment
