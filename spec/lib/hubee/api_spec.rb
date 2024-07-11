@@ -15,13 +15,13 @@ RSpec.describe HubEE::Api, type: :api do
     end
 
     describe "#active_subscriptions" do
-      subject(:active_subscriptions) { session.active_subscriptions }
+      subject(:response) { session.active_subscriptions }
 
       before do
         stub_hubee_active_subscriptions
       end
 
-      let(:expected_response) do
+      let(:expected_body) do
         array_including(
           a_hash_including(
             "subscriber" => a_hash_including(
@@ -33,35 +33,55 @@ RSpec.describe HubEE::Api, type: :api do
         )
       end
 
+      it { is_expected.to be_a_success }
+
       it "returns the active subscriptions" do
-        expect(active_subscriptions).to match(expected_response)
+        expect(response.body).to match(expected_body)
       end
     end
 
     describe "#create_folder" do
-      subject(:create_folder) { session.create_folder(folder: folder) }
+      subject(:response) { session.create_folder(folder: folder) }
 
       let(:attachments) { [json_attachment, xml_attachment, pdf_attachment] }
       let(:cases) { [build(:hubee_case)] }
-      let(:json_attachment) { build(:hubee_attachment, :with_file) }
-      let(:xml_attachment) { build(:hubee_attachment, :with_file, file_name: "FormulaireQF.xml", mime_type: "application/xml", file_size: 1543) }
-      let(:pdf_attachment) { build(:hubee_attachment, :with_file, file_name: "quotient_familial_Heinemeier_Hansson_David.pdf", mime_type: "application/pdf", file_size: 3079) }
-
       let(:folder) { build(:hubee_folder, attachments: attachments, cases: cases) }
+      let(:json_attachment) { build(:hubee_attachment, :with_file) }
+      let(:pdf_attachment) { build(:hubee_attachment, :with_file, file_name: "quotient_familial_Heinemeier_Hansson_David.pdf", mime_type: "application/pdf", file_size: 3079) }
+      let(:xml_attachment) { build(:hubee_attachment, :with_file, file_name: "FormulaireQF.xml", mime_type: "application/xml", file_size: 1543) }
 
       context "when the folder is succesfully created" do
+        let(:expected_body) do
+          a_hash_including(
+            "id" => "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "attachments" => array_including(
+              a_hash_including(
+                "id" => "a66abb0c-52d1-4e50-9195-22526fb7ce92"
+              ),
+              a_hash_including(
+                "id" => "a66abb0c-52d1-4e50-9195-22526fb7ce93"
+              ),
+              a_hash_including(
+                "id" => "a66abb0c-52d1-4e50-9195-22526fb7ce94"
+              )
+            )
+          )
+        end
+
         before do
           stub_hubee_create_folder
         end
 
-        it "fills in the ids from the response" do
-          expect(create_folder).to have_attributes(id: "3fa85f64-5717-4562-b3fc-2c963f66afa6", attachments: [an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce92"), an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce93"), an_object_having_attributes(id: "a66abb0c-52d1-4e50-9195-22526fb7ce94")])
+        it { is_expected.to be_a_success }
+
+        it "returns the created the folder" do
+          expect(response.body).to match(expected_body)
         end
       end
     end
 
     describe "#delete_folder" do
-      subject(:delete_folder) { session.delete_folder(folder_id: folder_id) }
+      subject(:response) { session.delete_folder(folder_id: folder_id) }
 
       let(:folder_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
 
@@ -70,14 +90,16 @@ RSpec.describe HubEE::Api, type: :api do
           stub_hubee_delete_folder
         end
 
+        it { is_expected.to be_a_success }
+
         it "deletes the folder" do
-          expect(delete_folder).to have_attributes({})
+          expect(response.code).to eq(204)
         end
       end
     end
 
     describe "#delete_notification" do
-      subject(:delete_notification) { session.delete_notification(notification_id: notification_id) }
+      subject(:response) { session.delete_notification(notification_id: notification_id) }
 
       let(:notification_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
 
@@ -86,14 +108,16 @@ RSpec.describe HubEE::Api, type: :api do
           stub_hubee_delete_notification
         end
 
+        it { is_expected.to be_a_success }
+
         it "deletes the notification" do
-          expect(delete_notification).to have_attributes({})
+          expect(response.code).to eq(204)
         end
       end
     end
 
     describe "#event" do
-      subject(:event) { session.event(id:, case_id:) }
+      subject(:response) { session.event(id:, case_id:) }
 
       let(:id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
       let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
@@ -103,48 +127,16 @@ RSpec.describe HubEE::Api, type: :api do
           stub_hubee_event
         end
 
+        it { is_expected.to be_a_success }
+
         it "retrieves the event" do
-          expect(event).to include("id" => "905055ea-ed37-4556-9db6-97ba89fcb91f")
-        end
-      end
-    end
-
-    describe "#update_event" do
-      subject(:update_event) { session.update_event(id:, case_id:) }
-
-      let(:id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
-      let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
-
-      context "when the event is succesfully updated" do
-        before do
-          stub_hubee_update_event
-        end
-
-        it "updates the event" do
-          expect(update_event).to have_attributes({})
-        end
-      end
-    end
-
-    describe "#upload_attachment" do
-      subject(:upload_attachment) { session.upload_attachment(attachment: attachment, folder_id: folder_id) }
-
-      let(:attachment) { build(:hubee_attachment, :with_file, id: "a66abb0c-52d1-4e50-9195-22526fb7ce92") }
-      let(:folder_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
-
-      context "when the attachment is succesfully uploaded" do
-        before do
-          stub_hubee_upload_attachment
-        end
-
-        it "uploads the attachment" do
-          expect(upload_attachment).to have_attributes({})
+          expect(response.body).to include("id" => "905055ea-ed37-4556-9db6-97ba89fcb91f")
         end
       end
     end
 
     describe "#mark_folder_complete" do
-      subject(:mark_folder_complete) { session.mark_folder_complete(folder_id: folder_id) }
+      subject(:response) { session.mark_folder_complete(folder_id: folder_id) }
 
       let(:folder_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
 
@@ -153,14 +145,16 @@ RSpec.describe HubEE::Api, type: :api do
           stub_hubee_mark_folder_complete
         end
 
+        it { is_expected.to be_a_success }
+
         it "marks the folder as complete" do
-          expect(mark_folder_complete).to have_attributes({})
+          expect(response.code).to eq(204)
         end
       end
     end
 
     describe "#notifications" do
-      subject(:notifications) { session.notifications }
+      subject(:response) { session.notifications }
 
       before do
         stub_hubee_notifications
@@ -177,8 +171,48 @@ RSpec.describe HubEE::Api, type: :api do
         )
       end
 
+      it { is_expected.to be_a_success }
+
       it "returns the notifications" do
-        expect(notifications).to match(expected_response)
+        expect(response.body).to match(expected_response)
+      end
+    end
+
+    describe "#update_event" do
+      subject(:response) { session.update_event(id:, case_id:) }
+
+      let(:id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+      let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the event is succesfully updated" do
+        before do
+          stub_hubee_update_event
+        end
+
+        it { is_expected.to be_a_success }
+
+        it "updates the event" do
+          expect(response.code).to eq(204)
+        end
+      end
+    end
+
+    describe "#upload_attachment" do
+      subject(:response) { session.upload_attachment(attachment: attachment, folder_id: folder_id) }
+
+      let(:attachment) { build(:hubee_attachment, :with_file, id: "a66abb0c-52d1-4e50-9195-22526fb7ce92") }
+      let(:folder_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the attachment is succesfully uploaded" do
+        before do
+          stub_hubee_upload_attachment
+        end
+
+        it { is_expected.to be_a_success }
+
+        it "uploads the attachment" do
+          expect(response.code).to eq(204)
+        end
       end
     end
   end
