@@ -31,6 +31,12 @@ RSpec.describe HubEE::Event, type: :model do
     }
   end
 
+  describe "#case_current_status" do
+    it "returns the case current status" do
+      expect(event.case_current_status).to eq("SENT")
+    end
+  end
+
   describe "#case_new_status" do
     it "returns the case new status" do
       expect(event.case_new_status).to eq("SI_RECEIVED")

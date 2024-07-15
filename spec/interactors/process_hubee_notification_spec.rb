@@ -92,12 +92,25 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
                 context "when the event is a final status" do
                   let(:status) { "DONE" }
 
+                  before do
+                    allow(session).to receive(:close_case)
+                    allow(session).to receive(:create_event)
+                    allow(session).to receive(:close_folder)
+                  end
+
                   it "removes hubee ids" do
                     expect {
                       interactor
                       shipment.reload
                     }.to change { shipment.hubee_folder_id }.to(nil)
                       .and change { shipment.hubee_case_id }.to(nil)
+                  end
+
+                  it "closes the folder" do
+                    expect(session).to receive(:close_case)
+                    expect(session).to receive(:create_event)
+                    expect(session).to receive(:close_folder)
+                    interactor
                   end
                 end
 
