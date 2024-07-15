@@ -42,7 +42,7 @@ class CollectivitiesController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     flash[:error] = {
       title: t(".not_found_error.title"),
-      text: t(".not_found_error.text"),
+      text: t(".not_found_error.text", siret: params[:id]),
     }
 
     redirect_to collectivities_path
