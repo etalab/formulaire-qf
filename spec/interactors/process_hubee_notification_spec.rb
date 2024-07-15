@@ -44,12 +44,13 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
         "updateDateTime" => nil,
       }
     end
+    let(:event_response) { instance_double(HubEE::Api::Response, body: event_payload) }
     let(:session) { instance_double(HubEE::Api) }
     let(:status) { "SI_RECEIVED" }
 
     before do
       allow(HubEE::Api).to receive(:session).and_return(session)
-      allow(session).to receive(:event).and_return(event_payload)
+      allow(session).to receive(:event).and_return(event_response)
       allow(session).to receive(:update_event)
       allow(session).to receive(:delete_notification)
     end
