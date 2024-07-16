@@ -50,7 +50,7 @@ fr:
           - title: Rapide et instantané
             content: Au dernier clic de cette démarche de 4min, votre collectivité réceptionne votre identité pivot et votre quotient familial ;
           - title: Renouvelé automatiquement
-            content: Vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la collectivité mettra à jour de façon proactive votre quotient familial
+            content: Si votre commune a mis en place cette fonctionnalité, vous n’avez plus besoin de refournir les justificatifs chaque mois ou année, car avec vos données d’identité, la collectivité mettra à jour de façon proactive votre quotient familial
         link: En savoir plus sur le fonctionnement de ce service
       which_informations:
         title: Quelles informations vous seront demandées ?
@@ -124,7 +124,7 @@ fr:
       info:
         title: Ce qui va se passer
         paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
-        paragraph_2: "%{collectivity} conservera vos données d'identité si sa politique tarifaire prévoit une mise à jour régulière du quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
+        paragraph_2: "Si %{collectivity} a une politique tarifaire qui prévoit de demander régulièrement votre quotient familial et qu'elle a mis en place la fonctionnalité technique de mise à jour automatique, elle conservera vos données d'identité pour actualiser votre quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
         link: "En savoir plus sur la gestion de vos données personnelles"
       next_button: "Transmettre les données à la collectivité"
     show:
