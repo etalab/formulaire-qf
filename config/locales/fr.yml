@@ -141,7 +141,7 @@ fr:
       user_data:
         quotient_familial:
           title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
-    error:
+    qf_error:
       browser_title: Échec de la démarche
       title: La récupération de votre quotient familial n'a pas fonctionné
       text: |
