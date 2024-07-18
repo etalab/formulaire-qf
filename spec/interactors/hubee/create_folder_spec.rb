@@ -36,6 +36,20 @@ RSpec.describe HubEE::CreateFolder, type: :interactor do
     it "creates the folder" do
       expect(interactor.folder).to match(expected_body)
     end
+
+    context "when hubee returns an error" do
+      before do
+        stub_hubee_create_folder_with_error
+      end
+
+      it "makes an interactor failure" do
+        expect(interactor.success?).to be false
+      end
+
+      it "returns the error message in the context" do
+        expect(interactor.message).to eq({"error" => "Something went wrong"})
+      end
+    end
   end
 
   describe "#rollback" do

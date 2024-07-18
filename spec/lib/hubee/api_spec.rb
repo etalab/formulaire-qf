@@ -78,6 +78,22 @@ RSpec.describe HubEE::Api, type: :api do
           expect(response.body).to match(expected_body)
         end
       end
+
+      context "when hubee returns an error" do
+        before do
+          stub_hubee_create_folder_with_error
+        end
+
+        it { is_expected.not_to be_a_success }
+
+        it "sends a message to sentry" do
+          expect(Sentry).to receive(:capture_message).with(
+            "Hubee Error 500 on POST /teledossiers/v1/folders",
+            anything
+          )
+          response
+        end
+      end
     end
 
     describe "#delete_folder" do

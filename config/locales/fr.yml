@@ -143,10 +143,15 @@ fr:
           title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
     error:
       browser_title: Échec de la démarche
+    qf_error:
       title: La récupération de votre quotient familial n'a pas fonctionné
       text: |
         Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
         <strong>Raison: %{message}</strong>
+    hubee_error:
+      title: L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné
+      text: |
+        Nous sommes désolés, une erreur est survenue lors de l'envoi de vos données à %{collectivity}.
 
   errors:
     title: "Une erreur est survenue"

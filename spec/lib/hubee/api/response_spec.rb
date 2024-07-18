@@ -5,7 +5,8 @@ describe HubEE::Api::Response do
 
   let(:header) { {} }
   let(:net_body) { '{"key": "value"}' }
-  let(:net_response) { double("Net::HTTPSuccess", body: net_body, header:, code: "200") }
+  let(:code) { "200" }
+  let(:net_response) { double("Net::HTTPSuccess", body: net_body, header:, code: code) }
 
   describe "#body" do
     subject(:body) { response.body }
@@ -27,10 +28,16 @@ describe HubEE::Api::Response do
     context "when the response is not zipped" do
       it { is_expected.to eq("key" => "value") }
     end
+
+    context "when the body is not a valid json" do
+      let(:net_body) { "page not found (JSON::ParserError)\n" }
+
+      it { is_expected.to eq(net_body) }
+    end
   end
 
   describe "#code" do
-    subject(:code) { response.code }
+    subject { response.code }
 
     it { is_expected.to eq 200 }
   end

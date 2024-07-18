@@ -5,7 +5,11 @@ class HubEE::CreateFolder < BaseInteractor
 
   def call
     response = context.session.create_folder(folder: context.folder)
-    context.folder = enhance_folder(response.body)
+    if response.success?
+      context.folder = enhance_folder(response.body)
+    else
+      context.fail!(message: response.body)
+    end
   end
 
   def rollback

@@ -26,7 +26,12 @@ class ShipmentsController < ApplicationController
     if result.success?
       redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment.reference)
     else
-      raise
+      flash[:error] = {
+        title: t(".hubee_error.title"),
+        text: t(".hubee_error.text", collectivity: @collectivity.name),
+      }
+
+      redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
     end
   end
 

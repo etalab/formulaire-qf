@@ -53,3 +53,11 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur "S’identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Retourner sur le site de ma collectivité"
+
+  Scénario: L'envoi de mes données à hubee a échoué
+    Et que j'ai un quotient familial CAF sans enfants
+    Et que l'envoi d'un dossier à hubee échouera
+    Et que je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
+    Et la page contient "Comme alternative vous pouvez télécharger votre attestation"

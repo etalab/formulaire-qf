@@ -9,6 +9,8 @@ class HubEE::Api::Response
 
   def body
     JSON.parse(page || "{}")
+  rescue JSON::ParserError
+    page
   end
 
   def code
