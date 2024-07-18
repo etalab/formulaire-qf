@@ -147,6 +147,15 @@ module ProviderStubs::HubEE
       }.to_json, headers: {})
   end
 
+  def stub_hubee_create_folder_with_error
+    allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
+
+    stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
+      .to_return(status: 500, body:  {
+        error: "Something went wrong",
+      }.to_json, headers: {})
+  end
+
   def stub_hubee_notifications
     notifications = [
       {
