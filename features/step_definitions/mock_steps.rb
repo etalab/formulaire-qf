@@ -44,3 +44,8 @@ Sachantque("hubee peut recevoir un dossier") do
   stub_hubee_mark_folder_complete
   stub_hubee_delete_folder
 end
+
+Sachantque("l'envoi d'un dossier à hubee échouera") do
+  stub_hubee_token
+  stub_hubee_create_folder_with_error
+end
