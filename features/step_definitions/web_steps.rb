@@ -10,11 +10,6 @@ Sachantque("j'arrive sur le formulaire depuis le portail de ma collectivité") d
   visit "/collectivites/21040107100019/me_connecter?external_id=123&redirect_uri=http://real_uri"
 end
 
-Soit("l'existence de la collectivité de Majastres") do
-  Collectivity.find_by(siret: "21040107100019") ||
-    FactoryBot.create(:collectivity, name: "Majastres", siret: "21040107100019", code_cog: "04107", status: "active")
-end
-
 Alors("la page contient {string}") do |content|
   expect(page).to have_content(content)
 end
@@ -36,6 +31,14 @@ end
 
 Quand("je sélectionne {string} pour {string}") do |option, name|
   select option, from: name
+end
+
+Alors("l'option {string} existe pour {string}") do |option, name|
+  expect(page).to have_select(name, with_options: [option])
+end
+
+Alors("l'option {string} n'existe pas pour {string}") do |option, name|
+  expect(page).not_to have_select(name, with_options: [option])
 end
 
 # rubocop:disable Lint/Debugger
