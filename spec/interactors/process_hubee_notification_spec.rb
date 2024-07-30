@@ -72,7 +72,9 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
         context "when the event is fetch correctly" do
           context "when the event is sent" do
             context "when the event is a status update" do
-              let!(:shipment) { create(:shipment, hubee_case_id: "1234") }
+              let!(:shipment) { create(:shipment, hubee_case_id: case_id) }
+
+              let(:case_id) { "1234" }
 
               it "update the hubee event" do
                 expect(session).to receive(:update_event)
@@ -85,42 +87,64 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
                   interactor
                 end
 
-                it "updates the shipment status" do
-                  expect { interactor }.to change { shipment.reload.hubee_status }.to("si_received")
+                context "when there is a matching shipment" do
+                  it "updates the shipment status" do
+                    expect { interactor }.to change { shipment.reload.hubee_status }.to("si_received")
+                  end
+
+                  context "when the event is a final status" do
+                    let(:status) { "DONE" }
+
+                    before do
+                      allow(session).to receive(:close_case)
+                      allow(session).to receive(:create_event)
+                      allow(session).to receive(:close_folder)
+                    end
+
+                    it "removes hubee ids" do
+                      expect {
+                        interactor
+                        shipment.reload
+                      }.to change { shipment.hubee_folder_id }.to(nil)
+                        .and change { shipment.hubee_case_id }.to(nil)
+                    end
+
+                    it "closes the folder" do
+                      expect(session).to receive(:close_case)
+                      expect(session).to receive(:create_event)
+                      expect(session).to receive(:close_folder)
+                      interactor
+                    end
+                  end
+
+                  context "when the event is not a final status" do
+                    it "does not remove hubee ids" do
+                      expect {
+                        interactor
+                        shipment.reload
+                      }.to not_change { shipment.hubee_folder_id }
+                        .and not_change { shipment.hubee_case_id }
+                    end
+                  end
                 end
 
-                context "when the event is a final status" do
+                context "when there is no matching shipment" do
+                  let(:case_id) { "5678" }
                   let(:status) { "DONE" }
 
                   before do
                     allow(session).to receive(:close_case)
                     allow(session).to receive(:create_event)
-                    allow(session).to receive(:close_folder)
                   end
 
-                  it "removes hubee ids" do
-                    expect {
-                      interactor
-                      shipment.reload
-                    }.to change { shipment.hubee_folder_id }.to(nil)
-                      .and change { shipment.hubee_case_id }.to(nil)
-                  end
-
-                  it "closes the folder" do
-                    expect(session).to receive(:close_case)
-                    expect(session).to receive(:create_event)
-                    expect(session).to receive(:close_folder)
+                  it "does not close the folder" do
+                    expect(session).not_to receive(:close_folder)
                     interactor
                   end
-                end
 
-                context "when the event is not a final status" do
-                  it "does not remove hubee ids" do
-                    expect {
-                      interactor
-                      shipment.reload
-                    }.to not_change { shipment.hubee_folder_id }
-                      .and not_change { shipment.hubee_case_id }
+                  it "logs an error" do
+                    expect(Sentry).to receive(:capture_message).with("No shipment found for case_id: 1234, cannot delete folder.")
+                    interactor
                   end
                 end
               end
