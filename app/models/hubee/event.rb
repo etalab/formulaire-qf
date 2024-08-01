@@ -7,6 +7,10 @@ module HubEE
       @event = event
     end
 
+    def case_current_status
+      @event["caseCurrentStatus"]
+    end
+
     def case_new_status
       @event["caseNewStatus"]
     end

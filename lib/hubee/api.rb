@@ -9,7 +9,34 @@ class HubEE::Api
 
   def active_subscriptions
     url = "#{Settings.hubee.base_url}/referential/v1/subscriptions"
+
     get(url, query_params: {maxResult: 5000, status: "Actif", processCode: "FormulaireQF"})
+  end
+
+  def close_case(case_id:)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}"
+
+    patch(url, body: {"status" => "CLOSED"})
+  end
+
+  def close_folder(folder_id:)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}"
+
+    patch(url, body: {"globalStatus" => "CLOSED"})
+  end
+
+  def create_event(case_id:, current_status:, new_status:)
+    url = "#{Settings.hubee.base_url}/teledossiers/v1/cases/#{case_id}/events"
+    body = {
+      "message" => "Dossier traité par le service.",
+      "actionType" => "STATUS_UPDATE",
+      "author" => "DINUM",
+      "notification" => true,
+      "caseCurrentStatus" => current_status,
+      "caseNewStatus" => new_status,
+    }
+
+    post(url, body:)
   end
 
   def create_folder(folder:)

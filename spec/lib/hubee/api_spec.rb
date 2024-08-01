@@ -40,6 +40,62 @@ RSpec.describe HubEE::Api, type: :api do
       end
     end
 
+    describe "#close_case" do
+      subject(:response) { session.close_case(case_id:) }
+
+      let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the case is succesfully closed" do
+        before do
+          stub_hubee_close_case
+        end
+
+        it { is_expected.to be_a_success }
+
+        it "closes the case" do
+          expect(response.code).to eq(204)
+        end
+      end
+    end
+
+    describe "#close_folder" do
+      subject(:response) { session.close_folder(folder_id:) }
+
+      let(:folder_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when the folder is succesfully closed" do
+        before do
+          stub_hubee_close_folder
+        end
+
+        it { is_expected.to be_a_success }
+
+        it "closes the folder" do
+          expect(response.code).to eq(204)
+        end
+      end
+    end
+
+    describe "#create_event" do
+      subject(:response) { session.create_event(case_id:, current_status:, new_status:) }
+
+      let(:case_id) { "3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+      let(:current_status) { "IN_PROGRESS" }
+      let(:new_status) { "CLOSED" }
+
+      context "when the event is succesfully created" do
+        before do
+          stub_hubee_create_event
+        end
+
+        it { is_expected.to be_a_success }
+
+        it "creates the event" do
+          expect(response.code).to eq(201)
+        end
+      end
+    end
+
     describe "#create_folder" do
       subject(:response) { session.create_folder(folder: folder) }
 

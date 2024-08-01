@@ -79,6 +79,21 @@ module ProviderStubs::HubEE
       )
   end
 
+  def stub_hubee_close_case
+    stub_request(:patch, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/cases/3fa85f64-5717-4562-b3fc-2c963f66afa6")
+      .to_return(status: 204, body: "", headers: {})
+  end
+
+  def stub_hubee_close_folder
+    stub_request(:patch, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6")
+      .to_return(status: 204, body: "", headers: {})
+  end
+
+  def stub_hubee_create_event
+    stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/cases/3fa85f64-5717-4562-b3fc-2c963f66afa6/events")
+      .to_return(status: 201, body: "", headers: {})
+  end
+
   def stub_hubee_create_folder(names: "Heinemeier_Hansson_David")
     allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
 
