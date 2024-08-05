@@ -75,3 +75,31 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
         run: bin/rails db:setup; bundle exec cucumber
+
+  continuous-deployment:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs:
+      - unit-test
+      - e2e-test
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        host: [services1, services2]
+      fail-fast: false
+    environment: production
+    env:
+      DEPLOY_HTTPS_LOGIN: ${{ secrets.DEPLOY_HTTPS_LOGIN }}
+      DEPLOY_HTTPS_PASSWORD: ${{ secrets.DEPLOY_HTTPS_PASSWORD }}
+      DEPLOY_HTTPS_REQUEST_URL: ${{ vars.DEPLOY_HTTPS_REQUEST_URL }}
+      DEPLOY_HTTPS_RESPONSE_URL: ${{ vars.DEPLOY_HTTPS_RESPONSE_URL }}
+      DEPLOY_HOST: host_${{ matrix.host }}
+      DEPLOY_APP: formulaire_qf_production
+      DEPLOY_BRANCH: main
+    steps:
+      - name: Download and run deploy script
+        shell: bash
+        run: |
+          git clone https://github.com/etalab/api-entreprise-integration
+          cd api-entreprise-integration
+          ./deploy-parteprise.sh
