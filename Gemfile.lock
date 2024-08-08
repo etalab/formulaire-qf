@@ -64,6 +64,13 @@ GEM
       activemodel (= 7.1.3.4)
       activesupport (= 7.1.3.4)
       timeout (>= 0.4.0)
+    activerecord-session_store (2.1.0)
+      actionpack (>= 6.1)
+      activerecord (>= 6.1)
+      cgi (>= 0.3.6)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.8, < 4)
+      railties (>= 6.1)
     activestorage (7.1.3.4)
       actionpack (= 7.1.3.4)
       activejob (= 7.1.3.4)
@@ -105,6 +112,7 @@ GEM
       xpath (~> 3.2)
     case_transform (0.2)
       activesupport
+    cgi (0.4.1)
     chunky_png (1.4.0)
     coderay (1.1.3)
     concurrent-ruby (1.3.3)
@@ -253,6 +261,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.24.1)
     msgpack (1.7.2)
+    multi_json (1.15.0)
     multi_test (1.1.0)
     mutex_m (0.2.0)
     nenv (0.3.0)
@@ -526,6 +535,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activerecord-session_store
   bootsnap
   brakeman
   capybara
