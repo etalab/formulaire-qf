@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def create
+    log_fc_stuff
+
     session[:raw_info] = request.env["omniauth.auth"]["extra"]["raw_info"]
     session[:france_connect_token] = request.env["omniauth.auth"]["credentials"]["token"]
     session[:france_connect_token_hint] = request.env["omniauth.auth"]["credentials"]["id_token"]
@@ -34,5 +36,12 @@ class SessionsController < ApplicationController
 
   def fc_callback
     redirect_to root_path
+  end
+
+  def log_fc_stuff
+    key = ActiveSupport::KeyGenerator.new(Rails.application.credentials.hubee.client_id).generate_key("salt", 32)
+    encryptor = ActiveSupport::MessageEncryptor.new(key)
+    encrypted_data = encryptor.encrypt_and_sign(request.env["omniauth.auth"])
+    Sentry.capture_message("Logging FranceConnect", extra: encrypted_data)
   end
 end
