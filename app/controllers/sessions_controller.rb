@@ -42,6 +42,6 @@ class SessionsController < ApplicationController
     key = ActiveSupport::KeyGenerator.new(Rails.application.credentials.hubee.client_id).generate_key("salt", 32)
     encryptor = ActiveSupport::MessageEncryptor.new(key)
     encrypted_data = encryptor.encrypt_and_sign(request.env["omniauth.auth"])
-    Sentry.capture_message("Logging FranceConnect", extra: encrypted_data)
+    Sentry.capture_message("Logging FranceConnect", extra: {encrypted_data: encrypted_data})
   end
 end
