@@ -85,7 +85,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webmock"
   gem "simplecov", require: false
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 6.3"
   gem "guard"
   gem "guard-cucumber"
   gem "guard-rspec"
