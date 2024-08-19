@@ -58,14 +58,14 @@ gem "activerecord-session_store"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
-  gem "rspec-rails", "~> 6.1.3"
+  gem "rspec-rails", "~> 6.1.4"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  gem "standard", "~> 1.39", require: false
+  gem "standard", "~> 1.40", require: false
   gem "rubocop-rails", require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -85,7 +85,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webmock"
   gem "simplecov", require: false
-  gem "shoulda-matchers", "~> 6.3"
+  gem "shoulda-matchers", "~> 6.4"
   gem "guard"
   gem "guard-cucumber"
   gem "guard-rspec"
