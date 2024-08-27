@@ -18,6 +18,8 @@ RSpec.describe Shipment, type: :model do
 
     it { is_expected.to belong_to(:collectivity) }
     it { is_expected.to validate_presence_of(:reference) }
+    it { is_expected.to validate_presence_of(:hubee_case_id) }
+    it { is_expected.to validate_presence_of(:hubee_folder_id) }
     it { is_expected.to validate_uniqueness_of(:reference) }
     it { is_expected.to validate_length_of(:reference).is_equal_to(13) }
   end

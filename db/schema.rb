@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_08_162842) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_27_093608) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,7 +129,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_08_162842) do
     t.bigint "collectivity_id", null: false
     t.string "hubee_case_id"
     t.index ["collectivity_id"], name: "index_shipments_on_collectivity_id"
-    t.index ["hubee_case_id"], name: "index_shipments_on_hubee_case_id"
+    t.index ["hubee_case_id"], name: "index_shipments_on_hubee_case_id", unique: true
+    t.index ["hubee_folder_id"], name: "index_shipments_on_hubee_folder_id", unique: true
     t.index ["hubee_status"], name: "index_shipments_on_hubee_status"
     t.index ["reference"], name: "index_shipments_on_reference", unique: true
   end
