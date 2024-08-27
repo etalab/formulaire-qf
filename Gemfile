@@ -75,6 +75,7 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "brakeman"
+  gem "webmock"
 end
 
 group :test do

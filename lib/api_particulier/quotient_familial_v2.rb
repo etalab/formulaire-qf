@@ -1,5 +1,7 @@
 module ApiParticulier
   class QuotientFamilialV2
+    include WebMock::API
+
     def self.get(**)
       new(**).get
     end
@@ -15,6 +17,10 @@ module ApiParticulier
 
       Rails.logger.debug base_url
 
+      ## Mock QF API ##
+      WebMock.enable!
+      stub_request(:any, base_url).to_return(body: FactoryBot.build(:quotient_familial_payload).to_json)
+
       https = Net::HTTP.new(base_url.host, base_url.port)
       https.use_ssl = true
 
@@ -23,6 +29,10 @@ module ApiParticulier
       request["Authorization"] = "Bearer #{@access_token}"
 
       response = https.request(request)
+
+      ## Unmock QF API ##
+      WebMock.disable!
+      
       quotient_familial = JSON.parse(response.body || "{}")
 
       track_error(response, quotient_familial) unless response.is_a?(Net::HTTPSuccess)
