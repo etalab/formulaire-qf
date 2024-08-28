@@ -11,7 +11,8 @@ class Api::CollectivitiesController < Api::ApplicationController
     if collectivity.save
       render json: {collectivity: collectivity}, status: :created
     else
-      render json: {errors: collectivity.errors}, status: :unprocessable_entity
+      status = collectivity.errors.of_kind?(:siret, :taken) ? :conflict : :unprocessable_entity
+      render json: {errors: collectivity.errors}, status: status
     end
   end
 

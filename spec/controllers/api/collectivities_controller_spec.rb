@@ -7,7 +7,7 @@ describe Api::CollectivitiesController, type: :controller do
 
     let(:collectivities) do
       (1..2).to_a.reverse.map do |i|
-        create(:collectivity, name: "Collectivity n° #{i}")
+        create(:collectivity, name: "Collectivity n° #{i}", siret: "3560000001234#{i}")
       end
     end
 
@@ -44,18 +44,36 @@ describe Api::CollectivitiesController, type: :controller do
     let(:authorization) { "Bearer #{token}" }
     let(:token) { "the_test_key" }
 
+    before do
+      Collectivity.delete_all
+    end
+
     it "returns a 201" do
       expect(subject.code).to eq "201"
     end
 
     it "returns the collectivity" do
-      id = JSON.parse(subject.body)['collectivity']['id']
+      id = JSON.parse(subject.body)["collectivity"]["id"]
       expect(id).to eq Collectivity.last.id
     end
 
-
     it "creates a collectivity" do
       expect { subject }.to change { Collectivity.count }.by 1
+    end
+
+    context "when the collectivity already exists" do
+      before do
+        Collectivity.create(**collectivity_payload)
+      end
+
+      it "returns a 409 Conflict" do
+        expect(subject.code).to eq "409"
+      end
+
+      it "explains the error" do
+        body = JSON.parse(subject.body)
+        expect(body).to eq({errors: {siret: ["est déjà utilisé(e)"]}}.with_indifferent_access)
+      end
     end
 
     context "with no name" do
