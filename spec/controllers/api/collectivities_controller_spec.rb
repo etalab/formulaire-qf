@@ -32,4 +32,39 @@ describe Api::CollectivitiesController, type: :controller do
       end
     end
   end
+
+  describe "POST create" do
+    subject(:body) do
+      request.headers["Authorization"] = authorization
+      post :create, body: { cool: :story }
+      response
+    end
+    
+    let(:authorization) { "Bearer #{token}" }
+    let(:token) { "the_test_key" }
+
+    it "returns a 201" do
+      expect(subject.code).to eq '201'
+    end
+
+    it "creates a collectivity" do
+      expect{ subject }.to change{ Collectivity.count }.by 1
+    end
+
+    context "with no authorization header" do
+      let(:authorization) { nil }
+
+      it "returns a 401 Unauthorized" do
+        expect(subject.code).to eq '401'
+      end
+    end
+
+    context "with an empty bearer token" do
+      let(:token) { nil }
+
+      it "returns a 401 Unauthorized" do
+        expect(subject.code).to eq '401'
+      end
+    end
+  end
 end
