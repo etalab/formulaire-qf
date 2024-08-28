@@ -6,7 +6,18 @@ class Api::CollectivitiesController < Api::ApplicationController
   end
 
   def create
-    p "coucou"
-    render json: {}, status: :created
+    collectivity = Collectivity.build(collectivity_params)
+
+    if collectivity.save
+      render json: {collectivity: collectivity}, status: :created
+    else
+      render json: {errors: collectivity.errors}, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def collectivity_params
+    params.require(:collectivity).permit(:name, :siret, :code_cog, :status, :editor)
   end
 end
