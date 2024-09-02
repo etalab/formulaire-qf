@@ -26,15 +26,15 @@ Sachantque("j'ai un compte sur FranceConnect") do
 end
 
 Sachantque("j'ai un quotient familial CAF sans enfants") do
-  stub_quotient_familial(:cnaf_without_children)
+  stub_quotient_familial_v2(:cnaf_without_children)
 end
 
 Sachantque("j'ai un quotient familial msa avec des enfants") do
-  stub_quotient_familial(:msa_with_children)
+  stub_quotient_familial_v2(:msa_with_children)
 end
 
 Sachantque("mon quotient familial est indisponible") do
-  stub_quotient_familial_with_error(:not_found, status: 404)
+  stub_quotient_familial_v2_with_error(:not_found, status: 404)
 end
 
 Sachantque("hubee peut recevoir un dossier") do

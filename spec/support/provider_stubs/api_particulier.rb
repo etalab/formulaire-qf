@@ -1,13 +1,13 @@
 require_relative "../provider_stubs"
 
 module ProviderStubs::ApiParticulier
-  def stub_quotient_familial(factory_trait, status: 200)
-    payload = FactoryBot.build(:quotient_familial_payload, factory_trait)
+  def stub_quotient_familial_v2(factory_trait, status: 200)
+    payload = FactoryBot.build(:quotient_familial_v2_payload, factory_trait)
     stub_qf_v2(payload, status)
   end
 
-  def stub_quotient_familial_with_error(factory_trait, status: 404)
-    payload = FactoryBot.build(:quotient_familial_error_payload, factory_trait)
+  def stub_quotient_familial_v2_with_error(factory_trait, status: 404)
+    payload = FactoryBot.build(:quotient_familial_v2_error_payload, factory_trait)
     stub_qf_v2(payload, status)
   end
 

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :quotient_familial_payload, class: Hash do
+  factory :quotient_familial_v2_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
     regime { "CNAF" }
@@ -117,7 +117,7 @@ FactoryBot.define do
     end
   end
 
-  factory :quotient_familial_error_payload, class: Hash do
+  factory :quotient_familial_v2_error_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
     trait :not_found do
