@@ -126,4 +126,54 @@ FactoryBot.define do
       message { "Dossier allocataire inexistant. Le document ne peut être édité." }
     end
   end
+
+  factory :quotient_familial_v1_payload, class: Hash do
+    initialize_with { attributes.deep_stringify_keys }
+
+    quotientFamilial { 1234 }
+    annee { 2022 }
+    mois { 7 }
+
+    allocataires do
+      [
+        {
+          nomPrenom: "MARIE DUPONT",
+          dateDeNaissance: "01031988",
+          sexe: "F",
+        },
+        {
+          nomPrenom: "JEAN DUPONT",
+          dateDeNaissance: "01041990",
+          sexe: "M",
+        },
+      ]
+    end
+
+    enfants do
+      [
+        {
+          nomPrenom: "JACQUES DUPONT",
+          dateDeNaissance: "01012010",
+          sexe: "M",
+        },
+        {
+          nomPrenom: "JEANNE DUPONT",
+          dateDeNaissance: "01022012",
+          sexe: "F",
+        },
+      ]
+    end
+
+    adresse do
+      {
+        "identite" => "Monsieur JEAN DUPONT",
+        "complementIdentite" => "APPARTEMENT 51",
+        "complementIdentiteGeo" => "RESIDENCE DES COLOMBES",
+        "numeroRue" => "42 RUE DE LA PAIX",
+        "lieuDit" => "ILOTS DES OISEAUX",
+        "codePostalVille" => "75001 PARIS",
+        "pays" => "FRANCE",
+      }
+    end
+  end
 end
