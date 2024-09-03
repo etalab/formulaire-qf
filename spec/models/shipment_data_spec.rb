@@ -145,4 +145,18 @@ RSpec.describe ShipmentData, type: :model do
       end
     end
   end
+
+  describe "with QF v1 data" do
+    let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload).merge(version: "v1") }
+
+    describe "to_h" do
+      it "returns the shipment data as a hash" do
+        expect(shipment_data.to_h.with_indifferent_access[:quotient_familial][:allocataires].first).to eq({"dateDeNaissance"=>"01031988", "nomPrenom"=>"MARIE DUPONT", "sexe"=>"F"})
+        expect(shipment_data.to_h.with_indifferent_access[:quotient_familial][:allocataires].second).to eq({"dateDeNaissance"=>"01041990", "nomPrenom"=>"JEAN DUPONT", "sexe"=>"M"})
+        expect(shipment_data.to_h.with_indifferent_access[:quotient_familial][:enfants].first).to eq({"dateDeNaissance"=>"01012010", "nomPrenom"=>"JACQUES DUPONT", "sexe"=>"M"})
+        expect(shipment_data.to_h.with_indifferent_access[:quotient_familial][:enfants].second).to eq({"dateDeNaissance"=>"01022012", "nomPrenom"=>"JEANNE DUPONT", "sexe"=>"F"})
+        expect(shipment_data.to_h.with_indifferent_access[:quotient_familial][:version]).to eq("v1")
+      end
+    end
+  end
 end
