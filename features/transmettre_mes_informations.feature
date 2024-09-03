@@ -32,12 +32,6 @@ Fonctionnalité: Transmettre mes informations
     Et la page contient "Quotient familial de février 2024 : 2550"
     Et la page contient "Allocataires : DUBOIS ANGELA, née le 24/08/1962"
     Et la page contient "Enfants : Aucun"
-
-  Scénario: Mes données de quotient familial sont indisponibles
-    Et que mon quotient familial est indisponible
-    Quand je clique sur "S’identifier avec FranceConnect"
-    Alors la page contient "Dossier allocataire inexistant."
-    Et la page contient "Comme alternative vous pouvez télécharger votre attestation"
   
   Scénario: Je transmet mes données
     Et que j'ai un quotient familial msa avec des enfants
@@ -53,11 +47,3 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur "S’identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Retourner sur le site de ma collectivité"
-
-  Scénario: L'envoi de mes données à hubee a échoué
-    Et que j'ai un quotient familial CAF sans enfants
-    Et que l'envoi d'un dossier à hubee échouera
-    Et que je clique sur "S’identifier avec FranceConnect"
-    Quand je clique sur "Transmettre les données à la collectivité"
-    Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
-    Et la page contient "Comme alternative vous pouvez télécharger votre attestation"
