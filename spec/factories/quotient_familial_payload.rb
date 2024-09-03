@@ -179,6 +179,10 @@ FactoryBot.define do
     # end
   end
 
+  factory :quotient_familial_v1_payload_converted_to_v2_format, class: Hash do
+    initialize_with { ApiParticulier::QuotientFamilial::V1Payload.new(build(:quotient_familial_v1_payload)).convert_to_v2_format }
+  end
+
   factory :quotient_familial_v1_error_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 

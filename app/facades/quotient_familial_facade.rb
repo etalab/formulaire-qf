@@ -10,11 +10,7 @@ class QuotientFamilialFacade
   end
 
   def value
-    if v1?
-      "< valeur masquée >"
-    else
-      quotient_familial["quotientFamilial"]
-    end
+    quotient_familial["quotientFamilial"]
   end
 
   def regime
@@ -53,32 +49,15 @@ class QuotientFamilialFacade
       quotient_familial["annee"].to_i.zero?
   end
 
-  def v1?
-    quotient_familial["version"] == "v1"
-  end
-
   def person_facade(person)
-    if v1?
-      person_v1_facade(person)
-    else
-      person_v2_facade(person)
-    end
-  end
-
-  def person_v2_facade(person)
     nom_usage = if person["nomUsuel"] && person["nomUsuel"] != person["nomNaissance"]
       " (nom d'usage #{person["nomUsuel"]})"
     end
 
-    names = "#{person["nomNaissance"]}#{nom_usage} #{person["prenoms"]}"
+    names = "#{person["nomNaissance"]}#{nom_usage}"
+    names = "#{names} #{person["prenoms"]}" if person["prenoms"]
     birthdate = "#{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}"
 
     "#{names}, né#{"e" if person["sexe"] == "F"} le #{birthdate}"
-  end
-
-  def person_v1_facade(person)
-    birthdate = person["dateDeNaissance"].gsub(/(\d\d)(\d\d)(\d\d\d\d)/, '\1/\2/\3')
-
-    "#{person["nomPrenom"]}, né#{"e" if person["sexe"] == "F"} le #{birthdate}"
   end
 end

@@ -25,8 +25,14 @@ RSpec.describe ApiParticulier::QuotientFamilial::V1 do
         "quotientFamilial" => 1234,
         "mois" => 7,
         "annee" => 2022,
-        "allocataires" => [{"nomPrenom" => "MARIE DUPONT", "dateDeNaissance" => "01031988", "sexe" => "F"}, {"nomPrenom" => "JEAN DUPONT", "dateDeNaissance" => "01041990", "sexe" => "M"}],
-        "enfants" => [{"nomPrenom" => "JACQUES DUPONT", "dateDeNaissance" => "01012010", "sexe" => "M"}, {"nomPrenom" => "JEANNE DUPONT", "dateDeNaissance" => "01022012", "sexe" => "F"}],
+        "allocataires" => [
+          {"nomNaissance" => "MARIE DUPONT", "jourDateDeNaissance" => "01", "moisDateDeNaissance" => "03", "anneeDateDeNaissance" => "1988", "sexe" => "F", "nomUsuel" => nil, "prenoms" => nil},
+          {"nomNaissance" => "JEAN DUPONT", "jourDateDeNaissance" => "01", "moisDateDeNaissance" => "04", "anneeDateDeNaissance" => "1990", "sexe" => "M", "nomUsuel" => nil, "prenoms" => nil},
+        ],
+        "enfants" => [
+          {"nomNaissance" => "JACQUES DUPONT", "jourDateDeNaissance" => "01", "moisDateDeNaissance" => "01", "anneeDateDeNaissance" => "2010", "sexe" => "M", "nomUsuel" => nil, "prenoms" => nil},
+          {"nomNaissance" => "JEANNE DUPONT", "jourDateDeNaissance" => "01", "moisDateDeNaissance" => "02", "anneeDateDeNaissance" => "2012", "sexe" => "F", "nomUsuel" => nil, "prenoms" => nil},
+        ],
       }
     end
 
@@ -34,7 +40,7 @@ RSpec.describe ApiParticulier::QuotientFamilial::V1 do
       stub_quotient_familial_v1
     end
 
-    it "calls the API" do
+    it "calls the API and converts the data to the V2 format" do
       expect(quotient_familial).to match(hash_including(expected_response))
     end
 

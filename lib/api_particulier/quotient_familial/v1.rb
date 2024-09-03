@@ -26,6 +26,11 @@ module ApiParticulier
       def api_key
         Rails.application.credentials.api_particulier.api_key
       end
+
+      def get
+        payload = super
+        V1Payload.new(payload).convert_to_v2_format
+      end
     end
   end
 end

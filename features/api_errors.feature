@@ -35,7 +35,7 @@ Fonctionnalité: Gestion des erreurs API
     Quand je remplis "Numéro d'allocataire CAF" avec "2345678"
     Et que je remplis "Code postal" avec "75001"
     Et que je clique sur "Retenter de récupérer mon quotient familial"
-    Alors la page contient "Quotient familial de juillet 2022 : < valeur masquée >"
+    Alors la page contient "Quotient familial de juillet 2022 : 1234"
     Et la page contient "Allocataires : MARIE DUPONT, née le 01/03/1988 JEAN DUPONT, né le 01/04/1990"
     Et la page contient "Enfants : JACQUES DUPONT, né le 01/01/2010 JEANNE DUPONT, née le 01/02/2012"
 
