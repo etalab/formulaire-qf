@@ -1,5 +1,5 @@
-RSpec.describe ApiParticulier::QuotientFamilialV2 do
-  let(:params) { {access_token: "token", siret: "a_valid_siret"} }
+RSpec.describe ApiParticulier::QuotientFamilial::V1 do
+  let(:params) { {allocataire_number: "2345678", postal_code: "75001", siret: "a_valid_siret"} }
 
   describe ".get" do
     subject(:quotient_familial) { described_class.get(**params) }
@@ -22,26 +22,16 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
 
     let(:expected_response) do
       {
-        "regime" => "CNAF",
-        "allocataires" => [
-          {
-            "nomNaissance" => "DUBOIS",
-            "nomUsuel" => "DUBOIS",
-            "prenoms" => "ANGELA",
-            "anneeDateDeNaissance" => "1962",
-            "moisDateDeNaissance" => "08",
-            "jourDateDeNaissance" => "24",
-            "sexe" => "F",
-          },
-        ],
-        "enfants" => [],
-        "quotientFamilial" => 2550,
-        "annee" => 2024,
+        "quotientFamilial" => 1234,
+        "mois" => 7,
+        "annee" => 2022,
+        "allocataires" => [{"nomPrenom" => "MARIE DUPONT", "dateDeNaissance" => "01031988", "sexe" => "F"}, {"nomPrenom" => "JEAN DUPONT", "dateDeNaissance" => "01041990", "sexe" => "M"}],
+        "enfants" => [{"nomPrenom" => "JACQUES DUPONT", "dateDeNaissance" => "01012010", "sexe" => "M"}, {"nomPrenom" => "JEANNE DUPONT", "dateDeNaissance" => "01022012", "sexe" => "F"}],
       }
     end
 
     before do
-      stub_quotient_familial_v2(:cnaf_without_children)
+      stub_quotient_familial_v1
     end
 
     it "calls the API" do
@@ -50,7 +40,7 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
 
     context "when there is an error" do
       before do
-        stub_quotient_familial_v2_with_error(:not_found, status: 404)
+        stub_quotient_familial_v1_with_error(:not_found, status: 404)
       end
 
       it "returns an error" do

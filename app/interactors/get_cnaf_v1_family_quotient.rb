@@ -14,6 +14,6 @@ class GetCnafV1FamilyQuotient < BaseInteractor
   private
 
   def quotient_familial
-    @quotient_familial ||= ApiParticulier::QuotientFamilialV1.get(allocataire_number: context.allocataire_number, postal_code: context.postal_code, siret: context.siret)
+    @quotient_familial ||= ApiParticulier::QuotientFamilial::V1.get(allocataire_number: context.allocataire_number, postal_code: context.postal_code, siret: context.siret)
   end
 end
