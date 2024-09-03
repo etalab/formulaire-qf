@@ -27,15 +27,6 @@ RSpec.describe ApiParticulier::QuotientFamilialV1 do
         "annee" => 2022,
         "allocataires" => [{"nomPrenom" => "MARIE DUPONT", "dateDeNaissance" => "01031988", "sexe" => "F"}, {"nomPrenom" => "JEAN DUPONT", "dateDeNaissance" => "01041990", "sexe" => "M"}],
         "enfants" => [{"nomPrenom" => "JACQUES DUPONT", "dateDeNaissance" => "01012010", "sexe" => "M"}, {"nomPrenom" => "JEANNE DUPONT", "dateDeNaissance" => "01022012", "sexe" => "F"}],
-        "adresse" => {
-          "identite" => "Monsieur JEAN DUPONT",
-          "complementIdentite" => "APPARTEMENT 51",
-          "complementIdentiteGeo" => "RESIDENCE DES COLOMBES",
-          "numeroRue" => "42 RUE DE LA PAIX",
-          "lieuDit" => "ILOTS DES OISEAUX",
-          "codePostalVille" => "75001 PARIS",
-          "pays" => "FRANCE",
-        },
       }
     end
 
