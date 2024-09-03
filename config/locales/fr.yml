@@ -169,7 +169,10 @@ fr:
         allocataire_number: Numéro d'allocataire CAF
         postal_code: Code postal
         submit: Retenter de récupérer mon quotient familial
-
+    create:
+      verify_error:
+        title: Vous n'avez pas renseigné le bon numéro d'allocataire.
+        text: Votre identité FranceConnect et le numéro allocataire que vous avez renseigné ne correspondent pas. Veuillez vérifier que vous avez bien utilisé votre numéro allocataire.
 
   errors:
     title: "Une erreur est survenue"

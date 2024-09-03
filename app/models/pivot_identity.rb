@@ -28,4 +28,17 @@ class PivotIdentity
       last_name:,
     }
   end
+
+  def verify_quotient_familial(quotient_familial)
+    birthdate_found_in_allocataires(quotient_familial)
+  end
+
+  def birthdate_found_in_allocataires(quotient_familial)
+    return false if quotient_familial['allocataires'].blank?
+
+    quotient_familial['allocataires'].find do |allocataire|
+      allocataire_birthdate = "#{allocataire["jourDateDeNaissance"]}/#{allocataire["moisDateDeNaissance"]}/#{allocataire["anneeDateDeNaissance"]}"
+      allocataire_birthdate == birthdate.strftime("%d/%m/%Y")
+    end.present?
+  end
 end
