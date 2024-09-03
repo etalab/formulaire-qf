@@ -16,7 +16,7 @@ describe GetFamilyQuotient, type: :interactor do
 
     it "sets up the quotient familial" do
       expect(call.success?).to be true
-      expect(call.quotient_familial).to match(hash_including("quotientFamilial" => 2550, version: "v2"))
+      expect(call.quotient_familial).to match(hash_including("quotientFamilial" => 2550, :version => "v2"))
     end
 
     context "when the API returns an error" do
