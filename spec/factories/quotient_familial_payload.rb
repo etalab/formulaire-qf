@@ -126,6 +126,12 @@ FactoryBot.define do
       reason { "Dossier allocataire inexistant. Le document ne peut être édité." }
       message { "Dossier allocataire inexistant. Le document ne peut être édité." }
     end
+
+    trait :not_found_cnaf do
+      error { "not_found" }
+      reason { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF. Veuillez vérifier que l'identifiant correspond au périmètre couvert par l'API." }
+      message { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF. Veuillez vérifier que l'identifiant correspond au périmètre couvert par l'API." }
+    end
   end
 
   factory :quotient_familial_v1_payload, class: Hash do

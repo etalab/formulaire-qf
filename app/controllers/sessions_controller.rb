@@ -11,15 +11,22 @@ class SessionsController < ApplicationController
     if result.success?
       session["quotient_familial"] = result.quotient_familial
       SetupCurrentData.call(session:, params:)
-
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
-    else
+
+    elsif result.message.starts_with?("Le dossier allocataire n'a pas été trouvé auprès de la CNAF")
       flash[:info] = {
         title: t("shipments.qf_v2_error.title"),
         text: t("shipments.qf_v2_error.text", message: result.message),
       }
 
       redirect_to collectivity_cnaf_v1_family_quotients_path(Current.collectivity.siret)
+    else
+      flash[:error] = {
+        title: t("shipments.qf_v1_error.title"),
+        text: t("shipments.qf_v1_error.text", message: result.message),
+      }
+
+      redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
     end
   end
 

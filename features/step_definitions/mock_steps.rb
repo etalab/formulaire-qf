@@ -33,8 +33,12 @@ Sachantque("j'ai un quotient familial MSA avec des enfants via France Connect") 
   stub_quotient_familial_v2(:msa_with_children)
 end
 
-Sachantque("mon quotient familial via France Connect est indisponible") do
+Sachantque("je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA") do
   stub_quotient_familial_v2_with_error(:not_found, status: 404)
+end
+
+Sachantque("mon quotient familial via France Connect est indisponible auprès de la CNAF") do
+  stub_quotient_familial_v2_with_error(:not_found_cnaf, status: 404)
 end
 
 Sachantque("j'ai un quotient familial CAF via numéro d'allocataire") do

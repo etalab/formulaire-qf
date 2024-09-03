@@ -163,14 +163,12 @@ fr:
 
   cnaf_v1_family_quotients:
     index:
-      caf:
-        title: "Je réessaye avec mon numéro d'allocataire CAF :"
-        description: Vous pouvez entrer votre numéro d'allocataire et votre code postal ci-dessous, nous allons réessayer de récupérer votre quotient familial avec ces informations.
+      title: "Je réessaye avec mon numéro d'allocataire CAF :"
+      description: Vous pouvez entrer votre numéro d'allocataire et votre code postal ci-dessous, nous allons réessayer de récupérer votre quotient familial avec ces informations.
+      form:
         allocataire_number: Numéro d'allocataire CAF
         postal_code: Code postal
         submit: Retenter de récupérer mon quotient familial
-      msa:
-        title: Alternative si vous êtes à la MSA
 
 
   errors:

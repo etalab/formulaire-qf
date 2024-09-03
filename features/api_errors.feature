@@ -16,22 +16,29 @@ Fonctionnalité: Gestion des erreurs API
     Et que je clique sur "S’identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
-    Et la page contient "Comme alternative vous pouvez télécharger votre attestation"
+    Et la page contient "Une erreur est survenue"
     Et la page contient "Votre attestation MSA sur le site de la MSA"
     Et la page contient "Votre attestation CAF sur le site de la CAF"
 
-  Scénario: Mes données de quotient familial sont indisponibles via France Connect
-    Et que mon quotient familial via France Connect est indisponible
+  Scénario: Je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
+    Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
     Quand je clique sur "S’identifier avec FranceConnect"
-    Alors la page contient "Dossier allocataire inexistant."
+    Alors la page contient "Une erreur est survenue"
+    Et la page contient "Dossier allocataire inexistant."
+    Et la page contient "Votre attestation CAF sur le site de la CAF."
+    Et la page contient "Votre attestation MSA sur le site de la MSA."
+
+  Scénario: Mes données de quotient familial sont indisponibles via France Connect auprès de la CNAF
+    Et que mon quotient familial via France Connect est indisponible auprès de la CNAF
+    Quand je clique sur "S’identifier avec FranceConnect"
+    Alors la page contient "Le dossier allocataire n'a pas été trouvé auprès de la CNAF."
     Et la page contient "Je réessaye avec mon numéro d'allocataire CAF :"
-    Et la page contient "Alternative si vous êtes à la MSA"
 
   Scénario: Je récupère mes données de quotient familial via mon numéro d'allocataire
-    Et que mon quotient familial via France Connect est indisponible
+    Et que mon quotient familial via France Connect est indisponible auprès de la CNAF
     Et que j'ai un quotient familial CAF via numéro d'allocataire
     Et que je clique sur "S’identifier avec FranceConnect"
-    Et que la page contient "Dossier allocataire inexistant."
+    Et que la page contient "Le dossier allocataire n'a pas été trouvé auprès de la CNAF."
     Quand je remplis "Numéro d'allocataire CAF" avec "2345678"
     Et que je remplis "Code postal" avec "75001"
     Et que je clique sur "Retenter de récupérer mon quotient familial"
@@ -40,12 +47,14 @@ Fonctionnalité: Gestion des erreurs API
     Et la page contient "Enfants : JACQUES DUPONT, né le 01/01/2010 JEANNE DUPONT, née le 01/02/2012"
 
   Scénario: Mes données de quotient familial sont indisponibles via mon numéro d'allocataire
-    Et que mon quotient familial via France Connect est indisponible
+    Et que mon quotient familial via France Connect est indisponible auprès de la CNAF
     Et que mon quotient familial via numéro d'allocataire est indisponible
     Et que je clique sur "S’identifier avec FranceConnect"
-    Et que la page contient "Dossier allocataire inexistant."
+    Et que la page contient "Le dossier allocataire n'a pas été trouvé auprès de la CNAF."
     Quand je remplis "Numéro d'allocataire CAF" avec "2345678"
     Et que je remplis "Code postal" avec "75001"
     Et que je clique sur "Retenter de récupérer mon quotient familial"
     Alors la page contient "Une erreur est survenue"
     Et la page contient "Dossier allocataire inexistant."
+    Et la page contient "Votre attestation CAF sur le site de la CAF."
+    Et la page contient "Votre attestation MSA sur le site de la MSA."
