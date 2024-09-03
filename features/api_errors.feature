@@ -10,13 +10,6 @@ Fonctionnalité: Gestion des erreurs API
     Et que je sélectionne "Majastres" pour "Nom de la collectivité"
     Et que je clique sur "Suivant"
 
-  Scénario: Mes données de quotient familial sont indisponibles
-    Et que mon quotient familial est indisponible
-    Quand je clique sur "S’identifier avec FranceConnect"
-    Alors la page contient "Dossier allocataire inexistant."
-    Et la page contient "Alternative si vous êtes à la CAF"
-    Et la page contient "Alternative si vous êtes à la MSA"
-
   Scénario: L'envoi de mes données à hubee a échoué
     Et que j'ai un quotient familial CAF sans enfants
     Et que l'envoi d'un dossier à hubee échouera
@@ -26,3 +19,21 @@ Fonctionnalité: Gestion des erreurs API
     Et la page contient "Comme alternative vous pouvez télécharger votre attestation"
     Et la page contient "Votre attestation MSA sur le site de la MSA"
     Et la page contient "Votre attestation CAF sur le site de la CAF"
+
+  Scénario: Mes données de quotient familial sont indisponibles via France Connect
+    Et que mon quotient familial est indisponible
+    Quand je clique sur "S’identifier avec FranceConnect"
+    Alors la page contient "Dossier allocataire inexistant."
+    Et la page contient "Alternative si vous êtes à la CAF"
+    Et la page contient "Alternative si vous êtes à la MSA"
+
+  Scénario: Je récupère mes données de quotient familial via mon numéro d'allocataire
+    Et que mon quotient familial est indisponible
+    Et que je clique sur "S’identifier avec FranceConnect"
+    Et que la page contient "Dossier allocataire inexistant."
+    Quand je remplis "Numéro d'allocataire CAF" avec "2345678"
+    Et que je remplis "Code Postal" avec "75001"
+    Et que je clique sur "Envoyer"
+    Alors la page contient "Quotient familial de mai 2023 : 1234"
+    Et la page contient "Allocataires : ROUX JEANNE STEPHANIE, née le 27/06/1987 ROUX LOIC NATHAN, né le 19/05/1979"
+    Et la page contient "Enfants : ROUX ALEXIS VINCENT, né le 20/04/2006 ROUX FLEUR EDITH, né le 20/04/2004"
