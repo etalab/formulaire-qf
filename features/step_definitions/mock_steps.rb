@@ -41,6 +41,9 @@ Sachantque("j'ai un quotient familial CAF via numéro d'allocataire") do
   stub_quotient_familial_v1
 end
 
+Sachantque("mon quotient familial via numéro d'allocataire est indisponible") do
+  stub_quotient_familial_v1_with_error(:not_found, status: 404)
+end
 
 Sachantque("hubee peut recevoir un dossier") do
   stub_hubee_token
