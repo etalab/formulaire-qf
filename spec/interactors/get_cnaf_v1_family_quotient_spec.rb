@@ -1,4 +1,4 @@
-describe GetAlternativeFamilyQuotient, type: :interactor do
+describe GetCnafV1FamilyQuotient, type: :interactor do
   describe ".call" do
     subject(:call) { described_class.call(allocataire_number:, postal_code:, siret:) }
 

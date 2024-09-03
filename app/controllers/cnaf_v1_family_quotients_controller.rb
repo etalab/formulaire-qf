@@ -5,7 +5,7 @@ class CnafV1FamilyQuotientsController < ApplicationController
   end
 
   def create
-    result = GetAlternativeFamilyQuotient.call(siret: Current.collectivity.siret, **cnaf_v1_params)
+    result = GetCnafV1FamilyQuotient.call(siret: Current.collectivity.siret, **cnaf_v1_params)
 
     if result.success?
       session["quotient_familial"] = result.quotient_familial

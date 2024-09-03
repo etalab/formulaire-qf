@@ -1,4 +1,4 @@
-class GetAlternativeFamilyQuotient < BaseInteractor
+class GetCnafV1FamilyQuotient < BaseInteractor
   def call
     if quotient_familial["error"].present?
       context.fail!(message: error_message)
