@@ -10,7 +10,7 @@ FactoryBot.define do
     allocataires do
       [{
         nomNaissance: "DUBOIS",
-        nomUsage: "DUBOIS",
+        nomUsuel: "DUBOIS",
         prenoms: "ANGELA",
         anneeDateDeNaissance: "1962",
         moisDateDeNaissance: "08",
@@ -53,7 +53,7 @@ FactoryBot.define do
       allocataires do
         [{
           "nomNaissance" => "DUBOIS",
-          "nomUsage" => "DUBOIS",
+          "nomUsuel" => "DUBOIS",
           "prenoms" => "ANGELA",
           "anneeDateDeNaissance" => "1962",
           "moisDateDeNaissance" => "08",
@@ -73,7 +73,7 @@ FactoryBot.define do
         [
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "JEANNE STEPHANIE",
             anneeDateDeNaissance: "1987",
             moisDateDeNaissance: "06",
@@ -82,7 +82,7 @@ FactoryBot.define do
           },
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "LOIC NATHAN",
             anneeDateDeNaissance: "1979",
             moisDateDeNaissance: "05",
@@ -96,7 +96,7 @@ FactoryBot.define do
         [
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "ALEXIS VINCENT",
             anneeDateDeNaissance: "2006",
             moisDateDeNaissance: "04",
@@ -105,7 +105,7 @@ FactoryBot.define do
           },
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "FLEUR EDITH",
             anneeDateDeNaissance: "2004",
             moisDateDeNaissance: "04",

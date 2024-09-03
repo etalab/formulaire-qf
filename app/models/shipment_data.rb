@@ -18,7 +18,7 @@ class ShipmentData
         codeInseeLieuDeNaissance: pivot_identity.birthplace,
         prenoms: pivot_identity.first_names,
         sexe: (pivot_identity.gender == :female) ? "F" : "M",
-        nomUsage: pivot_identity.last_name,
+        nomUsuel: pivot_identity.last_name,
       },
       quotient_familial:,
     }
@@ -70,32 +70,37 @@ class ShipmentData
   end
 
   def allocataire_text
-    return "Aucun" if quotient_familial["allocataires"].blank?
-
-    quotient_familial["allocataires"].map do |allocataire|
-      <<~TEXT
-        - Nom de naissance: #{allocataire["nomNaissance"]}
-        - Nom d'usage: #{allocataire["nomUsage"]}
-        - Prénoms: #{allocataire["prenoms"]}
-        - Date de naissance: #{allocataire["jourDateDeNaissance"]}/#{allocataire["moisDateDeNaissance"]}/#{allocataire["anneeDateDeNaissance"]}
-        - Sexe: #{allocataire["sexe"]}
- 
-      TEXT
-    end.join("\n")
+    persons_text(quotient_familial["allocataires"])
   end
 
   def enfants_text
-    return "Aucun" if quotient_familial["enfants"].blank?
+    persons_text(quotient_familial["enfants"])
+  end
 
-    quotient_familial["enfants"].map do |enfant|
-      <<~TEXT
-        - Nom de naissance: #{enfant["nomNaissance"]}
-        - Nom d'usage: #{enfant["nomUsuel"]}
-        - Prénoms: #{enfant["prenoms"]}
-        - Date de naissance: #{enfant["jourDateDeNaissance"]}/#{enfant["moisDateDeNaissance"]}/#{enfant["anneeDateDeNaissance"]}
-        - Sexe: #{enfant["sexe"]}
- 
-      TEXT
-    end.join("\n")
+  def persons_text(persons)
+    return "Aucun" if persons.blank?
+
+    persons.map { |person| person_text(person) }.join("\n")
+  end
+
+  def person_text(person)
+    <<~TEXT
+      #{names(person)}
+      - Date de naissance: #{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}
+      - Sexe: #{person["sexe"]}
+
+    TEXT
+  end
+
+  def names(person)
+    if quotient_familial["version"] == "v1"
+      "- Noms et prénoms : #{person["nomPrenom"]}"
+    else
+      [
+        "- Nom de naissance: #{person["nomNaissance"]}",
+        "- Nom d'usage: #{person["nomUsuel"]}",
+        "- Prénoms: #{person["prenoms"]}"
+      ].join("\n")
+    end
   end
 end

@@ -26,7 +26,7 @@ RSpec.describe ApiParticulier::QuotientFamilialV2 do
         "allocataires" => [
           {
             "nomNaissance" => "DUBOIS",
-            "nomUsage" => "DUBOIS",
+            "nomUsuel" => "DUBOIS",
             "prenoms" => "ANGELA",
             "anneeDateDeNaissance" => "1962",
             "moisDateDeNaissance" => "08",

@@ -66,8 +66,8 @@ class QuotientFamilialFacade
   end
 
   def person_v2_facade(person)
-    nom_usage = if person["nomUsage"] && person["nomUsage"] != person["nomNaissance"]
-      " (nom d'usage #{person["nomUsage"]})"
+    nom_usage = if person["nomUsuel"] && person["nomUsuel"] != person["nomNaissance"]
+      " (nom d'usage #{person["nomUsuel"]})"
     end
 
     names = "#{person["nomNaissance"]}#{nom_usage} #{person["prenoms"]}"
