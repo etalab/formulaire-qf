@@ -27,6 +27,24 @@ RSpec.describe QuotientFamilialFacade do
     end
   end
 
+  describe "value" do
+    context "when there is v2 data" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload).merge(version: "v2") }
+
+      it "returns a readable array of persons strings" do
+        expect(subject.value).to eq 2550
+      end
+    end
+
+    context "when there is v1 data" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload).merge(version: "v1") }
+
+      it "returns a readable array of persons strings" do
+        expect(subject.value).to eq "< valeur masquée >"
+      end
+    end
+  end
+
   describe "#month_year" do
     before do
       Timecop.freeze(Date.new(1990, 2, 24))

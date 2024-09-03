@@ -10,7 +10,11 @@ class QuotientFamilialFacade
   end
 
   def value
-    quotient_familial["quotientFamilial"]
+    if v1?
+      "< valeur masquée >"
+    else
+      quotient_familial["quotientFamilial"]
+    end
   end
 
   def regime
