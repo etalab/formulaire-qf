@@ -137,6 +137,10 @@ FactoryBot.define do
   factory :quotient_familial_v1_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
+    transient do
+      allocataire_birthdate { "01031988" }
+    end
+
     version { "v1" }
     quotientFamilial { 1234 }
     annee { 2022 }
@@ -146,7 +150,7 @@ FactoryBot.define do
       [
         {
           nomPrenom: "MARIE DUPONT",
-          dateDeNaissance: "01031988",
+          dateDeNaissance: allocataire_birthdate,
           sexe: "F",
         },
         {

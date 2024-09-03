@@ -16,6 +16,11 @@ module ProviderStubs::ApiParticulier
     stub_qf_v1(payload, status)
   end
 
+  def stub_quotient_familial_v1_with_allocataire_birthdate(allocataire_birthdate, status: 200)
+    payload = FactoryBot.build(:quotient_familial_v1_payload, allocataire_birthdate:)
+    stub_qf_v1(payload, status)
+  end
+
   def stub_quotient_familial_v1_with_error(factory_trait, status: 404)
     payload = FactoryBot.build(:quotient_familial_v1_error_payload, factory_trait)
     stub_qf_v1(payload, status)

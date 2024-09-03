@@ -3,7 +3,7 @@ include ProviderStubs::ApiParticulier
 include ProviderStubs::HubEE
 # rubocop:enable Style/MixinUsage
 
-def mock_france_connect
+def mock_france_connect(france_connect_payload)
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[:france_connect] = OmniAuth::AuthHash.new({
@@ -16,13 +16,17 @@ def mock_france_connect
       expires: true,
     },
     extra: {
-      raw_info: FactoryBot.build(:france_connect_payload),
+      raw_info: france_connect_payload,
     },
   })
 end
 
 Sachantque("j'ai un compte sur FranceConnect") do
-  mock_france_connect
+  mock_france_connect(FactoryBot.build(:france_connect_payload))
+end
+
+Sachantque("j'ai un compte sur FranceConnect avec pour date de naissance {string}") do |birthdate|
+  mock_france_connect(FactoryBot.build(:france_connect_payload, birthdate:))
 end
 
 Sachantque("j'ai un quotient familial CAF sans enfants via France Connect") do
@@ -43,6 +47,11 @@ end
 
 Sachantque("j'ai un quotient familial CAF via numéro d'allocataire") do
   stub_quotient_familial_v1
+end
+
+Sachantque("j'ai un quotient familial CAF via numéro d'allocataire avec pour date de naissance {string}") do |birthdate|
+  birthdate_v1 = birthdate.split('-').reverse.join('')
+  stub_quotient_familial_v1_with_allocataire_birthdate(birthdate_v1)
 end
 
 Sachantque("mon quotient familial via numéro d'allocataire est indisponible") do
