@@ -99,7 +99,7 @@ class ShipmentData
       [
         "- Nom de naissance: #{person["nomNaissance"]}",
         "- Nom d'usage: #{person["nomUsuel"]}",
-        "- Prénoms: #{person["prenoms"]}"
+        "- Prénoms: #{person["prenoms"]}",
       ].join("\n")
     end
   end
