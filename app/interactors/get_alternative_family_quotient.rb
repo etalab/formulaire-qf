@@ -3,7 +3,7 @@ class GetAlternativeFamilyQuotient < BaseInteractor
     if quotient_familial["error"].present?
       context.fail!(message: error_message)
     else
-      context.quotient_familial = quotient_familial
+      context.quotient_familial = quotient_familial.merge(version: "v1")
     end
   end
 
