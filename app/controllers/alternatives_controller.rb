@@ -2,19 +2,24 @@ class AlternativesController < ApplicationController
   before_action :set_collectivity
 
   def index
-    # TODO remove that
-    # flash[:info] = {
-    #   title: t("shipments.qf_v2_error.title"),
-    #   text: t("shipments.qf_v2_error.text", message: "sorry not sorry"),
-    # }
   end
 
   def create
-    # flash[:error] = {
-    #   title: t("shipments.qf_v1_error.title"),
-    #   text: t("shipments.qf_v1_error.text", message: result.message),
-    # }
-    # redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
+    result = GetAlternativeFamilyQuotient.call(siret: Current.collectivity.siret, **alternative_params)
+
+    if result.success?
+      session["quotient_familial"] = result.quotient_familial
+      SetupCurrentData.call(session:, params:)
+
+      redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
+    else
+      flash[:error] = {
+        title: t("shipments.qf_v1_error.title"),
+        text: t("shipments.qf_v1_error.text", message: result.message),
+      }
+
+      redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
+    end
   end
 
   private

@@ -25,17 +25,22 @@ Sachantque("j'ai un compte sur FranceConnect") do
   mock_france_connect
 end
 
-Sachantque("j'ai un quotient familial CAF sans enfants") do
+Sachantque("j'ai un quotient familial CAF sans enfants via France Connect") do
   stub_quotient_familial_v2(:cnaf_without_children)
 end
 
-Sachantque("j'ai un quotient familial msa avec des enfants") do
+Sachantque("j'ai un quotient familial MSA avec des enfants via France Connect") do
   stub_quotient_familial_v2(:msa_with_children)
 end
 
-Sachantque("mon quotient familial est indisponible") do
+Sachantque("mon quotient familial via France Connect est indisponible") do
   stub_quotient_familial_v2_with_error(:not_found, status: 404)
 end
+
+Sachantque("j'ai un quotient familial CAF via numéro d'allocataire") do
+  stub_quotient_familial_v1
+end
+
 
 Sachantque("hubee peut recevoir un dossier") do
   stub_hubee_token
