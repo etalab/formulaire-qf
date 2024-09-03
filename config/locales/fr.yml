@@ -152,9 +152,9 @@ fr:
         Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
         <strong>Raison: %{message}</strong>
     qf_v2_error:
-      title: La récupération de votre quotient familial via France Connect n'a pas fonctionné
+      title: La récupération de votre quotient familial via FranceConnect n'a pas fonctionné
       text: |
-        Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie.
+        Nous sommes désolés, votre identité FranceConnect ne nous a pas permis de récupérer votre quotient familial auprès de l'administration détentrice de vos données.
         <strong>Raison: %{message}</strong>
     hubee_error:
       title: L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné
@@ -164,7 +164,7 @@ fr:
   cnaf_v1_family_quotients:
     index:
       caf:
-        title: Alternative si vous êtes à la CAF
+        title: Je réessaye avec mon numéro d'allocataire CAF 
         description: Vous pouvez entrer votre numéro d'allocataire et votre code postal ci-dessous, nous allons réessayer de récupérer votre quotient familial avec ces informations.
         allocataire_number: Numéro d'allocataire CAF
         postal_code: Code postal

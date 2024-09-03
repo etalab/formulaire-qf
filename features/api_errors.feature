@@ -24,7 +24,7 @@ Fonctionnalité: Gestion des erreurs API
     Et que mon quotient familial via France Connect est indisponible
     Quand je clique sur "S’identifier avec FranceConnect"
     Alors la page contient "Dossier allocataire inexistant."
-    Et la page contient "Alternative si vous êtes à la CAF"
+    Et la page contient "Je réessaye avec mon numéro d'allocataire CAF"
     Et la page contient "Alternative si vous êtes à la MSA"
 
   Scénario: Je récupère mes données de quotient familial via mon numéro d'allocataire
