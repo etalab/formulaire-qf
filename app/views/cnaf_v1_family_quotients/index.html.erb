@@ -5,7 +5,7 @@
 
   <%= simple_format t('.caf.description'), { }, wrapper_tag: 'p' %>
 
-  <%= form_with url: collectivity_alternatives_path(@collectivity.siret), scope: :alternative, class: "fr-grid-row fr-grid-row--gutters" do |f| %>
+  <%= form_with url: collectivity_cnaf_v1_family_quotients_path(@collectivity.siret), scope: :alternative, class: "fr-grid-row fr-grid-row--gutters" do |f| %>
     <div class="fr-col-12 fr-col-md-8">
       <%= f.label :allocataire_number, t('.caf.allocataire_number') %>
       <%= f.text_field :allocataire_number, class: "fr-input fr-mt-1w", required: true %>

@@ -161,7 +161,7 @@ fr:
       text: |
         Nous sommes désolés, une erreur est survenue lors de l'envoi de vos données à %{collectivity}.
 
-  alternatives:
+  cnaf_v1_family_quotients:
     index:
       caf:
         title: Alternative si vous êtes à la CAF

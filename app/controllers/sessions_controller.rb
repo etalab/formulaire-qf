@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         text: t("shipments.qf_v2_error.text", message: result.message),
       }
 
-      redirect_to collectivity_alternatives_path(Current.collectivity.siret)
+      redirect_to collectivity_cnaf_v1_family_quotients_path(Current.collectivity.siret)
     end
   end
 

@@ -1,11 +1,11 @@
-class AlternativesController < ApplicationController
+class CnafV1FamilyQuotientsController < ApplicationController
   before_action :set_collectivity
 
   def index
   end
 
   def create
-    result = GetAlternativeFamilyQuotient.call(siret: Current.collectivity.siret, **alternative_params)
+    result = GetAlternativeFamilyQuotient.call(siret: Current.collectivity.siret, **cnaf_v1_params)
 
     if result.success?
       session["quotient_familial"] = result.quotient_familial
@@ -28,7 +28,7 @@ class AlternativesController < ApplicationController
     @collectivity = Current.collectivity
   end
 
-  def alternative_params
+  def cnaf_v1_params
     params.require(:alternative).permit(:allocataire_number, :postal_code)
   end
 end
