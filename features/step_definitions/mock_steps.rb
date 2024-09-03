@@ -50,7 +50,7 @@ Sachantque("j'ai un quotient familial CAF via numéro d'allocataire") do
 end
 
 Sachantque("j'ai un quotient familial CAF via numéro d'allocataire avec pour date de naissance {string}") do |birthdate|
-  birthdate_v1 = birthdate.split('-').reverse.join('')
+  birthdate_v1 = birthdate.split("-").reverse.join("")
   stub_quotient_familial_v1_with_allocataire_birthdate(birthdate_v1)
 end
 

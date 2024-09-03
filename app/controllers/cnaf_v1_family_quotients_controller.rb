@@ -8,7 +8,7 @@ class CnafV1FamilyQuotientsController < ApplicationController
     result = GetCnafV1FamilyQuotient.call(siret: Current.collectivity.siret, **cnaf_v1_params)
 
     if result.success?
-      if Current.pivot_identity.verify_quotient_familial(result.quotient_familial) 
+      if Current.pivot_identity.verify_quotient_familial(result.quotient_familial)
 
         session["quotient_familial"] = result.quotient_familial
         SetupCurrentData.call(session:, params:)
