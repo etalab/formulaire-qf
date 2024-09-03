@@ -2,7 +2,7 @@ class QuotientFamilialFacade
   attr_reader :quotient_familial
 
   def initialize(quotient_familial)
-    @quotient_familial = quotient_familial
+    @quotient_familial = quotient_familial.try(:with_indifferent_access)
   end
 
   def empty?
@@ -49,7 +49,19 @@ class QuotientFamilialFacade
       quotient_familial["annee"].to_i.zero?
   end
 
+  def v1?
+    quotient_familial["version"] == "v1"
+  end
+
   def person_facade(person)
+    if v1?
+      person_v1_facade(person)
+    else
+      person_v2_facade(person)
+    end
+  end
+
+  def person_v2_facade(person)
     nom_usage = if person["nomUsage"] && person["nomUsage"] != person["nomNaissance"]
       " (nom d'usage #{person["nomUsage"]})"
     end
@@ -58,5 +70,11 @@ class QuotientFamilialFacade
     birthdate = "#{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}"
 
     "#{names}, né#{"e" if person["sexe"] == "F"} le #{birthdate}"
+  end
+
+  def person_v1_facade(person)
+    birthdate = person["dateDeNaissance"].gsub(/(\d\d)(\d\d)(\d\d\d\d)/, '\1/\2/\3')
+
+    "#{person["nomPrenom"]}, né#{"e" if person["sexe"] == "F"} le #{birthdate}"
   end
 end
