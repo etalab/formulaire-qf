@@ -176,4 +176,15 @@ FactoryBot.define do
       }
     end
   end
+
+
+  factory :quotient_familial_v1_error_payload, class: Hash do
+    initialize_with { attributes.deep_stringify_keys }
+
+    trait :not_found do
+      error { "not_found" }
+      reason { "Dossier allocataire inexistant. Le document ne peut être édité." }
+      message { "Dossier allocataire inexistant. Le document ne peut être édité." }
+    end
+  end
 end

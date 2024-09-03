@@ -47,19 +47,19 @@ RSpec.describe ApiParticulier::QuotientFamilialV1 do
       expect(quotient_familial).to match(hash_including(expected_response))
     end
 
-    # context "when there is an error" do
-    #   before do
-    #     stub_quotient_familial_v2_with_error(:not_found, status: 404)
-    #   end
+    context "when there is an error" do
+      before do
+        stub_quotient_familial_v1_with_error(:not_found, status: 404)
+      end
 
-    #   it "returns an error" do
-    #     expect(quotient_familial["error"]).to match("not_found")
-    #   end
+      it "returns an error" do
+        expect(quotient_familial["error"]).to match("not_found")
+      end
 
-    #   it "sends a message to sentry" do
-    #     expect(Sentry).to receive :capture_message
-    #     quotient_familial
-    #   end
-    # end
+      it "sends a message to sentry" do
+        expect(Sentry).to receive :capture_message
+        quotient_familial
+      end
+    end
   end
 end
