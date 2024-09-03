@@ -31,7 +31,7 @@ module ApiParticulier
       Rails.logger.debug response.body
       Rails.logger.debug quotient_familial
 
-      quotient_familial
+      quotient_familial.merge(version: "v2")
     end
 
     def track_error(response, parsed_body)

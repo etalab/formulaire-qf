@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :quotient_familial_v2_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
+    version { "v2" }
     regime { "CNAF" }
     quotientFamilial { 2550 }
     annee { 2024 }
@@ -130,6 +131,7 @@ FactoryBot.define do
   factory :quotient_familial_v1_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
+    version { "v1" }
     quotientFamilial { 1234 }
     annee { 2022 }
     mois { 7 }

@@ -29,7 +29,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "value" do
     context "when there is v2 data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload).merge(version: "v2") }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
       it "returns a readable array of persons strings" do
         expect(subject.value).to eq 2550
@@ -37,7 +37,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is v1 data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload).merge(version: "v1") }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload) }
 
       it "returns a readable array of persons strings" do
         expect(subject.value).to eq "< valeur masquée >"
@@ -109,7 +109,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "#allocataires" do
     context "when there is v2 data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload).merge(version: "v2") }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
       it "returns a readable array of persons strings" do
         expect(subject.allocataires).to eq ["DUBOIS ANGELA, née le 24/08/1962"]
@@ -117,7 +117,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is v1 data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload).merge(version: "v1") }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload) }
 
       it "returns a readable array of persons strings" do
         expect(subject.allocataires).to eq ["MARIE DUPONT, née le 01/03/1988", "JEAN DUPONT, né le 01/04/1990"]
@@ -143,7 +143,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "#children" do
     context "when there is v2 data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload).merge(version: "v2") }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
       it "returns a readable array of persons strings" do
         expect(subject.children).to eq ["Dujardin Jean, né le 13/12/2016"]
@@ -151,7 +151,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is v1 data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload).merge(version: "v1") }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload) }
 
       it "returns a readable array of persons strings" do
         expect(subject.children).to eq ["JACQUES DUPONT, né le 01/01/2010", "JEANNE DUPONT, née le 01/02/2012"]

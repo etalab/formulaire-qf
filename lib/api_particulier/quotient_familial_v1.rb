@@ -32,7 +32,7 @@ module ApiParticulier
       Rails.logger.debug response.body
       Rails.logger.debug quotient_familial
 
-      quotient_familial
+      quotient_familial.merge(version: "v1")
     end
 
     def api_key
