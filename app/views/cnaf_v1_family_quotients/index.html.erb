@@ -27,7 +27,7 @@
 <div class="fr-col-md-8">
   <%= simple_format t('.msa.title'), { }, wrapper_tag: 'h2' %>
 
-  <%= render partial: "collectivities/alternatives", locals: { only_key: :msa } %>
+  <%= render partial: "collectivities/alternatives", locals: { alternative_keys: [:msa] } %>
 </div>
 
 
