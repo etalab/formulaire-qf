@@ -55,7 +55,7 @@ fr:
       which_informations:
         title: Quelles informations vous seront demandées ?
         content: Aucune, seulement une connexion à FranceConnect
-    cgu_usagers: 
+    cgu_usagers:
       browser_title: CGU des usagers
     cgu_administrations:
       browser_title: CGU des administrations
@@ -78,7 +78,7 @@ fr:
         text: |
           Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
       title: "Je m'identifie via FranceConnect&nbsp;:"
-      no_france_connect: 
+      no_france_connect:
         text: Vous n'utilisez pas FranceConnect ?
         link: Consulter les alternatives
       info:
@@ -97,11 +97,11 @@ fr:
       title: Vous n'utilisez pas FranceConnect ?
       explanation: |
         <strong>Ce service est uniquement utilisable avec FranceConnect.</strong>
-        FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>. 
+        FranceConnect est accessible à toute personne ayant un numéro de sécurité sociale définitif et possédant un compte utilisateur auprès d'impots.gouv.fr, Ameli.fr, L'Identité Numérique La Poste, MSA, YRIS et France Identité. Pour comprendre comment utiliser FranceConnect, veuillez consulter leur <a href="https://franceconnect.gouv.fr/franceconnect">documentation</a>.
       alternative_text: <strong>Comme alternative vous pouvez télécharger votre attestation :</strong>
       alternative_options:
-        - Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
-        - Votre attestation MSA sur <a href="https://monespaceprive.msa.fr" class="fr-link">le site de la MSA</a>.
+        caf: Votre attestation CAF sur <a href="https://www.caf.fr/allocataires/caf-des-alpes-maritimes/offre-de-service/thematique-libre/telecharger-une-attestation" class="fr-link">le site de la CAF</a>.
+        msa: Votre attestation MSA sur <a href="https://monespaceprive.msa.fr" class="fr-link">le site de la MSA</a>.
       transmission_text: <strong>Et la transmettre directement à votre collectivité :</strong>
       transmission_options:
         - Par mail
@@ -146,15 +146,29 @@ fr:
           title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
     error:
       browser_title: Échec de la démarche
-    qf_error:
+    qf_v1_error:
       title: La récupération de votre quotient familial n'a pas fonctionné
       text: |
         Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
+        <strong>Raison: %{message}</strong>
+    qf_v2_error:
+      title: La récupération de votre quotient familial via France Connect n'a pas fonctionné
+      text: |
+        Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie.
         <strong>Raison: %{message}</strong>
     hubee_error:
       title: L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné
       text: |
         Nous sommes désolés, une erreur est survenue lors de l'envoi de vos données à %{collectivity}.
+
+  alternatives:
+    index:
+      caf:
+        title: Alternative si vous êtes à la CAF
+        description: Vous pouvez entrer votre numéro d'allocataire et votre code postal ci-dessous, nous allons réessayer de récupérer votre quotient familial avec ces informations.
+      msa:
+        title: Alternative si vous êtes à la MSA
+
 
   errors:
     title: "Une erreur est survenue"

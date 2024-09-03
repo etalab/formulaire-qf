@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     get "/confirmation/:reference", to: "shipments#show", as: :shipment
 
     resources :shipments, only: %i[create], param: :reference
+
+    resources :alternatives, only: %i[index create]
   end
 
   get "/cgu_usagers", to: "home#cgu_usagers"

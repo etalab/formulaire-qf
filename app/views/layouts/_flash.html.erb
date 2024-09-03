@@ -4,10 +4,12 @@
       <h4 class="fr-alert__title"><%=value[:title] || "Erreur"%></h4>
       <%= simple_format (value[:text] || value), { }, wrapper_tag: 'p' %>
 
-      <p class="fr-mt-2w">
-        <span class="fr-icon-settings-5-fill" aria-hidden="true"></span>
-        <%= simple_format t('errors.report_sent'), { }, wrapper_tag: 'span' %>
-      </p>
+      <% if key == :error %>
+        <p class="fr-mt-2w">
+          <span class="fr-icon-settings-5-fill" aria-hidden="true"></span>
+          <%= simple_format t('errors.report_sent'), { }, wrapper_tag: 'span' %>
+        </p>
+      <% end %>
     </div>
   <% end %>
 </div>

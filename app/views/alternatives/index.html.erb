@@ -1,0 +1,18 @@
+<%= render partial: "collectivities/show_banner", locals: { duration: 2 } %>
+
+<div class="fr-col-md-8 fr-my-6w">
+  <%= simple_format t('.caf.title'), { }, wrapper_tag: 'h2' %>
+
+  <%= simple_format t('.caf.description'), { }, wrapper_tag: 'p' %>
+
+  TODO : formulaire
+</div>
+
+<div class="fr-col-md-8">
+  <%= simple_format t('.msa.title'), { }, wrapper_tag: 'h2' %>
+
+  <%= render partial: "collectivities/alternatives", locals: { only_key: :msa } %>
+</div>
+
+
+
