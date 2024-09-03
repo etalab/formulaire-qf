@@ -164,17 +164,17 @@ FactoryBot.define do
       ]
     end
 
-    adresse do
-      {
-        "identite" => "Monsieur JEAN DUPONT",
-        "complementIdentite" => "APPARTEMENT 51",
-        "complementIdentiteGeo" => "RESIDENCE DES COLOMBES",
-        "numeroRue" => "42 RUE DE LA PAIX",
-        "lieuDit" => "ILOTS DES OISEAUX",
-        "codePostalVille" => "75001 PARIS",
-        "pays" => "FRANCE",
-      }
-    end
+    # adresse do
+    #   {
+    #     "identite" => "Monsieur JEAN DUPONT",
+    #     "complementIdentite" => "APPARTEMENT 51",
+    #     "complementIdentiteGeo" => "RESIDENCE DES COLOMBES",
+    #     "numeroRue" => "42 RUE DE LA PAIX",
+    #     "lieuDit" => "ILOTS DES OISEAUX",
+    #     "codePostalVille" => "75001 PARIS",
+    #     "pays" => "FRANCE",
+    #   }
+    # end
   end
 
   factory :quotient_familial_v1_error_payload, class: Hash do
