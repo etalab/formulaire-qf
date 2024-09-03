@@ -5,7 +5,23 @@
 
   <%= simple_format t('.caf.description'), { }, wrapper_tag: 'p' %>
 
-  TODO : formulaire
+  <%= form_with url: collectivity_alternatives_path(@collectivity.siret), scope: :alternative, class: "fr-grid-row fr-grid-row--gutters" do |f| %>
+    <div class="fr-col-12 fr-col-md-8">
+      <%= f.label :allocataire_number, t('.caf.allocataire_number') %>
+      <%= f.text_field :allocataire_number, class: "fr-input fr-mt-1w", required: true %>
+    </div>
+    
+    <div class="fr-col-12 fr-col-md-4">
+      <%= f.label :postal_code, t('.caf.postal_code') %>
+      <%= f.text_field :postal_code, class: "fr-input fr-mt-1w", required: true %>
+    </div>
+
+    <div class="fr-col-12">
+      <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+        <%= t('.caf.submit') %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <div class="fr-col-md-8">

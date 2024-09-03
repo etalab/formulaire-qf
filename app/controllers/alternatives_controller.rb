@@ -22,4 +22,8 @@ class AlternativesController < ApplicationController
   def set_collectivity
     @collectivity = Current.collectivity
   end
+
+  def alternative_params
+    params.require(:alternative).permit(:allocataire_number, :postal_code)
+  end
 end

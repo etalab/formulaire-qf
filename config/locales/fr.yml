@@ -166,6 +166,9 @@ fr:
       caf:
         title: Alternative si vous êtes à la CAF
         description: Vous pouvez entrer votre numéro d'allocataire et votre code postal ci-dessous, nous allons réessayer de récupérer votre quotient familial avec ces informations.
+        allocataire_number: Numéro d'allocataire CAF
+        postal_code: Code postal
+        submit: Retenter de récupérer mon quotient familial
       msa:
         title: Alternative si vous êtes à la MSA
 

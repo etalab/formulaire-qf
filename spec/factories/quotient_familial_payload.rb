@@ -177,7 +177,6 @@ FactoryBot.define do
     end
   end
 
-
   factory :quotient_familial_v1_error_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 

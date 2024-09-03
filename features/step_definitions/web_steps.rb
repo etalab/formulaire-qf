@@ -29,7 +29,7 @@ Quand(/je clique sur (le (?:dernier|premier) )?"([^"]+)"\s*$/) do |position, lab
   end
 end
 
-Quand('je remplis {string} avec {string}') do |label, value|
+Quand("je remplis {string} avec {string}") do |label, value|
   fill_in label, with: value
 end
 
