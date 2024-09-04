@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       SetupCurrentData.call(session:, params:)
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
 
-    elsif result.message.starts_with?("Le dossier allocataire n'a pas été trouvé auprès de la CNAF")
+    elsif result.cnaf_failed?
       flash[:info] = {
         title: t("shipments.qf_v2_error.title"),
         text: t("shipments.qf_v2_error.text", message: result.message),

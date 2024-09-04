@@ -1,7 +1,7 @@
 class GetCnafV1FamilyQuotient < BaseInteractor
   def call
     if quotient_familial["error"].present?
-      context.fail!(message: error_message, reason: :api_error)
+      context.fail!(message: error_message)
     else
       context.quotient_familial = ApiParticulier::QuotientFamilial::V1Payload.new(quotient_familial).convert_to_v2_format
     end

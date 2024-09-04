@@ -12,7 +12,7 @@ class CnafV1FamilyQuotientsController < ApplicationController
       SetupCurrentData.call(session:, params:)
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
 
-    elsif result.reason == :verification_failed
+    elsif result.verification_failed?
       flash[:warning] = {
         title: t(".verify_error.title"),
         text: t(".verify_error.text"),
