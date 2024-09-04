@@ -15,7 +15,9 @@ module ApiParticulier
       private
 
       def convert_people_v2_format(people)
-        people.map! { |allocataire| convert_person_v2_format(allocataire) } if people.present?
+        return if people.blank?
+
+        people.map! { |allocataire| convert_person_v2_format(allocataire) }
       end
 
       def convert_person_v2_format(person)
