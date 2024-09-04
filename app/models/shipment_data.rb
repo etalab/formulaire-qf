@@ -70,17 +70,17 @@ class ShipmentData
   end
 
   def allocataire_text
-    persons_text(quotient_familial["allocataires"])
+    people_text(quotient_familial["allocataires"])
   end
 
   def enfants_text
-    persons_text(quotient_familial["enfants"])
+    people_text(quotient_familial["enfants"])
   end
 
-  def persons_text(persons)
-    return "Aucun" if persons.blank?
+  def people_text(people)
+    return "Aucun" if people.blank?
 
-    persons.map { |person| person_text(person) }.join("\n")
+    people.map { |person| person_text(person) }.join("\n")
   end
 
   def person_text(person)

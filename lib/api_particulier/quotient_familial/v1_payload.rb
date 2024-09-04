@@ -6,16 +6,16 @@ module ApiParticulier
       end
 
       def convert_to_v2_format
-        convert_persons_v2_format @payload["allocataires"]
-        convert_persons_v2_format @payload["enfants"]
+        convert_people_v2_format @payload["allocataires"]
+        convert_people_v2_format @payload["enfants"]
 
         @payload
       end
 
       private
 
-      def convert_persons_v2_format(persons)
-        persons.map! { |allocataire| convert_person_v2_format(allocataire) } if persons.present?
+      def convert_people_v2_format(people)
+        people.map! { |allocataire| convert_person_v2_format(allocataire) } if people.present?
       end
 
       def convert_person_v2_format(person)
