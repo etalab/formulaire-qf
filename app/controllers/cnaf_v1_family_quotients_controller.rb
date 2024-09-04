@@ -5,22 +5,20 @@ class CnafV1FamilyQuotientsController < ApplicationController
   end
 
   def create
-    result = GetCnafV1FamilyQuotient.call(siret: Current.collectivity.siret, **cnaf_v1_params)
+    result = GetVerifiedQuotientFamilialV1.call(siret: Current.collectivity.siret, pivot_identity: Current.pivot_identity, **cnaf_v1_params)
 
     if result.success?
-      if Current.pivot_identity.verify_quotient_familial(result.quotient_familial)
+      session["quotient_familial"] = result.quotient_familial
+      SetupCurrentData.call(session:, params:)
+      redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
 
-        session["quotient_familial"] = result.quotient_familial
-        SetupCurrentData.call(session:, params:)
-        redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
-      else
-        flash[:warning] = {
-          title: t(".verify_error.title"),
-          text: t(".verify_error.text"),
-        }
+    elsif result.reason == :verification_failed
+      flash[:warning] = {
+        title: t(".verify_error.title"),
+        text: t(".verify_error.text"),
+      }
 
-        redirect_to collectivity_cnaf_v1_family_quotients_path(Current.collectivity.siret)
-      end
+      redirect_to collectivity_cnaf_v1_family_quotients_path(Current.collectivity.siret)
     else
       flash[:error] = {
         title: t("shipments.qf_v1_error.title"),
