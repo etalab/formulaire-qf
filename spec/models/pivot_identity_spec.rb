@@ -41,11 +41,13 @@ describe PivotIdentity, type: :model do
 
     context "if my birthdate is found in the allocataires" do
       let(:birthdate) { Date.new(1962, 8, 24) }
+
       it { is_expected.to be true }
     end
 
     context "if my birthdate is not found in the allocataires" do
       let(:birthdate) { Date.new(2021, 7, 29) }
+
       it { is_expected.to be false }
     end
   end
