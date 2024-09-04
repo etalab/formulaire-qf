@@ -2,7 +2,7 @@ class QuotientFamilialFacade
   attr_reader :quotient_familial
 
   def initialize(quotient_familial)
-    @quotient_familial = quotient_familial.try(:with_indifferent_access)
+    @quotient_familial = Hash(quotient_familial).with_indifferent_access
   end
 
   def empty?
