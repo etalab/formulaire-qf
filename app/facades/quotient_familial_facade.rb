@@ -34,12 +34,12 @@ class QuotientFamilialFacade
 
   def allocataires
     return [] if empty? || quotient_familial["allocataires"].blank?
-    quotient_familial["allocataires"].map { |allocataire| person_facade(allocataire) }
+    quotient_familial["allocataires"].map { |allocataire| person_to_string(allocataire) }
   end
 
   def children
     return [] if empty? || quotient_familial["enfants"].blank?
-    quotient_familial["enfants"].map { |enfant| person_facade(enfant) }
+    quotient_familial["enfants"].map { |enfant| person_to_string(enfant) }
   end
 
   private
@@ -49,7 +49,7 @@ class QuotientFamilialFacade
       quotient_familial["annee"].to_i.zero?
   end
 
-  def person_facade(person)
+  def person_to_string(person)
     nom_usage = if person["nomUsuel"] && person["nomUsuel"] != person["nomNaissance"]
       " (nom d'usage #{person["nomUsuel"]})"
     end
