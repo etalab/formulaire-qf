@@ -1,13 +1,14 @@
-describe GetFamilyQuotient, type: :interactor do
+describe GetCnafV1FamilyQuotient, type: :interactor do
   describe ".call" do
-    subject(:call) { described_class.call(user:, siret:) }
+    subject(:call) { described_class.call(allocataire_number:, postal_code:, siret:) }
 
-    let(:user) { instance_double(User, access_token: "some_real_token") }
+    let(:allocataire_number) { "2345678" }
+    let(:postal_code) { "75001" }
     let(:siret) { "some_siret" }
 
     before do
       Current.quotient_familial = nil
-      stub_quotient_familial_v2(:cnaf_without_children)
+      stub_quotient_familial_v1
     end
 
     it "calls the API" do
@@ -16,12 +17,12 @@ describe GetFamilyQuotient, type: :interactor do
 
     it "sets up the quotient familial" do
       expect(call.success?).to be true
-      expect(call.quotient_familial).to match(hash_including("quotientFamilial" => 2550, :version => "v2"))
+      expect(call.quotient_familial).to match(hash_including("quotientFamilial" => 1234, :version => "v1"))
     end
 
     context "when the API returns an error" do
       before do
-        stub_quotient_familial_v2_with_error(:not_found, status: 404)
+        stub_quotient_familial_v1_with_error(:not_found, status: 404)
       end
 
       it "sets up a failure" do

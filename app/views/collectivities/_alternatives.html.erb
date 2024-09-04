@@ -1,8 +1,11 @@
+<% alternative_keys ||= [:caf, :msa] %>
+<% alternatives = t('collectivities.no_france_connect.alternative_options').slice(*alternative_keys).values  %>
+
 <p>
   <%= simple_format t('collectivities.no_france_connect.alternative_text') %>
 
   <ul class="fr-ml-2w">
-    <% t('collectivities.no_france_connect.alternative_options').each do |option| %>
+    <% alternatives.each do |option| %>
       <%= simple_format option, { }, wrapper_tag: 'li' %>
     <% end %>
   </ul>

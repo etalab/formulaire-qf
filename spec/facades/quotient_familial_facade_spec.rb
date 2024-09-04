@@ -3,7 +3,7 @@ RSpec.describe QuotientFamilialFacade do
 
   describe "#empty?" do
     context "when there is data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload) }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
       it "returns false" do
         expect(subject.empty?).to be false
@@ -27,6 +27,14 @@ RSpec.describe QuotientFamilialFacade do
     end
   end
 
+  describe "value" do
+    let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
+
+    it "returns the familial quotient value" do
+      expect(subject.value).to eq 2550
+    end
+  end
+
   describe "#month_year" do
     before do
       Timecop.freeze(Date.new(1990, 2, 24))
@@ -37,7 +45,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload) }
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
       it "makes a readable string of the month and year" do
         expect(subject.month_year).to eq "février 2024"
@@ -90,11 +98,19 @@ RSpec.describe QuotientFamilialFacade do
   end
 
   describe "#allocataires" do
-    context "when there is data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload) }
+    context "when there is v2 data" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
-      it "returns a readable array of persons strings" do
+      it "returns a readable array of people strings" do
         expect(subject.allocataires).to eq ["DUBOIS ANGELA, née le 24/08/1962"]
+      end
+    end
+
+    context "when there is v1 data" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload_converted_to_v2_format) }
+
+      it "returns a readable array of people strings" do
+        expect(subject.allocataires).to eq ["MARIE DUPONT, née le 01/03/1988", "JEAN DUPONT, né le 01/04/1990"]
       end
     end
 
@@ -116,11 +132,19 @@ RSpec.describe QuotientFamilialFacade do
   end
 
   describe "#children" do
-    context "when there is data" do
-      let(:quotient_familial) { FactoryBot.build(:quotient_familial_payload) }
+    context "when there is v2 data" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
 
-      it "returns a readable array of persons strings" do
+      it "returns a readable array of people strings" do
         expect(subject.children).to eq ["Dujardin Jean, né le 13/12/2016"]
+      end
+    end
+
+    context "when there is v1 data" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v1_payload_converted_to_v2_format) }
+
+      it "returns a readable array of people strings" do
+        expect(subject.children).to eq ["JACQUES DUPONT, né le 01/01/2010", "JEANNE DUPONT, née le 01/02/2012"]
       end
     end
 

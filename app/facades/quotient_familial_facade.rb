@@ -2,7 +2,7 @@ class QuotientFamilialFacade
   attr_reader :quotient_familial
 
   def initialize(quotient_familial)
-    @quotient_familial = quotient_familial
+    @quotient_familial = Hash(quotient_familial).with_indifferent_access
   end
 
   def empty?
@@ -34,12 +34,12 @@ class QuotientFamilialFacade
 
   def allocataires
     return [] if empty? || quotient_familial["allocataires"].blank?
-    quotient_familial["allocataires"].map { |allocataire| person_facade(allocataire) }
+    quotient_familial["allocataires"].map { |allocataire| person_to_string(allocataire) }
   end
 
   def children
     return [] if empty? || quotient_familial["enfants"].blank?
-    quotient_familial["enfants"].map { |enfant| person_facade(enfant) }
+    quotient_familial["enfants"].map { |enfant| person_to_string(enfant) }
   end
 
   private
@@ -49,12 +49,13 @@ class QuotientFamilialFacade
       quotient_familial["annee"].to_i.zero?
   end
 
-  def person_facade(person)
-    nom_usage = if person["nomUsage"] && person["nomUsage"] != person["nomNaissance"]
-      " (nom d'usage #{person["nomUsage"]})"
+  def person_to_string(person)
+    nom_usage = if person["nomUsuel"] && person["nomUsuel"] != person["nomNaissance"]
+      " (nom d'usage #{person["nomUsuel"]})"
     end
 
-    names = "#{person["nomNaissance"]}#{nom_usage} #{person["prenoms"]}"
+    names = "#{person["nomNaissance"]}#{nom_usage}"
+    names = "#{names} #{person["prenoms"]}" if person["prenoms"]
     birthdate = "#{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}"
 
     "#{names}, né#{"e" if person["sexe"] == "F"} le #{birthdate}"

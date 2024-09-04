@@ -1,0 +1,28 @@
+<%= render partial: "collectivities/show_banner", locals: { duration: 2 } %>
+
+<div class="fr-col-md-8 fr-my-6w">
+  <%= simple_format t('.title'), { }, wrapper_tag: 'h2' %>
+
+  <%= simple_format t('.description'), { }, wrapper_tag: 'p' %>
+
+  <%= form_with url: collectivity_cnaf_v1_family_quotients_path(@collectivity.siret), scope: :alternative, class: "fr-grid-row fr-grid-row--gutters" do |f| %>
+    <div class="fr-col-12 fr-col-md-8">
+      <%= f.label :allocataire_number, t('.form.allocataire_number') %>
+      <%= f.text_field :allocataire_number, class: "fr-input fr-mt-1w", required: true %>
+    </div>
+    
+    <div class="fr-col-12 fr-col-md-4">
+      <%= f.label :postal_code, t('.form.postal_code') %>
+      <%= f.text_field :postal_code, class: "fr-input fr-mt-1w", required: true %>
+    </div>
+
+    <div class="fr-col-12">
+      <%= button_tag type: "submit", class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
+        <%= t('.form.submit') %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+

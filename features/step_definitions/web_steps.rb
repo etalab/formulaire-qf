@@ -29,6 +29,10 @@ Quand(/je clique sur (le (?:dernier|premier) )?"([^"]+)"\s*$/) do |position, lab
   end
 end
 
+Quand("je remplis {string} avec {string}") do |label, value|
+  fill_in label, with: value
+end
+
 Quand("je sélectionne {string} pour {string}") do |option, name|
   select option, from: name
 end

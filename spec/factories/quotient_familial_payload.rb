@@ -1,7 +1,8 @@
 FactoryBot.define do
-  factory :quotient_familial_payload, class: Hash do
+  factory :quotient_familial_v2_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
+    version { "v2" }
     regime { "CNAF" }
     quotientFamilial { 2550 }
     annee { 2024 }
@@ -10,7 +11,7 @@ FactoryBot.define do
     allocataires do
       [{
         nomNaissance: "DUBOIS",
-        nomUsage: "DUBOIS",
+        nomUsuel: "DUBOIS",
         prenoms: "ANGELA",
         anneeDateDeNaissance: "1962",
         moisDateDeNaissance: "08",
@@ -53,7 +54,7 @@ FactoryBot.define do
       allocataires do
         [{
           "nomNaissance" => "DUBOIS",
-          "nomUsage" => "DUBOIS",
+          "nomUsuel" => "DUBOIS",
           "prenoms" => "ANGELA",
           "anneeDateDeNaissance" => "1962",
           "moisDateDeNaissance" => "08",
@@ -73,7 +74,7 @@ FactoryBot.define do
         [
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "JEANNE STEPHANIE",
             anneeDateDeNaissance: "1987",
             moisDateDeNaissance: "06",
@@ -82,7 +83,7 @@ FactoryBot.define do
           },
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "LOIC NATHAN",
             anneeDateDeNaissance: "1979",
             moisDateDeNaissance: "05",
@@ -96,7 +97,7 @@ FactoryBot.define do
         [
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "ALEXIS VINCENT",
             anneeDateDeNaissance: "2006",
             moisDateDeNaissance: "04",
@@ -105,7 +106,7 @@ FactoryBot.define do
           },
           {
             nomNaissance: "ROUX",
-            nomUsage: nil,
+            nomUsuel: nil,
             prenoms: "FLEUR EDITH",
             anneeDateDeNaissance: "2004",
             moisDateDeNaissance: "04",
@@ -117,7 +118,82 @@ FactoryBot.define do
     end
   end
 
-  factory :quotient_familial_error_payload, class: Hash do
+  factory :quotient_familial_v2_error_payload, class: Hash do
+    initialize_with { attributes.deep_stringify_keys }
+
+    trait :not_found do
+      error { "not_found" }
+      reason { "Dossier allocataire inexistant. Le document ne peut être édité." }
+      message { "Dossier allocataire inexistant. Le document ne peut être édité." }
+    end
+
+    trait :not_found_cnaf do
+      error { "not_found" }
+      reason { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF. Veuillez vérifier que l'identifiant correspond au périmètre couvert par l'API." }
+      message { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF. Veuillez vérifier que l'identifiant correspond au périmètre couvert par l'API." }
+    end
+  end
+
+  factory :quotient_familial_v1_payload, class: Hash do
+    initialize_with { attributes.deep_stringify_keys }
+
+    transient do
+      allocataire_birthdate { "01031988" }
+    end
+
+    version { "v1" }
+    quotientFamilial { 1234 }
+    annee { 2022 }
+    mois { 7 }
+
+    allocataires do
+      [
+        {
+          nomPrenom: "MARIE DUPONT",
+          dateDeNaissance: allocataire_birthdate,
+          sexe: "F",
+        },
+        {
+          nomPrenom: "JEAN DUPONT",
+          dateDeNaissance: "01041990",
+          sexe: "M",
+        },
+      ]
+    end
+
+    enfants do
+      [
+        {
+          nomPrenom: "JACQUES DUPONT",
+          dateDeNaissance: "01012010",
+          sexe: "M",
+        },
+        {
+          nomPrenom: "JEANNE DUPONT",
+          dateDeNaissance: "01022012",
+          sexe: "F",
+        },
+      ]
+    end
+
+    # adresse do
+    #   {
+    #     "identite" => "Monsieur JEAN DUPONT",
+    #     "complementIdentite" => "APPARTEMENT 51",
+    #     "complementIdentiteGeo" => "RESIDENCE DES COLOMBES",
+    #     "numeroRue" => "42 RUE DE LA PAIX",
+    #     "lieuDit" => "ILOTS DES OISEAUX",
+    #     "codePostalVille" => "75001 PARIS",
+    #     "pays" => "FRANCE",
+    #   }
+    # end
+  end
+
+  factory :quotient_familial_v1_payload_converted_to_v2_format, class: Hash do
+    initialize_with { ApiParticulier::QuotientFamilial::V1Payload.new(build(:quotient_familial_v1_payload)).convert_to_v2_format }
+  end
+
+  factory :quotient_familial_v1_error_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
     trait :not_found do
