@@ -17,7 +17,12 @@ RSpec.describe ShipmentData, type: :model do
         prenoms: ["David"],
         sexe: "M",
         nomUsuel: "Heinemeier Hansson",
-        **original_pivot_identity,
+        family_name: "TESTMAN",
+        given_name: "Johnny Paul René",
+        gender: "male",
+        birthdate: "1989-10-08",
+        birthplace: "75107",
+        birthcountry: "99100",
       },
       quotient_familial: {
         regime: "CNAF",
