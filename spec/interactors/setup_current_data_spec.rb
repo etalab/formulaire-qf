@@ -46,11 +46,10 @@ describe SetupCurrentData, type: :interactor do
 
     context "with a session from FranceConnect" do
       let(:france_connect_payload) { build(:france_connect_payload) }
-      let(:session) { { "raw_info" => france_connect_payload } }
-
+      let(:session) { {"raw_info" => france_connect_payload} }
 
       it "sets up the current original pivot identity" do
-        expect { call }.to change { Current.original_pivot_identity }.from(nil).to(france_connect_payload.except('sub'))
+        expect { call }.to change { Current.original_pivot_identity }.from(nil).to(france_connect_payload.except("sub"))
       end
     end
   end

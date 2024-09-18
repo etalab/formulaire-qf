@@ -24,7 +24,7 @@ class SetupCurrentData < BaseInteractor
   end
 
   def original_pivot_identity
-    session_raw_info.slice('birthcountry', 'birthdate', 'birthplace', 'family_name', 'given_name', 'gender')
+    session_raw_info.slice("birthcountry", "birthdate", "birthplace", "family_name", "given_name", "gender")
   end
 
   def quotient_familial

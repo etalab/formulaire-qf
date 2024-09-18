@@ -19,6 +19,7 @@ class ShipmentsController < ApplicationController
       collectivity: @collectivity,
       external_id: Current.external_id,
       pivot_identity: Current.pivot_identity,
+      original_pivot_identity: Current.original_pivot_identity,
       quotient_familial: Current.quotient_familial,
       user: Current.user
     )

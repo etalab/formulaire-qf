@@ -66,7 +66,12 @@ class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   end
 
   def shipment_data
-    ShipmentData.new(external_id: context.external_id, pivot_identity: context.pivot_identity, quotient_familial: context.quotient_familial)
+    ShipmentData.new(
+      external_id: context.external_id,
+      pivot_identity: context.pivot_identity,
+      original_pivot_identity: context.original_pivot_identity,
+      quotient_familial: context.quotient_familial
+    )
   end
 
   def xml_file
