@@ -11,7 +11,7 @@ Fonctionnalité: Sélectionner une collectivité
     Quand je sélectionne "(04) Majastres" pour "Nom de la collectivité"
     Et que je clique sur "Suivant"
     Alors la page contient "S’identifier avec FranceConnect"
-    Et la page contient "(04) Majastres"
+    Et la page contient "Majastres (04)"
 
   Scénario: Je ne peux pas sélectionner une collectivité inactive
     Alors l'option "(04) Majastres" existe pour "Nom de la collectivité"
