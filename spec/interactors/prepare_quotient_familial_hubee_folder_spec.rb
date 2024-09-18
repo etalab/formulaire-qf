@@ -16,11 +16,13 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
     let(:recipient) { double(HubEE::Recipient) }
     let(:kase) { build(:hubee_case, recipient:) }
     let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
+    let(:original_pivot_identity) { build(:original_pivot_identity) }
     let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
     let(:collectivity) { create(:collectivity) }
     let(:params) do
       {
         pivot_identity:,
+        original_pivot_identity:,
         quotient_familial:,
         collectivity:,
       }

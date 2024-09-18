@@ -14,10 +14,12 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     subject(:organizer) { described_class.call(**params) }
 
     let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
+    let(:original_pivot_identity) { build(:original_pivot_identity) }
     let(:params) do
       {
         quotient_familial:,
         pivot_identity:,
+        original_pivot_identity:,
         collectivity:,
         user:,
       }

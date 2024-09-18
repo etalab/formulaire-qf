@@ -1,9 +1,10 @@
 class ShipmentData
-  attr_reader :external_id, :pivot_identity, :quotient_familial
+  attr_reader :external_id, :pivot_identity, :original_pivot_identity, :quotient_familial
 
-  def initialize(pivot_identity:, quotient_familial:, external_id: nil)
+  def initialize(pivot_identity:, original_pivot_identity:, quotient_familial:, external_id: nil)
     @external_id = external_id
     @pivot_identity = pivot_identity
+    @original_pivot_identity = original_pivot_identity
     @quotient_familial = quotient_familial.with_indifferent_access
   end
 
@@ -19,6 +20,7 @@ class ShipmentData
         prenoms: pivot_identity.first_names,
         sexe: (pivot_identity.gender == :female) ? "F" : "M",
         nomUsuel: pivot_identity.last_name,
+        **original_pivot_identity,
       },
       quotient_familial:,
     }

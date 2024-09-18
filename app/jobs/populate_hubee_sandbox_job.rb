@@ -12,7 +12,12 @@ class PopulateHubEESandboxJob < ApplicationJob
       Rails.logger.debug { "### Adding data to #{name} ###" }
 
       collectivity = Collectivity.find_or_initialize_by(siret:, code_cog:, name:, status: :active)
-      result = UploadQuotientFamilialToHubEE.call(collectivity: collectivity, pivot_identity: pivot_identity, quotient_familial: quotient_familial)
+      result = UploadQuotientFamilialToHubEE.call(
+        collectivity:,
+        pivot_identity:,
+        original_pivot_identity:,
+        quotient_familial:
+      )
 
       if result.success?
         Rails.logger.debug { "   >>> Data added to #{name}, id: #{result.folder.id} ###" }
@@ -26,6 +31,17 @@ class PopulateHubEESandboxJob < ApplicationJob
 
   def pivot_identity
     PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male)
+  end
+
+  def original_pivot_identity
+    {
+      family_name: "Heinemeier Hansson",
+      given_name: "David",
+      gender: "male",
+      birthdate: "1979-10-15",
+      birthplace: nil,
+      birthcountry: "99135",
+    }
   end
 
   def quotient_familial

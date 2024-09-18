@@ -1,6 +1,7 @@
 class SetupCurrentData < BaseInteractor
   def call
     Current.pivot_identity = pivot_identity
+    Current.original_pivot_identity = original_pivot_identity
     Current.quotient_familial = quotient_familial
     Current.collectivity = collectivity
     Current.user = user
@@ -20,6 +21,10 @@ class SetupCurrentData < BaseInteractor
 
   def pivot_identity
     PivotIdentity.new(**FranceConnect::IdentityMapper.normalize(session_raw_info))
+  end
+
+  def original_pivot_identity
+    session_raw_info.slice("birthcountry", "birthdate", "birthplace", "family_name", "given_name", "gender")
   end
 
   def quotient_familial

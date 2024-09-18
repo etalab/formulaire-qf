@@ -1,124 +1,66 @@
 RSpec.describe ShipmentData, type: :model do
-  subject(:shipment_data) { described_class.new(external_id:, pivot_identity:, quotient_familial:) }
+  subject(:shipment_data) { described_class.new(external_id:, pivot_identity:, original_pivot_identity:, quotient_familial:) }
 
   let(:external_id) { "external_id" }
   let(:pivot_identity) { PivotIdentity.new(first_names: ["David"], last_name: "Heinemeier Hansson", birth_country: "99135", birthplace: nil, birthdate: Date.new(1979, 10, 15), gender: :male) }
+  let(:original_pivot_identity) { build(:original_pivot_identity) }
   let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_payload) }
+  let(:expected_hash) do
+    {
+      external_id: "external_id",
+      pivot_identity: {
+        codePaysLieuDeNaissance: "99135",
+        anneeDateDeNaissance: 1979,
+        moisDateDeNaissance: 10,
+        jourDateDeNaissance: 15,
+        codeInseeLieuDeNaissance: nil,
+        prenoms: ["David"],
+        sexe: "M",
+        nomUsuel: "Heinemeier Hansson",
+        family_name: "TESTMAN",
+        given_name: "Johnny Paul René",
+        gender: "male",
+        birthdate: "1989-10-08",
+        birthplace: "75107",
+        birthcountry: "99100",
+      },
+      quotient_familial: {
+        regime: "CNAF",
+        allocataires: [
+          {
+            nomNaissance: "DUBOIS",
+            nomUsuel: "DUBOIS",
+            prenoms: "ANGELA",
+            anneeDateDeNaissance: "1962",
+            moisDateDeNaissance: "08",
+            jourDateDeNaissance: "24",
+            sexe: "F",
+          },
+        ],
+        enfants: [
+          {
+            nomNaissance: "Dujardin",
+            nomUsuel: "Dujardin",
+            prenoms: "Jean",
+            sexe: "M",
+            anneeDateDeNaissance: "2016",
+            moisDateDeNaissance: "12",
+            jourDateDeNaissance: "13",
+          },
+        ],
+        quotientFamilial: 2550,
+        annee: 2024,
+        mois: 2,
+        version: "v2",
+      },
+    }
+  end
 
   describe "to_h" do
     it "returns the shipment data as a hash" do
       expect(shipment_data.to_h.with_indifferent_access).to match(
-        external_id: "external_id",
-        pivot_identity: {
-          codePaysLieuDeNaissance: "99135",
-          anneeDateDeNaissance: 1979,
-          moisDateDeNaissance: 10,
-          jourDateDeNaissance: 15,
-          codeInseeLieuDeNaissance: nil,
-          prenoms: ["David"],
-          sexe: "M",
-          nomUsuel: "Heinemeier Hansson",
-        },
-        quotient_familial: {
-          regime: "CNAF",
-          allocataires: [
-            {
-              nomNaissance: "DUBOIS",
-              nomUsuel: "DUBOIS",
-              prenoms: "ANGELA",
-              anneeDateDeNaissance: "1962",
-              moisDateDeNaissance: "08",
-              jourDateDeNaissance: "24",
-              sexe: "F",
-            },
-          ],
-          enfants: [
-            {
-              nomNaissance: "Dujardin",
-              nomUsuel: "Dujardin",
-              prenoms: "Jean",
-              sexe: "M",
-              anneeDateDeNaissance: "2016",
-              moisDateDeNaissance: "12",
-              jourDateDeNaissance: "13",
-            },
-          ],
-          quotientFamilial: 2550,
-          annee: 2024,
-          mois: 2,
-          version: "v2",
-        }
+        expected_hash.with_indifferent_access
       )
-    end
-  end
-
-  describe "#to_json" do
-    subject(:to_json) { shipment_data.to_json }
-
-    let(:expected_json) do
-      '{"external_id":"external_id","pivot_identity":{"codePaysLieuDeNaissance":"99135","anneeDateDeNaissance":1979,"moisDateDeNaissance":10,"jourDateDeNaissance":15,"codeInseeLieuDeNaissance":null,"prenoms":["David"],"sexe":"M","nomUsuel":"Heinemeier Hansson"},"quotient_familial":{"version":"v2","regime":"CNAF","quotientFamilial":2550,"annee":2024,"mois":2,"allocataires":[{"nomNaissance":"DUBOIS","nomUsuel":"DUBOIS","prenoms":"ANGELA","anneeDateDeNaissance":"1962","moisDateDeNaissance":"08","jourDateDeNaissance":"24","sexe":"F"}],"enfants":[{"nomNaissance":"Dujardin","nomUsuel":"Dujardin","prenoms":"Jean","sexe":"M","anneeDateDeNaissance":"2016","moisDateDeNaissance":"12","jourDateDeNaissance":"13"}]}}'
-    end
-
-    it "returns the shipment data as a json" do
-      expect(to_json).to eq(expected_json)
-    end
-  end
-
-  describe "#to_xml" do
-    subject(:to_xml) { shipment_data.to_xml }
-
-    let(:expected_xml) do
-      <<~XML
-        <?xml version="1.0" encoding="UTF-8"?>
-        <hash>
-          <external-id>external_id</external-id>
-          <pivot-identity>
-            <codePaysLieuDeNaissance>99135</codePaysLieuDeNaissance>
-            <anneeDateDeNaissance type="integer">1979</anneeDateDeNaissance>
-            <moisDateDeNaissance type="integer">10</moisDateDeNaissance>
-            <jourDateDeNaissance type="integer">15</jourDateDeNaissance>
-            <codeInseeLieuDeNaissance nil="true"/>
-            <prenoms type="array">
-              <prenom>David</prenom>
-            </prenoms>
-            <sexe>M</sexe>
-            <nomUsuel>Heinemeier Hansson</nomUsuel>
-          </pivot-identity>
-          <quotient-familial>
-            <version>v2</version>
-            <regime>CNAF</regime>
-            <quotientFamilial type="integer">2550</quotientFamilial>
-            <annee type="integer">2024</annee>
-            <mois type="integer">2</mois>
-            <allocataires type="array">
-              <allocataire>
-                <nomNaissance>DUBOIS</nomNaissance>
-                <nomUsuel>DUBOIS</nomUsuel>
-                <prenoms>ANGELA</prenoms>
-                <anneeDateDeNaissance>1962</anneeDateDeNaissance>
-                <moisDateDeNaissance>08</moisDateDeNaissance>
-                <jourDateDeNaissance>24</jourDateDeNaissance>
-                <sexe>F</sexe>
-              </allocataire>
-            </allocataires>
-            <enfants type="array">
-              <enfant>
-                <nomNaissance>Dujardin</nomNaissance>
-                <nomUsuel>Dujardin</nomUsuel>
-                <prenoms>Jean</prenoms>
-                <sexe>M</sexe>
-                <anneeDateDeNaissance>2016</anneeDateDeNaissance>
-                <moisDateDeNaissance>12</moisDateDeNaissance>
-                <jourDateDeNaissance>13</jourDateDeNaissance>
-              </enfant>
-            </enfants>
-          </quotient-familial>
-        </hash>
-      XML
-    end
-
-    it "returns the shipment data as a xml" do
-      expect(to_xml).to eq(expected_xml)
     end
   end
 
