@@ -7,7 +7,7 @@ Fonctionnalité: Transmettre mes informations
     Et que hubee peut recevoir un dossier
     Et que je me rends sur la page d'accueil
     Et que je clique sur le premier "Débuter la démarche"
-    Et que je sélectionne "Majastres" pour "Nom de la collectivité"
+    Et que je sélectionne "(04) Majastres" pour "Nom de la collectivité"
     Et que je clique sur "Suivant"
 
   Scénario: Mes données FranceConnect sont correctement affichées
@@ -37,7 +37,7 @@ Fonctionnalité: Transmettre mes informations
     Et que j'ai un quotient familial MSA avec des enfants via France Connect
     Et que je clique sur "S’identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
-    Alors la page contient "Vos informations ont bien été transmises à Majastres"
+    Alors la page contient "Vos informations ont bien été transmises à (04) Majastres"
     Et la page contient la référence de ma demande
     Et la page ne contient pas "Retourner sur le site de ma collectivité"
 

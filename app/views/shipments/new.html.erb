@@ -1,7 +1,7 @@
 <%= render partial: "collectivities/show_banner", locals: { duration: 1 } %>
 
 <div class="fr-col-md-8">
-  <%= simple_format t('.title', collectivity_name: @collectivity.name), { }, wrapper_tag: 'h2' %>
+  <%= simple_format t('.title', collectivity_name: @collectivity.display_name), { }, wrapper_tag: 'h2' %>
 
   <div class="user-data fr-p-3w">
     <h3 class="fr-h4 underlined fr-pb-1w"><%= t('.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
@@ -55,7 +55,7 @@
 
     <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
       <%= button_tag type: :submit, class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
-        <%= simple_format t('.next_button', collectivity: @collectivity.name), { }, wrapper_tag: 'span' %>
+        <%= simple_format t('.next_button', collectivity: @collectivity.display_name), { }, wrapper_tag: 'span' %>
       <% end %>
     <% end %>
   </div>
@@ -64,11 +64,11 @@
     <h3 class="fr-alert__title"><%= t('.info.title') %></h3>
     <p class="fr-my-2w">
       <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
-      <%=  t('.info.paragraph_1', collectivity: @collectivity.name) %>
+      <%=  t('.info.paragraph_1', collectivity: @collectivity.display_name) %>
     </p>
     <p>
       <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
-      <%=  t('.info.paragraph_2', collectivity: @collectivity.name) %>
+      <%=  t('.info.paragraph_2', collectivity: @collectivity.display_name) %>
     </p>
     <p>
       <a class="fr-link--sm" href='/faq#donnees-personnelles'>
