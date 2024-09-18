@@ -9,6 +9,7 @@ describe SetupCurrentData, type: :interactor do
     before do
       Current.user = nil
       Current.pivot_identity = nil
+      Current.original_pivot_identity = nil
       Current.quotient_familial = nil
       Current.collectivity = nil
       Current.external_id = nil
@@ -21,10 +22,6 @@ describe SetupCurrentData, type: :interactor do
 
     it "sets up the current user" do
       expect { call }.to change { Current.user }.from(nil).to(instance_of(User))
-    end
-
-    it "sets up the current pivot identity" do
-      expect { call }.to change { Current.pivot_identity }.from(nil).to(instance_of(PivotIdentity))
     end
 
     it "sets up the current quotient familial" do
@@ -41,6 +38,20 @@ describe SetupCurrentData, type: :interactor do
 
     it "sets up the current redirect uri" do
       expect { call }.to change { Current.redirect_uri }.from(nil).to("https://real_uri")
+    end
+
+    it "sets up the current pivot identity" do
+      expect { call }.to change { Current.pivot_identity }.from(nil).to(instance_of(PivotIdentity))
+    end
+
+    context "with a session from FranceConnect" do
+      let(:france_connect_payload) { build(:france_connect_payload) }
+      let(:session) { { "raw_info" => france_connect_payload } }
+
+
+      it "sets up the current original pivot identity" do
+        expect { call }.to change { Current.original_pivot_identity }.from(nil).to(france_connect_payload.except('sub'))
+      end
     end
   end
 end
