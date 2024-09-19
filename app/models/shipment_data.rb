@@ -34,12 +34,12 @@ class ShipmentData
       Identifant éditeur (optionnel): #{external_id}
 
       Identité pivot:
-        - Code Insee pays de naissance: #{pivot_identity.birth_country}
-        - Code Insee lieu de naissance: #{pivot_identity.birthplace}
-        - Date de naissance: #{pivot_identity.birthdate.strftime("%d/%m/%Y")}
-        - Nom de naissance: #{pivot_identity.last_name}
-        - Prénoms: #{pivot_identity.first_names.join(" ")}
-        - Sexe: #{(pivot_identity.gender == :female) ? "F" : "M"}
+        Code Insee pays de naissance: #{pivot_identity.birth_country}
+        Code Insee lieu de naissance: #{pivot_identity.birthplace}
+        Date de naissance: #{pivot_identity.birthdate.strftime("%d/%m/%Y")}
+        Nom de naissance: #{pivot_identity.last_name}
+        Prénoms: #{pivot_identity.first_names.join(" ")}
+        Sexe: #{(pivot_identity.gender == :female) ? "F" : "M"}
       
       #{quotient_familial_text}
     TEXT
@@ -54,20 +54,20 @@ class ShipmentData
           ERREUR: #{I18n.t("shipments.qf_v1_error.title")}
       TEXT
     else
-      <<~TEXT
-        Quotient familial:
-          - Régime: #{quotient_familial["regime"]}
-          - Année: #{quotient_familial["annee"]}
-          - Mois: #{quotient_familial["mois"]}
-          - Quotient familial: #{quotient_familial["quotientFamilial"]}
-          - Allocataires:
-          
-          #{allocataire_text}
-          
-          - Enfants:
-          
-          #{enfants_text}
-      TEXT
+      [
+        "Quotient familial:",
+        "  Régime: #{quotient_familial["regime"]}",
+        "  Année: #{quotient_familial["annee"]}",
+        "  Mois: #{quotient_familial["mois"]}",
+        "  Quotient familial: #{quotient_familial["quotientFamilial"]}",
+        "",
+        "  Allocataires:",
+        "",
+        allocataire_text,
+        "  Enfants:",
+        "",
+        enfants_text,
+      ].join("\n")
     end
   end
 
@@ -80,28 +80,28 @@ class ShipmentData
   end
 
   def people_text(people)
-    return "Aucun" if people.blank?
+    return "Aucun\n\n" if people.blank?
 
     people.map { |person| person_text(person) }.join("\n")
   end
 
   def person_text(person)
-    <<~TEXT
-      #{names(person)}
-      - Date de naissance: #{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}
-      - Sexe: #{person["sexe"]}
-
-    TEXT
+    [
+      names(person),
+      "    Date de naissance: #{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}",
+      "    Sexe: #{person["sexe"]}",
+      "",
+    ].flatten.join("\n")
   end
 
   def names(person)
     if quotient_familial["version"] == "v1"
-      "- Noms et prénoms : #{person["nomPrenom"]}"
+      "  - Noms et prénoms : #{person["nomPrenom"]}"
     else
       [
-        "- Nom de naissance: #{person["nomNaissance"]}",
-        "- Nom d'usage: #{person["nomUsuel"]}",
-        "- Prénoms: #{person["prenoms"]}",
+        "  - Nom de naissance: #{person["nomNaissance"]}",
+        "    Nom d'usage: #{person["nomUsuel"]}",
+        "    Prénoms: #{person["prenoms"]}",
       ].join("\n")
     end
   end

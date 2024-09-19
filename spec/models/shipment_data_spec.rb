@@ -68,7 +68,41 @@ RSpec.describe ShipmentData, type: :model do
     subject(:human_readable_string) { shipment_data.to_s }
 
     let(:expected_string) do
-      "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  - Régime: CNAF\n  - Année: 2024\n  - Mois: 2\n  - Quotient familial: 2550\n  - Allocataires:\n  \n  - Nom de naissance: DUBOIS\n- Nom d'usage: DUBOIS\n- Prénoms: ANGELA\n- Date de naissance: 24/08/1962\n- Sexe: F\n\n\n  \n  - Enfants:\n  \n  - Nom de naissance: Dujardin\n- Nom d'usage: Dujardin\n- Prénoms: Jean\n- Date de naissance: 13/12/2016\n- Sexe: M\n\n\n\n"
+      [
+        "Identifant éditeur (optionnel): external_id",
+        "",
+        "Identité pivot:",
+        "  Code Insee pays de naissance: 99135",
+        "  Code Insee lieu de naissance: ",
+        "  Date de naissance: 15/10/1979",
+        "  Nom de naissance: Heinemeier Hansson",
+        "  Prénoms: David",
+        "  Sexe: M",
+        "",
+        "Quotient familial:",
+        "  Régime: CNAF",
+        "  Année: 2024",
+        "  Mois: 2",
+        "  Quotient familial: 2550",
+        "",
+        "  Allocataires:",
+        "",
+        "  - Nom de naissance: DUBOIS",
+        "    Nom d'usage: DUBOIS",
+        "    Prénoms: ANGELA",
+        "    Date de naissance: 24/08/1962",
+        "    Sexe: F",
+        "",
+        "  Enfants:",
+        "",
+        "  - Nom de naissance: Dujardin",
+        "    Nom d'usage: Dujardin",
+        "    Prénoms: Jean",
+        "    Date de naissance: 13/12/2016",
+        "    Sexe: M",
+        "",
+        "",
+      ].join("\n")
     end
 
     it "returns the shipment data as a string" do
@@ -79,7 +113,22 @@ RSpec.describe ShipmentData, type: :model do
       let(:quotient_familial) { {} }
 
       let(:expected_string) do
-        "Identifant éditeur (optionnel): external_id\n\nIdentité pivot:\n  - Code Insee pays de naissance: 99135\n  - Code Insee lieu de naissance: \n  - Date de naissance: 15/10/1979\n  - Nom de naissance: Heinemeier Hansson\n  - Prénoms: David\n  - Sexe: M\n\nQuotient familial:\n  ERREUR: La récupération de votre quotient familial n'a pas fonctionné\n\n"
+        [
+          "Identifant éditeur (optionnel): external_id",
+          "",
+          "Identité pivot:",
+          "  Code Insee pays de naissance: 99135",
+          "  Code Insee lieu de naissance: ",
+          "  Date de naissance: 15/10/1979",
+          "  Nom de naissance: Heinemeier Hansson",
+          "  Prénoms: David",
+          "  Sexe: M",
+          "",
+          "Quotient familial:",
+          "  ERREUR: La récupération de votre quotient familial n'a pas fonctionné",
+          "",
+          "",
+        ].join("\n")
       end
 
       it "returns the shipment data as a string with the error" do
