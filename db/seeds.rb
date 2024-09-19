@@ -13,6 +13,7 @@ if !Rails.env.production?
     name: "Majastres",
     siret: "21040107100019",
     code_cog: "04107",
-    status: "active"
+    status: "active",
+    departement: "04"
   )
 end

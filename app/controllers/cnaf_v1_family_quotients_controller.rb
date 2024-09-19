@@ -32,7 +32,7 @@ class CnafV1FamilyQuotientsController < ApplicationController
   private
 
   def set_collectivity
-    @collectivity = Current.collectivity
+    @collectivity = CollectivityDecorator.new(Current.collectivity)
   end
 
   def cnaf_v1_params

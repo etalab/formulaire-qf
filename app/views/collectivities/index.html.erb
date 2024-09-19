@@ -19,7 +19,7 @@
       </span>
     <% end %>
 
-    <%= form.select :id, options_from_collection_for_select(@collectivities, :siret, :name), {}, class: "fr-select" %>
+    <%= form.select :id, options_from_collection_for_select(@collectivities, :siret, :select_name), {}, class: "fr-select" %>
 
     <div class="fr-notice fr-notice--info fr-mt-2w">
       <div class="fr-container">

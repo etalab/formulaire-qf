@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_28_152227) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_18_133535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_28_152227) do
     t.string "editor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "departement"
     t.index ["siret"], name: "index_collectivities_on_siret", unique: true
   end
 
@@ -127,8 +128,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_28_152227) do
     t.datetime "updated_at", null: false
     t.string "reference", null: false
     t.string "hubee_status", default: "pending"
-    t.bigint "collectivity_id", null: false
     t.string "hubee_case_id"
+    t.bigint "collectivity_id", null: false
     t.index ["collectivity_id"], name: "index_shipments_on_collectivity_id"
     t.index ["hubee_case_id"], name: "index_shipments_on_hubee_case_id"
     t.index ["hubee_status"], name: "index_shipments_on_hubee_status"

@@ -16,7 +16,7 @@ class ShipmentsController < ApplicationController
 
   def create
     result = StoreQuotientFamilial.call(
-      collectivity: @collectivity,
+      collectivity: Current.collectivity,
       external_id: Current.external_id,
       pivot_identity: Current.pivot_identity,
       original_pivot_identity: Current.original_pivot_identity,
@@ -29,7 +29,7 @@ class ShipmentsController < ApplicationController
     else
       flash[:error] = {
         title: t(".hubee_error.title"),
-        text: t(".hubee_error.text", collectivity: @collectivity.name),
+        text: t(".hubee_error.text", collectivity: @collectivity.display_name),
       }
 
       redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
@@ -39,6 +39,6 @@ class ShipmentsController < ApplicationController
   private
 
   def set_collectivity
-    @collectivity = Current.collectivity
+    @collectivity = CollectivityDecorator.new(Current.collectivity)
   end
 end

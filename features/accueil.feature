@@ -11,4 +11,4 @@ Fonctionnalité: Consulter la page d'accueil
     Etant donné l'existence de la collectivité de Majastres
     Quand je clique sur le premier "Débuter la démarche"
     Alors la page contient "Je choisis la collectivité"
-    Alors la page contient "Majastres"
+    Alors la page contient "(04) Majastres"

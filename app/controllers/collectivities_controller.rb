@@ -3,7 +3,9 @@ class CollectivitiesController < ApplicationController
   before_action :move_params_to_session, only: :show
 
   def index
-    @collectivities = Collectivity.active.order(:name)
+    @collectivities = Collectivity.active.order(:departement, :name).map do |collectivity|
+      CollectivityDecorator.new(collectivity)
+    end
   end
 
   def show
@@ -38,7 +40,7 @@ class CollectivitiesController < ApplicationController
   end
 
   def set_collectivity
-    @collectivity = Collectivity.active.find_by!(siret: params[:id])
+    @collectivity = CollectivityDecorator.new(Collectivity.active.find_by!(siret: params[:id]))
   rescue ActiveRecord::RecordNotFound
     flash[:error] = {
       title: t(".not_found_error.title"),
