@@ -6,5 +6,5 @@ collectivities = [
 
 collectivities.each do |collectivity|
   c = Collectivity.new(**collectivity)
-  c.save(validate: false)
+  c.save
 end
