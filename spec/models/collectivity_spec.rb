@@ -11,21 +11,21 @@ RSpec.describe Collectivity, type: :model do
 
   describe "validates the siret" do
     context "with a real siret" do
-    context "with a valid siret" do
-      let(:collectivity) { build(:collectivity, siret: "13002526500013") }
+      context "with a valid siret" do
+        let(:collectivity) { build(:collectivity, siret: "13002526500013") }
 
-      it "is valid" do
-        expect(collectivity).to be_valid
+        it "is valid" do
+          expect(collectivity).to be_valid
+        end
       end
-    end
 
-    context "with an invalid siret" do
-      let(:collectivity) { build(:collectivity, siret: "123") }
+      context "with an invalid siret" do
+        let(:collectivity) { build(:collectivity, siret: "123") }
 
-      it "is invalid" do
-        expect(collectivity).to be_invalid
+        it "is invalid" do
+          expect(collectivity).to be_invalid
+        end
       end
-    end
     end
 
     context "with a test siret" do
