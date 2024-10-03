@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_18_133535) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_03_132344) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_18_133535) do
     t.string "editor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "departement"
+    t.string "departement", null: false
     t.index ["siret"], name: "index_collectivities_on_siret", unique: true
   end
 
