@@ -2,7 +2,7 @@ class Collectivity < ApplicationRecord
   TEST_SIRETS = %w[11111111111111 11111111111112].freeze
 
   enum :status, {active: "active", inactive: "inactive"}
-  validates :name, :siret, :code_cog, :status, presence: true
+  validates :name, :siret, :code_cog, :status, :departement, presence: true
   validates :siret, uniqueness: true
   validates :siret, siret: true, unless: -> { test_siret? }
 
