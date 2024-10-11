@@ -11,18 +11,8 @@ class ShipmentData
   def to_h
     {
       external_id: external_id,
-      pivot_identity: {
-        codePaysLieuDeNaissance: pivot_identity.birth_country,
-        anneeDateDeNaissance: pivot_identity.birthdate.year,
-        moisDateDeNaissance: pivot_identity.birthdate.month,
-        jourDateDeNaissance: pivot_identity.birthdate.day,
-        codeInseeLieuDeNaissance: pivot_identity.birthplace,
-        prenoms: pivot_identity.first_names,
-        sexe: (pivot_identity.gender == :female) ? "F" : "M",
-        nomUsuel: pivot_identity.last_name,
-        **original_pivot_identity,
-      },
-      quotient_familial:,
+      pivot_identity: original_pivot_identity,
+      quotient_familial: quotient_familial,
     }
   end
 

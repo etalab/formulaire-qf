@@ -9,14 +9,6 @@ RSpec.describe ShipmentData, type: :model do
     {
       external_id: "external_id",
       pivot_identity: {
-        codePaysLieuDeNaissance: "99135",
-        anneeDateDeNaissance: 1979,
-        moisDateDeNaissance: 10,
-        jourDateDeNaissance: 15,
-        codeInseeLieuDeNaissance: nil,
-        prenoms: ["David"],
-        sexe: "M",
-        nomUsuel: "Heinemeier Hansson",
         family_name: "TESTMAN",
         given_name: "Johnny Paul René",
         gender: "male",
