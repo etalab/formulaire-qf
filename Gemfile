@@ -93,3 +93,5 @@ group :test do
 end
 
 gem "good_job", "~> 3.99"
+
+gem "rack-cors"
