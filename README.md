@@ -1,5 +1,7 @@
 # README
 
+Pour l'API, consulter le [swagger](/docs/swagger.yaml)
+
 ## Install project
 
 ### Database setup
