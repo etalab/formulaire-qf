@@ -1,0 +1,50 @@
+openapi: 3.0.3
+info:
+  title: Swagger quotient-familial.numerique.gouv.fr - OpenAPI 3.0
+  description: |-
+    # Le service
+
+    Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.
+
+    Le service [quotient-familial.numerique.gouv.fr](https://quotient-familial.numerique.gouv.fr) vous permet de transmettre de façon sécurisée vos données d’identité permettant à votre collectivité de récupérer instantanément votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.
+
+    # L'API
+    Cette API sert à savoir quelles sont les communes disponibles sur [quotient-familial.numerique.gouv.fr](https://quotient-familial.numerique.gouv.fr).
+    
+    Aucune clef d'API requise.
+    
+  version: 1.0.0
+servers:
+  - url: https://quotient-familial.numerique.gouv.fr/api
+paths:
+  /collectivites:
+    get:
+      tags:
+        - collectivités
+      summary: Liste des collectivités
+      description: Liste des collectivités disponibles sur quotient-familial.gouv.fr
+      operationId: getCollectivities
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collectivity'
+components:
+  schemas:
+    Collectivity:
+      type: object
+      properties:
+        siret:
+          type: string
+          example: "1021290146600012"
+        name:
+          type: string
+          example: "COMMUNE DE MELGVEN"
+        code_cog:
+          type: string
+          example: "29146"
+    

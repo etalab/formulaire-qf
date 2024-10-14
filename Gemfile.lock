@@ -325,6 +325,8 @@ GEM
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.7)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-oauth2 (2.2.1)
       activesupport
       attr_required
@@ -552,6 +554,7 @@ DEPENDENCIES
   pg (~> 1.5)
   prawn
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.2.1)
   rails-i18n (~> 7.0.0)
   rqrcode (~> 2.0)
