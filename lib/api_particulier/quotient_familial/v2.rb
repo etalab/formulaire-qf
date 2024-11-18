@@ -3,6 +3,7 @@ module ApiParticulier
     class V2 < Base
       def initialize(access_token:, siret:)
         @access_token = access_token
+        fake_user_token_for_staging
         @siret = siret
       end
 
@@ -20,6 +21,10 @@ module ApiParticulier
 
       def add_authentication_headers(request)
         request["Authorization"] = "Bearer #{@access_token}"
+      end
+
+      def fake_user_token_for_staging
+        @access_token = "cnaf_qfv2" unless Rails.env.production?
       end
     end
   end
