@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.2"
+gem "rails", "~> 8.0.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -39,7 +39,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem "rails-i18n", "~> 7.0.10"
+gem "rails-i18n", "~> 8.0.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -52,7 +52,7 @@ gem "interactor", "~> 3.0"
 gem "sentry-ruby"
 gem "sentry-rails"
 gem "factory_bot_rails"
-gem "active_model_serializers"
+gem "active_model_serializers", github: "rails-api/active_model_serializers", branch: "0-10-stable"
 gem "activerecord-session_store"
 
 group :development, :test do
@@ -80,7 +80,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "cucumber-rails", require: false
+  gem "cucumber-rails", require: false, github: "tagliala/cucumber-rails", branch: "feature/589-rails-8"
   gem "database_cleaner-active_record"
   gem "selenium-webdriver"
   gem "webmock"
