@@ -21,7 +21,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          cache-version: 321
+          cache-version: 336
 
       - name: Run Brakeman
         run: bundle exec brakeman -q
@@ -35,7 +35,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          cache-version: 321
+          cache-version: 336
 
       - name: Run RuboCop
         run: bundle exec rubocop --parallel
@@ -66,7 +66,7 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-          cache-version: 321
+          cache-version: 336
 
       - name: Run unit tests
         env:
