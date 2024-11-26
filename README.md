@@ -59,3 +59,11 @@ bin/remote-console
 bin/stream-remote-logs
 ```
 
+## Connect on sandbox
+
+For
+[https://sandbox.quotient-familial.numerique.gouv.fr/](https://sandbox.quotient-familial.numerique.gouv.fr/),
+use the following credentials:
+
+* `login` : `test`
+* `password` : `123`
