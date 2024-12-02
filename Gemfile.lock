@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/rails-api/active_model_serializers.git
-  revision: b21e78becdebfc804fd01bd0af742bcdf2f74608
+  revision: 8e1b2239f3d66b5a9a11726aa2e1eb7d1b1eaa2b
   branch: 0-10-stable
   specs:
-    active_model_serializers (0.10.14)
+    active_model_serializers (0.10.15)
       actionpack (>= 4.1)
       activemodel (>= 4.1)
       case_transform (>= 0.2)
@@ -270,7 +270,7 @@ GEM
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.25.1)
+    minitest (5.25.2)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_test (1.1.0)
@@ -334,7 +334,7 @@ GEM
     psych (5.2.0)
       stringio
     public_suffix (6.0.1)
-    puma (6.4.3)
+    puma (6.5.0)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
