@@ -40,8 +40,8 @@ fr:
         duration_text: "Durée de la démarche : 4 min"
       what_is_it:
         title: À quoi sert ce service ?
-        content: |
-          Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.
+        content_html: |
+          <p>Les cantines, transports ou aides spécifiques proposés par les collectivités sont souvent tarifés ou alloués selon la situation familiale et les ressources des particuliers.</p>
 
           <p class="fr-text--lg">Ce service vous permet de <strong>transmettre de façon sécurisée vos données d’identité permettant à votre collectivité de récupérer instantanément</strong> votre quotient familial CAF ou MSA auprès de l’administration détenant cette information.</p>
         items:
