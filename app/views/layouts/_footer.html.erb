@@ -13,7 +13,7 @@
         <ul class="fr-footer__content-list">
           <% t('footer.external_links').each do |external_link| %>
             <li class="fr-footer__content-item">
-              <a class="fr-footer__content-link" href="https://<%= external_link %>">
+              <a class="fr-footer__content-link" href="https://<%= external_link %>" target="_blank" rel="noopener external">
                 <%= external_link %>
               </a>
             </li>
