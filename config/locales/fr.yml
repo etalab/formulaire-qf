@@ -73,7 +73,7 @@ fr:
       not_found_error:
         title: Collectivité non trouvée
         text: La collectivité avec le siret %{siret} n'existe pas ou ne propose pas ce service.
-      browser_title: Se connecter via FranceConnect
+      browser_title: Se connecter via FranceConnect pour récupérer mes informations
       banner:
         text: |
           Transmission du <strong>quotient familial et des données d'identité</strong> à <span class="title-highlight"><strong>%{label}</strong></span>
