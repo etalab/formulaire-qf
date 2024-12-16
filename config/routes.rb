@@ -44,6 +44,8 @@ Rails.application.routes.draw do
     resources :collectivities, only: %i[index create], path: "collectivites"
 
     resources :frontal, only: :index
+
+    post "/datapass/webhook" => "datapass_webhooks#create"
   end
 
   mount GoodJob::Engine => "good_job"

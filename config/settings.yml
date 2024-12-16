@@ -12,7 +12,7 @@ good_job:
 hubee:
   base_url: "https://api.bas.hubee.numerique.gouv.fr"
   token_url: "https://auth.bas.hubee.numerique.gouv.fr/oauth2/token"
-  client_id: <%= Rails.application.credentials.hubee.client_id %>
-  client_secret: <%= Rails.application.credentials.hubee.client_secret %>
+  client_id: <%= Rails.application.credentials.hubee.osl.client_id %>
+  client_secret: <%= Rails.application.credentials.hubee.osl.client_secret %>
 sentry:
   dsn: "real_dsn_to_setup_in_env_settings"

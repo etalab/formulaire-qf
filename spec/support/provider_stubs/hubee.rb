@@ -10,6 +10,12 @@ module ProviderStubs::HubEE
     stub_hubee_active_subscriptions
   end
 
+  def stub_hubee_admin
+    stub_hubee_token
+    stub_hubee_get_organization
+    stub_hubee_create_subscription
+  end
+
   def stub_hubee_token(access_token: "access_token_123")
     stub_request(:post, "https://auth.bas.hubee.numerique.gouv.fr/oauth2/token")
       .to_return(
@@ -246,5 +252,15 @@ module ProviderStubs::HubEE
   def stub_hubee_delete_folder
     stub_request(:delete, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6")
       .to_return(status: 204, body: "", headers: {})
+  end
+
+  def stub_hubee_get_organization
+    stub_request(:get, "https://api.bas.hubee.numerique.gouv.fr/referential/v1/organizations/SI-13002526500013-75107")
+      .to_return(status: 200, body: '{"country":"France","code":"DINUM","postalCode":"75007","type":"SI","companyRegister":"13002526500013","createDateTime":"2024-08-27T08:03:01.327+00:00","branchCode":"75107","phoneNumber":"0123456789","name":"DIRECTION INTERMINISTERIELLE DU NUMERIQUE","updateDateTime":null,"email":"datapass@yopmail.com","territory":"PARIS","status":"Actif"}', headers: {})
+  end
+
+  def stub_hubee_create_subscription
+    stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/referential/v1/subscriptions")
+      .to_return(status: 200, body: "", headers: {})
   end
 end
