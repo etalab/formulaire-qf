@@ -16,4 +16,5 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym "HubEE"
+  inflect.acronym "INSEE"
 end
