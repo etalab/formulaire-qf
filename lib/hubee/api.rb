@@ -20,7 +20,7 @@ class HubEE::Api
   end
 
   def close_folder(folder_id:)
-    url = "#{Settings.hubee.base_url}/teledossiers/v1/folders/#{folder_id}"
+    url = "#{Settings.hubee.bse_url}/teledossiers/v1/folders/#{folder_id}"
 
     patch(url, body: {"globalStatus" => "CLOSED"})
   end
@@ -104,7 +104,7 @@ class HubEE::Api
     client_secret = Settings.hubee.client_secret
     authorization_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
 
-    body = {scope: "OSL", grant_type: "client_credentials"}
+    body = {scope: "ADMIN", grant_type: "client_credentials"}
 
     response = post(url, body:) do |request|
       request["Content-Type"] = "application/json"
