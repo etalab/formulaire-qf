@@ -29,6 +29,7 @@ module ApiParticulier
 
         https = Net::HTTP.new(base_url.host, base_url.port)
         https.use_ssl = true
+        https.read_timeout = 20
 
         request = Net::HTTP::Get.new(base_url)
         request["Content-Type"] = "application/json"
