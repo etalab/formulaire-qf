@@ -67,6 +67,7 @@ RSpec.configure do |config|
   config.include QuotientFamilial::Matchers
   config.include ProviderStubs::HubEE
   config.include ProviderStubs::ApiParticulier
+  config.include ProviderStubs::INSEE
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

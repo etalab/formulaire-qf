@@ -55,6 +55,12 @@ gem "factory_bot_rails"
 gem "active_model_serializers", github: "rails-api/active_model_serializers", branch: "0-10-stable"
 gem "activerecord-session_store"
 
+gem "faraday"
+gem "faraday-gzip"
+gem "faraday-net_http"
+gem "faraday-retry"
+gem "faraday-encoding"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
