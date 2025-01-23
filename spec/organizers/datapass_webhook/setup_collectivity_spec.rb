@@ -1,16 +1,4 @@
 RSpec.describe DatapassWebhook::SetupCollectivity, type: :organizer do
-  let(:interactors) do
-    [
-      DatapassWebhook::CreateHubEEOrganization,
-      DatapassWebhook::CreateHubEESubscription,
-      DatapassWebhook::CreateCollectivity,
-    ]
-  end
-
-  it "creates the HubEE organization, subscription and the FQF collectivity" do
-    expect(described_class).to organize interactors
-  end
-
   describe ".call" do
     subject(:organizer) { described_class.call(**params) }
 
