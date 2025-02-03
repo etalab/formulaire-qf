@@ -3,6 +3,10 @@ class DatapassWebhook::SetupCollectivity < BaseOrganizer
     DatapassWebhook::CreateHubEESubscription,
     DatapassWebhook::CreateCollectivity
 
+  before do
+    context.service_provider ||= {}
+  end
+
   around do |interactor|
     interactor.call
   rescue => e
