@@ -81,8 +81,8 @@ class HubEE::AdminApi < HubEE::Base
     payload = subscription_payload.with_indifferent_access.merge({
       status: "Actif",
       activateDateTime: DateTime.now.iso8601,
-      accessMode: "API",
-      notificationFrequency: "Aucune",
+      accessMode: "PORTAIL",
+      notificationFrequency: "Unitaire",
     }.with_indifferent_access)
 
     payload.delete("id")
@@ -101,7 +101,7 @@ class HubEE::AdminApi < HubEE::Base
       "#{host}/referential/v1/subscriptions",
       {
         datapassId: datapass_id.to_i,
-        notificationFrequency: "Aucune",
+        notificationFrequency: "Unitaire",
         processCode: process_code,
         subscriber: {
           type: "SI",
