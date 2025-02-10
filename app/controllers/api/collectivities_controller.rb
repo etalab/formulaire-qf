@@ -19,6 +19,6 @@ class Api::CollectivitiesController < Api::ApplicationController
   private
 
   def collectivity_params
-    params.require(:collectivity).permit(:name, :siret, :code_cog, :status, :editor, :departement)
+    params.expect(collectivity: [:name, :siret, :code_cog, :status, :editor, :departement])
   end
 end
