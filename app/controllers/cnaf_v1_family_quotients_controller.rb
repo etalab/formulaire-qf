@@ -36,6 +36,6 @@ class CnafV1FamilyQuotientsController < ApplicationController
   end
 
   def cnaf_v1_params
-    params.require(:alternative).permit(:allocataire_number, :postal_code)
+    params.expect(alternative: [:allocataire_number, :postal_code])
   end
 end
