@@ -3,7 +3,7 @@ describe Api::CollectivitiesController, type: :controller do
     let(:collectivity) { create(:collectivity) }
 
     it "returns the collectivity" do
-      get :show, params: {id: collectivity.siret}
+      get :show, params: {id: collectivity.code_cog}
       expect(response.parsed_body["name"]).to eq collectivity.name
     end
 
@@ -11,7 +11,7 @@ describe Api::CollectivitiesController, type: :controller do
       let(:collectivity) { create(:collectivity, status: :inactive) }
 
       it "returns a 404" do
-        get :show, params: {id: collectivity.siret}
+        get :show, params: {id: collectivity.code_cog}
         expect(response.code).to eq "404"
       end
     end
