@@ -5,6 +5,16 @@ class Api::CollectivitiesController < Api::ApplicationController
     render json: Collectivity.active.order(:name), each_serializer: Api::CollectivitiesSerializer
   end
 
+  def show
+    collectivity = Collectivity.active.find_by(siret: params[:id])
+
+    if collectivity.nil?
+      render json: {error: "Collectivity not found"}, status: :not_found
+    else
+      render json: collectivity, serializer: Api::CollectivitiesSerializer
+    end
+  end
+
   def create
     collectivity = Collectivity.build(collectivity_params)
 
