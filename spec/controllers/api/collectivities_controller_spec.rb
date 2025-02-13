@@ -1,4 +1,29 @@
 describe Api::CollectivitiesController, type: :controller do
+  describe "GET show" do
+    let(:collectivity) { create(:collectivity) }
+
+    it "returns the collectivity" do
+      get :show, params: {id: collectivity.siret}
+      expect(response.parsed_body["name"]).to eq collectivity.name
+    end
+
+    context "with an inactive collectivity" do
+      let(:collectivity) { create(:collectivity, status: :inactive) }
+
+      it "returns a 404" do
+        get :show, params: {id: collectivity.siret}
+        expect(response.code).to eq "404"
+      end
+    end
+
+    context "with an unknown collectivity" do
+      it "returns a 404" do
+        get :show, params: {id: "12"}
+        expect(response.code).to eq "404"
+      end
+    end
+  end
+
   describe "GET index" do
     subject(:body) do
       get :index

@@ -67,3 +67,31 @@ use the following credentials:
 
 * `login` : `test`
 * `password` : `123`
+
+# Public API
+
+En attendant de faire un swagger correct, voici le minimum vital.
+
+Root url : `https://quotient-familial.numerique.gouv.fr/api`
+
+## GET /collectivites
+
+Liste de toutes les communes utilisant le service.
+
+Response body :
+
+```
+[{"name":"Majastres","siret":"21040107100019","code_cog":"04107"}, {"name":"Othertown","siret":"12345678901234","code_cog":"12345"}]
+```
+
+## GET /collectivites/:siret
+
+Renvoie une commune utilisant le service. Si la commune n'utilise pas le service, renvoie 404 not found.
+
+Response body :
+
+```
+{"name":"Majastres","siret":"21040107100019","code_cog":"04107"}
+```
+
+
