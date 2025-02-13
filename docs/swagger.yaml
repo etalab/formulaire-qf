@@ -13,7 +13,7 @@ info:
     
     Aucune clef d'API requise.
     
-  version: 1.0.0
+  version: 1.0.1
 servers:
   - url: https://quotient-familial.numerique.gouv.fr/api
 paths:
@@ -33,6 +33,28 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Collectivity'
+  /collectivites/{code_cog}:
+    get:
+      tags:
+        - collectivités
+      summary: Recherche une collectivité
+      description: Retourne la collectivité correspondant au code_cog fourni
+      operationId: showCollectivity
+      parameters:
+        - name: code_cog
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Collectivity found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collectivity'
+        '404':
+          description: Collectivity not found
 components:
   schemas:
     Collectivity:
