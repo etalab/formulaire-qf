@@ -84,7 +84,7 @@ Response body :
 [{"name":"Majastres","siret":"21040107100019","code_cog":"04107"}, {"name":"Othertown","siret":"12345678901234","code_cog":"12345"}]
 ```
 
-## GET /collectivites/:siret
+## GET /collectivites/:code_cog
 
 Renvoie une commune utilisant le service. Si la commune n'utilise pas le service, renvoie 404 not found.
 

@@ -6,7 +6,7 @@ class Api::CollectivitiesController < Api::ApplicationController
   end
 
   def show
-    collectivity = Collectivity.active.find_by(siret: params[:id])
+    collectivity = Collectivity.active.find_by(code_cog: params[:id])
 
     if collectivity.nil?
       render json: {error: "Collectivity not found"}, status: :not_found
