@@ -6,6 +6,10 @@ Quand("je me rends sur la page d'accueil") do
   visit "/"
 end
 
+Quand("je me rends sur la page d'erreur d'authentification avec un CSRF detecté") do
+  visit "/auth/failure?message=csrf_detected&strategy=france_connect"
+end
+
 Sachantque("j'arrive sur le formulaire depuis le portail de ma collectivité") do
   visit "/collectivites/21040107100019/me_connecter?external_id=123&redirect_uri=http://real_uri"
 end

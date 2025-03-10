@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: :logout
   get "/logout-callback", to: "sessions#fc_callback", as: :fc_logout_callback
+  get "/auth/failure", to: "errors#auth_failure"
 
   resources :collectivities, only: %i[index], path: "collectivites" do
     member do
