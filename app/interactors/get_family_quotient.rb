@@ -1,6 +1,6 @@
 class GetFamilyQuotient < BaseInteractor
   def call
-    if quotient_familial["error"].present?
+    if error?
       context.fail!(message: error_message, cnaf_failed?: cnaf_failed?)
     else
       context.quotient_familial = quotient_familial
@@ -14,10 +14,14 @@ class GetFamilyQuotient < BaseInteractor
   end
 
   def error_message
-    quotient_familial["message"] || quotient_familial["reason"] || quotient_familial["error"]
+    quotient_familial["detail"]
   end
 
   def quotient_familial
     @quotient_familial ||= ApiParticulier::QuotientFamilial::V2.get(access_token: context.user.access_token, siret: context.siret)
+  end
+
+  def error?
+    quotient_familial["detail"].present?
   end
 end

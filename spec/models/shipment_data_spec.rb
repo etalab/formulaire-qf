@@ -16,6 +16,35 @@ RSpec.describe ShipmentData, type: :model do
         birthplace: "75107",
         birthcountry: "99100",
       },
+      quotient_familial_v3: {
+        allocataires: [
+          {
+            date_naissance: "1962-08-24",
+            nom_naissance: "DUBOIS",
+            nom_usage: "DUBOIS",
+            prenoms: "ANGELA",
+            sexe: "F",
+          },
+        ],
+        enfants: [
+          {
+            date_naissance: "2016-12-13",
+            nom_naissance: "Dujardin",
+            nom_usage: "Dujardin",
+            prenoms: "Jean",
+            sexe: "M",
+          },
+        ],
+        quotient_familial: {
+          annee: 2024,
+          annee_calcul: 2024,
+          fournisseur: "CNAF",
+          mois: 2,
+          mois_calcul: 12,
+          valeur: 2550,
+        },
+        version: "v3",
+      },
       quotient_familial: {
         regime: "CNAF",
         allocataires: [

@@ -2,92 +2,79 @@ FactoryBot.define do
   factory :quotient_familial_v2_payload, class: Hash do
     initialize_with { attributes.deep_stringify_keys }
 
-    version { "v2" }
-    regime { "CNAF" }
-    quotientFamilial { 2550 }
-    annee { 2024 }
-    mois { 2 }
+    version { "v3" }
 
     allocataires do
       [{
-        nomNaissance: "DUBOIS",
-        nomUsuel: "DUBOIS",
+        nom_naissance: "DUBOIS",
+        nom_usage: "DUBOIS",
         prenoms: "ANGELA",
-        anneeDateDeNaissance: "1962",
-        moisDateDeNaissance: "08",
-        jourDateDeNaissance: "24",
+        date_naissance: "1962-08-24",
         sexe: "F",
       }]
     end
 
     enfants do
       [{
-        nomNaissance: "Dujardin",
-        nomUsuel: "Dujardin",
+        nom_naissance: "Dujardin",
+        nom_usage: "Dujardin",
         prenoms: "Jean",
         sexe: "M",
-        anneeDateDeNaissance: "2016",
-        moisDateDeNaissance: "12",
-        jourDateDeNaissance: "13",
+        date_naissance: "2016-12-13",
       }]
     end
 
-    # adresse do
-    #   {
-    #     identite: "Madame ROUX JEANNE",
-    #     complementInformation: nil,
-    #     complementInformationGeographique: nil,
-    #     numeroLibelleVoie: "1 RUE MONTORGUEIL",
-    #     lieuDit: nil,
-    #     codePostalVille: "75002 PARIS",
-    #     pays: "FRANCE",
-    #   }
-    # end
+    quotient_familial do
+      {
+        fournisseur: "CNAF",
+        valeur: 2550,
+        annee: 2024,
+        mois: 2,
+        annee_calcul: 2024,
+        mois_calcul: 12,
+      }
+    end
 
     trait :cnaf_without_children do
-      regime { "CNAF" }
-      quotientFamilial { 2550 }
-      annee { 2024 }
-      mois { 2 }
       enfants { [] }
 
       allocataires do
         [{
-          "nomNaissance" => "DUBOIS",
-          "nomUsuel" => "DUBOIS",
-          "prenoms" => "ANGELA",
-          "anneeDateDeNaissance" => "1962",
-          "moisDateDeNaissance" => "08",
-          "jourDateDeNaissance" => "24",
-          "sexe" => "F",
+          nom_naissance: "DUBOIS",
+          nom_usage: "DUBOIS",
+          prenoms: "ANGELA",
+          date_naissance: "1962-08-24",
+          sexe: "F",
         }]
+      end
+
+      quotient_familial do
+        {
+          fournisseur: "CNAF",
+          valeur: 2550,
+          annee: 2024,
+          mois: 2,
+          annee_calcul: 2024,
+          mois_calcul: 12,
+        }
       end
     end
 
     trait :msa_with_children do
-      regime { "MSA" }
-      quotientFamilial { 150 }
-      annee { 2023 }
-      mois { 5 }
-
       allocataires do
         [
           {
-            nomNaissance: "ROUX",
-            nomUsuel: nil,
+            nom_naissance: "ROUX",
+            nom_usage: nil,
             prenoms: "JEANNE STEPHANIE",
-            anneeDateDeNaissance: "1987",
-            moisDateDeNaissance: "06",
-            jourDateDeNaissance: "27",
+            date_naissance: "1987-06-27",
             sexe: "F",
           },
           {
-            nomNaissance: "ROUX",
-            nomUsuel: nil,
+            nom_naissance: "ROUX",
+            nom_usage: nil,
             prenoms: "LOIC NATHAN",
-            anneeDateDeNaissance: "1979",
-            moisDateDeNaissance: "05",
-            jourDateDeNaissance: "19",
+            date_naissance: "1979-05-19",
             sexe: "M",
           },
         ]
@@ -96,24 +83,31 @@ FactoryBot.define do
       enfants do
         [
           {
-            nomNaissance: "ROUX",
-            nomUsuel: nil,
+            nom_naissance: "ROUX",
+            nom_usage: nil,
             prenoms: "ALEXIS VINCENT",
-            anneeDateDeNaissance: "2006",
-            moisDateDeNaissance: "04",
-            jourDateDeNaissance: "20",
+            date_naissance: "2006-04-20",
             sexe: "M",
           },
           {
-            nomNaissance: "ROUX",
-            nomUsuel: nil,
+            nom_naissance: "ROUX",
+            nom_usage: nil,
             prenoms: "FLEUR EDITH",
-            anneeDateDeNaissance: "2004",
-            moisDateDeNaissance: "04",
-            jourDateDeNaissance: "20",
+            date_naissance: "2004-04-20",
             sexe: "M",
           },
         ]
+      end
+
+      quotient_familial do
+        {
+          fournisseur: "MSA",
+          valeur: 150,
+          annee: 2023,
+          mois: 5,
+          annee_calcul: 2023,
+          mois_calcul: 5,
+        }
       end
     end
   end
@@ -122,15 +116,15 @@ FactoryBot.define do
     initialize_with { attributes.deep_stringify_keys }
 
     trait :not_found do
-      error { "not_found" }
-      reason { "Dossier allocataire inexistant. Le document ne peut être édité." }
-      message { "Dossier allocataire inexistant. Le document ne peut être édité." }
+      title { "Allocataire non référencé" }
+      detail { "L'allocataire n'est pas référencé auprès des caisses éligibles." }
+      code { "35003" }
     end
 
     trait :not_found_cnaf do
-      error { "not_found" }
-      reason { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF. Veuillez vérifier que l'identifiant correspond au périmètre couvert par l'API." }
-      message { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF. Veuillez vérifier que l'identifiant correspond au périmètre couvert par l'API." }
+      title { "Dossier allocataire absent CNAF" }
+      detail { "Le dossier allocataire n'a pas été trouvé auprès de la CNAF." }
+      code { "23003" }
     end
   end
 
@@ -175,18 +169,6 @@ FactoryBot.define do
         },
       ]
     end
-
-    # adresse do
-    #   {
-    #     "identite" => "Monsieur JEAN DUPONT",
-    #     "complementIdentite" => "APPARTEMENT 51",
-    #     "complementIdentiteGeo" => "RESIDENCE DES COLOMBES",
-    #     "numeroRue" => "42 RUE DE LA PAIX",
-    #     "lieuDit" => "ILOTS DES OISEAUX",
-    #     "codePostalVille" => "75001 PARIS",
-    #     "pays" => "FRANCE",
-    #   }
-    # end
   end
 
   factory :quotient_familial_v1_payload_converted_to_v2_format, class: Hash do
