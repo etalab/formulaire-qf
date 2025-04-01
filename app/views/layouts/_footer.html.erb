@@ -13,7 +13,7 @@
         <ul class="fr-footer__content-list">
           <% t('footer.external_links').each do |external_link| %>
             <li class="fr-footer__content-item">
-              <a class="fr-footer__content-link" href="https://<%= external_link %>">
+              <a class="fr-footer__content-link" href="https://<%= external_link %>" target="_blank" rel="noopener external" title="#{external_link} - nouvelle fenêtre">
                 <%= external_link %>
               </a>
             </li>
@@ -40,7 +40,7 @@
         </li>
       </ul>
       <div class="fr-footer__bottom-copy">
-        <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="license etalab-2.0 - nouvelle fenêtre">licence etalab-2.0</a>
+        <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <%= external_link("licence etalab-2.0", "https://github.com/etalab/licence-ouverte/blob/master/LO.md") %>
         </p>
       </div>
     </div>
