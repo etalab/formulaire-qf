@@ -18,8 +18,8 @@ RSpec.describe QuotientFamilialFacade do
       end
     end
 
-    context "when there is no quotientFamilial value" do
-      let(:quotient_familial) { {"regime" => "CNAF"} }
+    context "when there is no quotient_familial value" do
+      let(:quotient_familial) { FactoryBot.build(:quotient_familial_v2_error_payload) }
 
       it "returns true" do
         expect(subject.empty?).to be true
@@ -61,7 +61,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when we don't have correct year/month data" do
-      let(:quotient_familial) { {"quotientFamilial" => 12, "annee" => year, "mois" => month} }
+      let(:quotient_familial) { {"quotient_familial" => {"valeur" => 12, "annee" => year, "mois" => month}} }
       let(:year) { 2024 }
       let(:month) { 6 }
 
@@ -123,7 +123,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is no allocataires" do
-      let(:quotient_familial) { {"quotientFamilial" => 12, "allocataires" => []} }
+      let(:quotient_familial) { {"quotient_familial" => {"valeur" => 12}, "allocataires" => []} }
 
       it "returns an empty array" do
         expect(subject.allocataires).to be_empty
@@ -157,7 +157,7 @@ RSpec.describe QuotientFamilialFacade do
     end
 
     context "when there is no children" do
-      let(:quotient_familial) { {"quotientFamilial" => 12, "children" => []} }
+      let(:quotient_familial) { {"quotient_familial" => {"valeur" => 12}, "children" => []} }
 
       it "returns an empty array" do
         expect(subject.children).to be_empty

@@ -25,7 +25,7 @@ Fonctionnalité: Gestion des erreurs API
     Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
     Quand je clique sur "S’identifier avec FranceConnect"
     Alors la page contient "Une erreur est survenue"
-    Et la page contient "Dossier allocataire inexistant."
+    Et la page contient "L'allocataire n'est pas référencé auprès des caisses éligibles."
     Et la page contient "Votre attestation CAF sur le site de la CAF."
     Et la page contient "Votre attestation MSA sur le site de la MSA."
 

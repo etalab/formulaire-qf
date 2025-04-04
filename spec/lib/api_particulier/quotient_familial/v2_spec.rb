@@ -22,21 +22,24 @@ RSpec.describe ApiParticulier::QuotientFamilial::V2 do
 
     let(:expected_response) do
       {
-        "regime" => "CNAF",
         "allocataires" => [
           {
-            "nomNaissance" => "DUBOIS",
-            "nomUsuel" => "DUBOIS",
+            "nom_naissance" => "DUBOIS",
+            "nom_usage" => "DUBOIS",
             "prenoms" => "ANGELA",
-            "anneeDateDeNaissance" => "1962",
-            "moisDateDeNaissance" => "08",
-            "jourDateDeNaissance" => "24",
+            "date_naissance" => "1962-08-24",
             "sexe" => "F",
           },
         ],
         "enfants" => [],
-        "quotientFamilial" => 2550,
-        "annee" => 2024,
+        "quotient_familial" => {
+          "fournisseur" => "CNAF",
+          "valeur" => 2550,
+          "annee" => 2024,
+          "mois" => 2,
+          "annee_calcul" => 2024,
+          "mois_calcul" => 12,
+        },
       }
     end
 
@@ -54,7 +57,7 @@ RSpec.describe ApiParticulier::QuotientFamilial::V2 do
       end
 
       it "returns an error" do
-        expect(quotient_familial["error"]).to match("not_found")
+        expect(quotient_familial["code"]).to match("35003")
       end
 
       it "sends a message to sentry" do

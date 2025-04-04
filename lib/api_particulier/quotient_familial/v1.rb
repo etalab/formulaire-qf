@@ -26,6 +26,25 @@ module ApiParticulier
       def api_key
         Rails.application.credentials.api_particulier.api_key
       end
+
+      def track_error(error, x_request_id)
+        extra = {
+          user_sub: Current.user.try(:sub),
+          request_id: x_request_id,
+          siret: @siret,
+          error: error["error"],
+          reason: error["reason"],
+        }
+        Sentry.capture_message(error["message"], extra: extra)
+      end
+
+      def quotient_familial(payload)
+        payload.merge(version:)
+      end
+
+      def error_payload(payload)
+        payload.merge(version:)
+      end
     end
   end
 end

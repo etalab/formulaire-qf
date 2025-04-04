@@ -37,8 +37,20 @@ class PivotIdentity
     return false if quotient_familial["allocataires"].blank?
 
     quotient_familial["allocataires"].find do |allocataire|
-      allocataire_birthdate = "#{allocataire["jourDateDeNaissance"]}/#{allocataire["moisDateDeNaissance"]}/#{allocataire["anneeDateDeNaissance"]}"
+      allocataire_birthdate = "#{birthdate_day(allocataire["date_naissance"])}/#{birthdate_month(allocataire["date_naissance"])}/#{birthdate_year(allocataire["date_naissance"])}"
       allocataire_birthdate == birthdate.strftime("%d/%m/%Y")
     end.present?
+  end
+
+  def birthdate_day(birthdate)
+    birthdate.split("-")[2]
+  end
+
+  def birthdate_month(birthdate)
+    birthdate.split("-")[1]
+  end
+
+  def birthdate_year(birthdate)
+    birthdate.split("-")[0]
   end
 end

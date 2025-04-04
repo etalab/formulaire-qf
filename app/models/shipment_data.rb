@@ -12,7 +12,8 @@ class ShipmentData
     {
       external_id: external_id,
       pivot_identity: original_pivot_identity,
-      quotient_familial: quotient_familial,
+      quotient_familial_v3: quotient_familial,
+      quotient_familial: convert_quotient_familial_v2(quotient_familial),
     }
   end
 
@@ -46,10 +47,10 @@ class ShipmentData
     else
       [
         "Quotient familial:",
-        "  Régime: #{quotient_familial["regime"]}",
-        "  Année: #{quotient_familial["annee"]}",
-        "  Mois: #{quotient_familial["mois"]}",
-        "  Quotient familial: #{quotient_familial["quotientFamilial"]}",
+        "  Régime: #{quotient_familial["quotient_familial"]["fournisseur"]}",
+        "  Année: #{quotient_familial["quotient_familial"]["annee"]}",
+        "  Mois: #{quotient_familial["quotient_familial"]["mois"]}",
+        "  Quotient familial: #{quotient_familial["quotient_familial"]["valeur"]}",
         "",
         "  Allocataires:",
         "",
@@ -78,7 +79,7 @@ class ShipmentData
   def person_text(person)
     [
       names(person),
-      "    Date de naissance: #{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}",
+      "    Date de naissance: #{birthdate_day(person["date_naissance"])}/#{birthdate_month(person["date_naissance"])}/#{birthdate_year(person["date_naissance"])}",
       "    Sexe: #{person["sexe"]}",
       "",
     ].flatten.join("\n")
@@ -89,10 +90,50 @@ class ShipmentData
       "  - Noms et prénoms : #{person["nomPrenom"]}"
     else
       [
-        "  - Nom de naissance: #{person["nomNaissance"]}",
-        "    Nom d'usage: #{person["nomUsuel"]}",
+        "  - Nom de naissance: #{person["nom_naissance"]}",
+        "    Nom d'usage: #{person["nom_usage"]}",
         "    Prénoms: #{person["prenoms"]}",
       ].join("\n")
     end
+  end
+
+  def convert_quotient_familial_v2(quotient_familial)
+    {
+      regime: quotient_familial["quotient_familial"]["fournisseur"],
+      allocataires: convert_people_v2_format(quotient_familial["allocataires"]),
+      enfants: convert_people_v2_format(quotient_familial["enfants"]),
+      quotientFamilial: quotient_familial["quotient_familial"]["valeur"],
+      annee: quotient_familial["quotient_familial"]["annee"],
+      mois: quotient_familial["quotient_familial"]["mois"],
+      version: "v2",
+    }
+  end
+
+  def convert_people_v2_format(people)
+    people.map { |person| convert_person_v2_format(person) }
+  end
+
+  def convert_person_v2_format(person)
+    {
+      nomNaissance: person["nom_naissance"],
+      nomUsuel: person["nom_usage"],
+      prenoms: person["prenoms"],
+      anneeDateDeNaissance: person["date_naissance"][0..3],
+      moisDateDeNaissance: person["date_naissance"][5..6],
+      jourDateDeNaissance: person["date_naissance"][8..9],
+      sexe: person["sexe"],
+    }
+  end
+
+  def birthdate_day(birthdate)
+    birthdate.split("-")[2]
+  end
+
+  def birthdate_month(birthdate)
+    birthdate.split("-")[1]
+  end
+
+  def birthdate_year(birthdate)
+    birthdate.split("-")[0]
   end
 end

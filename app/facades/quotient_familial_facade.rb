@@ -6,15 +6,15 @@ class QuotientFamilialFacade
   end
 
   def empty?
-    quotient_familial.blank? || value.blank?
+    quotient_familial.blank? || quotient_familial["detail"].present? || value.blank?
   end
 
   def value
-    quotient_familial["quotientFamilial"]
+    quotient_familial["quotient_familial"]["valeur"].to_i
   end
 
   def regime
-    quotient_familial["regime"] || I18n.t("shipments.new.quotient_familial.all_regimes")
+    quotient_familial["quotient_familial"]["fournisseur"] || I18n.t("shipments.new.quotient_familial.all_regimes")
   end
 
   def month_year
@@ -22,10 +22,10 @@ class QuotientFamilialFacade
 
     if month_year_is_invalid
       month_number = Time.zone.today.strftime("%m").to_i
-      year_number = Time.zone.today.strftime("%Y")
+      year_number = Time.zone.today.strftime("%Y").to_i
     else
-      month_number = quotient_familial["mois"].to_i
-      year_number = quotient_familial["annee"]
+      month_number = quotient_familial["quotient_familial"]["mois"].to_i
+      year_number = quotient_familial["quotient_familial"]["annee"].to_i
     end
 
     month = I18n.t("date.month_names")[month_number]
@@ -45,19 +45,31 @@ class QuotientFamilialFacade
   private
 
   def month_year_is_invalid
-    quotient_familial["mois"].to_i.zero? ||
-      quotient_familial["annee"].to_i.zero?
+    quotient_familial["quotient_familial"]["mois"].to_i.zero? ||
+      quotient_familial["quotient_familial"]["annee"].to_i.zero?
   end
 
   def person_to_string(person)
-    nom_usage = if person["nomUsuel"] && person["nomUsuel"] != person["nomNaissance"]
-      " (nom d'usage #{person["nomUsuel"]})"
+    nom_usage = if person["nom_usage"] && person["nom_usage"] != person["nom_naissance"]
+      " (nom d'usage #{person["nom_usage"]})"
     end
 
-    names = "#{person["nomNaissance"]}#{nom_usage}"
+    names = "#{person["nom_naissance"]}#{nom_usage}"
     names = "#{names} #{person["prenoms"]}" if person["prenoms"]
-    birthdate = "#{person["jourDateDeNaissance"]}/#{person["moisDateDeNaissance"]}/#{person["anneeDateDeNaissance"]}"
+    birthdate = "#{birthdate_day(person["date_naissance"])}/#{birthdate_month(person["date_naissance"])}/#{birthdate_year(person["date_naissance"])}"
 
     "#{names}, né#{"e" if person["sexe"] == "F"} le #{birthdate}"
+  end
+
+  def birthdate_day(birthdate)
+    birthdate.split("-")[2]
+  end
+
+  def birthdate_month(birthdate)
+    birthdate.split("-")[1]
+  end
+
+  def birthdate_year(birthdate)
+    birthdate.split("-")[0]
   end
 end

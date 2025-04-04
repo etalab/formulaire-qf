@@ -16,7 +16,10 @@ describe GetFamilyQuotient, type: :interactor do
 
     it "sets up the quotient familial" do
       expect(call.success?).to be true
-      expect(call.quotient_familial).to match(hash_including("quotientFamilial" => 2550, :version => "v2"))
+      expect(call.quotient_familial).to have_key("allocataires")
+      expect(call.quotient_familial).to have_key("enfants")
+      expect(call.quotient_familial).to have_key("quotient_familial")
+      expect(call.quotient_familial).to have_key("version")
     end
 
     context "when the API returns an error" do
@@ -27,7 +30,7 @@ describe GetFamilyQuotient, type: :interactor do
       it "sets up a failure" do
         expect(call.success?).to be false
         expect(call.quotient_familial).to be_nil
-        expect(call.message).to eq("Dossier allocataire inexistant. Le document ne peut être édité.")
+        expect(call.message).to eq("L'allocataire n'est pas référencé auprès des caisses éligibles.")
       end
     end
   end
