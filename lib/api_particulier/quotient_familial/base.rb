@@ -36,26 +36,28 @@ module ApiParticulier
         add_authentication_headers(request)
 
         response = https.request(request)
-        quotient_familial = JSON.parse(response.body || "{}")
-
-        track_error(response, quotient_familial) unless response.is_a?(Net::HTTPSuccess)
+        payload = JSON.parse(response.body || "{}")
 
         Rails.logger.debug self
         Rails.logger.debug response.body
-        Rails.logger.debug quotient_familial
+        Rails.logger.debug payload
 
-        quotient_familial.merge(version:)
+        if response.is_a?(Net::HTTPSuccess)
+          return quotient_familial(payload)
+        end
+
+        error = error_payload(payload)
+        track_error(error, response["X-Request-Id"]) unless response.is_a?(Net::HTTPSuccess)
+
+        error
       end
 
-      def track_error(response, parsed_body)
-        extra = {
-          user_sub: Current.user.try(:sub),
-          request_id: response["X-Request-Id"],
-          siret: @siret,
-          error: parsed_body["error"],
-          reason: parsed_body["reason"],
-        }
-        Sentry.capture_message(parsed_body["message"], extra: extra)
+      def quotient_familial(payload)
+        raise NotImplementedError
+      end
+
+      def error_payload(payload)
+        raise NotImplementedError
       end
     end
   end
