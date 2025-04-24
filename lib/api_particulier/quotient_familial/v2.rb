@@ -1,3 +1,5 @@
+require "pry"
+
 module ApiParticulier
   module QuotientFamilial
     class V2 < Base
