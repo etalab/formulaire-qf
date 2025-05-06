@@ -61,8 +61,7 @@ bin/stream-remote-logs
 
 ## Connect on sandbox
 
-For
-[https://sandbox.quotient-familial.numerique.gouv.fr/](https://sandbox.quotient-familial.numerique.gouv.fr/),
+For [https://sandbox.quotient-familial.services.api.gouv.fr/](https://sandbox.quotient-familial.services.api.gouv.fr/),
 use the following credentials:
 
 * `login` : `test`
