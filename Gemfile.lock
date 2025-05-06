@@ -184,7 +184,7 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
-    faraday (2.13.0)
+    faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -252,7 +252,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.10.2)
+    json (2.11.3)
     json-jwt (1.16.6)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -415,10 +415,10 @@ GEM
     reline (0.6.1)
       io-console (~> 0.5)
     rexml (3.4.1)
-    rqrcode (2.2.0)
+    rqrcode (3.1.0)
       chunky_png (~> 1.0)
-      rqrcode_core (~> 1.0)
-    rqrcode_core (1.2.0)
+      rqrcode_core (~> 2.0)
+    rqrcode_core (2.0.0)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -598,7 +598,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 8.0.2)
   rails-i18n (~> 8.0.1)
-  rqrcode (~> 2.0)
+  rqrcode (~> 3.1)
   rspec-rails (~> 8.0.0)
   rubocop-rails
   selenium-webdriver
