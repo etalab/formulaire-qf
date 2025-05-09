@@ -1,22 +1,18 @@
 <% alternative_keys ||= [:caf, :msa] %>
 <% alternatives = t('collectivities.no_france_connect.alternative_options').slice(*alternative_keys).values  %>
 
-<p>
-  <%= simple_format t('collectivities.no_france_connect.alternative_text') %>
+<%= simple_format t('collectivities.no_france_connect.alternative_text'), class: 'fr-mt-4w fr-mb-1w' %>
 
-  <ul class="fr-ml-2w">
-    <% alternatives.each do |option| %>
-      <%= simple_format option, { }, wrapper_tag: 'li' %>
-    <% end %>
-  </ul>
-</p>
+<ul class="fr-ml-2w">
+  <% alternatives.each do |option| %>
+    <%= simple_format option, { }, wrapper_tag: 'li' %>
+  <% end %>
+</ul>
 
-<p>
-  <%= simple_format t('collectivities.no_france_connect.transmission_text') %>
+<%= simple_format t('collectivities.no_france_connect.transmission_text'), class: 'fr-mt-4w fr-mb-1w' %>
 
-  <ul class="fr-ml-2w">
-    <% t('collectivities.no_france_connect.transmission_options').each do |option| %>
-      <%= simple_format option, { }, wrapper_tag: 'li' %>
-    <% end %>
-  </ul>
-</p>
+<ul class="fr-ml-2w">
+  <% t('collectivities.no_france_connect.transmission_options').each do |option| %>
+    <%= simple_format option, { }, wrapper_tag: 'li' %>
+  <% end %>
+</ul>
