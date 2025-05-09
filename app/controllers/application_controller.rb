@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def set_up_browser_title
     default_title = t("layout.title")
-    @browser_title = t("#{controller_name}.#{action_name}.browser_title", default: default_title)
+    @browser_title = t("#{controller_name}.#{action_name}.browser_title", collectivity_name: Current.collectivity.try(:name), default: default_title)
 
     if @browser_title != default_title
       @browser_title = "#{@browser_title} | #{default_title}"
