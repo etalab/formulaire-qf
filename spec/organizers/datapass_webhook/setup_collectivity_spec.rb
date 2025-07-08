@@ -9,6 +9,16 @@ RSpec.describe DatapassWebhook::SetupCollectivity, type: :organizer do
         organization:,
         collectivity_email: "collectivity@test.fr",
         service_provider: {},
+        applicant:,
+      }
+    end
+    let(:applicant) do
+      {
+        "email" => "email@test.com",
+        "given_name" => "John",
+        "family_name" => "Doe",
+        "job_title" => "Mayor",
+        "phone_number" => "+33123456789",
       }
     end
 

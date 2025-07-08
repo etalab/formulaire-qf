@@ -1,5 +1,5 @@
 class DatapassWebhook::CreateHubEESubscription < BaseInteractor
-  delegate :collectivity_email, :datapass_id, :hubee_organization_payload, :service_provider, to: :context
+  delegate :collectivity_email, :datapass_id, :hubee_organization_payload, :service_provider, :applicant, to: :context
 
   def call
     context.hubee_subscription_payload = create_subscription_on_hubee
@@ -7,8 +7,18 @@ class DatapassWebhook::CreateHubEESubscription < BaseInteractor
 
   private
 
+  def applicant_payload
+    {
+      email: applicant["email"],
+      firstName: applicant["given_name"],
+      lastName: applicant["family_name"],
+      function: applicant["job_title"],
+      phoneNumber: applicant["phone_number"].gsub(/[\s\.\-]/, ""),
+    }
+  end
+
   def create_subscription_on_hubee
-    hubee_api_client.create_subscription(datapass_id:, collectivity_email:, organization_payload: hubee_organization_payload, process_code:, editor_payload:)
+    hubee_api_client.create_subscription(datapass_id:, collectivity_email:, organization_payload: hubee_organization_payload, process_code:, editor_payload:, applicant_payload:)
   end
 
   def editor_organization
