@@ -3,11 +3,15 @@ class Api::DatapassWebhooksController < ActionController::API
 
   def create
     if event == "approve"
-      SetupCollectivityJob.perform_later(datapass_id:, collectivity_siret:, collectivity_email:, service_provider:)
+      SetupCollectivityJob.perform_later(datapass_id:, collectivity_siret:, collectivity_email:, service_provider:, applicant:)
     end
   end
 
   private
+
+  def applicant
+    webhook_params.dig("data", "applicant")
+  end
 
   def collectivity_email
     webhook_params.dig("data", "applicant", "email")

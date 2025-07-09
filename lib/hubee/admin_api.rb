@@ -38,8 +38,8 @@ class HubEE::AdminApi < HubEE::Base
     raise
   end
 
-  def create_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, editor_payload: {})
-    subscription_payload = find_or_create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:)
+  def create_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, editor_payload: {}, applicant_payload: {})
+    subscription_payload = find_or_create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:)
     activate_subscription(subscription_payload, editor_payload)
     subscription_payload
   end
@@ -96,7 +96,7 @@ class HubEE::AdminApi < HubEE::Base
     ).body
   end
 
-  def create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:) # rubocop:disable Metrics/AbcSize
+  def create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:) # rubocop:disable Metrics/AbcSize
     http_connection.post(
       "#{host}/referential/v1/subscriptions",
       {
@@ -110,9 +110,7 @@ class HubEE::AdminApi < HubEE::Base
         },
         email: collectivity_email,
         status: "Inactif",
-        localAdministrator: {
-          email: collectivity_email,
-        },
+        localAdministrator: applicant_payload,
         validateDateTime: DateTime.now.iso8601,
         updateDateTime: DateTime.now.iso8601,
       }.to_json,
@@ -124,8 +122,8 @@ class HubEE::AdminApi < HubEE::Base
     raise
   end
 
-  def find_or_create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:)
-    create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:)
+  def find_or_create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload: {})
+    create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:)
   rescue AlreadyExists
     find_subscription(organization_payload, process_code)
   end
