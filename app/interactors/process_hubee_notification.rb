@@ -54,7 +54,9 @@ class ProcessHubEENotification < BaseInteractor
   end
 
   def shipment
-    @shipment ||= Shipment.find_by(hubee_case_id: notification.case_id)
+    return @shipment if defined?(@shipment)
+
+    @shipment = Shipment.find_by(hubee_case_id: notification.case_id)
   end
 
   def update_shipment_status
