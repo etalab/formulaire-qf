@@ -5,15 +5,17 @@ module OmniAuth
     class FranceConnect < OpenIDConnect
       option :callback_path, "/callback"
       option :client_auth_method, :secret
-      option :client_signing_alg, :HS256
+      option :client_signing_alg, :ES256
       option :state, -> { SecureRandom.hex(16) }
+      option :discovery, true
 
       option :client_options, {
         port: 443,
         scheme: "https",
-        authorization_endpoint: "/api/v1/authorize?acr_values=eidas1",
-        token_endpoint: "/api/v1/token",
-        userinfo_endpoint: "/api/v1/userinfo",
+        authorization_endpoint: "/api/v2/authorize",
+        token_endpoint: "/api/v2/token",
+        userinfo_endpoint: "/api/v2/userinfo",
+        jwks_uri: "/api/v2/jwks"
       }
     end
   end
@@ -28,8 +30,11 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       redirect_uri: Settings.france_connect.redirect_uri,
       secret: Settings.france_connect.secret,
     },
-    issuer: "https://#{Settings.france_connect.host}",
+    issuer: "https://#{Settings.france_connect.host}/api/v2",
     name: :france_connect,
-    scope: %i[openid identite_pivot cnaf_quotient_familial cnaf_allocataires cnaf_enfants]
+    scope: %i[openid identite_pivot cnaf_quotient_familial cnaf_allocataires cnaf_enfants],
+    discovery: true,
+    jwks_uri: "https://#{Settings.france_connect.host}/api/v2/jwks",
+    acr_values: "eidas1"
   )
 end

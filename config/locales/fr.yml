@@ -124,6 +124,20 @@ fr:
       no_children: Aucun
       france_connect:
         title: Données de FranceConnect
+    errors:
+      france_connect:
+        access_denied:
+          title: "Accès refusé"
+          text: "Vous avez refusé l'accès à vos données. Vous pouvez réessayer ou utiliser une alternative."
+        invalid_request:
+          title: "Demande invalide"
+          text: "La demande d'authentification est invalide. Veuillez réessayer."
+        server_error:
+          title: "Erreur du serveur"
+          text: "Une erreur technique s'est produite. Veuillez réessayer plus tard."
+        generic:
+          title: "Erreur d'authentification"
+          text: "Une erreur s'est produite lors de l'authentification (%{error} : %{description}). Vous pouvez réessayer ou utiliser une alternative."
       info:
         title: Ce qui va se passer
         paragraph_1: En terminant la démarche, toutes les données précédentes vont être transmises à %{collectivity}.
