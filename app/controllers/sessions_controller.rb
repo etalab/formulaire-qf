@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
   def destroy
     id_token_hint = session[:france_connect_token_hint]
     state = session["state"]
-    url = "https://#{Settings.france_connect.host}/api/v1/logout?id_token_hint=#{id_token_hint}&post_logout_redirect_uri=#{fc_logout_callback_url}&state=#{state}"
+    url = "https://#{Settings.france_connect.host}/api/v2/session/end?id_token_hint=#{id_token_hint}&post_logout_redirect_uri=#{fc_logout_callback_url}&state=#{state}"
     reset_session
 
     redirect_to url, allow_other_host: true

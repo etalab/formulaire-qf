@@ -2,7 +2,7 @@
 api_particulier:
   base_url: "https://staging.particulier.api.gouv.fr"
 france_connect:
-  host: "fcp.integ01.dev-franceconnect.fr"
+  host: "fcp-low.integ01.dev-franceconnect.fr"
   identifier: <%= Rails.application.credentials.france_connect.identifier %>
   redirect_uri: "http://localhost:3000/callback"
   secret: <%= Rails.application.credentials.france_connect.secret %>
