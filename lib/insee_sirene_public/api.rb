@@ -14,7 +14,7 @@ module INSEESirenePublic
         conn.response :raise_error
         conn.response :json
         conn.options.timeout = 2
-        conn.headers['X-INSEE-Api-Key-Integration'] = api_key
+        conn.headers["X-INSEE-Api-Key-Integration"] = api_key
       end
     end
 
