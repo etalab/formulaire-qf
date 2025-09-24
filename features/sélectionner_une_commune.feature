@@ -6,6 +6,7 @@ Fonctionnalité: Sélectionner une collectivité
     Etant donné l'existence de la collectivité inactive de Sainville
     Quand je me rends sur la page d'accueil
     Et que je clique sur le premier "Débuter la démarche"
+    Et que la page contient "Choisir une collectivité"
   
   Scénario: Je sélectionne une collectivité
     Quand je sélectionne "(04) Majastres" pour "Nom de la collectivité"
@@ -21,3 +22,7 @@ Fonctionnalité: Sélectionner une collectivité
     Et que je me rend sur la page de "Sainville"
     Alors la page ne contient pas "Sainville"
     Et la page contient "Collectivité non trouvée"
+
+  Scénario: Je ne peux pas ne sélectionner aucune collectivité
+    Quand je clique sur "Suivant"
+    Alors la page contient "Choisir une collectivité"

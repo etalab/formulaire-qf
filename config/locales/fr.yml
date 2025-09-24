@@ -67,8 +67,13 @@ fr:
       form:
         label: Nom de la collectivité
         hint: Sélectionner la collectivité à l'aide de son nom ou de son code postal
+        prompt: Choisir une collectivité
         notice:
           text: Seules les collectivités de cette liste proposent actuellement ce service.
+    select:
+      not_found_error:
+        title: Collectivité non trouvée
+        text: La collectivité avec le siret %{siret} n'existe pas ou ne propose pas ce service.
     show:
       not_found_error:
         title: Collectivité non trouvée
