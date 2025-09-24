@@ -2,20 +2,11 @@ require_relative "../provider_stubs"
 
 module ProviderStubs::INSEE
   def stub_insee
-    stub_insee_token
     stub_insee_search
   end
 
-  def stub_insee_token
-    stub_request(:post, "https://api.insee.fr/token").to_return(
-      status: 200,
-      body: {"access_token" => "access_token_123"}.to_json,
-      headers: {}
-    )
-  end
-
   def stub_insee_search
-    stub_request(:get, "https://api.insee.fr/entreprises/sirene/V3.11/siret/13002526500013").to_return(
+    stub_request(:get, "https://api.insee.fr/api-sirene/3.11/siret/13002526500013").to_return(
       status: 200,
       headers: {"Content-Type" => "application/json"},
       body: '{
