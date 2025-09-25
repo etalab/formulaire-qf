@@ -101,3 +101,5 @@ end
 gem "good_job", "~> 3.99"
 
 gem "rack-cors"
+
+gem "faraday-jwt", "~> 0.1.0"

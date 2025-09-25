@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # I don't exactly understand why omniauth calls this local route instead of the
   # FranceConnect one in features, there might be a better configuration to do :shrug:
   get "/api/v1/logout", to: "home#index" if Rails.env.test?
+  get "/api/v2/session/end", to: "home#index" if Rails.env.test?
 
   get "/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: :logout

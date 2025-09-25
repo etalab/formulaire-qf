@@ -196,6 +196,9 @@ GEM
     faraday-gzip (3.0.4)
       faraday (>= 2.0, < 3)
       zlib (~> 3.0)
+    faraday-jwt (0.1.0)
+      faraday (~> 2.0)
+      json-jwt (~> 1.16)
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
     faraday-retry (2.3.2)
@@ -587,6 +590,7 @@ DEPENDENCIES
   faraday
   faraday-encoding
   faraday-gzip
+  faraday-jwt (~> 0.1.0)
   faraday-net_http
   faraday-retry
   good_job (~> 3.99)
