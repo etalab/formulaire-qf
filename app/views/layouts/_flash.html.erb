@@ -1,7 +1,8 @@
 <div class="fr-col-md-8">
   <% flash.each do |key, value| %>
-    <div class="fr-alert fr-alert--<%=key%> fr-mb-3w">
-      <h4 class="fr-alert__title"><%=value[:title] || "Erreur"%></h4>
+    <div class="fr-alert fr-alert--<%= key %> fr-mb-3w">
+      <h4 class="fr-alert__title"><%= value[:title] || "Erreur" %></h4>
+
       <%= simple_format (value[:text] || value), { }, wrapper_tag: 'p' %>
 
       <% if key == 'error' %>
