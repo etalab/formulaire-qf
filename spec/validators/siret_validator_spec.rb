@@ -2,6 +2,7 @@ require "active_model"
 
 class SiretFormatValidatable
   include ActiveModel::Validations
+
   attr_accessor :siret
 
   validates :siret, siret: true
