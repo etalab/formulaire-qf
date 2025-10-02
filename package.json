@@ -10,8 +10,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "herb:format": "herb-format .",
-    "herb:format:check": "herb-format --check ."
+    "herb:format": "herb-format app/views/",
+    "herb:format:check": "herb-format --check app/views/"
   },
   "repository": {
     "type": "git",
