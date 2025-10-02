@@ -32,6 +32,6 @@ class Organization
   end
 
   def insee_payload
-    @insee_payload ||= INSEESirene::Api.new.etablissement(siret:)
+    @insee_payload ||= INSEESirenePublic::Api.new.etablissement(siret:)
   end
 end
