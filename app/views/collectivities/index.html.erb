@@ -10,13 +10,10 @@
 
 <%= form_with url: select_collectivities_path, method: :get, class: "fr-col-md-8" do |form| %>
   <div class="fr-select-group">
-    
     <%= form.label :id, class: "fr-label" do %>
       <%= t('.form.label') %>
 
-      <span class="fr-hint-text">
-        <%= t('.form.hint') %>
-      </span>
+      <span class="fr-hint-text"><%= t('.form.hint') %></span>
     <% end %>
 
     <%= form.select :id, options_from_collection_for_select(@collectivities, :siret, :select_name), { prompt: t('.form.prompt') }, { class: "fr-select", required: true } %>
@@ -24,9 +21,7 @@
     <div class="fr-notice fr-notice--info fr-mt-2w">
       <div class="fr-container">
         <div class="fr-notice__body">
-          <p class="fr-notice__title">
-            <%= t('.form.notice.text')%>
-          </p>
+          <p class="fr-notice__title"><%= t('.form.notice.text') %></p>
         </div>
       </div>
     </div>

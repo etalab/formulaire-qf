@@ -37,8 +37,20 @@ jobs:
           bundler-cache: true
           cache-version: 336
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Run RuboCop
         run: bundle exec rubocop --parallel
+
+      - name: Check ERB formatting
+        run: npm run herb:format:check
 
 
   unit-test:

@@ -8,24 +8,33 @@
               <%= simple_format t('layout.entity'), { class: 'fr-logo' }, wrapper_tag: 'p' %>
             </div>
             <div class="fr-header__navbar">
-              <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-499" aria-haspopup="menu" id="button-500" title="Menu">
+              <button
+                class="fr-btn--menu fr-btn"
+                data-fr-opened="false"
+                aria-controls="modal-499"
+                aria-haspopup="menu"
+                id="button-500"
+                title="Menu"
+              >
                 Menu
               </button>
             </div>
           </div>
           <div class="fr-header__service">
-            <a href="/" title="<%= t('home.index.title')%> - <%= t('layout.title') %>">
+            <a
+              href="/"
+              title="<%= t('home.index.title') %> - <%= t('layout.title') %>"
+            >
               <p class="fr-header__service-title">
-                <%=t('header.title.bold_part')%><i class="unbold"><%=t('header.title.italic_part')%></i>
+                <%= t('header.title.bold_part') %>
+                <i class="unbold"><%= t('header.title.italic_part') %></i>
               </p>
             </a>
-            <p class="fr-header__service-tagline">
-              <%= t('layout.tagline') %>
-            </p>
+            <p class="fr-header__service-tagline"><%= t('layout.tagline') %></p>
           </div>
         </div>
         <div class="fr-header__tools">
-           <div class="fr-header__tools-links">
+          <div class="fr-header__tools-links">
             <div class="two-rows-headers">
               <% if Current.user.authenticated? %>
                 <div class="fr-mr-1w fr-mb-1w">
@@ -51,14 +60,20 @@
     </div>
   </div>
 
-
-  <div class="fr-header__menu fr-modal" id="modal-499" aria-labelledby="button-500">
+  <div
+    class="fr-header__menu fr-modal"
+    id="modal-499"
+    aria-labelledby="button-500"
+  >
     <div class="fr-container">
-      <button class="fr-btn--close fr-btn" aria-controls="modal-499" title="Fermer">
+      <button
+        class="fr-btn--close fr-btn"
+        aria-controls="modal-499"
+        title="Fermer"
+      >
         Fermer
       </button>
-      <div class="fr-header__menu-links">
-      </div>
+      <div class="fr-header__menu-links"></div>
     </div>
   </div>
 </header>

@@ -20,6 +20,7 @@ Then execute:
 
 ```sh
 bundle install
+npm install
 rails s
 ```
 
@@ -38,10 +39,20 @@ You can also use Guard to run the test of the last saved file :
 bundle exec guard
 ```
 
-# Linter autocorrect
+# Linting & Formatting
 
+## Ruby
 ```sh
 bundle exec rubocop -A
+```
+
+## ERB templates
+```sh
+# Check formatting
+npm run herb:format:check
+
+# Auto-format
+npm run herb:format
 ```
 
 ## Tools for remote server
