@@ -13,7 +13,7 @@ class DatapassWebhook::CreateHubEESubscription < BaseInteractor
       firstName: applicant["given_name"],
       lastName: applicant["family_name"],
       function: applicant["job_title"],
-      phoneNumber: applicant["phone_number"].gsub(/[\s\.\-]/, ""),
+      phoneNumber: applicant["phone_number"].gsub(/[\s.-]/, ""),
     }
   end
 
