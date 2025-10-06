@@ -4,9 +4,7 @@
   <%= simple_format t('.title', collectivity_name: @collectivity.display_name), { }, wrapper_tag: 'h2' %>
 
   <div class="user-data fr-p-3w">
-    <h3 class="fr-h4 underlined fr-pb-1w">
-      <%= t('.quotient_familial.title', regime: @quotient_familial_facade.regime) %>
-    </h3>
+    <h3 class="fr-h4 underlined fr-pb-1w"><%= t('.quotient_familial.title', regime: @quotient_familial_facade.regime) %></h3>
 
     <% if @quotient_familial_facade.empty? %>
       <div class="fr-alert fr-alert--warning fr-alert--sm">
@@ -16,36 +14,30 @@
       <ul>
         <li>
           <strong><%= t('.quotient_familial.quotient', month_year: @quotient_familial_facade.month_year) %></strong>
-          <br />
-          <%= @quotient_familial_facade.value %>
+          <br /><%= @quotient_familial_facade.value %>
         </li>
 
         <li>
           <strong><%= t('.allocataires') %></strong>
           <% @quotient_familial_facade.allocataires.each do |allocataire| %>
-            <br />
-            <%= allocataire %>
+            <br /><%= allocataire %>
           <% end %>
         </li>
 
         <li>
           <strong><%= t('.children') %></strong>
           <% @quotient_familial_facade.children.each do |child| %>
-            <br />
-            <%= child %>
+            <br /><%= child %>
           <% end %>
 
           <% if @quotient_familial_facade.children.blank? %>
-            <br />
-            <%= t('.no_children') %>
+            <br /><%= t('.no_children') %>
           <% end %>
         </li>
       </ul>
     <% end %>
 
-    <h3 class="fr-h4 underlined fr-pb-1w fr-mt-2w">
-      <%= t('.france_connect.title') %>
-    </h3>
+    <h3 class="fr-h4 underlined fr-pb-1w fr-mt-2w"><%= t('.france_connect.title') %></h3>
 
     <% if @pivot_identity_facade.empty? %>
       <div class="fr-alert fr-alert--warning fr-alert--sm">
@@ -70,27 +62,25 @@
 
   <div class="fr-alert fr-alert--info">
     <h3 class="fr-alert__title"><%= t('.info.title') %></h3>
-
     <p class="fr-my-2w">
       <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
-      <%= t('.info.paragraph_1', collectivity: @collectivity.display_name) %>
+      <%=  t('.info.paragraph_1', collectivity: @collectivity.display_name) %>
     </p>
-
     <p>
       <span class="fr-icon-success-fill success-green" aria-hidden="true"></span>
-      <%= t('.info.paragraph_2', collectivity: @collectivity.display_name) %>
+      <%=  t('.info.paragraph_2', collectivity: @collectivity.display_name) %>
     </p>
-
     <p>
-      <a class="fr-link--sm" href="/faq#donnees-personnelles"><%= t('.info.link') %></a>
+      <a class="fr-link--sm" href='/faq#donnees-personnelles'>
+        <%= t('.info.link')%>
+      </a>
     </p>
   </div>
-
   <!--
-  <%= raw JSON.pretty_generate(session.fetch("raw_info", {}).slice("sub", "idp_birthdate", "preferred_username", "birthcountry", "birthdate", "birthplace", "family_name", "given_name", "gender")) %>
+    <%= raw JSON.pretty_generate(session.fetch("raw_info", {}).slice("sub", "idp_birthdate", "preferred_username", "birthcountry", "birthdate", "birthplace", "family_name", "given_name", "gender")) %>
   -->
 
   <!--
-  <%= raw JSON.pretty_generate(session.fetch("quotient_familial", {})) %>
+    <%= raw JSON.pretty_generate(session.fetch("quotient_familial", {})) %>
   -->
 </div>

@@ -4,7 +4,7 @@
 
 <% content_for :banner_right do %>
   <p class="fr-tag fr-tag--icon-left fr-icon-timer-fill">
-    <%= t('.banner.duration_text') %>
+    <%= t('.banner.duration_text')%>
   </p>
 
   <%= render partial: "cta" %>
@@ -28,8 +28,10 @@
   </p>
 
   <h2 class="fr-mt-6w"><%= t('.which_informations.title') %></h2>
-
-  <p><%= t('.which_informations.content') %></p>
+  
+  <p>
+    <%= t('.which_informations.content') %>
+  </p>
 
   <%= render partial: "cta" %>
 </div>

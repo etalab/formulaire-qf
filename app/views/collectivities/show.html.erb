@@ -8,19 +8,14 @@
   <div class="fr-grid-row fr-grid-row--center">
     <div class="fr-connect-group">
       <%= form_tag('/auth/france_connect', method: 'post', data: {turbo: false}) do %>
-        <button type="submit" class="fr-connect">
+        <button type='submit' class="fr-connect">
           <span class="fr-connect__login">S’identifier avec</span>
           <span class="fr-connect__brand">FranceConnect</span>
         </button>
       <% end %>
 
       <p>
-        <a
-          href="https://franceconnect.gouv.fr/"
-          target="_blank"
-          rel="noopener"
-          title="Qu’est-ce que FranceConnect ? - nouvelle fenêtre"
-        >
+        <a href="https://franceconnect.gouv.fr/" target="_blank"  rel="noopener" title="Qu’est-ce que FranceConnect ? - nouvelle fenêtre">
           Qu’est-ce que FranceConnect ?
         </a>
       </p>
@@ -29,19 +24,17 @@
 
   <div class="fr-alert fr-alert--info">
     <h3 class="fr-alert__title"><%= t('.info.title') %></h3>
-
-    <p><%= t('.info.content') %></p>
-
+    <p><%= t('.info.content') %></p>    
     <p>
-      <a class="fr-link--sm" href="/faq#donnees-personnelles"><%= t('.info.link') %></a>
+      <a class="fr-link--sm" href='/faq#donnees-personnelles'>
+        <%= t('.info.link')%>
+      </a>
     </p>
   </div>
 
   <div class="fr-grid-row fr-grid-row--center fr-mb-2w fr-mt-10w">
     <div class="horizontal-line"></div>
-
     <div class="fr-mx-4w">Ou</div>
-
     <div class="horizontal-line"></div>
   </div>
 
@@ -54,6 +47,7 @@
       <%= link_to t('.no_france_connect.link'), no_france_connect_collectivity_path(@collectivity.siret), class: "fr-link fr-icon-arrow-right-line fr-link--icon-right" %>
     </div>
   </div>
+
 </div>
 
 <% content_for :secondary_information do %>
@@ -62,10 +56,7 @@
       <div class="fr-grid-row">
         <div class="fr-col-md-8">
           <h3 class="fr-text-title--grey"><%= t(".secondary_info.title") %></h3>
-
-          <p class="fr-text--lg">
-            <%= t(".secondary_info.explanation", collectivity_name: @collectivity.display_name) %>
-          </p>
+          <p class="fr-text--lg"><%= t(".secondary_info.explanation", collectivity_name: @collectivity.display_name) %></p>
 
           <div class="fr-grid-row">
             <div class="fr-col-md-4 fr-col-12 fr-pr-md-2w">
@@ -77,11 +68,7 @@
                 <div class="fr-card__body">
                   <div class="fr-card__content">
                     <h3 class="fr-card__title">
-                      <a
-                        href="data:image/png;base64,<%= @qr_code %>"
-                        id="download-btn"
-                        download="QRCode_<%= @collectivity.siret %>.jpg"
-                      >
+                      <a href="data:image/png;base64,<%=@qr_code%>" id="download-btn" download="QRCode_<%=@collectivity.siret%>.jpg">
                         <%= t(".secondary_info.download") %>
                       </a>
                     </h3>
@@ -95,7 +82,7 @@
 
               <div class="fr-my-2w">
                 <div class="fr-mb-1w">
-                  <strong><%= t(".secondary_info.link_title") %></strong>
+                  <strong><%= t(".secondary_info.link_title") %></strong> 
                 </div>
                 <%= link_to @qr_code_url, @qr_code_url, class: "break-link", title: "URL vers le formulaire de #{@collectivity.display_name}, cette page" %>
               </div>

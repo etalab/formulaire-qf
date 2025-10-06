@@ -2,22 +2,16 @@
 
 <div class="centered-text">
   <span class="fr-icon-success-fill big-icon success-green" aria-hidden="true"></span>
-
   <%= simple_format t('.title', label: @collectivity.display_name, code_cog: @collectivity.code_cog), { }, wrapper_tag: 'h2' %>
   <%= simple_format t('.reference', reference: @shipment.reference), class: "fr-text--lead fr-mt-3w" %>
   <% if @redirect_uri %>
     <%= link_to t('.redirect_cta'), @redirect_uri, class: "fr-btn fr-btn--secondary fr-btn--lg fr-btn--icon-right fr-icon-external-link-line fr-mt-3w" %>
   <% end %>
 
+
   <div class="fr-mt-12w">
-    <a
-      class="image-link"
-      href="https://jedonnemonavis.numerique.gouv.fr/Demarches/3846?&view-mode=formulaire-avis&nd_source=button&key=ba28b0f85134e19f6dd7124d50d98ca2"
-    >
-      <img
-        src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg"
-        alt="Je donne mon avis"
-      />
+    <a class="image-link" href="https://jedonnemonavis.numerique.gouv.fr/Demarches/3846?&view-mode=formulaire-avis&nd_source=button&key=ba28b0f85134e19f6dd7124d50d98ca2">
+      <img src="https://jedonnemonavis.numerique.gouv.fr/static/bouton-bleu.svg" alt="Je donne mon avis" />
     </a>
   </div>
 </div>
