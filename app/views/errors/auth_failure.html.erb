@@ -1,23 +1,16 @@
 <h1>Erreur d'authentification</h1>
 
 <% if @message == 'csrf_detected' %>
-  <p><strong>Erreur:</strong> CSRF (Cross-Site Request Forgery) detected</p>
+  <p><strong>Erreur:</strong>  CSRF (Cross-Site Request Forgery) detected</p>
+
   <div class="fr-alert fr-alert--info fr-col-lg-8">
-    <h2 class="fr-alert__title">
-      Ce site a besoin des cookies de votre navigateur pour fonctionner
-    </h2>
-    <p>
-      Cette erreur peut arriver si vous avez vidé les cookies de
-      <strong><%= request.host %></strong>
-      pendant votre processus d'authentification. Veuillez désactiver les
-      extensions qui peuvent interférer avec les cookies pour le bon
-      fonctionnement du site.
-    </p>
+      <h2 class="fr-alert__title">Ce site a besoin des cookies de votre navigateur pour fonctionner</h2>
+      <p>Cette erreur peut arriver si vous avez vidé les cookies de <strong><%= request.host %></strong> pendant votre processus d'authentification. Veuillez désactiver les extensions qui peuvent interférer avec les cookies pour le bon fonctionnement du site.</p>
   </div>
+  
 <% else %>
-  <p><strong>Error:</strong><%= @message %></p>
+  <p><strong>Error:</strong> <%= @message %></p>
 <% end %>
 
 <br />
-
 <a href="/">Retour à la page d'acceuil</a>

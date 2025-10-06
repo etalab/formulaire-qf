@@ -47,5 +47,3 @@ config/environments/*.local.yml
 /config/credentials/test.key
 coverage
 dump.rdb
-
-node_modules

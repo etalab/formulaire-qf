@@ -1,6 +1,5 @@
 <% alternative_keys ||= [:caf, :msa] %>
-
-<% alternatives = t('collectivities.no_france_connect.alternative_options').slice(*alternative_keys).values %>
+<% alternatives = t('collectivities.no_france_connect.alternative_options').slice(*alternative_keys).values  %>
 
 <%= simple_format t('collectivities.no_france_connect.alternative_text'), class: 'fr-mt-4w fr-mb-1w' %>
 
