@@ -69,6 +69,10 @@ use the following credentials:
 
 # Public API
 
-Voir [le fichier swagger](https://github.com/etalab/formulaire-qf/blob/main/docs/swagger.yaml)
+Voir [le fichier swagger](/docs/swagger.yaml)
+
+# Guide d'utilisation pour les communes sans éditeur
+
+> https://docs.numerique.gouv.fr/docs/ff4c7a80-1acb-4d52-b65e-37c0625a2798/
 
 
