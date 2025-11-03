@@ -23,8 +23,9 @@ Fonctionnalité: Gestion des erreurs API
   Scénario: Je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
     Sachant que j'ai un compte sur FranceConnect
     Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
-    Quand je clique sur "S'identifier avec FranceConnect"
+    Quand je clique sur "S’identifier avec FranceConnect"
     Alors la page contient "Une erreur est survenue"
+    Et la page contient "La récupération de votre quotient familial via FranceConnect n'a pas fonctionné"
     Et la page contient "L'allocataire n'est pas référencé auprès des caisses éligibles."
     Et la page contient "Votre attestation CAF sur le site de la CAF."
     Et la page contient "Votre attestation MSA sur le site de la MSA."
@@ -32,8 +33,9 @@ Fonctionnalité: Gestion des erreurs API
   Scénario: Mes données de quotient familial sont indisponibles via France Connect auprès de la CNAF
     Sachant que j'ai un compte sur FranceConnect
     Et que mon quotient familial via France Connect est indisponible auprès de la CNAF
-    Quand je clique sur "S'identifier avec FranceConnect"
+    Quand je clique sur "S’identifier avec FranceConnect"
     Alors la page contient "Une erreur est survenue"
+    Et la page contient "La récupération de votre quotient familial via FranceConnect n'a pas fonctionné"
     Et la page contient "Le dossier allocataire n'a pas été trouvé auprès de la CNAF."
     Et la page contient "Votre attestation CAF sur le site de la CAF."
     Et la page contient "Votre attestation MSA sur le site de la MSA."
