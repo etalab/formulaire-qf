@@ -11,18 +11,18 @@ Fonctionnalité: France connexion
     Et que je clique sur "Suivant"
 
   Scénario: Je me france connecte
-    Quand je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "S'identifier avec FranceConnect"
     Alors la page contient "Se déconnecter"
     Et la page contient "Je relis et transmets mes données à Majastres (04)"
 
   Scénario: Je me france connecte puis me déconnecte
-    Quand je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "S'identifier avec FranceConnect"
     Et que je clique sur "Se déconnecter"
     Alors la page contient "Débuter la démarche"
     Et la page ne contient pas "Se déconnecter"
 
   Scénario: Je recommence l'envoie de QF alors que je suis déjà connecté
-    Et que je clique sur "S’identifier avec FranceConnect"
+    Et que je clique sur "S'identifier avec FranceConnect"
     Et que la page contient "Je relis et transmets mes données à Majastres (04)"
     Et que je me rends sur la page d'accueil
     Et que je clique sur le premier "Débuter la démarche"

@@ -12,14 +12,14 @@ Fonctionnalité: Transmettre mes informations
 
   Scénario: Mes données FranceConnect sont correctement affichées
     Et que j'ai un quotient familial MSA avec des enfants via France Connect
-    Quand je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "S'identifier avec FranceConnect"
     Alors la page contient "TESTMAN Johnny Paul René, né le 08/10/1989"
     Et la page contient "ville de naissance : 75107"
     Et la page contient "pays de naissance : 99100"
 
   Scénario: Mes données de quotient familial sont correctement affichées
     Et que j'ai un quotient familial MSA avec des enfants via France Connect
-    Quand je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "S'identifier avec FranceConnect"
     Alors la page contient "Données de la MSA"
     Et la page contient "Quotient familial de mai 2023 : 150"
     Et la page contient "Allocataires : ROUX JEANNE STEPHANIE, née le 27/06/1987 ROUX LOIC NATHAN, né le 19/05/1979"
@@ -27,7 +27,7 @@ Fonctionnalité: Transmettre mes informations
   
   Scénario: Mes données de quotient familial sont correctement affichées même sans enfants
     Et que j'ai un quotient familial CAF sans enfants via France Connect
-    Quand je clique sur "S’identifier avec FranceConnect"
+    Quand je clique sur "S'identifier avec FranceConnect"
     Alors la page contient "Données de la CNAF"
     Et la page contient "Quotient familial de février 2024 : 2550"
     Et la page contient "Allocataires : DUBOIS ANGELA, née le 24/08/1962"
@@ -35,7 +35,7 @@ Fonctionnalité: Transmettre mes informations
   
   Scénario: Je transmet mes données
     Et que j'ai un quotient familial MSA avec des enfants via France Connect
-    Et que je clique sur "S’identifier avec FranceConnect"
+    Et que je clique sur "S'identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Vos informations ont bien été transmises à Majastres (04)"
     Et la page contient la référence de ma demande
@@ -44,6 +44,6 @@ Fonctionnalité: Transmettre mes informations
   Scénario: Je peux retourner sur le site de ma collectivité
     Et que j'arrive sur le formulaire depuis le portail de ma collectivité
     Et que j'ai un quotient familial MSA avec des enfants via France Connect
-    Et que je clique sur "S’identifier avec FranceConnect"
+    Et que je clique sur "S'identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Retourner sur le site de ma collectivité"

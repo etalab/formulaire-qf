@@ -45,19 +45,6 @@ Sachantque("mon quotient familial via France Connect est indisponible auprès de
   stub_quotient_familial_v2_with_error(:not_found_cnaf, status: 404)
 end
 
-Sachantque("j'ai un quotient familial CAF via numéro d'allocataire") do
-  stub_quotient_familial_v1
-end
-
-Sachantque("j'ai un quotient familial CAF via numéro d'allocataire avec pour date de naissance {string}") do |birthdate|
-  birthdate_v1 = birthdate.split("-").reverse.join("")
-  stub_quotient_familial_v1_with_allocataire_birthdate(birthdate_v1)
-end
-
-Sachantque("mon quotient familial via numéro d'allocataire est indisponible") do
-  stub_quotient_familial_v1_with_error(:not_found, status: 404)
-end
-
 Sachantque("hubee peut recevoir un dossier") do
   stub_hubee_token
   stub_hubee_create_folder(names: "TESTMAN_Johnny_Paul_René")
