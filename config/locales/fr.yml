@@ -151,11 +151,6 @@ fr:
           title: "Mon quotient familial %{provider} du mois de %{month} %{year}"
     error:
       browser_title: Échec de la démarche
-    qf_v1_error:
-      title: La récupération de votre quotient familial n'a pas fonctionné
-      text: |
-        Nous sommes désolés, la connexion avec l'administration détentrice de votre quotient familial n'ayant pas pu être établie, ce service ne peut pas fonctionner.
-        <strong>Raison: %{message}</strong>
     qf_v2_error:
       title: La récupération de votre quotient familial via FranceConnect n'a pas fonctionné
       text: |
@@ -165,19 +160,6 @@ fr:
       title: L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné
       text: |
         Nous sommes désolés, une erreur est survenue lors de l'envoi de vos données à %{collectivity}.
-
-  cnaf_v1_family_quotients:
-    index:
-      title: "Je réessaye avec mon numéro d'allocataire CAF :"
-      description: Vous pouvez entrer votre numéro d'allocataire et votre code postal ci-dessous, nous allons réessayer de récupérer votre quotient familial avec ces informations.
-      form:
-        allocataire_number: Numéro d'allocataire CAF
-        postal_code: Code postal
-        submit: Retenter de récupérer mon quotient familial
-    create:
-      verify_error:
-        title: Vous n'avez pas renseigné le bon numéro d'allocataire.
-        text: Votre identité FranceConnect et le numéro allocataire que vous avez renseigné ne correspondent pas. Veuillez vérifier que vous avez bien utilisé votre numéro allocataire.
 
   errors:
     title: "Une erreur est survenue"

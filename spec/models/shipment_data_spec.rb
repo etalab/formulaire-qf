@@ -146,7 +146,7 @@ RSpec.describe ShipmentData, type: :model do
           "  Sexe: M",
           "",
           "Quotient familial:",
-          "  ERREUR: La récupération de votre quotient familial n'a pas fonctionné",
+          "  ERREUR: La récupération de votre quotient familial via FranceConnect n'a pas fonctionné",
           "",
           "",
         ].join("\n")
