@@ -109,7 +109,7 @@ class HubEE::Api
     response = post(url, body:) do |request|
       request["Content-Type"] = "application/x-www-form-urlencoded"
       request["Authorization"] = "Basic #{authorization_token}"
-      request.body = body
+      request.body = body.to_query
     end
 
     response.body.dig("access_token")
