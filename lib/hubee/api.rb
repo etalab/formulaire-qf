@@ -104,12 +104,12 @@ class HubEE::Api
     client_secret = Settings.hubee.client_secret
     authorization_token = Base64.strict_encode64("#{client_id}:#{client_secret}")
 
-    body = {scope: "OSL", grant_type: "client_credentials"}
+    body = {scope: "OSL", grant_type: "client_credentials"}.to_query
 
     response = post(url, body:) do |request|
       request["Content-Type"] = "application/x-www-form-urlencoded"
       request["Authorization"] = "Basic #{authorization_token}"
-      request.body = body.to_query
+      request.body = body
     end
 
     response.body.dig("access_token")
