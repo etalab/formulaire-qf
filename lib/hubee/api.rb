@@ -107,9 +107,9 @@ class HubEE::Api
     body = {scope: "OSL", grant_type: "client_credentials"}
 
     response = post(url, body:) do |request|
-      request["Content-Type"] = "application/json"
+      request["Content-Type"] = "application/x-www-form-urlencoded"
       request["Authorization"] = "Basic #{authorization_token}"
-      request.body = body.to_json
+      request.body = body
     end
 
     response.body.dig("access_token")
