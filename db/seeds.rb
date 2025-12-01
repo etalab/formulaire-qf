@@ -9,11 +9,12 @@
 #   end
 
 if !Rails.env.production?
-  Collectivity.find_or_create_by!(
-    name: "Majastres",
-    siret: "21040107100019",
-    code_cog: "04107",
-    status: "active",
-    departement: "04"
-  )
+  Collectivity.find_or_create_by!(siret: "21040107100019") do |collectivity|
+    collectivity.assign_attributes(
+      name: "Majastres",
+      code_cog: "04107",
+      status: "active",
+      departement: "04"
+    )
+  end
 end
