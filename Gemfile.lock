@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/rails-api/active_model_serializers.git
-  revision: b7b12f79a9a9aa800a72515ade99c0ddb2fb5c29
+  revision: 6934c8bd31f4025fe7548a07d50a82f18df8e689
   branch: 0-10-stable
   specs:
-    active_model_serializers (0.10.15)
+    active_model_serializers (0.10.16)
       actionpack (>= 4.1)
       activemodel (>= 4.1)
       case_transform (>= 0.2)
@@ -111,7 +111,7 @@ GEM
     bigdecimal (3.3.1)
     bindata (2.5.1)
     bindex (0.8.1)
-    bootsnap (1.19.0)
+    bootsnap (1.20.1)
       msgpack (~> 1.2)
     brakeman (7.1.1)
       racc
@@ -130,11 +130,11 @@ GEM
     cgi (0.5.0)
     chunky_png (1.4.0)
     coderay (1.1.3)
-    concurrent-ruby (1.3.5)
+    concurrent-ruby (1.3.6)
     config (5.6.1)
       deep_merge (~> 1.2, >= 1.2.1)
       ostruct
-    connection_pool (2.5.5)
+    connection_pool (3.0.2)
     crack (1.0.1)
       bigdecimal
       rexml
@@ -203,7 +203,7 @@ GEM
       json-jwt (~> 1.16)
     faraday-net_http (3.4.2)
       net-http (~> 0.5)
-    faraday-retry (2.3.2)
+    faraday-retry (2.4.0)
       faraday (~> 2.0)
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
@@ -242,8 +242,9 @@ GEM
     hash_mapper (0.2.8)
       activesupport (>= 4)
     hashdiff (1.2.1)
-    hashie (5.0.0)
-    i18n (1.14.7)
+    hashie (5.1.0)
+      logger
+    i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.2)
       actionpack (>= 6.0.0)
@@ -259,7 +260,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.16.0)
+    json (2.18.0)
     json-jwt (1.16.7)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -274,7 +275,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    loofah (2.24.1)
+    loofah (2.25.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lumberjack (1.2.10)
@@ -288,12 +289,13 @@ GEM
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.26.2)
+    minitest (6.0.1)
+      prism (~> 1.5)
     msgpack (1.8.0)
     multi_test (1.1.0)
     nenv (0.3.0)
-    net-http (0.7.0)
-      uri
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     net-imap (0.5.12)
       date
       net-protocol
@@ -304,9 +306,9 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.18.10-arm64-darwin)
+    nokogiri (1.19.0-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.10-x86_64-linux-gnu)
+    nokogiri (1.19.0-x86_64-linux-gnu)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
@@ -316,7 +318,7 @@ GEM
       logger
       rack (>= 2.2.3)
       rack-protection
-    omniauth-rails_csrf_protection (2.0.0)
+    omniauth-rails_csrf_protection (2.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     omniauth_openid_connect (0.8.0)
@@ -341,8 +343,8 @@ GEM
       ast (~> 2.4.1)
       racc
     pdf-core (0.10.0)
-    pg (1.6.2-arm64-darwin)
-    pg (1.6.2-x86_64-linux)
+    pg (1.6.3-arm64-darwin)
+    pg (1.6.3-x86_64-linux)
     pp (0.6.3)
       prettyprint
     prawn (2.5.0)
@@ -350,7 +352,7 @@ GEM
       pdf-core (~> 0.10.0)
       ttfunk (~> 1.8)
     prettyprint (0.2.0)
-    prism (1.6.0)
+    prism (1.7.0)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
