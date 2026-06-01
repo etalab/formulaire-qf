@@ -40,7 +40,9 @@ class CollectivitiesController < ApplicationController
   end
 
   def set_collectivity
-    @collectivity = CollectivityDecorator.new(Collectivity.active.find_by!(siret: params.expect(:id)))
+    # rubocop:disable Rails/StrongParametersExpect -- id may be absent here (the "select" action is reached from the form's submit with no collectivity chosen); params.expect would raise ParameterMissing instead of letting find_by! raise the rescued RecordNotFound
+    @collectivity = CollectivityDecorator.new(Collectivity.active.find_by!(siret: params[:id]))
+    # rubocop:enable Rails/StrongParametersExpect
   rescue ActiveRecord::RecordNotFound
     flash[:error] = {
       title: t(".not_found_error.title"),
