@@ -40,7 +40,7 @@ class CollectivitiesController < ApplicationController
   end
 
   def set_collectivity
-    @collectivity = CollectivityDecorator.new(Collectivity.active.find_by!(siret: params[:id]))
+    @collectivity = CollectivityDecorator.new(Collectivity.active.find_by!(siret: params.expect(:id)))
   rescue ActiveRecord::RecordNotFound
     flash[:error] = {
       title: t(".not_found_error.title"),
