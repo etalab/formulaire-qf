@@ -111,7 +111,7 @@ GEM
     bigdecimal (3.3.1)
     bindata (2.5.1)
     bindex (0.8.1)
-    bootsnap (1.24.5)
+    bootsnap (1.24.6)
       msgpack (~> 1.2)
     brakeman (8.0.4)
       racc
@@ -201,7 +201,7 @@ GEM
     faraday-jwt (0.1.0)
       faraday (~> 2.0)
       json-jwt (~> 1.16)
-    faraday-net_http (3.4.3)
+    faraday-net_http (3.4.4)
       net-http (~> 0.5)
     faraday-retry (2.4.0)
       faraday (~> 2.0)
@@ -494,10 +494,10 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    sentry-rails (6.5.0)
+    sentry-rails (6.6.0)
       railties (>= 5.2.0)
-      sentry-ruby (~> 6.5.0)
-    sentry-ruby (6.5.0)
+      sentry-ruby (~> 6.6.0)
+    sentry-ruby (6.6.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
       logger
