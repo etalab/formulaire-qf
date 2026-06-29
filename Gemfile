@@ -71,7 +71,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  gem "standard", "~> 1.54", require: false
+  gem "standard", "~> 1.55", require: false
   gem "rubocop-rails", require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -91,7 +91,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webmock"
   gem "simplecov", require: false
-  gem "shoulda-matchers", "~> 7.0"
+  gem "shoulda-matchers", "~> 8.0"
   gem "guard"
   gem "guard-cucumber"
   gem "guard-rspec"
