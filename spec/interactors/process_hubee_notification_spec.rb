@@ -189,7 +189,15 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
     context "when the notification is not for FormulaireQF" do
       let(:process_code) { "CertDC" }
 
-      it_behaves_like "an ignored notification"
+      it "leaves the notification in the queue for its owner" do
+        expect(session).not_to receive(:delete_notification)
+        interactor
+      end
+
+      it "does not update the event" do
+        expect(session).not_to receive(:update_event)
+        interactor
+      end
     end
   end
 end

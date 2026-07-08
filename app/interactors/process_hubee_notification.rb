@@ -20,7 +20,9 @@ class ProcessHubEENotification < BaseInteractor
   end
 
   after do
-    session.delete_notification(notification_id: notification.id)
+    # The /notifications queue is shared by every processCode of the OSL:
+    # deleting foreign notifications would destroy them for their consumer.
+    session.delete_notification(notification_id: notification.id) if notification.formulaire_qf?
   end
 
   private
