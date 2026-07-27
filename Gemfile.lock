@@ -505,7 +505,7 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (8.0.1)
       activesupport (>= 7.2)
-    simplecov (1.0.2)
+    simplecov (1.0.3)
     spring (4.7.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
