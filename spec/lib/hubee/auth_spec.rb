@@ -4,7 +4,7 @@ RSpec.describe HubEE::Auth do
 
     before do
       stub_request(:post, Settings.hubee.token_url)
-        .with(body: "grant_type=client_credentials&scope=ADMIN")
+        .with(body: "grant_type=client_credentials&scope=DATAPASS")
         .to_return(
           status: 200,
           body: {"access_token" => "hubee_access_token"}.to_json,
