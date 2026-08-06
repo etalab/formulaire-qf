@@ -34,5 +34,11 @@ RSpec.describe DatapassWebhook::SetupCollectivity, type: :organizer do
     it "creates a collectivity" do
       expect { organizer }.to change(Collectivity, :count).by(1)
     end
+
+    it "does not activate the HubEE subscription" do
+      organizer
+
+      expect(a_request(:put, %r{referential/v1/subscriptions/})).not_to have_been_made
+    end
   end
 end

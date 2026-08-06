@@ -38,10 +38,10 @@ class HubEE::AdminApi < HubEE::Base
     raise
   end
 
-  def create_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, editor_payload: {}, applicant_payload: {})
-    subscription_payload = find_or_create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:)
-    activate_subscription(subscription_payload, editor_payload)
-    subscription_payload
+  def create_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload: {})
+    create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:)
+  rescue AlreadyExists
+    find_subscription(organization_payload, process_code)
   end
 
   def find_subscription(organization_payload, process_code)
@@ -74,28 +74,6 @@ class HubEE::AdminApi < HubEE::Base
 
   private
 
-  def activate_subscription(subscription_payload, editor_payload = {}) # rubocop:disable Metrics/AbcSize
-    subscription_id = subscription_payload["id"]
-    return if subscription_id.blank?
-
-    payload = subscription_payload.with_indifferent_access.merge({
-      status: "Actif",
-      activateDateTime: DateTime.now.iso8601,
-      accessMode: "PORTAIL",
-      notificationFrequency: "Unitaire",
-    }.with_indifferent_access)
-
-    payload.delete("id")
-    payload.delete("creationDateTime")
-    payload.merge!(editor_payload.with_indifferent_access)
-
-    http_connection.put(
-      "#{host}/referential/v1/subscriptions/#{subscription_id}",
-      payload.to_json,
-      "Content-Type" => "application/json"
-    ).body
-  end
-
   def create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:) # rubocop:disable Metrics/AbcSize
     http_connection.post(
       "#{host}/referential/v1/subscriptions",
@@ -120,11 +98,5 @@ class HubEE::AdminApi < HubEE::Base
     raise AlreadyExists if already_exists_error?(e)
 
     raise
-  end
-
-  def find_or_create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload: {})
-    create_inactive_subscription(datapass_id:, collectivity_email:, organization_payload:, process_code:, applicant_payload:)
-  rescue AlreadyExists
-    find_subscription(organization_payload, process_code)
   end
 end

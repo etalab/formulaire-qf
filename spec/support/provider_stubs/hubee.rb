@@ -260,7 +260,23 @@ module ProviderStubs::HubEE
   end
 
   def stub_hubee_create_subscription
+    payload = {
+      "id" => "9e2ba931-8580-4a9d-8f95-2f27e0b02c05",
+      "datapassId" => 12345,
+      "notificationFrequency" => "Unitaire",
+      "processCode" => "FormulaireQF",
+      "email" => "collectivity@test.fr",
+      "status" => "Inactif",
+      "subscriber" => {
+        "type" => "SI",
+        "companyRegister" => "13002526500013",
+        "branchCode" => "75107",
+      },
+      "creationDateTime" => "2024-08-27T08:03:02.100+00:00",
+      "updateDateTime" => "2024-08-27T08:03:02.100+00:00",
+    }
+
     stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/referential/v1/subscriptions")
-      .to_return(status: 200, body: "", headers: {})
+      .to_return(status: 201, body: payload.to_json, headers: {"Content-Type" => "application/json"})
   end
 end
