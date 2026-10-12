@@ -348,8 +348,8 @@ GEM
       ast (~> 2.4.1)
       racc
     pdf-core (0.10.0)
-    pg (1.6.3-arm64-darwin)
-    pg (1.6.3-x86_64-linux)
+    pg (1.7.0-arm64-darwin)
+    pg (1.7.0-x86_64-linux)
     pp (0.6.4)
       prettyprint
     prawn (2.5.0)
@@ -616,7 +616,7 @@ DEPENDENCIES
   logstasher (~> 3.0)
   omniauth-rails_csrf_protection
   omniauth_openid_connect
-  pg (~> 1.6)
+  pg (~> 1.7)
   prawn
   puma (>= 5.0)
   rack-cors
