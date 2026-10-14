@@ -157,10 +157,10 @@ RSpec.describe HubEE::Api, type: :api do
             .to_return(status: 422, body: {applicant: folder.applicant}.to_json, headers: {"X-Request-Id" => "request-123"})
         end
 
-        it "sends sentry the request id and siret, without request, response or user data" do
+        it "sends sentry only the request id" do
           expect(Sentry).to receive(:capture_message).with(
             "Hubee Error 422 on POST /teledossiers/v1/folders",
-            extra: {siret: nil, request_id: "request-123"}
+            extra: {request_id: "request-123"}
           )
 
           response

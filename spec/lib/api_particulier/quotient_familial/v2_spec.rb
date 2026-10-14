@@ -60,8 +60,12 @@ RSpec.describe ApiParticulier::QuotientFamilial::V2 do
         expect(quotient_familial["code"]).to match("35003")
       end
 
-      it "sends a message to sentry" do
-        expect(Sentry).to receive :capture_message
+      it "sends sentry only the request id, siret and error code" do
+        expect(Sentry).to receive(:capture_message).with(
+          anything,
+          extra: {request_id: nil, siret: "a_valid_siret", code: "35003"}
+        )
+
         quotient_familial
       end
     end
