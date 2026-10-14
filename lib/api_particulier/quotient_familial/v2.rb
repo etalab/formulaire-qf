@@ -35,11 +35,11 @@ module ApiParticulier
       end
 
       def quotient_familial(payload)
-        payload["data"].merge(version:)
+        payload["data"].merge("version" => version)
       end
 
       def error_payload(payload)
-        payload["errors"].first.merge(version:)
+        payload["errors"].first.merge("version" => version)
       end
     end
   end
