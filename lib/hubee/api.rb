@@ -174,11 +174,8 @@ class HubEE::Api
     code = response.code.to_i
 
     extra = {
-      user_sub: Current.user.try(:sub),
       siret: @siret,
       request_id: response["X-Request-Id"],
-      request_body: request.body,
-      response_body: response.body,
     }
 
     Sentry.capture_message("Hubee Error #{code} on #{method} #{path}", extra: extra)
