@@ -24,8 +24,8 @@ class CreateGoodJobExecutions < ActiveRecord::Migration[8.1]
       t.index [:active_job_id, :created_at], name: :index_good_job_executions_on_active_job_id_and_created_at
     end
 
-    change_table :good_jobs do |t|
-      t.boolean :is_discrete
+    change_table :good_jobs do |t| # rubocop:disable Rails/BulkChangeTable
+      t.boolean :is_discrete # rubocop:disable Rails/ThreeStateBooleanColumn
       t.integer :executions_count
       t.text :job_class
     end
