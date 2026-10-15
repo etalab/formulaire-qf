@@ -66,9 +66,6 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.logstasher.enabled = true
-  config.logstasher.suppress_app_log = false
-  config.logstasher.job_enabled = false
   config.logstasher.logger = ActiveSupport::Logger.new(
     Rails.root.join("log/logstash_development.log"), 1, 20.megabytes
   )
