@@ -24,11 +24,8 @@ module ApiParticulier
 
       def track_error(error, x_request_id)
         extra = {
-          user_sub: Current.user.try(:sub),
           request_id: x_request_id,
           siret: @siret,
-          error: error["title"],
-          reason: error["detail"],
           code: error["code"],
         }
         Sentry.capture_message(error["title"], extra: extra)
