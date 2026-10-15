@@ -1,0 +1,8 @@
+development:
+  enabled: true
+  suppress_app_log: false
+  job_enabled: false
+
+test:
+  enabled: true
+  logger_path: /dev/null
