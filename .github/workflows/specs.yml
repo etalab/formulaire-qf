@@ -2,10 +2,14 @@ name: Tests
 
 on:
   pull_request:
-    types: [review_requested, opened, reopened]
+    types: [review_requested, opened, synchronize, reopened]
   push:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   security:
