@@ -19,8 +19,13 @@ hash of the name. -p overrides it.
 
 Branch resolution, in order:
   1. [branch] when given
-  2. an existing local or remote branch whose name contains <name>
+  2. the one existing local or remote branch named <name>, or with a
+     segment starting with <name>- (feature/fqf-123-hubee-retry)
   3. a new feature/<name> branch created from origin/main
+
+The branch must already contain per-worktree databases (merge origin/main
+into an older branch first). remove_worktree.sh deletes the branch only if
+this script created it.
 USAGE
   exit 1
 }
@@ -72,31 +77,57 @@ if lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
   exit 1
 fi
 
+PORT_OWNER="$(grep -lx "PORT=$PORT" "$WORKTREES_DIR"/*/.env 2>/dev/null | head -n 1 || true)"
+if [ -n "$PORT_OWNER" ]; then
+  echo "Error: port $PORT is already assigned to $(dirname "$PORT_OWNER"), pick another one with -p" >&2
+  exit 1
+fi
+
 git -C "$PRIMARY_ROOT" fetch --quiet origin || echo "Warning: could not fetch origin, using local refs only" >&2
 
-find_branch_by_name() {
-  git -C "$PRIMARY_ROOT" for-each-ref --format='%(refname:short)' refs/heads refs/remotes/origin \
-    | grep -v '/HEAD$' \
-    | grep -i -- "$NAME" \
-    | sed 's#^origin/##' \
-    | sort -u \
-    | head -n 1
+find_branches_by_name() {
+  git -C "$PRIMARY_ROOT" for-each-ref --format='%(refname)' refs/heads refs/remotes/origin \
+    | sed -e 's#^refs/heads/##' -e 's#^refs/remotes/origin/##' \
+    | grep -vx 'HEAD' \
+    | grep -iE -- "(^|/)${NAME}(-|$)" \
+    | sort -u
 }
 
 if [ -z "$BRANCH" ]; then
-  BRANCH="$(find_branch_by_name || true)"
+  MATCHES="$(find_branches_by_name || true)"
+  if [ "$(printf '%s' "$MATCHES" | grep -c .)" -gt 1 ]; then
+    echo "Error: several branches match $NAME, pass the one to use as [branch]:" >&2
+    echo "$MATCHES" | sed 's/^/  /' >&2
+    exit 1
+  fi
+  BRANCH="$MATCHES"
 fi
 
+CREATED_BRANCH=""
 if [ -n "$BRANCH" ] && git -C "$PRIMARY_ROOT" show-ref --verify --quiet "refs/heads/$BRANCH"; then
   echo "Using local branch $BRANCH"
   git -C "$PRIMARY_ROOT" worktree add "$WORKTREE_PATH" "$BRANCH"
 elif [ -n "$BRANCH" ] && git -C "$PRIMARY_ROOT" show-ref --verify --quiet "refs/remotes/origin/$BRANCH"; then
   echo "Tracking remote branch origin/$BRANCH"
   git -C "$PRIMARY_ROOT" worktree add --track -b "$BRANCH" "$WORKTREE_PATH" "origin/$BRANCH"
+  CREATED_BRANCH="$BRANCH"
 else
   BRANCH="${BRANCH:-feature/$NAME}"
   echo "No branch found for $NAME, creating $BRANCH from origin/main"
   git -C "$PRIMARY_ROOT" worktree add --no-track -b "$BRANCH" "$WORKTREE_PATH" origin/main
+  CREATED_BRANCH="$BRANCH"
+fi
+
+if ! grep -q 'database_suffix' "$WORKTREE_PATH/config/database.yml"; then
+  git -C "$PRIMARY_ROOT" worktree remove --force "$WORKTREE_PATH"
+  [ -n "$CREATED_BRANCH" ] && git -C "$PRIMARY_ROOT" branch -D "$CREATED_BRANCH" >/dev/null
+  echo "Error: $BRANCH predates per-worktree databases, its config/database.yml would use the main databases." >&2
+  echo "Merge or rebase origin/main into $BRANCH first, then run this script again." >&2
+  exit 1
+fi
+
+if [ -n "$CREATED_BRANCH" ]; then
+  git -C "$PRIMARY_ROOT" config "branch.$CREATED_BRANCH.createdByWorktreeScript" true
 fi
 
 for key_file in config/master.key config/credentials/development.key config/credentials/test.key; do
