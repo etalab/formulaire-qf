@@ -37,5 +37,67 @@ RSpec.describe UploadQuotientFamilialToHubEE, type: :organizer do
     end
 
     it { is_expected.to be_a_success }
+
+    context "when HubEE does not answer" do
+      before { allow(Sentry).to receive(:capture_exception) }
+
+      context "when the token endpoint answers a 502" do
+        before { stub_hubee_token_with_error }
+
+        it { is_expected.to be_a_failure }
+
+        it "reports the error to Sentry" do
+          subject
+          expect(Sentry).to have_received(:capture_exception).with(an_instance_of(HubEE::Api::Error))
+        end
+      end
+
+      context "when the token endpoint times out" do
+        before { stub_request(:post, Settings.hubee.token_url).to_timeout }
+
+        it { is_expected.to be_a_failure }
+      end
+
+      context "when the token endpoint is unreachable" do
+        before { stub_request(:post, Settings.hubee.token_url).to_raise(SocketError) }
+
+        it { is_expected.to be_a_failure }
+      end
+
+      context "when HubEE goes down after creating the folder" do
+        before do
+          stub_request(:put, %r{/teledossiers/v1/folders/.+/attachments/}).to_raise(Errno::ECONNREFUSED)
+          stub_request(:delete, %r{/teledossiers/v1/folders/}).to_raise(Errno::ECONNREFUSED)
+        end
+
+        it { is_expected.to be_a_failure }
+      end
+    end
+
+    context "when HubEE answers an error after creating the folder" do
+      let(:folder_url) { "#{Settings.hubee.base_url}/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6" }
+
+      context "when an attachment upload answers a 502" do
+        before { stub_request(:put, %r{/teledossiers/v1/folders/.+/attachments/}).to_return(status: 502, body: "") }
+
+        it { is_expected.to be_a_failure }
+
+        it "deletes the folder" do
+          subject
+          expect(a_request(:delete, folder_url)).to have_been_made.once
+        end
+      end
+
+      context "when marking the folder complete answers a 503" do
+        before { stub_request(:patch, folder_url).to_return(status: 503, body: "") }
+
+        it { is_expected.to be_a_failure }
+
+        it "deletes the folder" do
+          subject
+          expect(a_request(:delete, folder_url)).to have_been_made.once
+        end
+      end
+    end
   end
 end

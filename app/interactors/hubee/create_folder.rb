@@ -14,6 +14,8 @@ class HubEE::CreateFolder < BaseInteractor
 
   def rollback
     context.session.delete_folder(folder_id: context.folder.id)
+  rescue HubEE::Api::Error => e
+    Sentry.capture_exception(e)
   end
 
   private

@@ -10,11 +10,20 @@ RSpec.describe HubEE::MarkFolderComplete, type: :interactor do
         session:,
       }
     end
-    let(:session) { double(HubEE::Api) }
+    let(:response) { double(HubEE::Api::Response, success?: true, body: {}) }
+    let(:session) { double(HubEE::Api, mark_folder_complete: response) }
 
     it "marks the folder complete" do
-      expect(session).to receive(:mark_folder_complete).with(folder_id: folder_id)
       interactor
+      expect(session).to have_received(:mark_folder_complete).with(folder_id: folder_id)
+    end
+
+    context "when hubee returns an error" do
+      let(:response) { double(HubEE::Api::Response, success?: false, body: "503 Service Unavailable") }
+
+      it "makes an interactor failure" do
+        expect(interactor).to be_a_failure
+      end
     end
   end
 end
