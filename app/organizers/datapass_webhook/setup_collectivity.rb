@@ -17,7 +17,6 @@ class DatapassWebhook::SetupCollectivity < BaseOrganizer
         "DataPass webhook: create HubEE resources",
         payload: {
           organization: context.organization.siret,
-          collectivity_email: context.collectivity_email,
           service_provider: context.service_provider,
         }
       )

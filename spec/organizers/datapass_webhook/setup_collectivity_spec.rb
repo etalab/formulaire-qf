@@ -40,5 +40,22 @@ RSpec.describe DatapassWebhook::SetupCollectivity, type: :organizer do
 
       expect(a_request(:put, %r{referential/v1/subscriptions/})).not_to have_been_made
     end
+
+    context "when a step fails outside a local environment" do
+      before do
+        allow(Rails.env).to receive(:local?).and_return(false)
+        allow(DatapassWebhook::CreateHubEEOrganization).to receive(:call!).and_raise(StandardError)
+        allow(Sentry).to receive(:capture_exception)
+      end
+
+      it "sends Sentry the siret and service provider, not the collectivity email" do
+        expect(Sentry).to receive(:set_context).with(
+          "DataPass webhook: create HubEE resources",
+          payload: {organization: "13002526500013", service_provider: {}}
+        )
+
+        organizer
+      end
+    end
   end
 end
