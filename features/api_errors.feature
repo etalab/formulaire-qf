@@ -19,6 +19,7 @@ Fonctionnalité: Gestion des erreurs API
     Et la page contient "Une erreur est survenue"
     Et la page contient "Votre attestation MSA sur le site de la MSA"
     Et la page contient "Votre attestation CAF sur le site de la CAF"
+    Et le code de la page ne contient pas '"allocataires"'
 
   Scénario: Je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
     Sachant que j'ai un compte sur FranceConnect
@@ -28,6 +29,7 @@ Fonctionnalité: Gestion des erreurs API
     Et la page contient "L'allocataire n'est pas référencé auprès des caisses éligibles."
     Et la page contient "Votre attestation CAF sur le site de la CAF."
     Et la page contient "Votre attestation MSA sur le site de la MSA."
+    Et le code de la page ne contient pas "1989-10-08"
 
   Scénario: Mes données de quotient familial sont indisponibles via France Connect auprès de la CNAF
     Sachant que j'ai un compte sur FranceConnect
