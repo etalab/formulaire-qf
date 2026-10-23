@@ -24,6 +24,8 @@ Fonctionnalité: Transmettre mes informations
     Et la page contient "Quotient familial de mai 2023 : 150"
     Et la page contient "Allocataires : ROUX JEANNE STEPHANIE, née le 27/06/1987 ROUX LOIC NATHAN, né le 19/05/1979"
     Et la page contient "Enfants : ROUX ALEXIS VINCENT, né le 20/04/2006 ROUX FLEUR EDITH, né le 20/04/2004"
+    Et le code de la page ne contient pas "1989-10-08"
+    Et le code de la page ne contient pas '"allocataires"'
   
   Scénario: Mes données de quotient familial sont correctement affichées même sans enfants
     Et que j'ai un quotient familial CAF sans enfants via France Connect
