@@ -58,3 +58,7 @@ end
 Alors("la page contient la référence de ma demande") do
   expect(page).to have_content(Shipment.last.reference)
 end
+
+Alors("aucun envoi n'a été enregistré") do
+  expect(Shipment.count).to eq(0)
+end

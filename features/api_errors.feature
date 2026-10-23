@@ -28,6 +28,15 @@ Fonctionnalité: Gestion des erreurs API
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
 
+  Scénario: HubEE refuse une pièce jointe
+    Sachant que j'ai un compte sur FranceConnect
+    Et que j'ai un quotient familial CAF sans enfants via France Connect
+    Et que hubee refusera les pièces jointes
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Quand je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
+    Et aucun envoi n'a été enregistré
+
   Scénario: Je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
     Sachant que j'ai un compte sur FranceConnect
     Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA

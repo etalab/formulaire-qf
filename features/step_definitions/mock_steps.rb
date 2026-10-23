@@ -58,6 +58,10 @@ Sachantque("l'envoi d'un dossier à hubee échouera") do
   stub_hubee_create_folder_with_error
 end
 
+Sachantque("hubee refusera les pièces jointes") do
+  stub_hubee_upload_attachment_with_error
+end
+
 Sachantque("hubee ne répond pas") do
   stub_hubee_token_with_error
 end
