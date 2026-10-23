@@ -13,7 +13,7 @@ RSpec.describe HubEE::MarkFolderComplete, type: :interactor do
     let(:session) { double(HubEE::Api) }
 
     it "marks the folder complete" do
-      expect(session).to receive(:mark_folder_complete).with(folder_id: folder_id)
+      expect(session).to receive(:mark_folder_complete).with(folder_id: folder_id).and_return(double(success?: true))
       interactor
     end
   end

@@ -50,6 +50,17 @@ RSpec.describe UploadQuotientFamilialToHubEE, type: :organizer do
       end
     end
 
+    context "when HubEE answers an error on mark folder complete" do
+      before { stub_hubee_mark_folder_complete_with_error }
+
+      it { is_expected.to be_a_failure }
+
+      it "deletes the folder on HubEE" do
+        subject
+        expect(a_request(:delete, %r{/teledossiers/v1/folders/})).to have_been_made.once
+      end
+    end
+
     context "when HubEE does not answer" do
       before { allow(Sentry).to receive(:capture_exception) }
 

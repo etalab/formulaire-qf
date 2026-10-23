@@ -4,6 +4,7 @@ class HubEE::MarkFolderComplete < BaseInteractor
   end
 
   def call
-    context.session.mark_folder_complete(folder_id: context.folder.id)
+    response = context.session.mark_folder_complete(folder_id: context.folder.id)
+    context.fail!(message: response.body) unless response.success?
   end
 end
