@@ -51,7 +51,6 @@ stop_server() {
 
 if [ -d "$WORKTREE_PATH" ]; then
   stop_server
-  (cd "$WORKTREE_PATH" && bin/spring stop) || true
   BRANCH="$(git -C "$WORKTREE_PATH" rev-parse --abbrev-ref HEAD)"
   git -C "$PRIMARY_ROOT" worktree remove "$WORKTREE_PATH"
   echo "Removed worktree $WORKTREE_PATH"
