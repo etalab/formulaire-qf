@@ -40,6 +40,30 @@ describe SetupCurrentData, type: :interactor do
       expect { call }.to change { Current.redirect_uri }.from(nil).to("https://real_uri")
     end
 
+    context "with an http return address" do
+      let(:session) { {redirect_uri: "http://site.example"} }
+
+      it "keeps it as the current redirect uri" do
+        expect { call }.to change { Current.redirect_uri }.from(nil).to("http://site.example")
+      end
+    end
+
+    context "with a javascript return address" do
+      let(:session) { {redirect_uri: "javascript:alert(1)"} }
+
+      it "leaves the current redirect uri empty" do
+        expect { call }.not_to change { Current.redirect_uri }.from(nil)
+      end
+    end
+
+    context "with a return address that is not a URL" do
+      let(:session) { {redirect_uri: "http://exa mple.com"} }
+
+      it "leaves the current redirect uri empty" do
+        expect { call }.not_to change { Current.redirect_uri }.from(nil)
+      end
+    end
+
     it "sets up the current pivot identity" do
       expect { call }.to change { Current.pivot_identity }.from(nil).to(instance_of(PivotIdentity))
     end

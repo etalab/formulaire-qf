@@ -16,7 +16,10 @@ class SetupCurrentData < BaseInteractor
   end
 
   def redirect_uri
-    context.session[:redirect_uri]
+    value = context.session[:redirect_uri]
+    value if %w[http https].include?(URI.parse(value.to_s).scheme)
+  rescue URI::InvalidURIError
+    nil
   end
 
   def pivot_identity
