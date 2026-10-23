@@ -58,3 +58,7 @@ end
 Alors("la page contient la référence de ma demande") do
   expect(page).to have_content(Shipment.last.reference)
 end
+
+Alors("le code de la page ne contient pas {string}") do |content|
+  expect(page.html).not_to include(content)
+end
