@@ -2,8 +2,8 @@ describe SetupCurrentData, type: :interactor do
   describe ".call" do
     subject(:call) { described_class.call(session: session, params: params) }
 
-    let(:session) { {:external_id => "12345", :redirect_uri => "https://real_uri", "quotient_familial" => {"quotient_familial" => 2550}} }
     let(:collectivity) { create(:collectivity) }
+    let(:session) { {"portals" => {collectivity.siret => {"external_id" => "12345", "redirect_uri" => "https://real_uri"}}, "quotient_familial" => {"quotient_familial" => 2550}} }
     let(:params) { {collectivity_id: collectivity.siret} }
 
     before do
@@ -41,7 +41,7 @@ describe SetupCurrentData, type: :interactor do
     end
 
     context "with an http return address" do
-      let(:session) { {redirect_uri: "http://site.example"} }
+      let(:session) { {"portals" => {collectivity.siret => {"redirect_uri" => "http://site.example"}}} }
 
       it "keeps it as the current redirect uri" do
         expect { call }.to change { Current.redirect_uri }.from(nil).to("http://site.example")
@@ -49,7 +49,7 @@ describe SetupCurrentData, type: :interactor do
     end
 
     context "with a javascript return address" do
-      let(:session) { {redirect_uri: "javascript:alert(1)"} }
+      let(:session) { {"portals" => {collectivity.siret => {"redirect_uri" => "javascript:alert(1)"}}} }
 
       it "leaves the current redirect uri empty" do
         expect { call }.not_to change { Current.redirect_uri }.from(nil)
@@ -57,7 +57,7 @@ describe SetupCurrentData, type: :interactor do
     end
 
     context "with a return address that is not a URL" do
-      let(:session) { {redirect_uri: "http://exa mple.com"} }
+      let(:session) { {"portals" => {collectivity.siret => {"redirect_uri" => "http://exa mple.com"}}} }
 
       it "leaves the current redirect uri empty" do
         expect { call }.not_to change { Current.redirect_uri }.from(nil)
@@ -66,6 +66,22 @@ describe SetupCurrentData, type: :interactor do
 
     it "sets up the current pivot identity" do
       expect { call }.to change { Current.pivot_identity }.from(nil).to(instance_of(PivotIdentity))
+    end
+
+    context "when only another collectivity's portal passed values" do
+      let(:session) { {"portals" => {"21040107100019" => {"external_id" => "12345", "redirect_uri" => "https://real_uri"}}} }
+
+      it "leaves the current external id empty" do
+        call
+
+        expect(Current.external_id).to be_nil
+      end
+
+      it "leaves the current redirect uri empty" do
+        call
+
+        expect(Current.redirect_uri).to be_nil
+      end
     end
 
     context "with a session from FranceConnect" do

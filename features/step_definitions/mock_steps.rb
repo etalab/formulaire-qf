@@ -61,3 +61,21 @@ end
 Sachantque("hubee ne répond pas") do
   stub_hubee_token_with_error
 end
+
+Alors("hubee a reçu un fichier contenant {string}") do |content|
+  uploads = WebMock::RequestRegistry.instance.requested_signatures.select do |request, _count|
+    request.method == :put && request.uri.path.include?("/attachments/")
+  end.keys
+
+  expect(uploads.map(&:body)).to include(a_string_including(content))
+end
+
+Alors("hubee n'a reçu aucun fichier contenant {string}") do |content|
+  uploads = WebMock::RequestRegistry.instance.requested_signatures.select do |request, _count|
+    request.method == :put && request.uri.path.include?("/attachments/")
+  end.keys
+  uploads_containing_content = uploads.select { |upload| upload.body.include?(content) }.map { |upload| upload.uri.to_s }
+
+  expect(uploads).not_to be_empty
+  expect(uploads_containing_content).to be_empty
+end
