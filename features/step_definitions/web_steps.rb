@@ -11,7 +11,7 @@ Quand("je me rends sur la page d'erreur d'authentification avec un CSRF detecté
 end
 
 Sachantque("j'arrive sur le formulaire depuis le portail de ma collectivité") do
-  visit "/collectivites/21040107100019/me_connecter?external_id=123&redirect_uri=http://real_uri"
+  visit "/collectivites/21040107100019/me_connecter?external_id=DOSSIER-MAJASTRES&redirect_uri=http://real_uri"
 end
 
 Alors("la page contient {string}") do |content|

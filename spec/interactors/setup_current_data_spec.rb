@@ -2,8 +2,8 @@ describe SetupCurrentData, type: :interactor do
   describe ".call" do
     subject(:call) { described_class.call(session: session, params: params) }
 
-    let(:session) { {:external_id => "12345", :redirect_uri => "https://real_uri", "quotient_familial" => {"quotient_familial" => 2550}} }
     let(:collectivity) { create(:collectivity) }
+    let(:session) { {:external_id => "12345", :redirect_uri => "https://real_uri", :portal_siret => collectivity.siret, "quotient_familial" => {"quotient_familial" => 2550}} }
     let(:params) { {collectivity_id: collectivity.siret} }
 
     before do
@@ -42,6 +42,22 @@ describe SetupCurrentData, type: :interactor do
 
     it "sets up the current pivot identity" do
       expect { call }.to change { Current.pivot_identity }.from(nil).to(instance_of(PivotIdentity))
+    end
+
+    context "when the portal values came for another collectivity" do
+      let(:session) { {external_id: "12345", redirect_uri: "https://real_uri", portal_siret: "21040107100019"} }
+
+      it "leaves the current external id empty" do
+        call
+
+        expect(Current.external_id).to be_nil
+      end
+
+      it "leaves the current redirect uri empty" do
+        call
+
+        expect(Current.redirect_uri).to be_nil
+      end
     end
 
     context "with a session from FranceConnect" do
