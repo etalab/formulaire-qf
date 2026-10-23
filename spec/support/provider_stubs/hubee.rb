@@ -249,6 +249,11 @@ module ProviderStubs::HubEE
       .to_return(status: 204, body: "", headers: {})
   end
 
+  def stub_hubee_upload_attachment_with_error
+    stub_request(:put, %r{https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6/attachments/})
+      .to_return(status: 500, body: "", headers: {})
+  end
+
   def stub_hubee_mark_folder_complete
     stub_request(:patch, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders/3fa85f64-5717-4562-b3fc-2c963f66afa6")
       .to_return(status: 204, body: "", headers: {})

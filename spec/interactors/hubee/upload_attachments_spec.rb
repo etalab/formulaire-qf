@@ -15,7 +15,7 @@ RSpec.describe HubEE::UploadAttachments, type: :interactor do
     let(:session) { double(HubEE::Api) }
 
     it "uploads the attachments" do
-      expect(session).to receive(:upload_attachment).with(folder_id: folder_id, attachment: attachment)
+      expect(session).to receive(:upload_attachment).with(folder_id: folder_id, attachment: attachment).and_return(double(success?: true))
       interactor
     end
   end
