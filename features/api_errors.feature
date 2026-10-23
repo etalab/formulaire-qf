@@ -20,6 +20,14 @@ Fonctionnalité: Gestion des erreurs API
     Et la page contient "Votre attestation MSA sur le site de la MSA"
     Et la page contient "Votre attestation CAF sur le site de la CAF"
 
+  Scénario: HubEE ne répond pas
+    Sachant que j'ai un compte sur FranceConnect
+    Et que j'ai un quotient familial CAF sans enfants via France Connect
+    Et que hubee ne répond pas
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Quand je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
+
   Scénario: Je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
     Sachant que j'ai un compte sur FranceConnect
     Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
