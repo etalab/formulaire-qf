@@ -1,5 +1,6 @@
 class Api::DatapassWebhooksController < ActionController::API
   before_action :verify_hub_signature!, only: :create
+  rescue_from(JSON::ParserError) { head :bad_request }
 
   def create
     if event == "approve"
@@ -46,13 +47,7 @@ class Api::DatapassWebhooksController < ActionController::API
   end
 
   def webhook_params
-    @webhook_params ||= params.permit(
-      :event,
-      :model_type,
-      :model_id,
-      :fired_at,
-      data: {}
-    ).to_h
+    @webhook_params ||= JSON.parse(request.raw_post)
   end
 
   def verify_hub_signature!
