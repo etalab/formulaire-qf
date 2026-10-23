@@ -37,3 +37,16 @@ Fonctionnalité: France connexion
 
 
 
+
+  Scénario: Un parent dont le quotient familial n'est pas trouvé ne voit pas celui du parent connecté avant lui sur le même navigateur
+    Quand je clique sur "S'identifier avec FranceConnect"
+    Et que la page contient "Quotient familial de février 2024 : 2550"
+    Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
+    Et que je me rend sur la page de "Majastres"
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que la page contient "L'allocataire n'est pas référencé auprès des caisses éligibles."
+    Et que je me rends sur la page d'accueil
+    Et que je clique sur le premier "Débuter la démarche"
+    Et que je sélectionne "(04) Majastres" pour "Nom de la collectivité"
+    Et que je clique sur "Suivant"
+    Alors la page ne contient pas "Quotient familial de février 2024 : 2550"
