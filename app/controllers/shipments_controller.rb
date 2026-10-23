@@ -1,4 +1,5 @@
 class ShipmentsController < ApplicationController
+  before_action :require_quotient_familial, only: %i[new create]
   before_action :set_collectivity
 
   def show
@@ -37,6 +38,10 @@ class ShipmentsController < ApplicationController
   end
 
   private
+
+  def require_quotient_familial
+    redirect_to collectivity_path(params[:collectivity_id]) if Current.quotient_familial.blank?
+  end
 
   def set_collectivity
     @collectivity = CollectivityDecorator.new(Current.collectivity)

@@ -12,3 +12,13 @@ Quand("je me rend sur la page de {string}") do |name|
   collectivity = Collectivity.find_by!(name: name)
   visit collectivity_path(collectivity.siret)
 end
+
+Quand("je me rends sur la page de transmission de {string}") do |name|
+  collectivity = Collectivity.find_by!(name: name)
+  visit collectivity_new_shipment_path(collectivity.siret)
+end
+
+Quand("j'envoie le formulaire de transmission de {string}") do |name|
+  collectivity = Collectivity.find_by!(name: name)
+  page.driver.submit :post, collectivity_shipments_path(collectivity.siret), {}
+end
