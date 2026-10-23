@@ -47,3 +47,12 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur "S'identifier avec FranceConnect"
     Quand je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Retourner sur le site de ma collectivité"
+
+  Scénario: Après une première transmission, je transmets mes données à une deuxième collectivité
+    Etant donné l'existence de la collectivité de Barcelonnette
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Quand je me rend sur la page de "Barcelonnette"
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Alors la page contient "Je relis et transmets mes données à Barcelonnette (04)"
