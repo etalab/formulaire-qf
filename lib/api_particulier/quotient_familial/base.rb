@@ -38,10 +38,6 @@ module ApiParticulier
         response = https.request(request)
         payload = JSON.parse(response.body || "{}")
 
-        Rails.logger.debug self
-        Rails.logger.debug response.body
-        Rails.logger.debug payload
-
         if response.is_a?(Net::HTTPSuccess)
           return quotient_familial(payload)
         end
