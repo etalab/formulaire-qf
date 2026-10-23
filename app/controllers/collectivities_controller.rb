@@ -33,8 +33,11 @@ class CollectivitiesController < ApplicationController
   private
 
   def move_params_to_session
-    session[:external_id] ||= params[:external_id]
-    session[:redirect_uri] ||= params[:redirect_uri]
+    if params[:external_id] || params[:redirect_uri]
+      session[:external_id] = params[:external_id]
+      session[:redirect_uri] = params[:redirect_uri]
+      session[:portal_siret] = @collectivity.siret
+    end
     session[:siret] ||= @collectivity.siret
     SetupCurrentData.call(session: session, params: params)
   end
