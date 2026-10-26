@@ -21,6 +21,7 @@ Commit messages are written in English.
 - RuboCop with `standard` and `rubocop-rails` (`.rubocop.yml`): double quotes, trailing commas on multiline array and hash literals.
 - No comments in code.
 - Business logic lives in organizers (`app/organizers/`) and small interactors (`app/interactors/`), never in controllers. Controllers call an organizer or an interactor, then redirect or render.
+- `DatapassWebhook::SetupCollectivity` rescues every `StandardError` outside development and test (`Rails.env.local?`) and only reports it to Sentry, so `SetupCollectivityJob` always ends as a success. An error that must leave the job failed in GoodJob, to be retried from there, is raised in the job before the organizer is called.
 - Tests: RSpec and Cucumber. Do not test ActiveRecord associations, only custom behaviour; keep factories valid instead.
 - Every file ends with a newline.
 
