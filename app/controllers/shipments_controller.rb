@@ -3,7 +3,7 @@ class ShipmentsController < ApplicationController
   before_action :set_collectivity
 
   def show
-    @shipment = Shipment.find_by(reference: params[:reference])
+    @shipment = Shipment.find_by!(reference: params.expect(:reference))
     @redirect_uri = Current.redirect_uri
   end
 
