@@ -5,6 +5,71 @@ RSpec.describe HubEE::Api, type: :api do
     it { is_expected.to be_a(described_class) }
   end
 
+  describe "when HubEE does not answer" do
+    subject(:create_folder) { described_class.session.create_folder(folder: build(:hubee_folder)) }
+
+    context "when the token endpoint answers a 502 HTML page" do
+      before do
+        stub_hubee_token_with_error
+      end
+
+      it { expect { create_folder }.to raise_error(HubEE::Api::Error) }
+    end
+
+    context "when the token endpoint times out" do
+      before do
+        stub_request(:post, Settings.hubee.token_url).to_timeout
+      end
+
+      it "raises a HubEE error caused by the timeout" do
+        expect { create_folder }.to raise_error(HubEE::Api::Error) { |error| expect(error.cause).to be_a(Net::OpenTimeout) }
+      end
+    end
+
+    context "when the token endpoint refuses the connection" do
+      before do
+        stub_request(:post, Settings.hubee.token_url).to_raise(Errno::ECONNREFUSED)
+      end
+
+      it "raises a HubEE error caused by the refused connection" do
+        expect { create_folder }.to raise_error(HubEE::Api::Error) { |error| expect(error.cause).to be_a(Errno::ECONNREFUSED) }
+      end
+    end
+
+    context "when the folder call times out" do
+      before do
+        stub_hubee_token
+        stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders").to_raise(Net::ReadTimeout)
+      end
+
+      it "raises a HubEE error caused by the timeout" do
+        expect { create_folder }.to raise_error(HubEE::Api::Error) { |error| expect(error.cause).to be_a(Net::ReadTimeout) }
+      end
+    end
+
+    context "when HubEE closes the connection in the middle of the folder call" do
+      before do
+        stub_hubee_token
+        stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders").to_raise(EOFError)
+      end
+
+      it "raises a HubEE error caused by the closed connection" do
+        expect { create_folder }.to raise_error(HubEE::Api::Error) { |error| expect(error.cause).to be_a(EOFError) }
+      end
+    end
+
+    context "when HubEE answers the folder call with a garbled response" do
+      before do
+        stub_hubee_token
+        stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders").to_raise(Net::HTTPBadResponse)
+      end
+
+      it "raises a HubEE error caused by the garbled response" do
+        expect { create_folder }.to raise_error(HubEE::Api::Error) { |error| expect(error.cause).to be_a(Net::HTTPBadResponse) }
+      end
+    end
+  end
+
   describe "API" do
     let(:access_token) { "access_token_123" }
     let(:session) { described_class.session }

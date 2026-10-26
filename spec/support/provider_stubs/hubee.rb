@@ -25,6 +25,11 @@ module ProviderStubs::HubEE
       )
   end
 
+  def stub_hubee_token_with_error
+    stub_request(:post, Settings.hubee.token_url)
+      .to_return(status: 502, body: "<html><body>502 Bad Gateway</body></html>")
+  end
+
   def stub_hubee_active_subscriptions
     payload = [
       {

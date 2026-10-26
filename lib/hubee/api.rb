@@ -112,6 +112,8 @@ class HubEE::Api
       request.body = body
     end
 
+    raise Error, "HubEE token request failed with #{response.code}" unless response.success?
+
     response.body.dig("access_token")
   end
 
@@ -164,6 +166,8 @@ class HubEE::Api
     handle_error(request, response)
 
     Response.new(response)
+  rescue Timeout::Error, SocketError, SystemCallError, IOError, OpenSSL::SSL::SSLError, Net::HTTPBadResponse => e
+    raise Error, "HubEE unreachable on #{net_class::METHOD} #{uri.path}: #{e.class}"
   end
 
   def handle_error(request, response)

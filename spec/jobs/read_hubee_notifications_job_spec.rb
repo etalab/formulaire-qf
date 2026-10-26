@@ -23,5 +23,15 @@ RSpec.describe ReadHubEENotificationsJob, type: :job do
         expect { job }.to have_enqueued_job(described_class)
       end
     end
+
+    context "when HubEE times out" do
+      before do
+        stub_request(:get, %r{/teledossiers/v1/notifications}).to_timeout
+      end
+
+      it "retries the job" do
+        expect { job }.to have_enqueued_job(described_class)
+      end
+    end
   end
 end

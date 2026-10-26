@@ -39,5 +39,15 @@ RSpec.describe StoreQuotientFamilial, type: :organizer do
     it "creates a shipment" do
       expect { organizer }.to change(Shipment, :count).by(1)
     end
+
+    context "when HubEE answers an error on an attachment upload" do
+      before { stub_request(:put, %r{/teledossiers/v1/folders/.+/attachments/}).to_return(status: 502, body: "") }
+
+      it { is_expected.to be_a_failure }
+
+      it "creates no shipment" do
+        expect { organizer }.not_to change(Shipment, :count)
+      end
+    end
   end
 end

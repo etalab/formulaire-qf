@@ -5,7 +5,8 @@ class HubEE::UploadAttachments < BaseInteractor
 
   def call
     context.folder.attachments.each do |attachment|
-      context.session.upload_attachment(folder_id: context.folder.id, attachment:)
+      response = context.session.upload_attachment(folder_id: context.folder.id, attachment:)
+      context.fail!(message: response.body) unless response.success?
     end
   end
 end

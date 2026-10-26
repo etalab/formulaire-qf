@@ -1,7 +1,7 @@
 class ReadHubEENotificationsJob < ApplicationJob
   queue_as :default
 
-  retry_on Net::ReadTimeout, wait: :polynomially_longer, attempts: 8
+  retry_on HubEE::Api::Error, wait: :polynomially_longer, attempts: 8
 
   def perform(items_count: 100)
     notifications = HubEE::Api.session.notifications(items_count:).body
