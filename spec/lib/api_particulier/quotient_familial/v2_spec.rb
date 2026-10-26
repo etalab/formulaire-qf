@@ -51,6 +51,20 @@ RSpec.describe ApiParticulier::QuotientFamilial::V2 do
       expect(quotient_familial).to match(hash_including(expected_response))
     end
 
+    context "when the logger is at debug level" do
+      let(:log_output) { StringIO.new }
+
+      before do
+        allow(Rails).to receive(:logger).and_return(ActiveSupport::Logger.new(log_output, level: :debug))
+      end
+
+      it "logs neither the usager identity nor the quotient familial" do
+        quotient_familial
+
+        expect(log_output.string).not_to include("DUBOIS", "ANGELA", "1962-08-24", "2550")
+      end
+    end
+
     context "when there is an error" do
       before do
         stub_quotient_familial_v2_with_error(:not_found, status: 404)
