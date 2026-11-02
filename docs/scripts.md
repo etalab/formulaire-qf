@@ -27,7 +27,15 @@ service_provider = {
   "siret" => "siret_editeur",
   "type" => "editor",
 }
+# Le demandeur, envoyé à HubEE avec l'abonnement (téléphone obligatoire)
+applicant = {
+  "email" => collectivity_email,
+  "given_name" => "Jean",
+  "family_name" => "Dupont",
+  "job_title" => "Maire",
+  "phone_number" => "01 23 45 67 89",
+}
 
 # Créé l'organisation sur HubEE, avec un abonnement FormulaireQF actif, créé la collectivité sur FQF
-result = DatapassWebhook::SetupCollectivity.call(datapass_id:, organization:, collectivity_email:, service_provider:)
+result = DatapassWebhook::SetupCollectivity.call(datapass_id:, organization:, collectivity_email:, service_provider:, applicant:)
 ```
