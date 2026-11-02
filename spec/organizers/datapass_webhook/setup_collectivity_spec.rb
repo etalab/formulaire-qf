@@ -18,7 +18,7 @@ RSpec.describe DatapassWebhook::SetupCollectivity, type: :organizer do
         "given_name" => "John",
         "family_name" => "Doe",
         "job_title" => "Mayor",
-        "phone_number" => "+33123456789",
+        "phone_number" => "01 23.45-67 89",
       }
     end
 
@@ -33,6 +33,12 @@ RSpec.describe DatapassWebhook::SetupCollectivity, type: :organizer do
 
     it "creates a collectivity" do
       expect { organizer }.to change(Collectivity, :count).by(1)
+    end
+
+    it "sends HubEE the phone number without separators" do
+      organizer
+
+      expect(a_request(:post, %r{referential/v1/subscriptions}).with { |request| request.body.include?('"phoneNumber":"0123456789"') }).to have_been_made
     end
 
     it "does not activate the HubEE subscription" do
