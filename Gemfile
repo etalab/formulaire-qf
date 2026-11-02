@@ -79,6 +79,7 @@ group :development do
   # gem "rack-mini-profiler"
 
   gem "brakeman"
+  gem "bundler-audit", require: false
 end
 
 group :test do

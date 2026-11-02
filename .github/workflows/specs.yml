@@ -45,6 +45,21 @@ jobs:
         run: bundle exec rubocop --parallel
 
 
+  gem-audit:
+    name: Gem audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          cache-version: 336
+
+      - name: Run bundler-audit
+        run: bin/bundler-audit
+
   unit-test:
     runs-on: ubuntu-latest
 
@@ -121,6 +136,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs:
       - security
+      - gem-audit
       - lint
       - unit-test
       - e2e-test
@@ -151,6 +167,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs:
       - security
+      - gem-audit
       - lint
       - unit-test
       - e2e-test
