@@ -22,6 +22,7 @@ Commit messages are written in English.
 - No comments in code.
 - Business logic lives in organizers (`app/organizers/`) and small interactors (`app/interactors/`), never in controllers. Controllers call an organizer or an interactor, then redirect or render.
 - `DatapassWebhook::SetupCollectivity` rescues every `StandardError` outside development and test (`Rails.env.local?`) and only reports it to Sentry, so `SetupCollectivityJob` always ends as a success. An error that must leave the job failed in GoodJob, to be retried from there, is raised in the job before the organizer is called.
+- A Sentry event someone must act on for each record carries a `fingerprint` with the record's id (e.g. `datapass_id`): with a fixed message alone, Sentry groups every record into one issue and an alert on new issues fires only for the first (#405).
 - Tests: RSpec and Cucumber. Do not test ActiveRecord associations, only custom behaviour; keep factories valid instead.
 - Every file ends with a newline.
 
