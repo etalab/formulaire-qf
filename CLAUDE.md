@@ -24,6 +24,7 @@ Commit messages are written in English.
 - `DatapassWebhook::SetupCollectivity` rescues every `StandardError` outside development and test (`Rails.env.local?`) and only reports it to Sentry, so `SetupCollectivityJob` always ends as a success. An error that must leave the job failed in GoodJob, to be retried from there, is raised in the job before the organizer is called.
 - A Sentry event someone must act on for each record carries a `fingerprint` with the record's id (e.g. `datapass_id`): with a fixed message alone, Sentry groups every record into one issue and an alert on new issues fires only for the first (#405).
 - Tests: RSpec and Cucumber. Do not test ActiveRecord associations, only custom behaviour; keep factories valid instead.
+- Before asserting a request is not made, make the upstream stub return a realistic payload and check the assertion goes red on the old code: an empty body (`stub_hubee_create_subscription` with `body: ""`) lets a guard clause (`return if id.blank?`) skip the path, so the assertion passes for the wrong reason.
 - Every file ends with a newline.
 
 ## Worktrees
