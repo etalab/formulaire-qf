@@ -12,14 +12,18 @@ class SetupCurrentData < BaseInteractor
   private
 
   def external_id
-    context.session[:external_id]
+    portal["external_id"]
   end
 
   def redirect_uri
-    value = context.session[:redirect_uri]
+    value = portal["redirect_uri"]
     value if %w[http https].include?(URI.parse(value.to_s).scheme)
   rescue URI::InvalidURIError
     nil
+  end
+
+  def portal
+    context.session.fetch("portals", {}).fetch(collectivity.siret, {})
   end
 
   def pivot_identity
@@ -36,7 +40,7 @@ class SetupCurrentData < BaseInteractor
 
   def collectivity
     siret = context.params.fetch(:collectivity_id, context.session.fetch("siret", ""))
-    Collectivity.find_by(siret: siret) || Collectivity.new
+    @collectivity ||= Collectivity.find_by(siret: siret) || Collectivity.new
   end
 
   def session_raw_info

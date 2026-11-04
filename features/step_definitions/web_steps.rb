@@ -11,7 +11,15 @@ Quand("je me rends sur la page d'erreur d'authentification avec un CSRF detecté
 end
 
 Sachantque("j'arrive sur le formulaire depuis le portail de ma collectivité") do
-  visit "/collectivites/21040107100019/me_connecter?external_id=123&redirect_uri=http://real_uri"
+  visit "/collectivites/21040107100019/me_connecter?external_id=DOSSIER-MAJASTRES&redirect_uri=http://real_uri"
+end
+
+Sachantque("j'arrive sur le formulaire depuis le portail de ma collectivité sans dossier ni lien de retour") do
+  visit "/collectivites/21040107100019/me_connecter?external_id=&redirect_uri="
+end
+
+Sachantque("j'arrive sur le formulaire depuis le portail de Verifville") do
+  visit "/collectivites/21130055300016/me_connecter?external_id=DOSSIER-VERIFVILLE&redirect_uri=http://verifville.example"
 end
 
 Alors("la page contient {string}") do |content|
@@ -20,6 +28,10 @@ end
 
 Alors("la page ne contient pas {string}") do |content|
   expect(page).to have_no_content(content)
+end
+
+Alors("le lien {string} mène à {string}") do |label, href|
+  expect(page).to have_link(label, href: href)
 end
 
 Quand(/je clique sur (le (?:dernier|premier) )?"([^"]+)"\s*$/) do |position, label|

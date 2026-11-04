@@ -8,6 +8,11 @@ Soit("l'existence de la collectivité de Barcelonnette") do
     FactoryBot.create(:collectivity, name: "Barcelonnette", siret: "21040019900001", code_cog: "04019", status: :active, departement: "04")
 end
 
+Soit("l'existence de la collectivité de Verifville") do
+  Collectivity.find_by(siret: "21130055300016") ||
+    FactoryBot.create(:collectivity, name: "Verifville", siret: "21130055300016", code_cog: "13055", status: :active, departement: "13")
+end
+
 Soit("l'existence de la collectivité inactive de Sainville") do
   Collectivity.find_by(siret: "21280363900013") ||
     FactoryBot.create(:collectivity, name: "Sainville", siret: "21280363900013", code_cog: "28363", status: :inactive, departement: "28")

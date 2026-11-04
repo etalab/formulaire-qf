@@ -33,8 +33,8 @@ class CollectivitiesController < ApplicationController
   private
 
   def move_params_to_session
-    session[:external_id] ||= params[:external_id]
-    session[:redirect_uri] ||= params[:redirect_uri]
+    portal_params = params.permit(:external_id, :redirect_uri).compact_blank.to_h
+    session[:portals] = session.fetch(:portals, {}).deep_merge(@collectivity.siret => portal_params) if portal_params.present?
     session[:siret] = @collectivity.siret
     SetupCurrentData.call(session: session, params: params)
   end

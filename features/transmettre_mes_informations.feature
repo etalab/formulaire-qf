@@ -56,3 +56,46 @@ Fonctionnalité: Transmettre mes informations
     Quand je me rend sur la page de "Barcelonnette"
     Et que je clique sur "S'identifier avec FranceConnect"
     Alors la page contient "Je relis et transmets mes données à Barcelonnette (04)"
+
+  Scénario: Le dossier et le lien de retour du portail d'une collectivité ne suivent pas l'envoi à une autre
+    Etant donné l'existence de la collectivité de Verifville
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Quand je me rends sur la page d'accueil
+    Et que je clique sur le premier "Débuter la démarche"
+    Et que je sélectionne "(13) Verifville" pour "Nom de la collectivité"
+    Et que je clique sur "Suivant"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "Vos informations ont bien été transmises à Verifville (13)"
+    Et la page ne contient pas "Retourner sur le site de ma collectivité"
+    Et hubee n'a reçu aucun fichier contenant "DOSSIER-MAJASTRES"
+
+  Scénario: Le dossier et le lien de retour du portail restent après être revenu sur la page de la collectivité
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Quand je me rend sur la page de "Majastres"
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "Retourner sur le site de ma collectivité"
+    Et hubee a reçu un fichier contenant "DOSSIER-MAJASTRES"
+
+  Scénario: Le dossier et le lien de retour du portail restent après être passé par le portail d'une autre collectivité
+    Etant donné l'existence de la collectivité de Verifville
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Et que j'arrive sur le formulaire depuis le portail de Verifville
+    Quand je me rend sur la page de "Majastres"
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Alors le lien "Retourner sur le site de ma collectivité" mène à "http://real_uri"
+    Et hubee a reçu un fichier contenant "DOSSIER-MAJASTRES"
+
+  Scénario: Un dossier et un lien de retour vides n'effacent pas ceux du portail
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Quand j'arrive sur le formulaire depuis le portail de ma collectivité sans dossier ni lien de retour
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Alors le lien "Retourner sur le site de ma collectivité" mène à "http://real_uri"
+    Et hubee a reçu un fichier contenant "DOSSIER-MAJASTRES"
