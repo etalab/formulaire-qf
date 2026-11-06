@@ -8,6 +8,7 @@ class ShipmentsController < ApplicationController
   end
 
   def new
+    no_store
     @pivot_identity_facade = PivotIdentityFacade.new(Current.pivot_identity)
     @quotient_familial_facade = QuotientFamilialFacade.new(Current.quotient_familial)
   end
@@ -24,6 +25,7 @@ class ShipmentsController < ApplicationController
       quotient_familial: Current.quotient_familial,
       user: Current.user
     )
+    session.delete("quotient_familial")
 
     if result.success?
       redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment.reference)

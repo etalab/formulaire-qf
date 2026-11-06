@@ -70,3 +70,7 @@ end
 Alors("la page contient la référence de ma demande") do
   expect(page).to have_content(Shipment.last.reference)
 end
+
+Alors("le navigateur ne garde pas la page en cache") do
+  expect(page.response_headers["Cache-Control"]).to include("no-store")
+end
