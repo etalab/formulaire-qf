@@ -36,3 +36,12 @@ end
 Alors("la collectivité a reçu un seul envoi") do
   expect(Shipment.count).to eq(1)
 end
+
+Quand("je garde la page de transmission ouverte dans un autre onglet") do
+  form = find("form[action$='/shipments']")
+  @other_tab_form = {action: form["action"], authenticity_token: form.find("input[name='authenticity_token']", visible: false).value}
+end
+
+Quand("je transmets les données depuis l'autre onglet") do
+  page.driver.submit :post, @other_tab_form[:action], {authenticity_token: @other_tab_form[:authenticity_token]}
+end

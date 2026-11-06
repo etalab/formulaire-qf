@@ -49,6 +49,39 @@ Fonctionnalité: Transmettre mes informations
     Quand je me rends sur la page de transmission de "Majastres"
     Alors la page contient "Je m'identifie via FranceConnect"
 
+  Scénario: Après avoir transmis mes données, l'en-tête ne montre plus mon identité
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que la page contient "Johnny Paul René TESTMAN"
+    Quand je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "Vos informations ont bien été transmises à Majastres (04)"
+    Et la page contient la référence de ma demande
+    Et la page contient "Retourner sur le site de ma collectivité"
+    Et la page ne contient pas "Johnny Paul René TESTMAN"
+    Et la page ne contient pas "Se déconnecter"
+
+  Scénario: Après un envoi échoué, l'en-tête ne montre plus mon identité
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que hubee ne répond pas
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que la page contient "Johnny Paul René TESTMAN"
+    Quand je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
+    Et la page ne contient pas "Johnny Paul René TESTMAN"
+    Et la page ne contient pas "Se déconnecter"
+
+  @protection_contre_la_falsification
+  Scénario: Après avoir transmis mes données, transmettre depuis un autre onglet resté ouvert redemande FranceConnect
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je garde la page de transmission ouverte dans un autre onglet
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Et que la page contient "Vos informations ont bien été transmises à Majastres (04)"
+    Quand je transmets les données depuis l'autre onglet
+    Alors la page contient "Je m'identifie via FranceConnect"
+    Et la collectivité a reçu un seul envoi
+
   Scénario: Après avoir transmis mes données, renvoyer le formulaire ne les transmet pas une deuxième fois
     Et que j'ai un quotient familial MSA avec des enfants via France Connect
     Et que je clique sur "S'identifier avec FranceConnect"
@@ -104,6 +137,40 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Vos informations ont bien été transmises à Verifville (13)"
     Et la page ne contient pas "Retourner sur le site de ma collectivité"
+    Et hubee n'a reçu aucun fichier contenant "DOSSIER-MAJASTRES"
+
+  Scénario: La personne suivante qui choisit la même collectivité n'envoie pas le dossier du parent précédent
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Et que hubee peut recevoir un deuxième dossier
+    Et que j'ai un compte sur FranceConnect avec pour date de naissance "2010-01-01"
+    Quand je me rends sur la page d'accueil
+    Et que je clique sur le premier "Débuter la démarche"
+    Et que je sélectionne "(04) Majastres" pour "Nom de la collectivité"
+    Et que je clique sur "Suivant"
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "Vos informations ont bien été transmises à Majastres (04)"
+    Et hubee a reçu un fichier contenant "2010-01-01"
+    Et hubee n'a reçu aucun fichier contenant à la fois "2010-01-01" et "DOSSIER-MAJASTRES"
+
+  Scénario: Après un envoi échoué, le dossier du portail n'est pas gardé
+    Et que j'arrive sur le formulaire depuis le portail de ma collectivité
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que hubee ne répond pas
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Et que la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
+    Et que hubee peut recevoir un dossier
+    Quand je me rends sur la page d'accueil
+    Et que je clique sur le premier "Débuter la démarche"
+    Et que je sélectionne "(04) Majastres" pour "Nom de la collectivité"
+    Et que je clique sur "Suivant"
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Alors la page contient "Vos informations ont bien été transmises à Majastres (04)"
     Et hubee n'a reçu aucun fichier contenant "DOSSIER-MAJASTRES"
 
   Scénario: Le dossier et le lien de retour du portail restent après être revenu sur la page de la collectivité

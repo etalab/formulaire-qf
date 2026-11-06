@@ -74,3 +74,11 @@ end
 Alors("le navigateur ne garde pas la page en cache") do
   expect(page.response_headers["Cache-Control"]).to include("no-store")
 end
+
+Alors("FranceConnect a terminé ma session") do
+  expect(FranceConnectLogoutCallbacks.paths).not_to be_empty
+end
+
+Alors("FranceConnect a terminé ma session une seule fois") do
+  expect(FranceConnectLogoutCallbacks.paths.size).to eq(1)
+end
