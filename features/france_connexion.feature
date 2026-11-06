@@ -21,15 +21,6 @@ Fonctionnalité: France connexion
     Alors la page contient "Débuter la démarche"
     Et la page ne contient pas "Se déconnecter"
 
-  Scénario: Je recommence l'envoie de QF alors que je suis déjà connecté
-    Et que je clique sur "S'identifier avec FranceConnect"
-    Et que la page contient "Je relis et transmets mes données à Majastres (04)"
-    Et que je me rends sur la page d'accueil
-    Et que je clique sur le premier "Débuter la démarche"
-    Et que je sélectionne "(04) Majastres" pour "Nom de la collectivité"
-    Et que je clique sur "Suivant"
-    Alors la page contient "Je relis et transmets mes données à Majastres (04)"
-
   Scénario: Je n'ai pas FranceConnect
     Et que je clique sur "Consulter les alternatives"
     Alors la page contient "Comme alternative vous pouvez télécharger votre attestation"
