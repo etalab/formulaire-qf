@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     result = GetFamilyQuotient.call(siret: Current.collectivity.siret, user: Current.user)
 
     if result.success?
-      session["quotient_familial"] = result.quotient_familial
+      session["quotient_familial"] = {Current.collectivity.siret => result.quotient_familial}
       SetupCurrentData.call(session:, params:)
       redirect_to collectivity_new_shipment_path(Current.collectivity.siret)
     else
