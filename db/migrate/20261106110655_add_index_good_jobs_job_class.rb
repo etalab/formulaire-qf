@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+class AddIndexGoodJobsJobClass < ActiveRecord::Migration[8.1]
+  disable_ddl_transaction!
+
+  def change
+    reversible do |dir|
+      dir.up do
+        return if connection.index_exists? :good_jobs, :job_class
+      end
+    end
+
+    add_index :good_jobs, :job_class, algorithm: :concurrently
+  end
+end

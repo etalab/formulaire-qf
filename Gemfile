@@ -97,7 +97,7 @@ group :test do
   gem "timecop"
 end
 
-gem "good_job", "~> 3.99"
+gem "good_job", "~> 4.24"
 
 gem "rack-cors"
 
