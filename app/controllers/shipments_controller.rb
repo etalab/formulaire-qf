@@ -2,6 +2,8 @@ class ShipmentsController < ApplicationController
   before_action :require_quotient_familial, only: %i[new create]
   before_action :set_collectivity
 
+  rescue_from ActionController::InvalidAuthenticityToken, with: :ask_for_france_connect
+
   def show
     @shipment = Shipment.find_by!(reference: params.expect(:reference))
     @redirect_uri = Current.redirect_uri
@@ -25,21 +27,23 @@ class ShipmentsController < ApplicationController
       quotient_familial: Current.quotient_familial,
       user: Current.user
     )
-    session.delete("quotient_familial")
 
     if result.success?
-      redirect_to collectivity_shipment_path(@collectivity.siret, result.shipment.reference)
+      end_france_connect_session(return_to: collectivity_shipment_path(@collectivity.siret, result.shipment.reference), keep: session_kept_for_next_person)
     else
+      end_france_connect_session(return_to: collectivity_shipment_error_path(@collectivity.siret), keep: session_kept_for_next_person)
       flash[:error] = {
         title: t(".hubee_error.title"),
         text: t(".hubee_error.text", collectivity: @collectivity.display_name),
       }
-
-      redirect_to collectivity_shipment_error_path(Current.collectivity.siret)
     end
   end
 
   private
+
+  def ask_for_france_connect
+    redirect_to collectivity_path(params[:collectivity_id])
+  end
 
   def require_quotient_familial
     redirect_to collectivity_path(params[:collectivity_id]) if Current.quotient_familial.blank?

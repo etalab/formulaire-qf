@@ -37,6 +37,15 @@ Fonctionnalité: Gestion des erreurs API
     Et la page contient "Votre attestation CAF sur le site de la CAF."
     Et la page contient "Votre attestation MSA sur le site de la MSA."
 
+  Scénario: Après un quotient familial introuvable, la personne suivante ne voit pas le nom du parent
+    Sachant que j'ai un compte sur FranceConnect
+    Et que je n'ai pas de données de quotient familial ni chez la CAF ni chez MSA
+    Quand je clique sur "S'identifier avec FranceConnect"
+    Alors la page contient "L'allocataire n'est pas référencé auprès des caisses éligibles."
+    Et FranceConnect a terminé ma session
+    Et la page ne contient pas "Johnny Paul René TESTMAN"
+    Et la page ne contient pas "Se déconnecter"
+
   Scénario: Mes données de quotient familial sont indisponibles via France Connect auprès de la CNAF
     Sachant que j'ai un compte sur FranceConnect
     Et que mon quotient familial via France Connect est indisponible auprès de la CNAF

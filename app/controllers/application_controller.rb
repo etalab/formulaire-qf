@@ -11,6 +11,13 @@ class ApplicationController < ActionController::Base
     redirect_to url, allow_other_host: true
   end
 
+  def session_kept_for_next_person
+    siret = Current.collectivity.siret
+    redirect_uri = session.dig("portals", siret, "redirect_uri")
+    kept = session.to_hash.slice("siret")
+    redirect_uri ? kept.merge("portals" => {siret => {"redirect_uri" => redirect_uri}}) : kept
+  end
+
   def set_up_current_data
     SetupCurrentData.call(session: session, params: params)
   end

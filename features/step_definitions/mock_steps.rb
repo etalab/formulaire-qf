@@ -66,18 +66,18 @@ Sachantque("hubee ne répond pas") do
   stub_hubee_token_with_error
 end
 
-Alors("hubee a reçu un fichier contenant {string}") do |content|
-  uploads = WebMock::RequestRegistry.instance.requested_signatures.select do |request, _count|
+def hubee_uploads
+  WebMock::RequestRegistry.instance.requested_signatures.select do |request, _count|
     request.method == :put && request.uri.path.include?("/attachments/")
   end.keys
+end
 
-  expect(uploads.map(&:body)).to include(a_string_including(content))
+Alors("hubee a reçu un fichier contenant {string}") do |content|
+  expect(hubee_uploads.map(&:body)).to include(a_string_including(content))
 end
 
 Alors("hubee n'a reçu aucun fichier contenant {string}") do |content|
-  uploads = WebMock::RequestRegistry.instance.requested_signatures.select do |request, _count|
-    request.method == :put && request.uri.path.include?("/attachments/")
-  end.keys
+  uploads = hubee_uploads
   uploads_containing_content = uploads.select { |upload| upload.body.include?(content) }.map { |upload| upload.uri.to_s }
 
   expect(uploads).not_to be_empty
@@ -88,4 +88,8 @@ Alors("hubee a reçu un seul dossier") do
   folder_creation = WebMock::RequestPattern.new(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
 
   expect(WebMock::RequestRegistry.instance.times_executed(folder_creation)).to eq(1)
+end
+
+Alors("hubee n'a reçu aucun fichier contenant à la fois {string} et {string}") do |first, second|
+  expect(hubee_uploads.map(&:body)).not_to include(a_string_including(first, second))
 end
