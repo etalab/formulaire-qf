@@ -66,6 +66,7 @@ Fonctionnalité: Transmettre mes informations
     Et que je clique sur le premier "Débuter la démarche"
     Et que je sélectionne "(13) Verifville" pour "Nom de la collectivité"
     Et que je clique sur "Suivant"
+    Et que je clique sur "S'identifier avec FranceConnect"
     Et que je clique sur "Transmettre les données à la collectivité"
     Alors la page contient "Vos informations ont bien été transmises à Verifville (13)"
     Et la page ne contient pas "Retourner sur le site de ma collectivité"
