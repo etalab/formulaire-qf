@@ -41,6 +41,40 @@ Fonctionnalité: Transmettre mes informations
     Et la page contient la référence de ma demande
     Et la page ne contient pas "Retourner sur le site de ma collectivité"
 
+  Scénario: Après avoir transmis mes données, je dois m'identifier de nouveau pour les transmettre encore
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Et que la page contient "Vos informations ont bien été transmises à Majastres (04)"
+    Quand je me rends sur la page de transmission de "Majastres"
+    Alors la page contient "Je m'identifie via FranceConnect"
+
+  Scénario: Après avoir transmis mes données, renvoyer le formulaire ne les transmet pas une deuxième fois
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Et que la page contient "Vos informations ont bien été transmises à Majastres (04)"
+    Et que hubee peut recevoir un deuxième dossier
+    Quand j'envoie le formulaire de transmission de "Majastres"
+    Alors la page contient "Je m'identifie via FranceConnect"
+    Et la collectivité a reçu un seul envoi
+    Et hubee a reçu un seul dossier
+
+  Scénario: Après un envoi échoué, je dois m'identifier de nouveau pour transmettre mes données
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Et que hubee ne répond pas
+    Et que je clique sur "S'identifier avec FranceConnect"
+    Et que je clique sur "Transmettre les données à la collectivité"
+    Et que la page contient "L'envoi de votre quotient familial à votre collectivité n'a pas fonctionné"
+    Quand je me rends sur la page de transmission de "Majastres"
+    Alors la page contient "Je m'identifie via FranceConnect"
+
+  Scénario: Le navigateur ne garde pas la page de transmission, pour qu'un retour arrière ne la réaffiche pas
+    Et que j'ai un quotient familial MSA avec des enfants via France Connect
+    Quand je clique sur "S'identifier avec FranceConnect"
+    Alors la page contient "Je relis et transmets mes données à Majastres (04)"
+    Et le navigateur ne garde pas la page en cache
+
   Scénario: Je peux retourner sur le site de ma collectivité
     Et que j'arrive sur le formulaire depuis le portail de ma collectivité
     Et que j'ai un quotient familial MSA avec des enfants via France Connect

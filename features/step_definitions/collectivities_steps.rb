@@ -32,3 +32,7 @@ Quand("j'envoie le formulaire de transmission de {string}") do |name|
   collectivity = Collectivity.find_by!(name: name)
   page.driver.submit :post, collectivity_shipments_path(collectivity.siret), {}
 end
+
+Alors("la collectivité a reçu un seul envoi") do
+  expect(Shipment.count).to eq(1)
+end

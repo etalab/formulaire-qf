@@ -53,6 +53,10 @@ Sachantque("hubee peut recevoir un dossier") do
   stub_hubee_delete_folder
 end
 
+Sachantque("hubee peut recevoir un deuxième dossier") do
+  stub_hubee_create_folder(names: "TESTMAN_Johnny_Paul_René", reference: "BCDEF12345678")
+end
+
 Sachantque("l'envoi d'un dossier à hubee échouera") do
   stub_hubee_token
   stub_hubee_create_folder_with_error
@@ -78,4 +82,10 @@ Alors("hubee n'a reçu aucun fichier contenant {string}") do |content|
 
   expect(uploads).not_to be_empty
   expect(uploads_containing_content).to be_empty
+end
+
+Alors("hubee a reçu un seul dossier") do
+  folder_creation = WebMock::RequestPattern.new(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
+
+  expect(WebMock::RequestRegistry.instance.times_executed(folder_creation)).to eq(1)
 end
