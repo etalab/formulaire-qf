@@ -35,7 +35,7 @@ class SetupCurrentData < BaseInteractor
   end
 
   def quotient_familial
-    context.session.fetch("quotient_familial", {})
+    context.session.fetch("quotient_familial", {}).fetch(collectivity.siret, {})
   end
 
   def collectivity
