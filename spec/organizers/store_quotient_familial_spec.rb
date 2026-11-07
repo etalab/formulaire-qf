@@ -1,6 +1,7 @@
 RSpec.describe StoreQuotientFamilial, type: :organizer do
   let(:interactors) do
     [
+      InsertShipment,
       UploadQuotientFamilialToHubEE,
       CreateShipment,
     ]

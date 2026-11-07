@@ -5,5 +5,6 @@ class Current < ActiveSupport::CurrentAttributes
     :collectivity,
     :user,
     :external_id,
-    :redirect_uri
+    :redirect_uri,
+    :shipment_key
 end

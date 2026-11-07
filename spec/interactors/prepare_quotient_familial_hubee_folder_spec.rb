@@ -47,6 +47,16 @@ RSpec.describe PrepareQuotientFamilialHubEEFolder, type: :interactor do
       expect(interactor.shipment.collectivity).to eq collectivity
     end
 
+    context "when the shipment is already inserted" do
+      let(:shipment) { create(:shipment, collectivity:).tap { |shipment| shipment.update!(reference: "INSERTED12345") } }
+
+      before { params[:shipment] = shipment }
+
+      it "names the folder after its reference" do
+        expect(interactor.folder.external_id).to eq "Formulaire-QF-#{shipment.reference}"
+      end
+    end
+
     it "returns a success result" do
       expect(interactor).to be_success
     end

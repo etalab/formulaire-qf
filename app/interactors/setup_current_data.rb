@@ -7,6 +7,7 @@ class SetupCurrentData < BaseInteractor
     Current.user = user
     Current.external_id = external_id
     Current.redirect_uri = redirect_uri
+    Current.shipment_key = context.session["shipment_key"]
   end
 
   private

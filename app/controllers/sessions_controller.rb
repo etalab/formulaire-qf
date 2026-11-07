@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
 
     if result.success?
       session["quotient_familial"] = {Current.collectivity.siret => result.quotient_familial}
+      session["shipment_key"] = SecureRandom.uuid
       SetupCurrentData.call(session:, params:)
       end_france_connect_session(return_to: collectivity_new_shipment_path(Current.collectivity.siret))
     else

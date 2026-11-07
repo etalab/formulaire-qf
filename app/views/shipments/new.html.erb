@@ -53,7 +53,7 @@
       <%= link_to t('shared.previous_button'), collectivities_path, class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-fi-arrow-left-line fr-mb-1w" %>
     </div>
 
-    <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false}) do %>
+    <%= form_tag(collectivity_shipments_path(params[:collectivity_id]), method: 'post', data: {turbo: false, controller: "submit-once", action: "submit->submit-once#disable", submit_once_message_value: t('.sending_button')}) do %>
       <%= button_tag type: :submit, class: "fr-btn fr-btn--lg fr-btn--icon-right fr-fi-arrow-right-line" do %>
         <%= simple_format t('.next_button', collectivity: @collectivity.display_name), { }, wrapper_tag: 'span' %>
       <% end %>

@@ -1,7 +1,7 @@
 class PrepareQuotientFamilialHubEEFolder < BaseInteractor
   def call
     context.recipient = HubEE::Recipient.new(siren: context.collectivity.siret, branch_code: context.collectivity.code_cog)
-    context.shipment = Shipment.new(collectivity: context.collectivity)
+    context.shipment ||= Shipment.new(collectivity: context.collectivity)
     context.folder = ::HubEE::Folder.new(**folder_params)
   end
 
