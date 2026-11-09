@@ -14,6 +14,11 @@ class PortalSession
     @session["portals"] = portals.deep_merge(siret => values)
   end
 
+  def kept_after_reset(siret)
+    values = read(siret).slice("redirect_uri")
+    values.empty? ? {} : {"portals" => {siret => values}}
+  end
+
   private
 
   def portals

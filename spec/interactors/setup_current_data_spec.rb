@@ -3,7 +3,7 @@ describe SetupCurrentData, type: :interactor do
     subject(:call) { described_class.call(session: session, params: params) }
 
     let(:collectivity) { create(:collectivity) }
-    let(:session) { {"portals" => {collectivity.siret => {"external_id" => "12345", "redirect_uri" => "https://real_uri"}}, "quotient_familial" => {"quotient_familial" => 2550}} }
+    let(:session) { {"portals" => {collectivity.siret => {"external_id" => "12345", "redirect_uri" => "https://real_uri"}}, "quotient_familial" => {collectivity.siret => {"quotient_familial" => 2550}}} }
     let(:params) { {collectivity_id: collectivity.siret} }
 
     before do
@@ -81,6 +81,16 @@ describe SetupCurrentData, type: :interactor do
         call
 
         expect(Current.redirect_uri).to be_nil
+      end
+    end
+
+    context "when the quotient familial was fetched for another collectivity" do
+      let(:session) { {"quotient_familial" => {"21040107100019" => {"quotient_familial" => 2550}}} }
+
+      it "leaves the current quotient familial empty" do
+        call
+
+        expect(Current.quotient_familial).to eq({})
       end
     end
 

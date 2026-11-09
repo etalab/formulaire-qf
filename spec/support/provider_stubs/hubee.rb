@@ -105,8 +105,8 @@ module ProviderStubs::HubEE
       .to_return(status: 201, body: "", headers: {})
   end
 
-  def stub_hubee_create_folder(names: "Heinemeier_Hansson_David")
-    allow(SecureRandom).to receive(:hex).and_return("abcdef1234567thiswontbeused")
+  def stub_hubee_create_folder(names: "Heinemeier_Hansson_David", reference: "ABCDEF1234567")
+    allow(SecureRandom).to receive(:hex).and_return("#{reference.downcase}thiswontbeused")
 
     stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
       .to_return(status: 200, body:  {
@@ -119,7 +119,7 @@ module ProviderStubs::HubEE
           firstName: "David",
           lastName: "Heinemeier Hansson",
         },
-        externalId: "Formulaire-QF-ABCDEF1234567",
+        externalId: "Formulaire-QF-#{reference}",
         updateDateTime: "2024-05-22T13:36:01.781Z",
         cases: [
           {
@@ -130,7 +130,7 @@ module ProviderStubs::HubEE
               companyRegister: "123456789",
               branchCode: "1234",
             },
-            externalId: "Formulaire-QF-ABCDEF1234567-01",
+            externalId: "Formulaire-QF-#{reference}-01",
             updateDateTime: "2024-05-22T13:36:01.781Z",
             transmissionDateTime: "2024-05-22T13:36:01.781Z",
           },
@@ -144,7 +144,7 @@ module ProviderStubs::HubEE
             size: 683,
             mimeType: "application/json",
             recipients: [
-              "Formulaire-QF-ABCDEF1234567-01",
+              "Formulaire-QF-#{reference}-01",
             ],
           },
           {
@@ -155,7 +155,7 @@ module ProviderStubs::HubEE
             size: 1543,
             mimeType: "application/xml",
             recipients: [
-              "Formulaire-QF-ABCDEF1234567-01",
+              "Formulaire-QF-#{reference}-01",
             ],
           },
           {
@@ -166,7 +166,7 @@ module ProviderStubs::HubEE
             size: 3079,
             mimeType: "application/pdf",
             recipients: [
-              "Formulaire-QF-ABCDEF1234567-01",
+              "Formulaire-QF-#{reference}-01",
             ],
           },
         ],

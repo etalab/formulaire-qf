@@ -1,6 +1,6 @@
 <%= render partial: "collectivities/show_banner", locals: { duration: 1 } %>
 
-<div class="fr-col-md-8">
+<div class="fr-col-md-8" data-controller="reload-when-restored" data-action="pageshow@window->reload-when-restored#reload">
   <%= simple_format t('.title', collectivity_name: @collectivity.display_name), { }, wrapper_tag: 'h2' %>
 
   <div class="user-data fr-p-3w">
