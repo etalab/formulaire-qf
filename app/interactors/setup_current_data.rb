@@ -23,7 +23,7 @@ class SetupCurrentData < BaseInteractor
   end
 
   def portal
-    context.session.fetch("portals", {}).fetch(collectivity.siret, {})
+    PortalSession.new(context.session).read(collectivity.siret)
   end
 
   def pivot_identity
