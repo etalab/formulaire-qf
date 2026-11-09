@@ -21,6 +21,7 @@ Commit messages are written in English.
 - RuboCop with `standard` and `rubocop-rails` (`.rubocop.yml`): double quotes, trailing commas on multiline array and hash literals.
 - No comments in code.
 - Business logic lives in organizers (`app/organizers/`) and small interactors (`app/interactors/`), never in controllers. Controllers call an organizer or an interactor, then redirect or render.
+- Context kept in the session for one collectivité is keyed by its SIRET (`session[:portals][siret]`), never held in a single slot checked against the current one (`session[:portal]` with `portal_siret == collectivity.siret`): a parent who goes through a second collectivité overwrites the first one's values (#410).
 - `DatapassWebhook::SetupCollectivity` rescues every `StandardError` outside development and test (`Rails.env.local?`) and only reports it to Sentry, so `SetupCollectivityJob` always ends as a success. An error that must leave the job failed in GoodJob, to be retried from there, is raised in the job before the organizer is called.
 - A Sentry event someone must act on for each record carries a `fingerprint` with the record's id (e.g. `datapass_id`): with a fixed message alone, Sentry groups every record into one issue and an alert on new issues fires only for the first (#405).
 - Tests: RSpec and Cucumber. Do not test ActiveRecord associations, only custom behaviour; keep factories valid instead.
