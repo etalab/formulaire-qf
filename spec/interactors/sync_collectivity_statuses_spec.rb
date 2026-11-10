@@ -27,9 +27,9 @@ RSpec.describe SyncCollectivityStatuses, type: :interactor do
       end
     end
 
-    shared_examples "a failed sync that changes no status" do
+    shared_examples "a failed sync that changes no status" do |message|
       it "fails and leaves Belley out of service and the DINUM in service", :aggregate_failures do
-        expect { call }.to raise_error(HubEE::Api::Error)
+        expect { call }.to raise_error(HubEE::Api::Error, message)
 
         expect(belley.reload).to be_inactive
         expect(dinum.reload).to be_active
@@ -39,25 +39,25 @@ RSpec.describe SyncCollectivityStatuses, type: :interactor do
     context "when the list would close the DINUM, one of the two collectivities in service: more than 20 %, so the list may be incomplete" do
       before { stub_hubee_active_subscriptions }
 
-      it_behaves_like "a failed sync that changes no status"
+      it_behaves_like "a failed sync that changes no status", /more than 20 %/
     end
 
     context "when HubEE answers with an error page" do
       before { stub_hubee_active_subscriptions(status: 502, body: "<html><body>502 Bad Gateway</body></html>") }
 
-      it_behaves_like "a failed sync that changes no status"
+      it_behaves_like "a failed sync that changes no status", /answered 502 without a list/
     end
 
     context "when HubEE lists no active subscription" do
       before { stub_hubee_active_subscriptions(body: "[]") }
 
-      it_behaves_like "a failed sync that changes no status"
+      it_behaves_like "a failed sync that changes no status", /listed no active subscription/
     end
 
     context "when HubEE lists a subscription that carries no SIRET" do
       before { stub_hubee_active_subscriptions(body: [{"subscriber" => {}}].to_json) }
 
-      it_behaves_like "a failed sync that changes no status"
+      it_behaves_like "a failed sync that changes no status", /without a SIRET/
     end
 
     context "when HubEE lists as many subscriptions as one answer can hold, so some may be cut off" do
@@ -67,7 +67,7 @@ RSpec.describe SyncCollectivityStatuses, type: :interactor do
         stub_hubee_active_subscriptions(body: subscriptions.to_json)
       end
 
-      it_behaves_like "a failed sync that changes no status"
+      it_behaves_like "a failed sync that changes no status", /the list may be cut off/
     end
   end
 end
