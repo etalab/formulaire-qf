@@ -25,6 +25,7 @@ class ShipmentsController < ApplicationController
       pivot_identity: Current.pivot_identity,
       original_pivot_identity: Current.original_pivot_identity,
       quotient_familial: Current.quotient_familial,
+      session_key: Current.shipment_key,
       user: Current.user
     )
 

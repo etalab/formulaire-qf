@@ -135,6 +135,7 @@ fr:
         paragraph_2: "Si %{collectivity} a une politique tarifaire qui prévoit de demander régulièrement votre quotient familial et qu'elle a mis en place la fonctionnalité technique de mise à jour automatique, elle conservera vos données d'identité pour actualiser votre quotient familial. Vous bénéficierez ainsi d'une tarification ajustée au plus prêt de vos ressources."
         link: "En savoir plus sur la gestion de vos données personnelles"
       next_button: "Transmettre les données à la collectivité"
+      sending_button: "Transmission en cours…"
     show:
       browser_title: Démarche terminée
       redirect_cta: Retourner sur le site de ma collectivité

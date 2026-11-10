@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_110673) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_09_115253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -162,10 +162,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_110673) do
     t.string "hubee_status", default: "pending"
     t.string "hubee_case_id"
     t.bigint "collectivity_id", null: false
+    t.string "session_key"
     t.index ["collectivity_id"], name: "index_shipments_on_collectivity_id"
     t.index ["hubee_case_id"], name: "index_shipments_on_hubee_case_id"
     t.index ["hubee_status"], name: "index_shipments_on_hubee_status"
     t.index ["reference"], name: "index_shipments_on_reference", unique: true
+    t.index ["session_key"], name: "index_shipments_on_session_key", unique: true
   end
 
   add_foreign_key "shipments", "collectivities"

@@ -109,68 +109,72 @@ module ProviderStubs::HubEE
     allow(SecureRandom).to receive(:hex).and_return("#{reference.downcase}thiswontbeused")
 
     stub_request(:post, "https://api.bas.hubee.numerique.gouv.fr/teledossiers/v1/folders")
-      .to_return(status: 200, body:  {
-        id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        globalStatus: "HUBEE_RECEIVED",
-        processCode: "FormulaireQF",
-        createDateTime: "2024-05-22T13:36:01.781Z",
-        closeDateTime: "2024-05-22T13:36:01.781Z",
-        applicant: {
-          firstName: "David",
-          lastName: "Heinemeier Hansson",
+      .to_return(status: 200, body: hubee_folder_payload(names:, reference:).to_json, headers: {})
+  end
+
+  def hubee_folder_payload(names: "Heinemeier_Hansson_David", reference: "ABCDEF1234567")
+    {
+      id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      globalStatus: "HUBEE_RECEIVED",
+      processCode: "FormulaireQF",
+      createDateTime: "2024-05-22T13:36:01.781Z",
+      closeDateTime: "2024-05-22T13:36:01.781Z",
+      applicant: {
+        firstName: "David",
+        lastName: "Heinemeier Hansson",
+      },
+      externalId: "Formulaire-QF-#{reference}",
+      updateDateTime: "2024-05-22T13:36:01.781Z",
+      cases: [
+        {
+          id: "d7923df5-c071-400e-87b5-f0d01d539aa5",
+          status: "HUBEE_NOTIFIED",
+          recipient: {
+            type: "SI",
+            companyRegister: "123456789",
+            branchCode: "1234",
+          },
+          externalId: "Formulaire-QF-#{reference}-01",
+          updateDateTime: "2024-05-22T13:36:01.781Z",
+          transmissionDateTime: "2024-05-22T13:36:01.781Z",
         },
-        externalId: "Formulaire-QF-#{reference}",
-        updateDateTime: "2024-05-22T13:36:01.781Z",
-        cases: [
-          {
-            id: "d7923df5-c071-400e-87b5-f0d01d539aa5",
-            status: "HUBEE_NOTIFIED",
-            recipient: {
-              type: "SI",
-              companyRegister: "123456789",
-              branchCode: "1234",
-            },
-            externalId: "Formulaire-QF-#{reference}-01",
-            updateDateTime: "2024-05-22T13:36:01.781Z",
-            transmissionDateTime: "2024-05-22T13:36:01.781Z",
-          },
-        ],
-        attachments: [
-          {
-            id: "a66abb0c-52d1-4e50-9195-22526fb7ce92",
-            status: "PENDING",
-            fileName: "FormulaireQF.json",
-            type: "FormulaireQF",
-            size: 683,
-            mimeType: "application/json",
-            recipients: [
-              "Formulaire-QF-#{reference}-01",
-            ],
-          },
-          {
-            id: "a66abb0c-52d1-4e50-9195-22526fb7ce93",
-            status: "PENDING",
-            fileName: "FormulaireQF.xml",
-            type: "FormulaireQF",
-            size: 1543,
-            mimeType: "application/xml",
-            recipients: [
-              "Formulaire-QF-#{reference}-01",
-            ],
-          },
-          {
-            id: "a66abb0c-52d1-4e50-9195-22526fb7ce94",
-            status: "PENDING",
-            fileName: "quotient_familial_#{names}.pdf",
-            type: "FormulaireQF",
-            size: 3079,
-            mimeType: "application/pdf",
-            recipients: [
-              "Formulaire-QF-#{reference}-01",
-            ],
-          },
-        ],
-      }.to_json, headers: {})
+      ],
+      attachments: [
+        {
+          id: "a66abb0c-52d1-4e50-9195-22526fb7ce92",
+          status: "PENDING",
+          fileName: "FormulaireQF.json",
+          type: "FormulaireQF",
+          size: 683,
+          mimeType: "application/json",
+          recipients: [
+            "Formulaire-QF-#{reference}-01",
+          ],
+        },
+        {
+          id: "a66abb0c-52d1-4e50-9195-22526fb7ce93",
+          status: "PENDING",
+          fileName: "FormulaireQF.xml",
+          type: "FormulaireQF",
+          size: 1543,
+          mimeType: "application/xml",
+          recipients: [
+            "Formulaire-QF-#{reference}-01",
+          ],
+        },
+        {
+          id: "a66abb0c-52d1-4e50-9195-22526fb7ce94",
+          status: "PENDING",
+          fileName: "quotient_familial_#{names}.pdf",
+          type: "FormulaireQF",
+          size: 3079,
+          mimeType: "application/pdf",
+          recipients: [
+            "Formulaire-QF-#{reference}-01",
+          ],
+        },
+      ],
+    }
   end
 
   def stub_hubee_create_folder_with_error
