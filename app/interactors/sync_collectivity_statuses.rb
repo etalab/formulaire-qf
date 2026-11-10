@@ -1,4 +1,6 @@
 class SyncCollectivityStatuses < BaseInteractor
+  MAX_CLOSED_PERCENT = 20
+
   def call
     response = HubEE::Api.session.active_subscriptions
     subscriptions = response.body
@@ -10,9 +12,13 @@ class SyncCollectivityStatuses < BaseInteractor
     sirets = subscriptions.map { |subscription| subscription.dig("subscriber", "companyRegister") }
     raise HubEE::Api::Error, "HubEE listed an active subscription without a SIRET" if sirets.any?(&:blank?)
 
+    in_service = Collectivity.active
+    closing = in_service.where.not(siret: sirets)
+    raise HubEE::Api::Error, "HubEE's list would close #{closing.count} of the #{in_service.count} collectivities in service, more than #{MAX_CLOSED_PERCENT} %: the list may be incomplete" if closing.count * 100 > in_service.count * MAX_CLOSED_PERCENT
+
     Collectivity.transaction do
       Collectivity.inactive.where(siret: sirets).find_each(&:active!)
-      Collectivity.active.where.not(siret: sirets).find_each(&:inactive!)
+      closing.find_each(&:inactive!)
     end
   end
 end

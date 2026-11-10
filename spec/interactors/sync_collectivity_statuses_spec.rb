@@ -5,10 +5,18 @@ RSpec.describe SyncCollectivityStatuses, type: :interactor do
     let!(:belley) { create(:collectivity, name: "Belley", siret: "21010034300016", status: :inactive) }
     let!(:dinum) { create(:collectivity, name: "DINUM", siret: "13002526500013", status: :active) }
 
-    before { stub_hubee_token }
+    before do
+      stub_hubee_token
+      Collectivity.find_or_initialize_by(siret: "21040107100019").update!(name: "Majastres", code_cog: "04107", departement: "04", status: :active)
+    end
 
-    context "when HubEE lists Belley among its active subscriptions, and not the DINUM" do
-      before { stub_hubee_active_subscriptions }
+    context "when HubEE lists Belley among its active subscriptions, and not the DINUM, one of the five collectivities in service" do
+      let(:others_in_service) { %w[21560210300016 21060004500012 21720300900014] }
+
+      before do
+        others_in_service.each { |siret| create(:collectivity, siret:, status: :active) }
+        stub_hubee_active_subscriptions(more_sirets: others_in_service)
+      end
 
       it "puts Belley in service" do
         expect { call }.to change { belley.reload.status }.from("inactive").to("active")
@@ -26,6 +34,12 @@ RSpec.describe SyncCollectivityStatuses, type: :interactor do
         expect(belley.reload).to be_inactive
         expect(dinum.reload).to be_active
       end
+    end
+
+    context "when the list would close the DINUM, one of the two collectivities in service: more than 20 %, so the list may be incomplete" do
+      before { stub_hubee_active_subscriptions }
+
+      it_behaves_like "a failed sync that changes no status"
     end
 
     context "when HubEE answers with an error page" do

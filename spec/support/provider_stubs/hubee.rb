@@ -30,7 +30,7 @@ module ProviderStubs::HubEE
       .to_return(status: 502, body: "<html><body>502 Bad Gateway</body></html>")
   end
 
-  def stub_hubee_active_subscriptions(status: 200, body: nil)
+  def stub_hubee_active_subscriptions(status: 200, body: nil, more_sirets: [])
     payload = [
       {
         "accessMode" => "API",
@@ -81,6 +81,8 @@ module ProviderStubs::HubEE
         "validateDateTime" => "2024-04-18T08:01:21.137+00:00",
       },
     ]
+
+    payload += more_sirets.map { |siret| payload.first.deep_merge("subscriber" => {"companyRegister" => siret}) }
 
     stub_request(:get, "https://api.bas.hubee.numerique.gouv.fr/referential/v1/subscriptions?maxResult=5000&processCode=FormulaireQF&status=Actif")
       .to_return(
