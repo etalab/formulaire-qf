@@ -10,7 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
@@ -62,7 +61,9 @@ ul.checklist li:before {
   left: -32px;
   width: 24px;
   height: 24px;
-  background-image: url(<%= asset_path "fr--success-fill-green.svg" %>);
+  background-color: var(--success-425-625);
+  -webkit-mask: url(<%= asset_path "icons/system/fr--success-fill.svg" %>) center / contain no-repeat;
+  mask: url(<%= asset_path "icons/system/fr--success-fill.svg" %>) center / contain no-repeat;
 }
 
 /* User data container */
