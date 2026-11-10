@@ -2,8 +2,13 @@ version: 2
 updates:
   - package-ecosystem: "bundler"
     groups:
+      dsfr:
+        patterns:
+        - "dsfr-assets"
       production-dependencies:
         dependency-type: "production"
+        exclude-patterns:
+        - "dsfr-assets"
       development-dependencies:
         dependency-type: "development"
         exclude-patterns:
