@@ -13,12 +13,12 @@ class DatapassWebhook::CreateCollectivity < BaseInteractor
 
   def find_or_create_collectivity
     collectivity = Collectivity.find_or_initialize_by(siret: organization.siret)
+    collectivity.status = :inactive if collectivity.new_record?
 
     collectivity.update!(
       name: organization.denomination,
       code_cog: organization.code_commune_etablissement,
       departement: organization.code_postal_etablissement[0..1],
-      status: :active,
       editor: editor_id
     )
   end
