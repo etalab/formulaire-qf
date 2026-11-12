@@ -4,6 +4,7 @@ Rails.application.configure do
   config.good_job.cron = {
     populate_hubee_sandbox: {cron: "10 4 * * *", class: "PopulateHubEESandboxJob"},
     process_hubee_notifications: {cron: "10 */4 * * *", class: "ReadHubEENotificationsJob"},
+    sync_collectivity_statuses: {cron: "5 * * * *", class: "SyncCollectivityStatusesJob"},
     purge_expired_sessions: {cron: "0 * * * *", class: "PurgeExpiredSessionsJob"},
   }
 end

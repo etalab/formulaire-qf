@@ -3,6 +3,8 @@ require "net/http"
 require "json"
 
 class HubEE::Api
+  ACTIVE_SUBSCRIPTIONS_LIMIT = 5000
+
   def self.session
     new
   end
@@ -10,7 +12,7 @@ class HubEE::Api
   def active_subscriptions
     url = "#{Settings.hubee.base_url}/referential/v1/subscriptions"
 
-    get(url, query_params: {maxResult: 5000, status: "Actif", processCode: "FormulaireQF"})
+    get(url, query_params: {maxResult: ACTIVE_SUBSCRIPTIONS_LIMIT, status: "Actif", processCode: "FormulaireQF"})
   end
 
   def close_case(case_id:)
