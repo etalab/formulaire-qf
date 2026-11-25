@@ -101,12 +101,12 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
                       allow(session).to receive(:close_folder)
                     end
 
-                    it "removes hubee ids" do
+                    it "erases the folder id and keeps the case id" do
                       expect {
                         interactor
                         shipment.reload
                       }.to change { shipment.hubee_folder_id }.to(nil)
-                        .and change { shipment.hubee_case_id }.to(nil)
+                        .and not_change { shipment.hubee_case_id }
                     end
 
                     it "closes the folder" do

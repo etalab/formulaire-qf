@@ -30,7 +30,7 @@ class ProcessHubEENotification < BaseInteractor
   def anonymize_shipment
     return unless shipment
 
-    shipment.update!(hubee_folder_id: nil, hubee_case_id: nil)
+    shipment.update!(hubee_folder_id: nil)
   end
 
   def close_folder
