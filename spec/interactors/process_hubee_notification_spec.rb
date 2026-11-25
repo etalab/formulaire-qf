@@ -236,8 +236,11 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
                     interactor
                   end
 
-                  it "logs an error" do
-                    expect(Sentry).to receive(:capture_message).with("No shipment found for case_id: 1234, cannot delete folder.")
+                  it "alerts once per case" do
+                    expect(Sentry).to receive(:capture_message).with(
+                      "No shipment found for case_id: 1234, cannot delete folder.",
+                      fingerprint: ["hubee-notification-without-shipment", "1234"]
+                    )
                     interactor
                   end
                 end

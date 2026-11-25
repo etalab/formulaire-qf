@@ -30,7 +30,10 @@ class ProcessHubEENotification < BaseInteractor
     if shipment
       session.close_folder(folder_id: shipment.hubee_folder_id)
     else
-      Sentry.capture_message("No shipment found for case_id: #{notification.case_id}, cannot delete folder.")
+      Sentry.capture_message(
+        "No shipment found for case_id: #{notification.case_id}, cannot delete folder.",
+        fingerprint: ["hubee-notification-without-shipment", notification.case_id]
+      )
     end
   end
 
