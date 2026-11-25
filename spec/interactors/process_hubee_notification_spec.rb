@@ -115,6 +115,24 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
                       expect(session).to receive(:close_folder)
                       interactor
                     end
+
+                    context "when HubEE fails while closing the case" do
+                      before do
+                        attempts = 0
+                        allow(session).to receive(:close_case) do
+                          attempts += 1
+                          raise HubEE::Api::Error, "HubEE unreachable on PATCH" if attempts == 1
+                        end
+                      end
+
+                      it "closes the case and the folder on the retry" do
+                        expect { described_class.call(notification: notification_hash) }.to raise_error(HubEE::Api::Error)
+                        described_class.call(notification: notification_hash)
+
+                        expect(session).to have_received(:close_folder).with(folder_id: "folder_uuid")
+                        expect(shipment.reload).to have_attributes(hubee_status: "done", hubee_folder_id: nil)
+                      end
+                    end
                   end
 
                   context "when the event is not a final status" do
@@ -125,6 +143,82 @@ RSpec.describe ProcessHubEENotification, type: :interactor do
                       }.to not_change { shipment.hubee_folder_id }
                         .and not_change { shipment.hubee_case_id }
                     end
+                  end
+                end
+
+                context "when the shipment is already closed" do
+                  let!(:shipment) { create(:shipment, hubee_case_id: case_id, hubee_folder_id: nil, hubee_status: closed_status) }
+
+                  let(:closed_status) { :done }
+
+                  before do
+                    allow(session).to receive(:close_case)
+                    allow(session).to receive(:create_event)
+                    allow(session).to receive(:close_folder)
+                  end
+
+                  shared_examples "a notification for a closed shipment" do
+                    it "does not close the case again" do
+                      expect(session).not_to receive(:close_case)
+                      expect(session).not_to receive(:create_event)
+                      expect(session).not_to receive(:close_folder)
+                      interactor
+                    end
+
+                    it "keeps the shipment status" do
+                      expect { interactor }.not_to change { shipment.reload.hubee_status }
+                    end
+
+                    it "marks the event received and deletes the notification" do
+                      expect(session).to receive(:update_event)
+                      expect(session).to receive(:delete_notification)
+                      interactor
+                    end
+                  end
+
+                  context "when the same final status comes again" do
+                    let(:status) { "DONE" }
+
+                    it_behaves_like "a notification for a closed shipment"
+                  end
+
+                  context "when another final status comes" do
+                    let(:status) { "REFUSED" }
+
+                    it_behaves_like "a notification for a closed shipment"
+                  end
+
+                  context "when a non-final status comes" do
+                    let(:status) { "IN_PROGRESS" }
+
+                    it_behaves_like "a notification for a closed shipment"
+                  end
+
+                  context "when the shipment was refused" do
+                    let(:closed_status) { :refused }
+                    let(:status) { "DONE" }
+
+                    it_behaves_like "a notification for a closed shipment"
+                  end
+                end
+
+                context "when the shipment was left half closed, final with its folder id kept" do
+                  let!(:shipment) { create(:shipment, hubee_case_id: case_id, hubee_folder_id: "folder_uuid", hubee_status: :done) }
+
+                  let(:status) { "DONE" }
+
+                  before do
+                    allow(session).to receive(:close_case)
+                    allow(session).to receive(:create_event)
+                    allow(session).to receive(:close_folder)
+                  end
+
+                  it "closes the case and the folder, then erases the folder id" do
+                    interactor
+
+                    expect(session).to have_received(:close_case).with(case_id: "1234")
+                    expect(session).to have_received(:close_folder).with(folder_id: "folder_uuid")
+                    expect(shipment.reload).to have_attributes(hubee_status: "done", hubee_folder_id: nil)
                   end
                 end
 
