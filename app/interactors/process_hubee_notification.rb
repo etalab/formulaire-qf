@@ -8,12 +8,9 @@ class ProcessHubEENotification < BaseInteractor
 
     return unless event.sent? && event.status_update?
 
-    if event.processable?
-      update_shipment_status
-      if event.final_status?
-        close_folder
-        anonymize_shipment
-      end
+    if event.processable? && !shipment&.closed?
+      close_folder if event.final_status?
+      shipment&.update_hubee_status!(event.case_new_status)
     end
 
     session.update_event(id: notification.event_id, case_id: notification.case_id)
@@ -27,19 +24,16 @@ class ProcessHubEENotification < BaseInteractor
 
   private
 
-  def anonymize_shipment
-    return unless shipment
-
-    shipment.update!(hubee_folder_id: nil, hubee_case_id: nil)
-  end
-
   def close_folder
     session.close_case(case_id: notification.case_id)
     session.create_event(case_id: notification.case_id, current_status: event.case_current_status, new_status: "CLOSED")
     if shipment
       session.close_folder(folder_id: shipment.hubee_folder_id)
     else
-      Sentry.capture_message("No shipment found for case_id: #{notification.case_id}, cannot delete folder.")
+      Sentry.capture_message(
+        "No shipment found for case_id: #{notification.case_id}, cannot delete folder.",
+        fingerprint: ["hubee-notification-without-shipment", notification.case_id]
+      )
     end
   end
 
@@ -59,11 +53,5 @@ class ProcessHubEENotification < BaseInteractor
     return @shipment if defined?(@shipment)
 
     @shipment = Shipment.find_by(hubee_case_id: notification.case_id)
-  end
-
-  def update_shipment_status
-    return unless shipment
-
-    shipment.update!(hubee_status: event.case_new_status.downcase)
   end
 end

@@ -5,6 +5,16 @@ class Shipment < ApplicationRecord
 
   belongs_to :collectivity
 
+  def closed?
+    final? && hubee_folder_id.nil?
+  end
+
+  def update_hubee_status!(status)
+    self.hubee_status = status.downcase
+    self.hubee_folder_id = nil if final?
+    save!
+  end
+
   def affect_reference
     return if persisted?
     reference = SecureRandom.hex[0...13].upcase
@@ -14,5 +24,11 @@ class Shipment < ApplicationRecord
     else
       self.reference = reference
     end
+  end
+
+  private
+
+  def final?
+    done? || refused?
   end
 end
